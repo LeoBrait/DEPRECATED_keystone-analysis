@@ -10,7 +10,6 @@ import numpy as np
 import pandas as pd
 from keystone_indexes_functions import *
 from metadata_topython_functions import *
-from plot_networks_functions import *
 from table_keystones import *
 import matplotlib.pyplot as plt
 from detect_peaks import detect_peaks
@@ -30,9 +29,6 @@ def run(path=None,df=None,host=None):
 
     # writing the matrix as tsv with the desired format
     df.to_csv(path+"/cnm_data/correlation_matrix.dat", sep='\t',index=False,header=False)
-
-    # saving ecological features file
-    saveEcolFeat(path,path+"/gephi_data/nodes.csv")
 
     # copying executable temporarily to the folder
     cp(['../cnm/a.out'], path+'/cnm_data/')
@@ -118,20 +114,10 @@ def deltaFuncAndPeaksSelector(way=None):
     x = f[0]
     y = f[7]
     tam = len(x)
-    # Plot distance between netorks in function of threshold
-    plt.figure()
-    plt.plot(x,y,'.-')
 
     cutoff=sorted(y)[-int(len(y)*.05)]
 
     argpeaks = detect_peaks(y,mpd=1,mph=cutoff)
-
-    plt.plot(x[argpeaks],y[argpeaks],'or')
-    plt.xlabel('$\sigma$')
-    plt.ylabel('$\delta(\sigma,\sigma+\Delta\sigma)$')
-    plt.tight_layout()
-    plt.savefig(way+'/figures/distance_networks_envi_severalpeaks.pdf',dpi=150)
-    plt.savefig(way+'/figures/distance_networks_envi_severalpeaks.jpg',dpi=150)
 
     # getting the highest peak separately or 0 if there's no peak
     if len(argpeaks) < 1:
@@ -200,8 +186,6 @@ def find_keystones_envi(base,peak,host):
     nx.set_node_attributes(G_pos,values=dict_med,name='med')
 
     # some information to further use
-    modules_nga = find_modules_nga(G_pos,Taxa)
-    modules_modularity = find_modules_modularity(G_pos,Taxa)
     subgraphs = find_subgraphs(G_pos,Taxa)
 
     # #Calculate d, bc, cc and d*cc
@@ -221,11 +205,6 @@ def find_keystones_envi(base,peak,host):
     #Euclidean distance divided by higher subgraph diameter and by node mean shortestpath
     func = lambda x:350000*x
     euclidians_distance_divided_and_msp(base,base+'/edm_data/eudist_%3.2f.dat'%thr,G_pos,rare,prefix_pos,Taxa,peak)
-    find_neig_key(base,G_pos,Taxa,"EDpDM",prefix_pos,peak)
-    find_neig_key(base,G_pos,Taxa,"iEDpDM",prefix_pos,peak)
-    plot_network_modules_sizes_positive(base,G_pos,modules_nga,Taxa,prefix_pos,"EDpDM",func,peak)
-    plot_network_modules_sizes_positive(base,G_pos,modules_nga,Taxa,prefix_pos,"iEDpDM",func,peak)
-    plt.close("all")
 
     #Metrics Literature
     metrics = ['BC','D','DxCC','Ddiv','DxCCdiv']
@@ -234,10 +213,7 @@ def find_keystones_envi(base,peak,host):
     for i,metric in enumerate(metrics):
         func = funcs[i]
         construct_rank_dict_set_to_G(G_pos,Taxa,list_dict_metrics_pos[i],metric)
-        index(base,G_pos,rare,prefix_pos,metric,Taxa,peak)
-        find_neig_key(base,G_pos,Taxa,metric,prefix_pos,peak)
-        plot_network_modules_sizes_positive(base,G_pos,modules_nga,Taxa,prefix_pos,metric,func,peak)
-        plt.close("all")
+        save_central_values(base,G_pos,metric,prefix_pos,peak)
 
     nx.write_gpickle(G_pos,base+"/nx_data/"+prefix_pos+"_G.gpickle")
 

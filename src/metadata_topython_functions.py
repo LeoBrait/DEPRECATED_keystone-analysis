@@ -40,16 +40,3 @@ def metadata(nodes):
     Med = df["med"].tolist()
 
     return N, Marker, Taxa, Abundance, AbsoluteAbundance, Prevalence, Sem, Std, Med
-
-def saveEcolFeat(path,nodes):
-    df = pd.read_csv(nodes,index_col=1)
-
-    # removing all columns but label and prevalence
-    key=df.keys().tolist()
-    key.remove('prevalence')
-    df.drop(key,1,inplace=True)
-
-    df['ub50'] = (df['prevalence'] >= .5)*1
-    df['ub75'] = (df['prevalence'] >= .75)*1
-
-    df.to_csv(path+'/raw_data/ecol_features.csv')
