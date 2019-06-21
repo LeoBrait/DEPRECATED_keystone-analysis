@@ -1,5 +1,5 @@
 output
 out
 __pycache__
-community_matrix
+community_matrix/*
 log.txt
