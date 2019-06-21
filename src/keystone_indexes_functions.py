@@ -120,8 +120,16 @@ def index(base,G,rare,prefix,metric,Taxa,peak):
     fig.savefig(base+"/figures/0p%d/"%peak+metric+"_"+prefix+".pdf",dpi=150)
     plt.close()
     write_index(base,G,tam,metric,rank_metric,prefix,peak)
-    # TODO: CORRIGIR vvvvvvvvv
+
+    G_ = filter_disconnected_nodes(G)
+    nnk = get_values(G_,metric) # ADDED, but prob temporarily
     cdf_indexes(base,nnk,metric,prefix,peak)
+
+def filter_disconnected_nodes(G):
+    g = G.copy()
+    toDel = [node for node,deg in g.degree if deg == 0]
+    g.remove_nodes_from(toDel)
+    return g
 
 def index_split(base,G,rare,prefix,metric,Taxa,peak):
     rank_metric = "rank_"+metric
@@ -224,7 +232,6 @@ def prod_dict(x1,x2,Taxa):
 def number_keystones(base,k,metric,prefix,peak):
     X = k.copy()
     X.sort()
-    X = X[np.nonzero(X)]
     mx = np.mean(X)
     stdx = np.std(X,ddof=1)
     medx = np.median(X)
