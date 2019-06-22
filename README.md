@@ -6,16 +6,15 @@ This repository holds all codes to reproduce the major part of the Keystones det
 
 This repository generates only the published results and a few more needed to do so by another scripts. For many other outputs and the entire development history of this project, have a look at [the development repository](https://bitbucket.org/bertolinocastro/the_model).
 
+## Citation
+
+***
+
 ### Keystone Analysis Repositories
 - [Main code](https://github.com/MeirellesLab/keystone-analysis)
 - [Input Community Matrices](https://github.com/MeirellesLab/keystone-analysis-community-input)
 - [Input SparCC Correlation Matrices](https://github.com/MeirellesLab/keystone-fastspar-correlation)
 - [Development repo](https://bitbucket.org/bertolinocastro/the_model/)
-
-
-## Citation
-
-***
 
 ## Contact
 
