@@ -26,8 +26,6 @@ except ImportError as e:
 startTime = datetime.now()
 
 for f in lsgrep('community_matrix',['phyla']):
-    if 'animal.manure' not in f:
-        continue
 
     fname = f[:-4].split('/')[1].split('_')[0]
 
