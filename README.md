@@ -10,6 +10,12 @@ This repository generates only the published results and a few more needed to do
 
 ***
 
+### Keystone Analysis Repositories
+- [Main code](https://github.com/MeirellesLab/keystone-analysis)
+- [Input Community Matrices](https://github.com/MeirellesLab/keystone-analysis-community-input)
+- [Input SparCC Correlation Matrices](https://github.com/MeirellesLab/keystone-fastspar-correlation)
+- [Development repo](https://bitbucket.org/bertolinocastro/the_model/)
+
 ## Contact
 
 You may contact Amaro or Pedro for questions related to the paper itself through the emails atrindadesilva@gmail.com  and pedrommeirelles@gmail.com, respectively.
