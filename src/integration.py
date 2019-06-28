@@ -60,6 +60,9 @@ def run(path=None,df=None,host=None):
     # doing only the highest peak in order to improve performance as we are not using else peaks
     peaksL = [high]
 
+    # going a step before the peak in order to construct the networks before they break apart
+    peaksL -= 0.01
+
     cd(path+'/cnm_data')
     # running CNM for each peak
     for peak in peaksL:
