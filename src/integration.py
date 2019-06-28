@@ -55,13 +55,15 @@ def run(path=None,df=None,host=None):
 
     # choosing peaks
     peaksL, high = deltaFuncAndPeaksSelector(path)
+
+    # going a step before the peak in order to construct the networks before they break apart
+    peaksL[:] = [x-1 for x in peaksL]
+    high -= 1
+
     echo(path+'/raw_data/cnm_highest_peak.txt', high)
 
     # doing only the highest peak in order to improve performance as we are not using else peaks
     peaksL = [high]
-
-    # going a step before the peak in order to construct the networks before they break apart
-    peaksL -= 0.01
 
     cd(path+'/cnm_data')
     # running CNM for each peak
