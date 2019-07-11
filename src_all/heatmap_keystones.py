@@ -377,7 +377,7 @@ labels = ['Non keystone (#%d %.2f%%)'%(stats[0],100.*stats[0]/s),
     metrics[0]+' & '+metrics[2] + ' (#%d %.2f%%)'%(stats[5],100.*stats[5]/s),
     metrics[1]+' & '+metrics[2] + ' (#%d %.2f%%)'%(stats[6],100.*stats[6]/s),
     metrics[0]+' & '+metrics[1]+' & '+metrics[2] + ' (#%d %.2f%%)'%(stats[7],100.*stats[7]/s),
-    'Absent']
+    'Absent'+ ' (#%d)'%(maxn*maxm-s)]
 
 patches = [mpatches.Patch(facecolor=colors[i], label=labels[i], edgecolor='k', linewidth=.1) for i in [1,2,4,3,5,6,-1,0,7]]
 leg = fig1.legend(handles=patches, frameon=False, fontsize=fontszleg, ncol=3)
