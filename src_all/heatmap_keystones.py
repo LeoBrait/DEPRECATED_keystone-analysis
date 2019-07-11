@@ -411,14 +411,19 @@ cumuX=.15 # repointing to left border
 ax = fig.add_axes([cumuX, cumuY+.01, propx, propy*8./maxm])
 bins = np.arange(0, maxn)
 lasti = 0
+ticks_pos = []
 for i,clr in zip(statsOcuTax[::-1],np.array(colors)[[1,2,4]][::-1]):
     ax.bar(bins,i,bottom=lasti,align='edge',linewidth=0,width=1,color=clr,alpha=0.6)
+    ticks_pos.append(lasti+float(max(i))/2)
     lasti += max(i)
-ax.set_yticks([])
-ax.set_ylabel('  # of keystones', fontsize=fontsiz, rotation=180, va='center', ha='left', rotation_mode='anchor')
+ax.set_yticks(ticks_pos)
+ax.set_yticklabels(['Sum of '+x for x in metrics[::-1]], # setting inversed order labels as They're rotated
+    fontsize=fontsiz, rotation=180, va='center', ha='left', rotation_mode='anchor')
+# ax.set_ylabel('Sum of keystones', fontsize=fontsiz, rotation=180, va='center', ha='left', rotation_mode='anchor')
 ax.set_xticks([])
 ax.set_xlim([0,maxn])
 plt.setp(ax.spines.values(),color='#939393',linewidth=0)
+plt.setp([ax.get_xticklines(),ax.get_yticklines()],color='#939393')
 
 # plotting the marginal distributions (aside the "mosaic")
 cumuX=.15 + propx + .005 # Repositioning the left
@@ -426,14 +431,19 @@ cumuY=.0
 ax = fig.add_axes([cumuX, cumuY, propx*8./maxn, propy]) # plotting a 'rotated' axis
 bins = np.arange(0, maxm)[::-1]
 lasti = 0
+ticks_pos = []
 for i,clr in zip(statsOcuEco[::-1],np.array(colors)[[1,2,4]][::-1]):
     ax.barh(bins,i,left=lasti,height=1,edgecolor=(.7,.7,.7,.1),linewidth=.05,facecolor=clr,alpha=0.6,align='edge')
+    ticks_pos.append(lasti+float(max(i))/2)
     lasti += max(i)
 ax.set_yticks([])
 ax.set_ylim([0,maxm])
-ax.set_xlabel('# of keystones', fontsize=fontsiz, rotation=90)
-ax.set_xticks([])
+ax.set_xticks(ticks_pos)
+ax.set_xticklabels(['Sum of '+x for x in metrics[::-1]], # setting inversed order labels to match the bar colors
+    fontsize=fontsiz, rotation=90, va='center', ha='right', rotation_mode='anchor')
+# ax.set_xlabel('# of keystones', fontsize=fontsiz, rotation=90)
 plt.setp(ax.spines.values(),color='#939393',linewidth=0)
+plt.setp([ax.get_xticklines(),ax.get_yticklines()],color='#939393')
 
 # --------------------------------
 
