@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/python3.7
 
 import sys
 import pandas as pd
@@ -352,7 +352,8 @@ for i, myEnvi_ in enumerate(groupedEnvi):
             ax.set_xticklabels([])
 
         # Rotate the tick labels and set their alignment.
-        plt.setp(ax.get_xticklabels(), rotation=90, va='center', ha="right", rotation_mode="anchor")
+        plt.setp(ax.get_xticklabels(), rotation=90,  va='center', ha="right", rotation_mode="anchor")
+        plt.setp(ax.get_yticklabels(), rotation=180, va='center', ha="left", rotation_mode="anchor")
 
         # smoothing spines and ticks color
         plt.setp(ax.spines.values(),color='#939393',linewidth=.25)
@@ -393,7 +394,8 @@ ax = fig.add_axes([cumuX, cumuY+.01, propx, propy*1./maxm])
 im = ax.imshow([np.log10(abund)],cmap=plt.cm.Purples)
 
 ax.set_yticks(np.arange(1))
-ax.set_yticklabels(['Log10 of Mean Abundance through habitats'], fontsize=fontsiz)
+ax.set_yticklabels(['Log10 of Mean Abundance through habitats'], fontsize=fontsiz,
+    rotation=180, va='center', ha="left", rotation_mode="anchor")
 ax.set_xticks([])
 ax.set_xticklabels([])
 # smoothing spines and ticks color
@@ -412,7 +414,7 @@ for i,clr in zip(statsOcuTax[::-1],np.array(colors)[[1,2,4]][::-1]):
     ax.bar(bins,i,bottom=lasti,align='edge',linewidth=0,width=1,color=clr,alpha=0.6)
     lasti += max(i)
 ax.set_yticks([])
-ax.set_ylabel('# of keystones', fontsize=fontsiz,rotation=0,rotation_mode='anchor',va='center',ha='right')
+ax.set_ylabel('  # of keystones', fontsize=fontsiz, rotation=180, va='center', ha='left', rotation_mode='anchor')
 ax.set_xticks([])
 ax.set_xlim([0,maxn])
 plt.setp(ax.spines.values(),color='#939393',linewidth=0)
