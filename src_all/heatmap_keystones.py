@@ -139,8 +139,8 @@ def renameTaxa(vec,level):
 def renameEnvi(vec,level):
     ret = vec[0].split('@')[0]
     for i in range(len(vec)):
-        # vec[i] = vec[i].replace('@',' ')
-        vec[i] = vec[i].split('@')[1]
+        vec[i] = vec[i].replace('@',' ')
+        # vec[i] = vec[i].split('@')[1]
     return ret
 
 # returning the colors for x-Axis labels
