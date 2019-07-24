@@ -2,7 +2,7 @@
 
 # Keystone Analysis
 
-This repository holds all codes to reproduce the major part of the Keystones determination procedures described in the Methods section of the paper ~not yet published~.
+This repository holds all codes to reproduce the major part of the Keystones determination procedures described in the Methods section _Finding putative keystone microbial taxa_ of the paper ~not yet published~.
 
 This repository generates only the published results and a few more needed to do so by another scripts. For many other outputs and the entire development history of this project, have a look at [the development repository](https://bitbucket.org/bertolinocastro/the_model).
 
@@ -18,7 +18,8 @@ This repository generates only the published results and a few more needed to do
 
 ## Contact
 
-You may contact Amaro or Pedro for questions related to the paper itself through the emails atrindadesilva@gmail.com  and pedrommeirelles@gmail.com, respectively.
+You may contact the correspondence author Pedro for questions related to the paper itself through the email pedrommeirelles@gmail.com. 
+
 For questions related to this repository and its auxiliary ones, you may also contact the developers Bertolino (jgabbc@hotmail.com) and Flávia Mayumi (flaviamayumi.rh@gmail.com).
 
 ## Contributors
