@@ -18,7 +18,7 @@ This repository generates only the published results and a few more needed to ma
 
 ## Contact
 
-You may contact the correspondence author Pedro for questions related to the paper itself through the email pedrommeirelles@gmail.com. 
+You may contact the corresponding author Pedro for questions related to the paper itself through the email pedrommeirelles@gmail.com. 
 
 For questions related to this repository and its auxiliary ones, you may also contact the developers Bertolino (jgabbc@hotmail.com) and Flávia Mayumi (flaviamayumi.rh@gmail.com).
 
