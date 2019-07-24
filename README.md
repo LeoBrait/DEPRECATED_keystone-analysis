@@ -4,7 +4,7 @@
 
 This repository holds all codes to reproduce the major part of the Keystones determination procedures described in the Methods section _Finding putative keystone microbial taxa_ of the paper ~not yet published~.
 
-This repository generates only the published results and a few more needed to make them by another scripts. For many other outputs and the entire development history of this project, have a look at [the development repository](https://bitbucket.org/bertolinocastro/the_model).
+This repository generates only the published results and a few more needed to make them by other scripts. For many other outputs and the entire development history of this project, have a look at [the development repository](https://bitbucket.org/bertolinocastro/the_model).
 
 ## Citation
 
