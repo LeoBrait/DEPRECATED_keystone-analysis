@@ -3,8 +3,8 @@ c     calcula a distancia entre uma rede e aquelas obtidas pela elimina��o
 c     de cada um de seus n�s individualmente. ignora contribui��o do n� eliminado
 c     matrizes de vizinhanca calculada com madchar13
 c     entra dados no formato de uma unica matriz de adjacencia
-c	onde cada linha � uma sequencia sem espa�os de 0's e 1's
-c	ex: 0111111110111100010101000000000100
+c     onde cada linha � uma sequencia sem espa�os de 0's e 1's
+c     ex: 0111111110111100010101000000000100
 
       parameter(npm=1000)
       integer*1 am(npm,npm),bm(npm,npm),lar(2,npm)
@@ -14,41 +14,71 @@ c	ex: 0111111110111100010101000000000100
 
       open (unit=2,file='liasp2.dat')
 
-c	variaveis de entrada
-c     nm:numero maximo de nos na rede
-c     np:potencia booleana maxima
+c     Parametros e variaveis auxiliares:
+c     npm = numero maximo de nos
+c     am = matriz de adjacencia (utilizado na manipulacao da rede)
+c     bm = matriz de adjacencia (copia para nao perder a rede original)
+c     lar = vetor auxiliar para leitura da matriz de adjacencia
+c     mv1 = vetor de vizinhanca
+c     mv2 = vetor de vizinhanca
+c     mv3 = vetor de vizinhanca
+c     kki = matriz de vizinhanca
+c     entrada3 = nome do arquivo de entrada
+c     saida5 = nome do arquivo de saida
 
-c	variaveis de saida
+c     Variaveis de entrada:
+c     nm = numero maximo de nos na rede
+c     np = potencia booleana maxima
 
-c     nc: numero de nos conectados na rede
-c     na: numero de arestas na rede
-c     mcl: tamanho do maior cluster
-c     nmcl: numero de maiores cluster
-c     diam: diametro do maior cluster
-c     xmed: distancia m�dia entre os n�s do maior cluster
-c     distancia: distancia entre a rede original e aquela com o no eliminado
+c     Variaveis de saida:
+c     nc = numero de nos conectados na rede
+c     na = numero de arestas na rede
+c     mcl = tamanho do maior cluster
+c     nmcl = numero de maiores cluster
+c     diam = diametro do maior cluster
+c     xmed = distancia m�dia entre os n�s do maior cluster
+c     distancia = distancia entre a rede original e aquela com o no eliminado
 
 
 c     entrada de dados
+c------------------------------------------------------------------
+c o arquivo de entrada tem a seguinte estrutura:
+c     nm np [num maximo de nós na rede, potencia booleana maxima]
+c     entrada3 [nome do arquivo de entrada com matriz de adjacencia]
+c     saida5 [nome do arquivo de saida]
 c==================================================================
 
+c     leitura dos parametros
 10    read (2,*)nm,np
-	if(nm.lt.0)stop
+      if(nm.lt.0)stop
       read (2,500)entrada3
       read (2,500)saida5
 
+c     abre arquivo da matriz de adjacencia
       open (unit=3,file=entrada3)
-      open (unit=5,file=saida5)
 
+c     prepara o arquivo de saida
+      open (unit=5,file=saida5)
       write(5,*)'#  no elim  nc     na     mcl    nmcl   diam    xmed
      .    dist1       dist2'
 
+c     inicializa o vetor auxiliar para leitura da matriz de adjacencia
       do i = 1,npm
        lar(1,i) = 0
       enddo
 
+c------------------------------------------------------------------
+c     le a matriz de adjacencia
+c------------------------------------------------------------------
+
+c     inicializa contadores de numero de arestas [na] e nos conectados [nc]
       na = 0
       nc = 0
+
+c     le a matriz de adjacencia, linha a linha
+c     armazenando-a em um vetor auxiliar [lar] e contando o numero de nos conectados
+c     e o numero de arestas
+c     ic = contador de nos conectados (1 se o no esta conectado, 0 caso contrario)
       do i = 1,nm
        ic = 0
        read (3,510)(lar(1,j),j=1,nm)
@@ -61,6 +91,7 @@ c==================================================================
        nc = nc + ic
       enddo
 
+c     chama o programa madchar13 para calcular a matriz de vizinhanca
       call madchar13(am,mv1,nm,nc,np,kki,xmed,id,mcl,idege)
 
       ii = 0
@@ -101,14 +132,14 @@ c     gera mv3 zerando os elementos de mv1 correspondentes ao n� eliminado
 
        do i = 1,nm*(nm-1)/2
         mv3(i) = mv1(i)
-	 enddo
+       enddo
 
        do i = 1,nm-1
         do j = i+1,nm
          if(i.eq.ii.or.j.eq.ii)then
           ll = (2*nm-i)*(i-1)/2+j-i
           mv3(ll) = 0
-	   endif
+         endif
         enddo
        enddo
 
@@ -141,6 +172,46 @@ c==================================================================
 
       subroutine madchar13(a,mv,nm,nc,np,kk,xlmd,id,mcl,idege)
 c==================================================================
+
+c     Parametros e variaveis auxiliares:
+c     lla = ??
+c     pro = ??
+c     pra = ??
+c     lis = lista auxiliar de conexoes
+c           armazena qual no esta conectado a qual de forma compacta.
+c           Uma matriz de tamanho (numero max de arestas na rede) x 2.
+c           O i-esimo elemento da segunda linha da matriz indica o indice
+c           do elemento da primeira linha no qual comeca a lista de nos
+c           conectados ao no i.
+c           Os elementos da primeira linha armazenados entre os indices lis(i,2)
+c           e lis(i+1,2) sao os nos conectados ao no i.
+c     ga = ??
+c     kmd = ??
+c     gamd = ??
+c     lmd = ??
+c     set = ??
+
+c     Variaveis de entrada
+c     a = matriz de adjacencia
+c     mv = matriz de vizinhanca
+c     nm = numero de nos na rede
+c     nc = numero de nos conectados
+c     np = potencia booleana maxima
+c     kk = ??
+c     xlmd = distancia media entre os nos do maior cluster
+c     id = diametro da rede
+c     mcl = tamanho do maior cluster
+c     idege = numero de arestas da rede
+
+c     Variaveis de saida
+c     nc = numero de nos conectados na rede
+c     na = numero de arestas na rede
+c     mcl = tamanho do maior cluster
+c     nmcl = numero de maiores cluster
+c     diam = diametro do maior cluster
+c     xmed = distancia m�dia entre os n�s do maior cluster
+c     distancia = distancia entre a rede original e aquela com o no eliminado
+
 
       parameter(npm=1000)
       integer*1 a(npm,npm)
@@ -177,6 +248,11 @@ c     coloca zero no valores medios das distancias entre nos
       enddo
 c==================================================================
 c     escreve a(i,j) em entrada
+c     varre a triagular superior da matriz de adjacencia e preenche
+c     os valores da triangular inferior.
+c     armazena os valores da triangular superior em um vetor mv.
+c     a variavel auxiliar ll converte os indices da triangular superior
+c     em indices do vetor mv.
 
       do i = 1,nm-1
        do j = i+1,nm
@@ -185,6 +261,9 @@ c     escreve a(i,j) em entrada
         mv(ll) = a(i,j)
        enddo
       enddo
+
+c    define a diagonal principal da matriz de adjacencia como 1
+c    pra? pro?
       do i = 1,nm
         a(i,i) = 1
         pra(i) = 1
@@ -193,23 +272,34 @@ c     escreve a(i,j) em entrada
 c==================================================================
 c     prepara a lista de elementos nao nulos de a(i,j)
 
+c     inicializa lis com zeros
       do i = 1,nm
        do j = 1,2
         lis(i,j) = 0.
        enddo
       enddo
+c     iq e um contador de quantas arestas ja foram armazenadas em lis.
+c     ele e utilizado para indicar a posicao em que foi armazenada a
+c     lista de nos conectados a a cada no.
       iq = 1
 
+c     para cada linha da matriz de adjacencia (cada no da rede)
+c     armazena o indice da linha em que comeca a lista de nos conectados
+c     ao no i
       do i = 1,nm
        lis(i,2) = iq
        do j = 1,nm
-
         if(a(i,j).eq.1)then
+c        para cada no conectado ao no i, armazena o indice do no
+c        na lista de nos conectados ao no i e incrementa o contador iq
          lis(iq,1) = j
          iq = iq + 1
         endif
        enddo
       enddo
+
+c    ao sair do loop, a variavel i vale nm+1.
+c    o elemento lis(nm+1,2) indica o indice do ultimo elemento de lis(:, 1).
       lis(i,2) = iq
 c==================================================================
 c     comeca determinacao da matriz vizinhanca em tmad1.dat
@@ -221,40 +311,16 @@ c     comeca o loop para calculo as propriedades das diferentes matrizes mad(ip)
       do i = 1,nm-1
        do ip = 1,np
         if(pra(i).eq.0.and.pro(i).lt.ip)goto 90
-c==================================================================
-c	calcula coeficiente de clusteriza��o e grau da matriz mad(ip)
 
-C        call rede1(a,nm,npm,kk,ga,ip)
-C
-C        if (ip.eq.1) then
-C         gamd(ip) = ga(0)/(0*nm+nc)
-C         do i = 1,nm
-C          set(i,ip) = ga(i)
-C         enddo
-C        endif
-C        kmd(ip) = float(kk(0,ip))/(0*nm+nc)
-C        do i = 1,nm
-C         lmd(i)= lmd(i) + kk(i,ip)*ip
-C        enddo
-C        kk(0,ip) = 0
-C        do i = 1,nm
-C         kk(0,ip) = kk(0,ip) + pra(i)
-C        enddo
-c==================================================================
-c	calcula grau de assortatividadeda rk matriz mad(ip)
-
-c        call assorta(am,nm,npm,nvm,kk,ip,rrk)
-c        rk(ip) = rrk
-c==================================================================
-c	desvio para finalizar o programa
-
-C        if (kk(0,ip).eq.0) go to 100
         if (ip.eq.np) go to 100
 c==================================================================
-c	comeca a obtencao de am**ip - le mad e transfere para am
+c     comeca a obtencao de am**ip - le mad e transfere para am
 c==================================================================
-c	le a matriz tmad5 faz pb tmad5*mad e guarda resultado em tmad6
+c     le a matriz tmad5 faz pb tmad5*mad e guarda resultado em tmad6
 c==================================================================
+
+
+C PAREI AQUI
 
         pra(i) = 0
 
@@ -265,10 +331,10 @@ c==================================================================
          if (a(j,i).eq.1) goto 126
 
          do k = lis(j,2),lis(j+1,2)-1
-	    k1 = lis(k,1)
+          k1 = lis(k,1)
           if(i.lt.k1) then
            if (mv((2*nm-i)*(i-1)/2+k1-i).gt.0)then
-	      if(mv((2*nm-i)*(i-1)/2+k1-i).le.ip)go to 124
+            if(mv((2*nm-i)*(i-1)/2+k1-i).le.ip)go to 124
            endif
           else if (i.gt.k1) then
            if (mv((2*nm-k1)*(k1-1)/2+i-k1).gt.0)then
