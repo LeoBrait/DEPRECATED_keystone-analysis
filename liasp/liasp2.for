@@ -1,5 +1,5 @@
 c     programa liasp2
-c     calcula a distancia entre uma rede e aquelas obtidas pela elimina��o
+c     calcula a dissimilaridade entre uma rede e aquelas obtidas pela elimina��o
 c     de cada um de seus n�s individualmente. ignora contribui��o do n� eliminado
 c     matrizes de vizinhanca calculada com madchar13
 c     entra dados no formato de uma unica matriz de adjacencia
@@ -22,7 +22,7 @@ c     lar = vetor auxiliar para leitura da matriz de adjacencia
 c     mv1 = vetor de vizinhanca
 c     mv2 = vetor de vizinhanca
 c     mv3 = vetor de vizinhanca
-c     kki = matriz de vizinhanca
+c     kki = ??
 c     entrada3 = nome do arquivo de entrada
 c     saida5 = nome do arquivo de saida
 
@@ -36,8 +36,8 @@ c     na = numero de arestas na rede
 c     mcl = tamanho do maior cluster
 c     nmcl = numero de maiores cluster
 c     diam = diametro do maior cluster
-c     xmed = distancia m�dia entre os n�s do maior cluster
-c     distancia = distancia entre a rede original e aquela com o no eliminado
+c     xmed = dissimilaridade m�dia entre os n�s do maior cluster
+c     dissimilaridade = dissimilaridade entre a rede original e aquela com o no eliminado
 
 
 c     entrada de dados
@@ -78,7 +78,7 @@ c     inicializa contadores de numero de arestas [na] e nos conectados [nc]
 c     le a matriz de adjacencia, linha a linha
 c     armazenando-a em um vetor auxiliar [lar] e contando o numero de nos conectados
 c     e o numero de arestas
-c     ic = contador de nos conectados (1 se o no esta conectado, 0 caso contrario)
+c     ic = indicador de no conectado (1 se o no esta conectado, 0 caso contrario)
       do i = 1,nm
        ic = 0
        read (3,510)(lar(1,j),j=1,nm)
@@ -92,28 +92,36 @@ c     ic = contador de nos conectados (1 se o no esta conectado, 0 caso contrari
       enddo
 
 c     chama o programa madchar13 para calcular a matriz de vizinhanca
+c     da rede original, armazenando-a em mv1
       call madchar13(am,mv1,nm,nc,np,kki,xmed,id,mcl,idege)
 
+c     fecha o arquivo da matriz de adjacencia
       ii = 0
       d = 0.
       write(5,520)ii,nc,na,mcl,idege,id,xmed,d,d
 
 c==================================================================
-c     comeco do grand loop de elimina��o de nos
+c     comeco do grand loop de eliminacao de nos
 c==================================================================
 
+c     para cada no da rede...
       do ii = 1,nm
 
+c     reverte a rede para a rede original
        do i = 1,nm
         do j = 1,nm
          am(i,j) = bm(i,j)
         enddo
        enddo
+
+c     elimina o no ii da rede, zerando a linha e a coluna ii
        do j = 1,nm
         am(ii,j) = 0
         am(j,ii) = 0
        enddo
 
+c     calcula o numero de nos conectados [nc] e o numero de arestas [na]
+c     (semelhante ao que foi feito na leitura da matriz de adjacencia)
        na = 0
        nc = 0
        do i = 1,nm
@@ -125,38 +133,65 @@ c==================================================================
         nc = nc + ic
        enddo
 
+c     chama o programa madchar13 para calcular a matriz de vizinhanca da rede
+c     com o no ii eliminado e armazena o resultado em mv2
        call madchar13(am,mv2,nm,nc,np,kki,xmed,id,mcl,idege)
 
 c==================================================================
-c     gera mv3 zerando os elementos de mv1 correspondentes ao n� eliminado
+c     gera mv3 zerando os elementos de mv1 correspondentes ao no eliminado
+c     isto e util para separar a contribuicao direta e indireta do no eliminado
+c     para o calculo da dissimilaridade.
 
+c     faz uma copia de mv1 em mv3
        do i = 1,nm*(nm-1)/2
         mv3(i) = mv1(i)
        enddo
 
+c     inicializa o acumulador de dissimilaridade direta
+       dissim_d = 0.
+
+c     zera os elementos de mv3 correspondentes ao no ii e acumula a dissimilaridade
+c     direta
        do i = 1,nm-1
         do j = i+1,nm
          if(i.eq.ii.or.j.eq.ii)then
           ll = (2*nm-i)*(i-1)/2+j-i
+c         acumula a dissimilaridade direta
+c         a dissimilaridade direta e a diferenca entre a eficiencia
+c         da rede original e a eficiencia da rede com o no ii eliminado
+c         que ocorre exclusivamente devido as arestas que ligam o no ii
+c         aos seus vizinhos
+          if(mv3(ll).ne.0)then
+           dissim_d = dissim_d + 2./mv3(ll)
           mv3(ll) = 0
          endif
         enddo
        enddo
 
+c     divide a dissimilaridade direta acumulada pelo numero de arestas
+c     possiveis na rede original
+       dissim_d = dissim_d/(nm*(nm-1))
+
 c==================================================================
-c     calcula as distancias entre mv1 e mv2 e entre mv3 e mv2
+c     calcula a dissimilaridade total entre mv1 e mv2
+c     (dissimilaridade entre as matrizes de vizinhanca)
+       dissim_t = dissim(mv1,mv2,nm)
 
-       d1 = dist(mv1,mv2,nm)
-       d2 = dist(mv3,mv2,nm)
+c      escreve os resultados no arquivo de saida
+       write(5,520)ii,nc,na,mcl,idege,id,xmed,dissim_t,dissim_d
 
-       write(5,520)ii,nc,na,mcl,idege,id,xmed,d1,d2
-
+c     fim do grand loop de eliminacao de nos
       enddo
 
+c     fecha o arquivo de saida
       close (unit=5)
 
+c     retorna ao inicio do programa
+c     (o programa termina quando chega ao fim do arquivo de entrada,
+c     indicado pela presenca de um 'numero de nos' negativo)
       goto 10
 
+c     declaracao dos formatos de saida utilizados
 500   format(a100)
 510   format(10000i1)
 520   format(6(1x,i6),3(2x,e10.3))
@@ -190,27 +225,22 @@ c     kmd = ??
 c     gamd = ??
 c     lmd = ??
 c     set = ??
-
-c     Variaveis de entrada
-c     a = matriz de adjacencia
-c     mv = matriz de vizinhanca
-c     nm = numero de nos na rede
-c     nc = numero de nos conectados
-c     np = potencia booleana maxima
-c     kk = ??
-c     xlmd = distancia media entre os nos do maior cluster
-c     id = diametro da rede
-c     mcl = tamanho do maior cluster
-c     idege = numero de arestas da rede
-
-c     Variaveis de saida
-c     nc = numero de nos conectados na rede
-c     na = numero de arestas na rede
-c     mcl = tamanho do maior cluster
 c     nmcl = numero de maiores cluster
 c     diam = diametro do maior cluster
-c     xmed = distancia m�dia entre os n�s do maior cluster
-c     distancia = distancia entre a rede original e aquela com o no eliminado
+c     xmed = dissimilaridade media entre os nos do maior cluster
+c     dissimilaridade = dissimilaridade entre a rede original e aquela com o no eliminado
+
+c     Argumentos
+c     1: a = matriz de adjacencia (entrada)
+c     2: mv = matriz de vizinhanca (saida)
+c     3: nm = numero de nos na rede (entrada)
+c     4: nc = numero de nos conectados (entrada)
+c     5: np = potencia booleana maxima (entrada)
+c     6: kk = ?? (saida)
+c     7: xlmd = dissimilaridade media entre os nos do maior cluster (saida)
+c     8: id = diametro da rede (saida)
+c     9: mcl = tamanho do maior cluster (saida)
+c     10: idege = numero de arestas da rede (saida)
 
 
       parameter(npm=1000)
@@ -221,7 +251,7 @@ c     distancia = distancia entre a rede original e aquela com o no eliminado
       real ga(0:npm), kmd(0:npm)
       real gamd(0:npm),lmd(0:npm),set(npm,npm)
 c==================================================================
-c     coloca zero no valores medios das distancias entre nos
+c     coloca zero no valores medios das dissimilaridades entre nos
       xlmd = 0.
       ylmd = 0.
       zlmd = 0.
@@ -301,10 +331,7 @@ c        na lista de nos conectados ao no i e incrementa o contador iq
 c    ao sair do loop, a variavel i vale nm+1.
 c    o elemento lis(nm+1,2) indica o indice do ultimo elemento de lis(:, 1).
       lis(i,2) = iq
-c==================================================================
-c     comeca determinacao da matriz vizinhanca em tmad1.dat
-c==================================================================
-c     soma matriz identidade com mad e coloca matriz com todos os vizinhos em tmad5
+      
 c==================================================================
 c     comeca o loop para calculo as propriedades das diferentes matrizes mad(ip)
 
@@ -318,9 +345,6 @@ c     comeca a obtencao de am**ip - le mad e transfere para am
 c==================================================================
 c     le a matriz tmad5 faz pb tmad5*mad e guarda resultado em tmad6
 c==================================================================
-
-
-C PAREI AQUI
 
         pra(i) = 0
 
@@ -434,7 +458,7 @@ c     calcula a numero de nos no maior cluster
        mcl = max(kk(i,0),mcl)
       enddo
 c======================================================
-c     calcula a distancia minima m�dia da rede limitada ao(s) maior(es) cluster(s)
+c     calcula a dissimilaridade minima m�dia da rede limitada ao(s) maior(es) cluster(s)
 
 c     nm2 = (0*nm+nc)*(0*nm+nc)
       xm2 = 0.
@@ -465,7 +489,7 @@ c     calcula diametro
 c======================================================
 c     calcula dimensao fractal
 c======================================================
-c     escreve distancia minima media de cada no em saida9
+c     escreve dissimilaridade minima media de cada no em saida9
 c======================================================
 c     escreve coeficiente de clusteriza��o em saida7
 c======================================================
@@ -550,23 +574,37 @@ c     calcula o coeficiente de aglomera��o de cada noh
 
 c     fim da subroutine rede1(a,n,np,nvm,kk,ga,ip)
 c=====================================================================
-      real function dist(mv1,mv2,nm)
-
+      real function dissim(mv1,mv2,nm)
+c     calcula a dissimilaridade entre duas matrizes de vizinhanca
       parameter(npm=1000)
       integer*2 mv1(npm*(npm-1)/2),mv2(npm*(npm-1)/2)
 
-      dist = 0.
+      dissim = 0.
 
       do i = 1,nm*(nm-1)/2
-       dist = dist + 2*(mv1(i)-mv2(i))**2
+
+c       Se mv2(i) e' 0, o aumento no acumulador de dissimilaridade vale
+c       1/mv1(i). Se ambos sao 0, nao ha' aumento. Caso ambos sejam
+c       diferentes de 0, o aumento vale (1/mv1(i) - 1/mv2(i)).
+       if(mv2(i) == 0)then
+        if(mv1(i) > 0)then
+         dissim = dissim +  2*1/mv1(i)
+        endif
+       elseif(mv1(i) > 0)then
+c       So' checando se mv2(i) >= mv1(i):
+        if(mv2(i) < mv1(i))then
+         print(5,*)"! Erro: mv2(i) < mv1(i) !"
+        endif
+c ------------------------------------------
+        dissim = dissim + 2*(1/mv1(i) - 1/mv2(i))
+       endif
       enddo
 
-      dist = sqrt(dist)/(nm-1)/nm
-c      dist = sqrt(dist)/(nm-1)
+      dissim = dissim/(nm-1)/nm
 
       return
       end
 
-c     fim da real function dist(mv1,mv2,nm)
+c     fim da real function dissim(mv1,mv2,nm)
 c=====================================================================
 c=====================================================================

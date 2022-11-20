@@ -1,8 +1,10 @@
 # -*- coding: utf-8 -*-
 """
 Created on Sat Nov 17 09:07:32 2018
+Modified on Sat Nov 19 09:30:00 2022
 
-@author: flavia
+@author: Flavia Mayumi
+modifications: Rafael Menezes
 """
 import numpy as np
 import networkx as nx
@@ -57,7 +59,6 @@ def construct_rank_dict_set_to_G(G,Taxa,dict_metric,metric):
     dict_rank_k = dict(zip(Taxa, rank_k))
     nx.set_node_attributes(G,values=dict_rank_k,name="rank_"+metric)
     return k
-
 
 def filter_disconnected_nodes(G):
     g = G.copy()

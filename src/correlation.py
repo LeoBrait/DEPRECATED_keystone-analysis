@@ -37,7 +37,11 @@ def main(inFile, inMeta, host, spcc_backlog, rareAbund=0.1):
         if sum(anot.iloc[i]) <= 0.:
             debug("WARNING: An empty row was detected! Deleting %s row..."%anot.index[i])
             delete.append(anot.index[i])
-    anot.drop(index=delete,inplace=True); delete=[]
+
+    # deleting empty rows and resetting the list of empty indexes
+    anot.drop(index=delete,inplace=True)
+    delete=[]
+    
     for i in range(anot.shape[1]): # iterating over columns
         if sum(anot.iloc[:,i]) <= 0.:
             debug("WARNING: An empty column was detected! Deleting %s column..."%anot.keys()[i])
@@ -54,7 +58,7 @@ def main(inFile, inMeta, host, spcc_backlog, rareAbund=0.1):
 
     debug("This dataset has %d Nodes with length %d"%(nsamp,nspc))
 
-    # renaming eventual columns that are repeated
+    # renaming repeated columns
     for i in range(len(labelSamp)-1):
         k=0
         for j in range(i+1,len(labelSamp)):
@@ -74,18 +78,24 @@ def main(inFile, inMeta, host, spcc_backlog, rareAbund=0.1):
                 mat[j,i] = anota[j,i]/s*100.
         return mat
 
-    # creating a copy of the anotation data for parallel purposes
+    # creating a copy of the anotation data for parallelization purpose
     anotShared = anot.values # original data (without modifications)
 
-    # computing the mean abundance for each node
+    # ABUNDANCE and DESCRIPTIVE STATISTICS
+    # abundance of counts for each node
     abund    = [np.mean(ser) for ser in anotShared]
+    # log of abundance of counts for each node
     abundLog = [math.log10(ser) for ser in abund]
+    # converting raw counts to relative ones (%)
     relAnot = relative(anotShared)
+    # mean of relative abundance
     abundRel = [np.mean(ser) for ser in relAnot] # Taxon mean abundance
+    # standard deviation of the mean for relative abundance
     stdAbund = [np.std(ser,ddof=1) for ser in relAnot]
+    # standard error of the mean for relative abundance
     semAbund = [sp.sem(ser,axis=None) for ser in relAnot]
+    # median of relative abundance
     abundMdn = [np.median(ser) for ser in relAnot]
-
     # computing prevalence for each node
     prevalence = [sum(map(lambda x: x>0., ser))/len(ser) for ser in anotShared]
 
@@ -116,20 +126,23 @@ def main(inFile, inMeta, host, spcc_backlog, rareAbund=0.1):
         abundLog    = list(np.delete(abundLog, toDel, axis=0))
         prevalence  = list(np.delete(prevalence, toDel, axis=0))
 
-    # declaring a, b, and c matrices for further use
-    a = np.zeros((nsamp,nsamp))
-    b = np.zeros((nsamp,nsamp))
-    c = np.zeros((nsamp,nsamp))
+    # CO-OCCURRENCE MATRICES
+    # declaring auxiliary a, b, and c matrices for further use
+    # the matrices are used to calculate the frequency of co-occurrences
+    # of each node with the rest of the nodes
+    # a if A and B co-occurred
+    # b if A xor B occurred (A or B occurred, but not both)
+    # c if both A and B did not occur
+    a = np.zeros((nsamp, nsamp))
+    b = np.zeros((nsamp, nsamp))
+    c = np.zeros((nsamp, nsamp))
 
-    # computing the time when both rows' cells had abundance
-    # here, we're defining three values:
-    # a if A and B co-ocurred
-    # b if A xor B ocurred
-    # c if A and B not ocurred
+    # loop over the nodes
     for i in range(nsamp-1):
-        A = anotShared[i]
+        A = anotShared[i] # number of reads for node i (row) in each sample (column)
         for j in range(i+1,nsamp):
-            B = anotShared[j]
+            B = anotShared[j] # number of reads for node j (row) in each sample (column)
+            # counts the number of samples where A and B following the pattern presented above
             a[i][j] = sum(list(map(lambda x,y: int(x > 0.       and y > 0.      ), A, B)))
             b[i][j] = sum(list(map(lambda x,y: int(bool(x > 0.)  ^  bool(y > 0.)), A, B)))
             c[i][j] = sum(list(map(lambda x,y: int(x <= 0.      and y <= 0.     ), A, B)))
@@ -142,7 +155,7 @@ def main(inFile, inMeta, host, spcc_backlog, rareAbund=0.1):
     # TODO: URGENT!
     if hasMeta:
         meta = pd.read_csv(inMeta, skipinitialspace=True)
-        meta.set_index(meta.keys()[0],inplace=True)
+        meta.set_index(meta.keys()[0], inplace=True)
         # removing rows that didn't match the ones received in the community file
         meta = meta.filter(items=labelSamp, axis='index')
         # checking if all the indexes were deleted by the previous method
@@ -153,7 +166,7 @@ def main(inFile, inMeta, host, spcc_backlog, rareAbund=0.1):
     else:
         meta = pd.DataFrame(data=np.zeros(shape=(nsamp,2)), index=labelSamp, columns=['abundance', 'abundance (log10)'])
 
-    # adding the abundance column to the metadata
+    # adding the abundance and descriptive statistics columns to the metadata
     meta['abundance']         = abund
     meta['abundance (log10)'] = abundLog
     meta['abundance (%)']     = abundRel
@@ -163,12 +176,13 @@ def main(inFile, inMeta, host, spcc_backlog, rareAbund=0.1):
     meta['prevalence'] = prevalence
 
     # creating folders to output files
-    rmr(['out'])
-    mkdir_p(['out'])
-    cd('out')
+    rmr(['out']) # removing the folder if it already exists
+    mkdir_p(['out']) # recreating the folder for the output files
+    cd('out') # changing the current directory to the output folder
 
-    # $[mkdir -p "sparcc/raw_data" "sparcc/gephi_data" "sparcc/cnm_data" "sparcc/nga_data" "sparcc/figures" "sparcc/sparcc_data" "sparcc/edm_data" "sparcc/nx_data" "sparcc/matrices"]
-    mkdir_p(["sparcc/raw_data", "sparcc/gephi_data", "sparcc/cnm_data", "sparcc/nga_data", "sparcc/figures", "sparcc/sparcc_data", "sparcc/edm_data", "sparcc/nx_data", "sparcc/matrices"])
+    # creating the output folders
+    # $[mkdir -p "sparcc/raw_data" "sparcc/gephi_data" "sparcc/cnm_data" "sparcc/nga_data" "sparcc/figures" "sparcc/sparcc_data" "sparcc/liasp_data" "sparcc/nx_data" "sparcc/matrices"]
+    mkdir_p(["sparcc/raw_data", "sparcc/gephi_data", "sparcc/cnm_data", "sparcc/nga_data", "sparcc/figures", "sparcc/sparcc_data", "sparcc/liasp_data", "sparcc/nx_data", "sparcc/matrices"])
 
     debug("Getting already computed SparCC matrix...")
     # reading the data with all rows and columns sorted
@@ -187,13 +201,15 @@ def main(inFile, inMeta, host, spcc_backlog, rareAbund=0.1):
     # printing non filtered correlation matrix to file as gephi format
     gp.printCorr("sparcc/gephi_data/correlation_matrix.csv", coSpccPar, a, b, c)
 
-    # printing nodes' labels as gephi format asks
+    # printing nodes' labels using gephi format
     gp.printNodes("sparcc/gephi_data/nodes.csv", meta)
 
-    debug("Executing Cnm and Liasp algorithms...")
+    debug("Executing Critical Network Method (CNM) and Largest Influence on Average Shortest Path (LIASP) algorithms...")
 
     # running code-integration steps
-    itg.run("sparcc", coSparCC,host)
+    # this step is responsible for running the CNM and LIASP algorithms
+    # and identifying the most important nodes in the network (the keystones)
+    itg.run("sparcc", coSparCC, host)
 
     cd('..')
     debug("Exiting...")

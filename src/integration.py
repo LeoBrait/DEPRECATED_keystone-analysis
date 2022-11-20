@@ -1,100 +1,155 @@
-from xonsh_py import *
+"""
+
+File used to hold the functions to integrate Critical Network Method (CNM) and Newman-Girvan Analyses (NGA).
 
 """
 
-File used to hold the functions to integrate CNM and Newman-Girvan Analyses.
-
-"""
-
+from xonsh_py import cp, echo, sexec, mkdir_p, rm, cd, pwd
 import numpy as np
 import pandas as pd
-from keystone_indexes_functions import *
-from metadata_topython_functions import *
-from table_keystones import *
-import matplotlib.pyplot as plt
+from keystone_indexes_functions import construct_rank_dict_set_to_G, euclidians_distance_divided_and_msp, find_subgraphs, prod_dict, save_central_values
+from metadata_topython_functions import metadata
+from table_keystones import table_analysis
 from detect_peaks import detect_peaks
+import networkx as nx
 
 # this function aims to execute the following steps:
-# - create the apropriate arg file for cnm code
+# - create the apropriate arg file for CNM code
 # - call the executable for the proper correlation matrix
 # - generate visual outputs (3rd party codes) and select the desired peaks
-# - run the nga algorithm for the data obtained
-def run(path=None,df=None,host=None):
+# - run the NGA algorithm for the data obtained
+def run(path=None, df=None, host=None):
     if not isinstance(path, str):
-        raise Exception("Wrong path data type!")
+        raise Exception("`path` must be a string. It stores the path to the containing folder.")
     if not isinstance(df, pd.DataFrame):
-        raise Exception("Wrong df data type!")
+        raise Exception("`df` must be a pandas DataFrame containing the correlation matrix") 
     if not isinstance(host , str):
-        raise Exception("Wrong host data type!")
+        raise Exception("`host` must be a string containing the name of the environment")
 
     # writing the matrix as tsv with the desired format
     df.to_csv(path+"/cnm_data/correlation_matrix.dat", sep='\t',index=False,header=False)
 
     # copying executable temporarily to the folder
-    cp(['../cnm/a.out'], path+'/cnm_data/')
-    cp(['../liasp/a.out'], path+'/edm_data/')
-    oldDir = pwd()
+    cp(['../cnm/cnm.out'], path+'/cnm_data/')
+    cp(['../liasp/liasp.out'], path+'/liasp_data/')
+    oldDir = pwd() # saving the path to current directory
 
-    argBase =   "%d %d\n"\
+    # ------------------------------ CNM --------------------------------------------
+    # The Critical Network Method (CNM) is a method to identify a critical subnetwork.
+    # The algorithm removes the least important links in a network until the network is disconnected.
+    # By comparing the dissimilarity between consecutive networks, the algorithm identifies the critical
+    # treshold, which is the point where the dissimilarity between the networks is the highest.
+    # The critical network is the subnetwork in which all links below the critical threshold are removed.
+
+    # The following code:
+    # 1) generate auxiliary file with inputs for CNM code
+    # 2) runs the CNM program (a compiled Fortran code)
+    # 3) identifies the peaks in the sequence of dissimilarity values
+    # 4) selects the highest peak as the critical threshold
+    # 5) generates the critical network
+
+    # 
+    # generate auxiliary file with inputs for CNM code
+    argBaseCNM =   "%d %d\n"\
                 "%3.2f 0.01 %d\n"\
                 "correlation_matrix.dat\n"\
                 "p_envi_%3.2f.dat\n"\
                 "n_envi_%3.2f.dat\n"\
                 "a_envi_%3.2f.dat\n"\
-                "-1 -1 -1\n"
+                "-1 -1 -1\n" # "-1 -1 -1" indicates the end of the input file and is required by the CNM code
 
+    # number of nodes
     n = df.shape[0]
 
     # creating right args file
-    echo(path+"/cnm_data/redecrit1mc13.dat", argBase % (n,n,0.,100,1.,1.,1.))
+    echo(path+"/cnm_data/redecrit1mc13.dat", argBaseCNM % (n,n,0.,100,1.,1.,1.))
 
     # running CNM for the whole space
     cd(path+'/cnm_data')
-    sexec('./a.out')
+    # running CNM
+    sexec('./cnm.out')
+    # go to the original directory
     cd(oldDir)
 
     # choosing peaks
-    peaksL, high = deltaFuncAndPeaksSelector(path)
+    peaks_list, high = deltaFuncAndPeaksSelector(path)
 
     # going a step before the peak in order to construct the networks before they break apart
-    peaksL[:] = [x-1 for x in peaksL]
+    peaks_list[:] = [x-1 for x in peaks_list]
     high -= 1
 
+    # Save the highest peak in a file
     echo(path+'/raw_data/cnm_highest_peak.txt', high)
 
     # doing only the highest peak in order to improve performance as we are not using else peaks
-    peaksL = [high]
+    peaks_list = [high]
 
     cd(path+'/cnm_data')
     # running CNM for each peak
-    for peak in peaksL:
+    for peak in peaks_list:
         peak = peak/100.
-        # creating right args file
-        echo("redecrit1mc13.dat", argBase%(n,n,peak-.01,1,peak,peak,peak))
-        sexec('./a.out')
-    rm(['a.out'])
+        # generate auxiliary file with inputs for CNM code
+        echo("redecrit1mc13.dat", argBaseCNM%(n,n,peak-.01,1,peak,peak,peak))
+        # execute CNM program
+        sexec('./cnm.out')
+    # remove the temporary executable
+    rm(['cnm.out'])
+    # go back to the original directory
     cd(oldDir)
 
-    # starting to produce euclidian distance method outputs
-    # argfile for edm
-    argBase = "%d 1000\n"\
+    # ------------------------------ LIASP ------------------------------------------- 
+    # The Largest Influence on Average Shortest Path (LIASP) is a metric to identify
+    # the most influential nodes in a network. The measure is based on the efficiency
+    # of the network, which is the inverse of the average shortest path length.
+    # We use LIASP to identify the most influential nodes in the critical network.
+    # The algorithm identifies the direct and indirect influence of each node in the network.
+    # The direct is the decrease in efficiency of the network due to the 0 efficiency of
+    # the connections between the removed node and its neighbors after the node is removed.
+    # The indirect is the decrease in efficiency of the network due to the increase in
+    # the shortest path length among all the nodes in the network.
+
+    # The following code:
+    # 1) generate auxiliary file with inputs for LIASP code
+    # 2) runs the LIASP program (a compiled Fortran code)
+
+    # argfile for liasp
+    argBaseLIASP = "%d 1000\n"\
             "a_envi_%3.2f.dat\n"\
             "eudist_%3.2f.dat\n"\
-            "-1 -1 -1\n"
+            "-1 -1 -1\n" # "-1 -1 -1" indicates the end of the input file and is required by the LIASP code
 
-    # $[cd @(path+'/edm_data')]
-    cd(path+'/edm_data')
-    for peak in peaksL:
+    # entering the LIASP folder
+    cd(path+'/liasp_data')
+    # running LIASP code for each peak
+    for peak in peaks_list:
+        # copy the correlation matrix to the folder
         cp(['../cnm_data/a_envi_%3.2f.dat'%(peak/100.)], '.')
-        echo("liasp2.dat", argBase%(n,peak/100.,peak/100.))
-        sexec('./a.out')
+        # generate auxiliary file with inputs for LIASP code
+        echo("liasp2.dat", argBaseLIASP%(n,peak/100.,peak/100.))
+        # execute LIASP program
+        sexec('./liasp.out')
+        # clean temporary argument file
         rm(['a_envi_%3.2f.dat'%(peak/100.)])
-    rm(['a.out'])
+    # remove the temporary executable
+    rm(['liasp.out'])
+    # return to the original directory
     cd(oldDir)
 
+    # ---------------------------- KEYSTONES ---------------------------------------- 
+    # Keystones are the most influential nodes in a network. They are identified by
+    # using the LIASP metric. We use a script to identify the keystones in the critical
+    # network. The script reads the output of the LIASP code and selects the nodes with
+    # the highest LIASP metric, identifying as keystones the nodes with LIASP above the
+    # mean + 2 standard deviations of the distribution of LIASP values.
+
+    # The following code:
+    # 1) runs the find_keystones.py script to identify the keystones in the critical network
+
     # executing the keystone finder
-    for peak in peaksL:
+    for peak in peaks_list:
+        # creating the folder for the peak
         mkdir_p([path+'/figures/0p'+str(peak)])
+        # calling the function to find the keystones
         find_keystones_envi(path,peak,host)
 
 # ----------------------
@@ -108,26 +163,28 @@ Created on Wed Mar 14 13:44:45 2018
 """
 
 
-def deltaFuncAndPeaksSelector(way=None):
-    if not isinstance(way,str):
-        raise Exception("Wrong way data type!")
+def deltaFuncAndPeaksSelector(path):
+    if not isinstance(path,str):
+        raise Exception("Wrong path data type!")
 
     # # Part 1:
     # # Read data of distance between netorks in function of threshold
-    geral = way+'/cnm_data/p_envi_1.00.dat'
-    f = np.loadtxt(geral, unpack=True)
-    x = f[0]
-    y = f[7]
-    tam = len(x)
+    geral = path+'/cnm_data/p_envi_1.00.dat'
+    dat_f = np.loadtxt(geral, unpack=True)
+    # treshold = dat_f[0] # valor do threshold
+    dissim = dat_f[7] # dissimilarity between network i and network i+1
 
-    cutoff=sorted(y)[-int(len(y)*.05)]
+    # set minimum peak height so that identified peaks are among the 5% highest peaks
+    minimum_peak_height = sorted(dissim)[-int(len(dissim)*.05)]
 
-    argpeaks = detect_peaks(y,mpd=1,mph=cutoff)
+    # detect peaks in the dissimilarity curve
+    # mpd = 1 means that the minimum distance between peaks is 1 (no consecutive peaks)
+    argpeaks = detect_peaks(dissim, mpd=1, mph=minimum_peak_height )
 
     # getting the highest peak separately or 0 if there's no peak
     if len(argpeaks) < 1:
         argpeaks = [0]
-    high = np.where(y == max(y[argpeaks]))[0][0]
+    high = np.where(dissim == max(dissim[argpeaks]))[0][0]
 
     return argpeaks, high
 
@@ -142,7 +199,7 @@ Spyder Editor
 
 def find_keystones_envi(base,peak,host):
     if not isinstance(base,str):
-        raise Exception("Wrong base data type!")
+        raise Exception("`base` path must be a string")
 
     rare = [0.1,1,5]
 
@@ -193,7 +250,7 @@ def find_keystones_envi(base,peak,host):
     # some information to further use
     subgraphs = find_subgraphs(G_pos,Taxa)
 
-    # #Calculate d, bc, cc and d*cc
+    # Calculate the degree (dd_pos), betweeness centrality (bc_pos), cc and d*cc
     dd_pos = G_pos.degree()
     d_pos = {i:j for (i,j) in dd_pos}
     bc_pos = nx.betweenness_centrality(G_pos)
@@ -202,14 +259,14 @@ def find_keystones_envi(base,peak,host):
 
     maxN = sum([len(i) for i in subgraphs])
     d_div_pos = {i:d_pos[i]/maxN for i in d_pos} # a new step that tries to 'normalise' the degree
-    dxcc_div_pos=prod_dict(d_div_pos,cc_pos,Taxa)
+    dxcc_div_pos = prod_dict(d_div_pos,cc_pos,Taxa)
 
     #Create names based on directory
     prefix_pos = "positive_" + base + '_0p%d'%peak
 
     #Euclidean distance divided by higher subgraph diameter and by node mean shortestpath
     func = lambda x:350000*x
-    euclidians_distance_divided_and_msp(base,base+'/edm_data/eudist_%3.2f.dat'%thr,G_pos,rare,prefix_pos,Taxa,peak)
+    euclidians_distance_divided_and_msp(base,base+'/liasp_data/eudist_%3.2f.dat'%thr,G_pos,rare,prefix_pos,Taxa,peak)
 
     #Metrics Literature
     metrics = ['BC','D','DxCC','Ddiv','DxCCdiv']

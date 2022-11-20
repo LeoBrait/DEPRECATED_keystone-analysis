@@ -5,7 +5,7 @@ import sys
 sys.path.append('src')
 import pandas as pd
 
-from xonsh_py import *
+from xonsh_py import cat, lsgrep
 
 level = sys.argv[1]
 
@@ -13,6 +13,7 @@ files = lsgrep('output/transposed',[level])
 
 df = pd.DataFrame()
 
+# reading all files
 for i in files:
     try:
         peak = cat(i+'/sparcc/raw_data/cnm_highest_peak.txt').strip()
