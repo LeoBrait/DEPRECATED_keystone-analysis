@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 # setting src to the local path in order to import the other files
 from sys import path
 path.append('src')
@@ -186,7 +188,7 @@ def main(inFile, inMeta, host, spcc_backlog, rareAbund=0.1):
 
     debug("Getting already computed SparCC matrix...")
     # reading the data with all rows and columns sorted
-    coSpccPar = pd.read_csv('../'+spcc_backlog,sep='\t',index_col=0).sort_index().sort_index(1).values
+    coSpccPar = pd.read_csv('../'+spcc_backlog,sep='\t',index_col=0).sort_index().sort_index(axis=1).values
 
     debug("Converting calculated data to DataFrame...")
 

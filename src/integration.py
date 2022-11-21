@@ -7,7 +7,7 @@ File used to hold the functions to integrate Critical Network Method (CNM) and N
 from xonsh_py import cp, echo, sexec, mkdir_p, rm, cd, pwd
 import numpy as np
 import pandas as pd
-from keystone_indexes_functions import construct_rank_dict_set_to_G, euclidians_distance_divided_and_msp, find_subgraphs, prod_dict, save_central_values
+from keystone_indexes_functions import construct_rank_dict_set_to_G, LIASP_dissimilarity, find_subgraphs, prod_dict, save_central_values
 from metadata_topython_functions import metadata
 from table_keystones import table_analysis
 from detect_peaks import detect_peaks
@@ -206,30 +206,31 @@ def find_keystones_envi(base,peak,host):
     #In this line I'm assuming that the ecological features has the name of the directory - class + _ecol_features_class.csv, but we have to see if this pattern has been followed and we can change the directorie if necessarie
     N, Marker, Taxa, Abundance, AbundanceAbsolute, Prevalence, Sem, Std, Med = metadata(base+"/gephi_data/nodes.csv")
 
+    # Read the correlation matrix from raw data
     df = pd.read_csv(base+'/raw_data/correlation_matrix.csv', index_col=0)
     correlation_matrix_pos = df.values
     np.fill_diagonal(correlation_matrix_pos,0) # removing auto-edges that may exist
 
-    #Construct network, positve network and negative
-    thr = peak/100.
-    correlation_matrix_pos[correlation_matrix_pos<thr]=0
+    # Construct the Critical Network from the correlation matrix and the threshold
+    threshold = peak/100.
+    correlation_matrix_pos[correlation_matrix_pos<threshold] = 0
 
     # Saving filtered matrices for this peak (it'll be used on other programs)
     df[:] = correlation_matrix_pos
-    df.to_csv(base+'/matrices/filtered_correlation_matrix_%3.2f_pos.csv'%thr)
+    df.to_csv(base+'/matrices/filtered_correlation_matrix_%3.2f_pos.csv'%threshold)
 
-    #correlation_matrix_neg = np.absolute(correlation_matrix_neg)
+    # Transform the filtered correlation matrix into a Networkx graph
     G_pos = nx.from_numpy_matrix(correlation_matrix_pos)
 
-    # saving adjacency matrix from graphs
+    # saving adjacency matrix for the graphs
     adj = (correlation_matrix_pos != 0.)*1
-    np.savetxt(base+'/matrices/adjacency_matrix_%3.2f_pos.txt'%thr,adj,fmt='%d')
+    np.savetxt(base+'/matrices/adjacency_matrix_%3.2f_pos.txt'%threshold,adj,fmt='%d')
 
-    #create dictionaire with the taxa and relabel nodes
+    # create dictionaire with the taxa and relabel nodes
     dict_taxa = dict(enumerate(Taxa))
     G_pos = nx.relabel_nodes(G_pos, dict_taxa)
 
-    #create dictionaire with Abundance, AbundanceAbsolute, Marker
+    # create dictionaires for Abundance, AbundanceAbsolute, Marker, Prevalence, Sem, Std, Med
     dict_abundance =  dict(zip(Taxa, Abundance))
     dict_absolute = dict(zip(Taxa, AbundanceAbsolute))
     dict_marker = dict(zip(Taxa,Marker))
@@ -238,7 +239,7 @@ def find_keystones_envi(base,peak,host):
     dict_std = dict(zip(Taxa,Std))
     dict_med = dict(zip(Taxa,Med))
 
-    #set Abundance, AbundanceAbsolute, Marker, Prevalence, Std and Sem as attributtes to the nodes
+    # set Abundance, AbundanceAbsolute, Marker, Prevalence, Std and Sem as attributtes of the nodes
     nx.set_node_attributes(G_pos,values=dict_abundance,name='abundance')
     nx.set_node_attributes(G_pos,values=dict_absolute,name='abundance_absolute')
     nx.set_node_attributes(G_pos,values=dict_marker,name='marker')
@@ -247,33 +248,34 @@ def find_keystones_envi(base,peak,host):
     nx.set_node_attributes(G_pos,values=dict_std,name='std')
     nx.set_node_attributes(G_pos,values=dict_med,name='med')
 
-    # some information to further use
+    # identify the subgraphs in the critical network
     subgraphs = find_subgraphs(G_pos,Taxa)
 
-    # Calculate the degree (dd_pos), betweeness centrality (bc_pos), cc and d*cc
+    # Create dictionaries for the degree (dd_pos), betweeness centrality (bc_pos),
+    # closeness centrality (cc_pos), and the product of degree and closeness centrality
+    # of the nodes in the critical network
+    # The dictionaries have the structure: {node: value}
     dd_pos = G_pos.degree()
     d_pos = {i:j for (i,j) in dd_pos}
     bc_pos = nx.betweenness_centrality(G_pos)
     cc_pos = nx.closeness_centrality(G_pos)
-    dxcc_pos=prod_dict(d_pos,cc_pos,Taxa)
+    dxcc_pos = prod_dict(d_pos, cc_pos, Taxa)
 
+    # Create dictionaries for "normalized" degree (ndd_pos), betweeness centrality (nbc_pos),
     maxN = sum([len(i) for i in subgraphs])
     d_div_pos = {i:d_pos[i]/maxN for i in d_pos} # a new step that tries to 'normalise' the degree
     dxcc_div_pos = prod_dict(d_div_pos,cc_pos,Taxa)
 
-    #Create names based on directory
+    # Create names based on directory
     prefix_pos = "positive_" + base + '_0p%d'%peak
 
-    #Euclidean distance divided by higher subgraph diameter and by node mean shortestpath
-    func = lambda x:350000*x
-    euclidians_distance_divided_and_msp(base,base+'/liasp_data/eudist_%3.2f.dat'%thr,G_pos,rare,prefix_pos,Taxa,peak)
+    # calculate and store LIASP dissimilarity
+    LIASP_dissimilarity(base,base+'/liasp_data/eudist_%3.2f.dat'%threshold,G_pos,rare,prefix_pos,Taxa,peak)
 
     #Metrics Literature
     metrics = ['BC','D','DxCC','Ddiv','DxCCdiv']
-    funcs = [lambda x: x*4000+10,lambda x: x*2.5,lambda x: x*2.5,lambda x: x*5, lambda x: x*5]
     list_dict_metrics_pos = [bc_pos,d_pos,dxcc_pos,d_div_pos,dxcc_div_pos]
     for i,metric in enumerate(metrics):
-        func = funcs[i]
         construct_rank_dict_set_to_G(G_pos,Taxa,list_dict_metrics_pos[i],metric)
         save_central_values(base,G_pos,metric,prefix_pos,peak)
 

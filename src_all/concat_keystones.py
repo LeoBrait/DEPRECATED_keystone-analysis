@@ -1,10 +1,11 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 
 import os
-import sys
-sys.path.append('src')
 import pandas as pd
+import sys
+import os
 
+sys.path.append("src")
 from xonsh_py import cat, lsgrep
 
 level = sys.argv[1]
@@ -23,7 +24,7 @@ for i in files:
 
     # appending new table indexed by the Taxon name
     if os.path.exists(i+'/sparcc/figures/0p%s/keystones.csv'%peak):
-        df = df.append(pd.read_csv(i+'/sparcc/figures/0p%s/keystones.csv'%(peak),index_col=0),sort=False)
+        df = pd.concat([df, pd.read_csv(i+'/sparcc/figures/0p%s/keystones.csv'%(peak),index_col=0)],sort=False)
     else:
         print('There is no data for %s\n'%i)
 df.to_csv('output/transposed_all_environments/%s/keystones.csv'%(level))

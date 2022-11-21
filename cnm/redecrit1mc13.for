@@ -45,9 +45,8 @@ c     mcl = numero de nos no maior cluster
 c     xmed = dissimilaridade media entre os nos da rede filtrada
 
 c     Colunas do arquivo de saida5
-      ! xp,nc,na,mcl,idege,id,xmed,d/delp
 
-c     1: rede (f10.5)
+c     1: xp = valor do parametro de controle para o qual a rede foi filtrada
 c     2: nc = numero de nos conectados na rede
 c     3: na = numero de arestas na rede original
 c     4: mcl = numero de nos no maior cluster
@@ -145,7 +144,7 @@ c     inicializa a variavel de varredura do loop de amostras [is]
 c     a distancia entre da rede original aa ela mesma e zero
       is = 1
       d = 0.
-      write(5,520)xp,nc,na,mcl,idege,id,xmed,d/delp
+      write(5,520)xp,nc,na,mcl,idege,id,xmed,d
 
 c================================================================== 
 c     comeco do grand loop no numero de amostras
@@ -199,7 +198,7 @@ c     e definida como 0.
        endif
 
 c     escreve os resultados no arquivo de saida 5
-       write(5,520)xp,nc,na,mcl,idege,id,xmed,d/delp
+       write(5,520)xp,nc,na,mcl,idege,id,xmed,d
 
 c     atualiza a matriz de vizinhanca [mv1] para a proxima iteracao
        do i = 1,nm*(nm-1)/2
@@ -269,9 +268,11 @@ c==================================================================
 c==================================================================
 
 c     Parametros e variaveis auxiliares:
-c     lla = ??
-c     pro = ??
-c     pra = ??
+c     pro = maior caminho entre dois nos da rede
+c     pra = vetor de indicadores.
+c           inicializado como 1, ao entrar no loop de calculo de caminhos
+c           a partir do no' i, pra(i) e' alterado para 0. Caso haja um
+c           caminho entre o no' i e o no' j, pra(j) e' alterado para 0.
 c     lis = lista auxiliar de conexoes
 c           armazena qual no esta conectado a qual de forma compacta.
 c           Uma matriz de tamanho (numero max de arestas na rede) x 2.
@@ -280,15 +281,8 @@ c           do elemento da primeira linha no qual comeca a lista de nos
 c           conectados ao no i.
 c           Os elementos da primeira linha armazenados entre os indices lis(i,2)
 c           e lis(i+1,2) sao os nos conectados ao no i.
-c     ga = ??
-c     kmd = ??
-c     gamd = ??
-c     lmd = ??
-c     set = ??
-c     nmcl = numero de maiores cluster
-c     diam = diametro do maior cluster
-c     xmed = dissimilaridade media entre os nos do maior cluster
-c     dissimilaridade = dissimilaridade entre a rede original e aquela com o no eliminado
+c     lmd = vetor com a soma dos caminhos minimos que ligam o no' i a 
+c           todos os outros nos.
 
 c     Argumentos
 c     1: a = matriz de adjacencia (entrada)
@@ -296,31 +290,30 @@ c     2: mv = matriz de vizinhanca (saida)
 c     3: nm = numero de nos na rede (entrada)
 c     4: nc = numero de nos conectados (entrada)
 c     5: np = potencia booleana maxima (entrada)
-c     6: kk = ?? (saida)
-c     7: xlmd = dissimilaridade media entre os nos do maior cluster (saida)
+c     6: kk = matriz com a ordem de subgrafo de cada no armazenada na coluna 0,
+c             os demais elementos da matriz armazenam a matriz de vizinhanca. (saida)
+c     7: xlmd = comprimento medio dos menores caminhos entre nos da rede
+c               limitada ao(s) maior(es) subgrafo(s) conexo(s) (saida)
 c     8: id = diametro da rede (saida)
 c     9: mcl = tamanho do maior cluster (saida)
 c     10: idege = numero de arestas da rede (saida)
 
-      parameter(npm=1500)
-      integer*1 a(npm,npm)
-      integer*2 mv(npm*(npm-1)/2),kk(0:npm,0:npm),lla(npm),pro(npm)
-      integer*2 pra(npm)
-      integer lis(npm*npm/2,2)
-      real ga(0:npm), kmd(0:npm)
-      real gamd(0:npm),lmd(0:npm),set(npm,npm)
-c================================================================== 
-c     coloca zero no valores medios das dissimilaridades entre nos
-      xlmd = 0.
-      ylmd = 0.
-      zlmd = 0.
 
-      do i = 1,npm
-       lla(i) = 0
-       do j = 1,npm
-        set(i,j) = 0.
-       enddo
-      enddo
+      parameter(npm=1000)
+      integer*1 a(npm,npm)
+      integer*2 mv(npm*(npm-1)/2),kk(0:npm,0:npm), pro(npm)
+      integer*2 pra(npm)
+      integer lis((npm-1)*npm/2,2)
+      real ga(0:npm), kmd(0:npm)
+      real lmd(0:npm)
+c==================================================================
+c     inicializa as variaveis
+      xlmd = 0.
+c      ylmd = 0. (soma dos caminhos minimos normalizada pelo quadrado
+c                 do numero de nos no maior subgrafo conexo)
+c      zlmd = 0. (soma dos caminhos minimos normalizados pelo produto
+c                 do numero de nos no maior subgrafo conexo e o numero
+c                 de nos na rede)
 
       do i = 1,npm*(npm-1)/2
        mv(i) = 0
@@ -328,14 +321,12 @@ c     coloca zero no valores medios das dissimilaridades entre nos
 
       do i = 0,npm
        lmd(i) = 0.
-       ga(i) = 0
        kmd(i) = 0
-       gamd(i) = 0
        do j = 0,npm
         kk(i,j) = 0
        enddo
       enddo
-c================================================================== 
+c==================================================================
 c     escreve a(i,j) em entrada
 c     varre a triagular superior da matriz de adjacencia e preenche
 c     os valores da triangular inferior.
@@ -349,16 +340,15 @@ c     em indices do vetor mv.
         ll = (2*nm-i)*(i-1)/2+j-i
         mv(ll) = a(i,j)
        enddo
+      enddo
 
 c    define a diagonal principal da matriz de adjacencia como 1
-c    pra? pro?
-      enddo
       do i = 1,nm
         a(i,i) = 1
         pra(i) = 1
         pro(i) = 0
       enddo
-c================================================================== 
+c==================================================================
 c     prepara a lista de elementos nao nulos de a(i,j)
 
 c     inicializa lis com zeros
@@ -391,122 +381,125 @@ c    ao sair do loop, a variavel i vale nm+1.
 c    o elemento lis(nm+1,2) indica o indice do ultimo elemento de lis(:, 1).
       lis(i,2) = iq
       
-
-c================================================================== 
+c==================================================================
 c     comeca o loop para calculo as propriedades das diferentes matrizes mad(ip)
 
-      do i = 1,nm-1
+c     para cada no da rede...
+c     ( loop em i )
+      do i = 1,nm-1 
+      
+c     ip e' o contador de potencia booleana (?)
+c     ( loop em ip )
        do ip = 1,np
-        if(pra(i).eq.0.and.pro(i).lt.ip)goto 90 
-c================================================================== 
-c     calcula coeficiente de clusteriza��o e grau da matriz mad(ip)
 
-C        call rede1(a,nm,npm,kk,ga,ip)
-C
-C        if (ip.eq.1) then
-C         gamd(ip) = ga(0)/(0*nm+nc)
-C         do i = 1,nm
-C          set(i,ip) = ga(i)
-C         enddo
-C        endif
-C        kmd(ip) = float(kk(0,ip))/(0*nm+nc)
-C        do i = 1,nm
-C         lmd(i)= lmd(i) + kk(i,ip)*ip
-C        enddo
-C        kk(0,ip) = 0
-C        do i = 1,nm
-C         kk(0,ip) = kk(0,ip) + pra(i)
-C        enddo
-c================================================================== 
-c     calcula grau de assortatividadeda rk matriz mad(ip)
+c       ?????
+        if(pra(i).eq.0.and.pro(i).lt.ip)goto 90
 
-c        call assorta(am,nm,npm,nvm,kk,ip,rrk) 
-c        rk(ip) = rrk
-c================================================================== 
-c     desvio para finalizar o programa
-
-C        if (kk(0,ip).eq.0) go to 100
+c       caso ip chegue ao maior caminho a ser considerado, saia do loop
         if (ip.eq.np) go to 100
-c================================================================== 
-c     comeca a obtencao de am**ip - le mad e transfere para am
-c================================================================== 
-c     le a matriz tmad5 faz pb tmad5*mad e guarda resultado em tmad6
-c==================================================================
 
+c       atualiza pra(i), indicando que estao sendo calculados os caminhos
+c       que ligam o no' i a todos os outros nos da rede
         pra(i) = 0
 
+c       para cada no, varre os indices da triangular superior da matriz de adjacencia
+c       ( loop em j )
         do j = i+1,nm
 
+c        zera o valor da conexao entre os nos i e j
          a(i,j) = 0
 
+c        caso os nos i e j estejam conectados, 
+c        a informacao ja esta armazenada.
+c        passa para o proximo no'.
          if (a(j,i).eq.1) goto 126
 
-         do k = lis(j,2),lis(j+1,2)-1
+c        varre os nos conectados ao no j, armazenados em lis(:,1).
+c        os vizinhos de j estao armazenados entre os indices lis(j,2) e lis(j+1,2)-1.
+c        ( loop em k )
+         do k = lis(j,2), lis(j+1,2)-1
+
+c         armazena o indice do no vizinho do no j em k1
           k1 = lis(k,1)
-          if(i.lt.k1) then 
+
+c         verifica se existe um caminho que liga o no' k1 (vizinho de j) ao no' i com tamanho
+c         menor ou igual a ip. se sim, entao os nos i e j estao conectados.
+c         Armazena um caminho com tamanho ip+1 entre i e j no vetor da 
+c         matriz de vizinhanca [mv]. A condicional se i < k1 e' necessaria
+c         pois mv so' armazena a triangular superior.
+          if(i.lt.k1) then
            if (mv((2*nm-i)*(i-1)/2+k1-i).gt.0)then
             if(mv((2*nm-i)*(i-1)/2+k1-i).le.ip)go to 124
            endif
-          else if (i.gt.k1) then 
+          else if (i.gt.k1) then
            if (mv((2*nm-k1)*(k1-1)/2+i-k1).gt.0)then
             if(mv((2*nm-k1)*(k1-1)/2+i-k1).le.ip)go to 124
            endif
           endif
+
+c        ( final do loop em k )
          enddo
 
+c        pula a atribuicao de 1 a a(i,j) e vai para o proximo no j
          goto 125
+
+c        caso exista caminho ligando os nos i e j:
 124      a(i,j) = 1
          pra(i) = 1
+
+c        armazena o menor caminho na matriz de vizinhanca
 125      continue
          ll = (2*nm-i)*(i-1)/2+j-i
          mv(ll) = a(i,j)*(ip+1)
-         pro(j) = max(pro(j),mv(ll))
+c        pro(j) armazena o maior caminho minimo ja encontrado com uma
+c        extremidade no no j.
+         pro(j) = max(pro(j), mv(ll))
 
+c       ( final do loop em j )
 126     enddo
 
-c================================================================== 
-c     obtem a nova matriz com vizinhos exclusivos de ordem ip+1: am=tmad6-tmad5
-c================================================================== 
-c     transfere a nova matriz com todos os vizinhos de tdma1 para tdma0
-c================================================================== 
-c     atualiza a matriz de adjacencia ponderada, le tmad1, soma (ip+1)*am e coloca em tmad2
-c================================================================== 
-c     transfere a nova matriz com todos os vizinhos ponderados de tmad2 para tmad1 
-c==================================================================
-
+c       atualiza a triangular inferior da matriz a, indicando quais
+c       nos estao conectados ao no i, com um caminho de tamanho arbitrario.
+c       a triangular inferior armazena informacao se o existe caminho ja 
+c       encontrado entre os nos i e j, com tamanho arbitrario.
+c       a triangular superior armazena informacao se foi encontrado um caminho
+c       entre os nos i e j para o tamanho de caminho ip+1, que esta sendo calculado.
         do j = i+1,nm
          a(j,i) = a(j,i) + a(i,j)
         enddo
 
+c       ( final do loop em ip )
        enddo
 
-c====================================================== 
-c     fim do loop em ip
-
+c     ( final do loop em i )
 90    enddo
-c====================================================== 
-c     saida dos resultados para a amostra is
+100   continue
 
-100   npp = 1
-
-      do i = 1,nm-1
-       do j = i+1,nm
-        ll = (2*nm-i)*(i-1)/2+j-i
-        npp = max(npp,mv(ll))
-       enddo
-      enddo
+c     npp nao e' utilizado
+c100   npp = 1
+c
+c      do i = 1,nm-1
+c       do j = i+1,nm
+c        ll = (2*nm-i)*(i-1)/2+j-i
+c        npp = max(npp, mv(ll))
+c       enddo
+c      enddo
 
 c======================================================
-c     calcula a ordem de sub-grafo de cada no
+c     calcula a ordem de sub-grafo de cada no'
 
+c     define a triangular superior da matriz de adjacencia
+c     igual aa triangular inferior. A matriz a armazena informacao
+c     se existe um caminho entre os nos i e j, com tamanho arbitrario.
+c     Dessa forma, e' possivel identificar os subgrafos de cada no.
       do i = 1,nm
-c       a(i,i) = 0
        do j = i+1,nm
         a(i,j) = a(j,i)
        enddo
       enddo
 
-
+c     atualiza a coluna 0 da matriz kk, que armazena a ordem de sub-grafo
+c     de cada no' correspondente a cada linha.
       do i = 1,nm
        kk(i,0) = 0
        do j = 1,nm
@@ -514,77 +507,78 @@ c       a(i,i) = 0
        enddo
       enddo
 
+c     define a diagonal principal da matriz kk como 0
       do i = 1,nm
-c       a(i,i) = 0
        kk(i,i) = 0
       enddo
 
+c     atualiza os demais elementos da matriz kk, que armazena a matriz de vizinhanca
       ll = 0
       do i = 1,nm-1
        do j = i+1,nm
         ll = ll + 1
-c        a(i,j) = mv(ll)
-c        a(j,i) = mv(ll)
         kk(i,j) = mv(ll)
         kk(j,i) = mv(ll)
        enddo
       enddo
 
+c     calcula a soma dos caminhos minimos que ligam o no' i a todos os outros nos
       do i = 1,nm
        lmd(i) = 0
        do j = 1,nm
-c        lmd(i) = lmd(i) + a(i,j)
         lmd(i) = lmd(i) + kk(i,j)
-       enddo      
-      enddo 
-c====================================================== 
-c     calcula a numero de nos no maior cluster
+       enddo
+      enddo
 
+c     calcula a numero de nos no maior subgrafo conexo.
+c     O numero de nos no subgrafo do qual o no' i faz parte
+c     e' igual a kk(i,0).
       mcl = 0
       do i = 1,nm
-       mcl = max(kk(i,0),mcl)
+       mcl = max(kk(i,0), mcl)
       enddo
-c====================================================== 
-c     calcula a distancia minima m�dia da rede limitada ao(s) maior(es) cluster(s)
+c======================================================
+c     calcula o comprimento medio dos menores caminhos entre nos da rede
+c     limitada ao(s) maior(es) subgrafo(s) conexo(s)
 
-c     nm2 = (0*nm+nc)*(0*nm+nc)
+c     inicializa e armazena o inverso do numero maximo de arestas
+c     possiveis no maior subgrafo conexo.
       xm2 = 0.
       if (mcl.gt.1)xm2 = 1./float((mcl-1)*mcl)
+
+c     inicializa um contador de numero de nos
       imc = 0
+
+c     calcula 
       do i = 1,nm
-       if (kk(i,0).eq.mcl)then
+       if (kk(i,0).eq.mcl.and.kk(i,0)*nc.gt.0)then
         imc = imc + 1
-        xlmd = xlmd + lmd(i) 
+        xlmd = xlmd + lmd(i)
 c       xlmd = xlmd + lmd(i)*xm2
-        ylmd = ylmd + lmd(i)/kk(i,0)/kk(i,0)
-        zlmd = zlmd + lmd(i)/kk(i,0)/(0*nm+nc)
+c       ylmd = ylmd + lmd(i)/kk(i,0)/kk(i,0)
+c       zlmd = zlmd + lmd(i)/kk(i,0)/(0*nm+nc)
        endif
       enddo
+
+c     idege e' a razao entre o numero de nos considerado no calculo
+c     da dissimilaridade e o numero total de nos.
+c     pode ser entendido como o numero de subgrafos conexos com o
+c     numero maximo de nos.
+c     idege > 1. indica que ha' mais de um subgrafo conexo com o mesmo
+c     numero de nos.
       idege = imc/mcl
-c      write(5,*)xlmd,xm2,mcl,imc
-      xlmd = xlmd*xm2*mcl/imc
-c      write(5,*)xlmd,xm2,mcl,imc
-c====================================================== 
-c     transfere a matriz ponderada para o campo mv(np,np)
 
-c====================================================== 
-c     calcula diametro
+c     calcula 
+      xlmd = xlmd*xm2*mcl/max(imc,1)
 
+c      write(5,*)xlmd,xm2,mcl,imc
+
+c     calcula diametro da rede (diametro do maior subgrafo conexo)
       id = 0
       do i = 1,nm*(nm-1)/2
        id = max(mv(i),id)
       enddo
-c====================================================== 
-c     calcula dimensao fractal 
-c====================================================== 
-c     escreve distancia minima media de cada no em saida9
-c====================================================== 
-c     escreve coeficiente de clusteriza��o em saida7
-c====================================================== 
-c     escreve coeficientes de assortatividade em saida8
-c====================================================== 
-c     escreve distribui��o de nos em saida8
-c=====================================================
+
       return
 
       end
@@ -682,7 +676,7 @@ c       diferentes de 0, o aumento vale (1/mv1(i) - 1/mv2(i)).
        elseif(mv1(i) > 0)then
 c       So' checando se mv2(i) >= mv1(i):
         if(mv2(i) < mv1(i))then
-         print(5,*)"! Erro: mv2(i) < mv1(i) !"
+         print *, "! Erro: mv2(i) < mv1(i) !"
         endif
 c ------------------------------------------
         dist = dist + 2*(1/mv1(i) - 1/mv2(i))
