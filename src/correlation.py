@@ -142,12 +142,14 @@ def main(inFile, inMeta, host, spcc_backlog, rareAbund=0.1):
     # loop over the nodes
     for i in range(nsamp-1):
         A = anotShared[i] # number of reads for node i (row) in each sample (column)
+        boolA = A > 0.
         for j in range(i+1,nsamp):
             B = anotShared[j] # number of reads for node j (row) in each sample (column)
+            boolB = B > 0.
             # counts the number of samples where A and B following the pattern presented above
-            a[i][j] = sum(list(map(lambda x,y: int(x > 0.       and y > 0.      ), A, B)))
-            b[i][j] = sum(list(map(lambda x,y: int(bool(x > 0.)  ^  bool(y > 0.)), A, B)))
-            c[i][j] = sum(list(map(lambda x,y: int(x <= 0.      and y <= 0.     ), A, B)))
+            a[i][j] = np.sum(boolA & boolB)
+            b[i][j] = np.sum(boolA ^ boolB)
+            c[i][j] = np.sum(~boolA & ~boolB)
 
     debug("Getting metadata file...")
 
