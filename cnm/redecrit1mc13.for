@@ -61,9 +61,9 @@ c     o arquivo de entrada tem a seguinte estrutura:
 c      nm np [num maximo de nós na rede, potencia booleana maxima]
 c      pmin, delp, ns [valor minimo, intervalo de variacao do parametro, numero de valores de xp]
 c      entrada3 [nome do arquivo de entrada com matriz de adjacencia]
-c      saida5 [nome do arquivo de saida]
-c      saida6 [nome do arquivo de saida]
-c      saida7 [nome do arquivo de saida]
+c      saida5 [nome do arquivo de saida] - p_envi
+c      saida6 [nome do arquivo de saida] - a_envi
+c      saida7 [nome do arquivo de saida] - d_envi
 c==================================================================
 
 c     leitura dos parametros
@@ -185,7 +185,6 @@ c     [mv1] e [mv2]
         d = dist(mv1,mv2,nm)
 
        else
-
 c     caso o numero de arestas seja zero, a distancia entre as duas redes
 c     e definida como 0.
         na = 0
@@ -661,31 +660,58 @@ c=====================================================================
 c     calcula a dissimilaridade entre duas matrizes de vizinhanca
       parameter(npm=1000)
       integer*2 mv1(npm*(npm-1)/2),mv2(npm*(npm-1)/2)
+      integer*2 a1(nm, nm), a2(nm, nm)
 
-      dist = 0.
+      eff1 = 0.
+      eff2 = 0.
 
-      do i = 1,nm*(nm-1)/2
+      diss = 0.
 
-c       Se mv2(i) e' 0, o aumento no acumulador de dissimilaridade vale
-c       1/mv1(i). Se ambos sao 0, nao ha' aumento. Caso ambos sejam
-c       diferentes de 0, o aumento vale (1/mv1(i) - 1/mv2(i)).
-       if(mv2(i) == 0)then
-        if(mv1(i) > 0)then
-         dist = dist +  2*1/mv1(i)
+      ll = 0
+      do i = 1,nm
+       do j = i+1,nm
+        ll = ll + 1
+        a1(i,j) = mv1(ll)
+        a1(i,j) = mv1(ll)
+        a2(j,i) = mv2(ll)
+        a2(j,i) = mv2(ll)
+
+        if(a1(i,j).ne.0)then
+         eff1 = eff1 + 2./a1(i,j)
+         diss = diss + 2./a1(i,j)
         endif
-       elseif(mv1(i) > 0)then
-c       So' checando se mv2(i) >= mv1(i):
-        if(mv2(i) < mv1(i))then
-         print *, "! Erro: mv2(i) < mv1(i) !"
+        if(a2(i,j).ne.0)then
+         eff2 = eff2 + 2./a2(i,j)
+         diss = diss - 2./a2(i,j)
         endif
-c ------------------------------------------
-        dist = dist + 2*(1/mv1(i) - 1/mv2(i))
-       endif
+       enddo
       enddo
 
-      dist = dist/(nm-1)/nm
+      ! do i = 1,nm*(nm-1)/2
+      !       if(mv1(i).ne.0) then
+      !           eff1 = eff1 + 2./mv1(i)
+      !       endif
+      !       if(mv2(i).ne.0) then
+      !           eff2 = eff2 + 2./mv2(i)
+      !       endif
+      ! enddo
 
-      return
+c     Calcula a dissimilaridade como a diferenca entre as eficiencias
+      ! diss = (eff1 - eff2)      
+      if(diss < 0.)then
+            open(unit=32,file='ERROR.log')
+            write(32, *)'ErrorEfficiencyIncreasedafterRemovalofNode'
+            stop
+      endif
+
+c     Divide a dissimilaridade pela 
+      ! dist = diss/(nm-1)/nm
+      if (eff1 .gt. 0) then
+        dist = diss/eff1
+      else
+        dist = 0.
+      endif
+
       end
 
 

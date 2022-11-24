@@ -8,7 +8,7 @@ import matplotlib.patches as mpatches
 
 fontsiz=3.75
 fontszleg=4
-plt.rcParams['font.family'] = ['Arial']
+# plt.rcParams['font.family'] = ['Arial']
 
 experimentalTaxa = ['Chromatium okenii', 'Chromatiaceae', 'Desulfosporosinus', 'Peptococcaceae']
 

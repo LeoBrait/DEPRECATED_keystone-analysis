@@ -1,8 +1,14 @@
 #!/usr/bin/env python3
 
 import os
+# -----------VS Code DEBUGGER CONFIGURATION-----------
+# set cwd to the directory of this script
+# os.chdir(os.path.dirname(os.path.abspath(__file__)))
+# print('cwd is %s' %(os.getcwd()))
+# ---------------------------------------------------
 import sys
 sys.path.append('src')
+
 from xonsh_py import Logger, lsgrep, existOldData, mkdir_p, cpr, rmr, sexec
 sys.stderr = sys.stdout = Logger() # check src/xonsh_py.py for details
 from datetime import datetime

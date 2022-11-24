@@ -26,53 +26,53 @@ def run(path=None, df=None, host=None):
     if not isinstance(host , str):
         raise Exception("`host` must be a string containing the name of the environment")
 
-    # writing the matrix as tsv with the desired format
-    df.to_csv(path+"/cnm_data/correlation_matrix.dat", sep='\t',index=False,header=False)
+    # # writing the matrix as tsv with the desired format
+    # df.to_csv(path+"/cnm_data/correlation_matrix.dat", sep='\t',index=False,header=False)
 
-    # copying executable temporarily to the folder
-    cp(['../cnm/cnm.out'], path+'/cnm_data/')
-    cp(['../liasp/liasp.out'], path+'/liasp_data/')
-    oldDir = pwd() # saving the path to current directory
+    # # copying executable temporarily to the folder
+    # cp(['../cnm/cnm.out'], path+'/cnm_data/')
+    # cp(['../liasp/liasp.out'], path+'/liasp_data/')
+    # oldDir = pwd() # saving the path to current directory
 
-    # ------------------------------ CNM --------------------------------------------
-    # The Critical Network Method (CNM) is a method to identify a critical subnetwork.
-    # The algorithm removes the least important links in a network until the network is disconnected.
-    # By comparing the dissimilarity between consecutive networks, the algorithm identifies the critical
-    # treshold, which is the point where the dissimilarity between the networks is the highest.
-    # The critical network is the subnetwork in which all links below the critical threshold are removed.
+    # # ------------------------------ CNM --------------------------------------------
+    # # The Critical Network Method (CNM) is a method to identify a critical subnetwork.
+    # # The algorithm removes the least important links in a network until the network is disconnected.
+    # # By comparing the dissimilarity between consecutive networks, the algorithm identifies the critical
+    # # treshold, which is the point where the dissimilarity between the networks is the highest.
+    # # The critical network is the subnetwork in which all links below the critical threshold are removed.
 
-    # The following code:
-    # 1) generate auxiliary file with inputs for CNM code
-    # 2) runs the CNM program (a compiled Fortran code)
-    # 3) identifies the peaks in the sequence of dissimilarity values
-    # 4) selects the highest peak as the critical threshold
-    # 5) generates the critical network
+    # # The following code:
+    # # 1) generate auxiliary file with inputs for CNM code
+    # # 2) runs the CNM program (a compiled Fortran code)
+    # # 3) identifies the peaks in the sequence of dissimilarity values
+    # # 4) selects the highest peak as the critical threshold
+    # # 5) generates the critical network
 
-    # 
-    # generate auxiliary file with inputs for CNM code
-    argBaseCNM =   "%d %d\n"\
-                "%3.2f 0.01 %d\n"\
-                "correlation_matrix.dat\n"\
-                "p_envi_%3.2f.dat\n"\
-                "n_envi_%3.2f.dat\n"\
-                "a_envi_%3.2f.dat\n"\
-                "-1 -1 -1\n" # "-1 -1 -1" indicates the end of the input file and is required by the CNM code
+    # # 
+    # # generate auxiliary file with inputs for CNM code
+    # argBaseCNM =   "%d %d\n"\
+    #             "%3.2f 0.01 %d\n"\
+    #             "correlation_matrix.dat\n"\
+    #             "p_envi_%3.2f.dat\n"\
+    #             "n_envi_%3.2f.dat\n"\
+    #             "a_envi_%3.2f.dat\n"\
+    #             "-1 -1 -1\n" # "-1 -1 -1" indicates the end of the input file and is required by the CNM code
 
-    # number of nodes
-    n = df.shape[0]
+    # # number of nodes
+    # n = df.shape[0]
 
-    # creating right args file
-    echo(path+"/cnm_data/redecrit1mc13.dat", argBaseCNM % (n,n,0.,100,1.,1.,1.))
+    # # creating right args file
+    # echo(path+"/cnm_data/redecrit1mc13.dat", argBaseCNM % (n,n,0.,100,1.,1.,1.))
 
-    # running CNM for the whole space
-    cd(path+'/cnm_data')
-    # running CNM
-    sexec('./cnm.out')
-    # go to the original directory
-    cd(oldDir)
+    # # running CNM for the whole space
+    # cd(path+'/cnm_data')
+    # # running CNM
+    # # sexec('./cnm.out')
+    # # go to the original directory
+    # cd(oldDir)
 
     # choosing peaks
-    peaks_list, high = deltaFuncAndPeaksSelector(path)
+    peaks_list, high = deltaFuncAndPeaksSelector(df)
 
     # going a step before the peak in order to construct the networks before they break apart
     peaks_list[:] = [x-1 for x in peaks_list]
@@ -84,18 +84,18 @@ def run(path=None, df=None, host=None):
     # doing only the highest peak in order to improve performance as we are not using else peaks
     peaks_list = [high]
 
-    cd(path+'/cnm_data')
-    # running CNM for each peak
-    for peak in peaks_list:
-        peak = peak/100.
-        # generate auxiliary file with inputs for CNM code
-        echo("redecrit1mc13.dat", argBaseCNM%(n,n,peak-.01,1,peak,peak,peak))
-        # execute CNM program
-        sexec('./cnm.out')
-    # remove the temporary executable
-    rm(['cnm.out'])
-    # go back to the original directory
-    cd(oldDir)
+    # cd(path+'/cnm_data')
+    # # running CNM for each peak
+    # for peak in peaks_list:
+    #     peak = peak/100.
+    #     # generate auxiliary file with inputs for CNM code
+    #     echo("redecrit1mc13.dat", argBaseCNM%(n,n,peak-.01,1,peak,peak,peak))
+    #     # execute CNM program
+    #     # sexec('./cnm.out')
+    # # remove the temporary executable
+    # rm(['cnm.out'])
+    # # go back to the original directory
+    # cd(oldDir)
 
     # ------------------------------ LIASP ------------------------------------------- 
     # The Largest Influence on Average Shortest Path (LIASP) is a metric to identify
@@ -113,27 +113,28 @@ def run(path=None, df=None, host=None):
     # 2) runs the LIASP program (a compiled Fortran code)
 
     # argfile for liasp
-    argBaseLIASP = "%d 1000\n"\
-            "a_envi_%3.2f.dat\n"\
-            "eudist_%3.2f.dat\n"\
-            "-1 -1 -1\n" # "-1 -1 -1" indicates the end of the input file and is required by the LIASP code
+    # argBaseLIASP = "%d 1000\n"\
+    #         "a_envi_%3.2f.dat\n"\
+    #         "eudist_%3.2f.dat\n"\
+    #         "-1 -1 -1\n" # "-1 -1 -1" indicates the end of the input file and is required by the LIASP code
 
-    # entering the LIASP folder
-    cd(path+'/liasp_data')
-    # running LIASP code for each peak
-    for peak in peaks_list:
-        # copy the correlation matrix to the folder
-        cp(['../cnm_data/a_envi_%3.2f.dat'%(peak/100.)], '.')
-        # generate auxiliary file with inputs for LIASP code
-        echo("liasp2.dat", argBaseLIASP%(n,peak/100.,peak/100.))
-        # execute LIASP program
-        sexec('./liasp.out')
-        # clean temporary argument file
-        rm(['a_envi_%3.2f.dat'%(peak/100.)])
-    # remove the temporary executable
-    rm(['liasp.out'])
-    # return to the original directory
-    cd(oldDir)
+    # # entering the LIASP folder
+    # cd(path+'/liasp_data')
+    # # running LIASP code for each peak
+    # for peak in peaks_list:
+    #     # copy the correlation matrix to the folder
+    #     # cp(['../cnm_data/a_envi_%3.2f.dat'%(peak/100.)], '.')
+    #     # generate auxiliary file with inputs for LIASP code
+    #     # echo("liasp2.dat", argBaseLIASP%(n,peak/100.,peak/100.))
+    #     # execute LIASP program
+    #     # sexec('./liasp.out')
+    #     # clean temporary argument file
+    #     # rm(['a_envi_%3.2f.dat'%(peak/100.)])
+    #     pass
+    # # remove the temporary executable
+    # rm(['liasp.out'])
+    # # return to the original directory
+    # cd(oldDir)
 
     # ---------------------------- KEYSTONES ---------------------------------------- 
     # Keystones are the most influential nodes in a network. They are identified by
@@ -159,11 +160,89 @@ def run(path=None, df=None, host=None):
 """
 Created on Wed Mar 14 13:44:45 2018
 
-@author: flavia
+@author: Flavia Mayumi, Rafael Menezes
 """
 
+def drop_weights(G):
+    '''Drop the weights from a networkx weighted graph.'''
+    # https://stackoverflow.com/a/74540827/13845224
+    for node, edges in nx.to_dict_of_dicts(G).items():
+        for edge, attrs in edges.items():
+            attrs.pop('weight', None)
 
-def deltaFuncAndPeaksSelector(path):
+def treshold_efficiency_dissimilarities(G, tresholds):
+    '''
+    The algorithm removes the least important links in a network in a sequential way following tresholds values defined in `tresholds`.
+    
+    Returns a list with the dissimilarities between networks for each treshold value.
+    '''
+    # creating the list of efficiencies
+    efficiencies = []
+
+    # store the efficiency of the original network
+    efficiencies.append(nx.global_efficiency(G))
+
+    # creating a copy of the graph
+    Gc = G.copy()
+
+    # loop over the tresholds
+    for t in tresholds:
+
+        # removing the edges with weight below the treshold
+        Gc.remove_edges_from([(u,v) for (u,v,d) in Gc.edges(data=True) if d['weight'] < t])
+
+        # calculating the efficiency of the network
+        eff = nx.global_efficiency(Gc)
+
+        # storing the efficiency
+        efficiencies.append(eff)
+
+    # calculating the dissimilarities between networks
+    dissimilarities = -np.diff(np.array(efficiencies))
+
+    # print(efficiencies)
+    # input()
+    # print(dissimilarities)
+
+    return dissimilarities
+
+
+def deltaFuncAndPeaksSelector(df):
+    if not isinstance(df,pd.DataFrame):
+        raise Exception("Wrong path data type!")
+
+    # converting the dataframe to a networkx graph
+    G = nx.from_pandas_adjacency(df)
+    
+    # defining the tresholds
+    tresholds = np.linspace(0,1.,101)[:-1]
+
+    # calculating the dissimilarities
+    # measure the time the function takes to run
+    import time
+    # start = time.time()
+    dissim = treshold_efficiency_dissimilarities(G, tresholds)
+    # end = time.time()
+    # print("Time to calculate the dissimilarities: %f"%(end-start))
+
+    # set minimum peak height so that identified peaks are among the 5% highest peaks
+    minimum_peak_height = sorted(dissim)[-int(len(dissim)*.05)]
+
+    # detect peaks in the dissimilarity curve
+    # mpd = 1 means that the minimum distance between peaks is 1 (no consecutive peaks)
+    # start = time.time()
+    argpeaks = detect_peaks(dissim, mpd=1, mph=minimum_peak_height )
+    # end = time.time()
+    # print("Time to detect peaks: %f"%(end-start))
+
+    # getting the highest peak separately or 0 if there's no peak
+    if len(argpeaks) < 1:
+        argpeaks = [0]
+    high = np.where(dissim == max(dissim[argpeaks]))[0][0]
+
+    return argpeaks, high
+
+def _deltaFuncAndPeaksSelector(path):
     if not isinstance(path,str):
         raise Exception("Wrong path data type!")
 
@@ -171,7 +250,7 @@ def deltaFuncAndPeaksSelector(path):
     # # Read data of distance between netorks in function of threshold
     geral = path+'/cnm_data/p_envi_1.00.dat'
     dat_f = np.loadtxt(geral, unpack=True)
-    # treshold = dat_f[0] # valor do threshold
+    treshold = dat_f[0] # valor do threshold
     dissim = dat_f[7] # dissimilarity between network i and network i+1
 
     # set minimum peak height so that identified peaks are among the 5% highest peaks
@@ -240,13 +319,13 @@ def find_keystones_envi(base,peak,host):
     dict_med = dict(zip(Taxa,Med))
 
     # set Abundance, AbundanceAbsolute, Marker, Prevalence, Std and Sem as attributtes of the nodes
-    nx.set_node_attributes(G_pos,values=dict_abundance,name='abundance')
-    nx.set_node_attributes(G_pos,values=dict_absolute,name='abundance_absolute')
-    nx.set_node_attributes(G_pos,values=dict_marker,name='marker')
-    nx.set_node_attributes(G_pos,values=dict_prevalence,name='prevalence')
-    nx.set_node_attributes(G_pos,values=dict_sem,name='sem')
-    nx.set_node_attributes(G_pos,values=dict_std,name='std')
-    nx.set_node_attributes(G_pos,values=dict_med,name='med')
+    nx.set_node_attributes(G_pos,values=dict_abundance,name='Abundance')
+    nx.set_node_attributes(G_pos,values=dict_absolute,name='AbundanceAbsolute')
+    nx.set_node_attributes(G_pos,values=dict_marker,name='Marker')
+    nx.set_node_attributes(G_pos,values=dict_prevalence,name='Prevalence')
+    nx.set_node_attributes(G_pos,values=dict_sem,name='Sem')
+    nx.set_node_attributes(G_pos,values=dict_std,name='Std')
+    nx.set_node_attributes(G_pos,values=dict_med,name='Median')
 
     # identify the subgraphs in the critical network
     subgraphs = find_subgraphs(G_pos,Taxa)
@@ -270,7 +349,9 @@ def find_keystones_envi(base,peak,host):
     prefix_pos = "positive_" + base + '_0p%d'%peak
 
     # calculate and store LIASP dissimilarity
-    LIASP_dissimilarity(base,base+'/liasp_data/eudist_%3.2f.dat'%threshold,G_pos,rare,prefix_pos,Taxa,peak)
+    # LIASP_dissimilarity(base,base+'/liasp_data/eudist_%3.2f.dat'%threshold,G_pos,rare,prefix_pos,Taxa,peak)
+    LIASP_dissimilarity(base, G_pos, prefix_pos, Taxa, peak)
+    # base, G, prefix, Taxa, peak
 
     #Metrics Literature
     metrics = ['BC','D','DxCC','Ddiv','DxCCdiv']
@@ -282,4 +363,4 @@ def find_keystones_envi(base,peak,host):
     nx.write_gpickle(G_pos,base+"/nx_data/"+prefix_pos+"_G.gpickle")
 
     # running the table_keystones procedure
-    table_analysis(base, peak, G_pos,host)
+    table_analysis(base, peak, G_pos, host)

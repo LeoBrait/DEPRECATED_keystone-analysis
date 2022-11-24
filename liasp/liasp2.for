@@ -194,7 +194,7 @@ c     inicializa a dissimilaridade total e as eficiencias das redes
 
 c     calcula a dissimilaridade total e as eficiencias das redes
 c     atraves da subroutine dissim
-       call dissim(mv1,mv2,nm, dissim_t, eff1, eff2)
+       call dissim(mv1,mv2, nm, dissim_t, eff1, eff2)
 
 c      escreve os resultados no arquivo de saida
        write(5,520)ii,nc,na,mcl,idege,id,xmed,dissim_t,dissim_d,eff1,eff2
@@ -653,10 +653,7 @@ c       endif
 c      enddo
 
 c     Calcula a dissimilaridade como a diferenca entre as eficiencias
-      diss = (eff1 - eff2)      
-      if(diss < 0.)then
-            print *, "Error: Efficiency Increased after Removal of Node"
-      endif
+      diss = (eff1 - eff2)
 
 c     Divide a dissimilaridade pela 
       diss = diss/(nm-1)/nm
