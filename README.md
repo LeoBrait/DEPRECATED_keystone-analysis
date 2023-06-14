@@ -27,6 +27,7 @@ For questions related to this repository and its auxiliary ones, you may also co
 This program was developed by:
 - Bertolino - @bertolinocastro
 - Flávia Ruziska - @flaviamayumi
+- Rafael Menezes - @r-menezes
 
 ## License
 

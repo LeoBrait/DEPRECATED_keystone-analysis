@@ -11,17 +11,17 @@ print("\n\nStarting analysis through environments.\n\n")
 for level in ['phyla']:
 
     # create output directory
-    # mkdir -p @('output/transposed_all_environments/'+level)
-    mkdir_p(['output/transposed_all_environments/'+level])
+    # mkdir -p @('output/all_environments/'+level)
+    mkdir_p(['output/all_environments/'+level])
 
     # run the identification of keystones
     print("Concat keystones for %s." % level)
-    sexec('./src_all/concat_keystones.py '+level)
+    sexec('./src/concat_keystones.py '+level)
 
     # Generate the  keystones heatmap (total effect)
     print("Heatmap keystones for %s." % level)
-    sexec('./src_all/heatmap_keystones.py '+level+' 1')
+    sexec('./src/heatmap_keystones.py '+level+' 1')
 
     # Generate the  keystones heatmap (indirect effect)
     print("Heatmap keystones (indirect) for %s." % level)
-    sexec('./src_all/heatmap_keystones.py '+level+' 2')
+    sexec('./src/heatmap_keystones.py '+level+' 2')

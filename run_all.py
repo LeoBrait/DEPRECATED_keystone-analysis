@@ -1,11 +1,5 @@
 #!/usr/bin/env python3
 
-import os
-# -----------VS Code DEBUGGER CONFIGURATION-----------
-# set cwd to the directory of this script
-# os.chdir(os.path.dirname(os.path.abspath(__file__)))
-# print('cwd is %s' %(os.getcwd()))
-# ---------------------------------------------------
 import sys
 sys.path.append('src')
 
@@ -14,6 +8,7 @@ sys.stderr = sys.stdout = Logger() # check src/xonsh_py.py for details
 from datetime import datetime
 
 from correlation import main as correlation_main
+from identify_keystones import identify_keystones
 
 # checking for dependencies
 try:
@@ -33,9 +28,15 @@ except ImportError as e:
 startTime = datetime.now()
 
 # loops through all the environments' community matrices
+# the community matrices are stored in the 'community_matrix' directory 
+# the file name should contain 'phyla' in accordance with the level of organization
+# being considered.
+# the metadata is stored in the 'metadata' directory and should have an identical
+# folder structure.
 for f in lsgrep('community_matrix',['phyla']):
 
     # get the environment name
+    #ATTENTION: this is likely to break if the file name is not in the expected format
     fname = f[:-4].split('/')[1].split('_')[0]
 
     # checking if the actual file has metadata
@@ -45,21 +46,33 @@ for f in lsgrep('community_matrix',['phyla']):
     print('Community: %s\nMetadata: %s\n' % (f, meta))
 
     # checking if there is a computed sparcc matrix
-    if existOldData('output/transposed/'+fname+'/sparcc/sparcc_data/cor.tsv'):
+    if existOldData('output/environments/'+fname+'/sparcc_data/cor.tsv'):
         print('There is an already computed SparCC matrix for %s. Using it for the analysis.\n'%fname)
-        spcc_corr_mat = 'output/transposed/'+fname+'/sparcc/sparcc_data/cor.tsv'
+        spcc_corr_mat = 'output/environments/'+fname+'/sparcc_data/cor.tsv'
+    elif existOldData('input/environments/'+fname+'/sparcc_data/cor.tsv.gz'):
+        #BUG
+        pass
     else:
         print(f'NO SPARCC MATRIX FOUND! JUMPING {fname}')
         continue
 
     # Create output directory
-    mkdir_p(['output/transposed/'+fname])
+    mkdir_p(['output/environments/'+fname])
 
     # run the analysis
-    correlation_main(f, meta, fname, spcc_corr_mat)
+    # f : community matrix
+    # meta : metadata
+    # fname : environment name
+    # spcc_corr_mat : sparcc matrix
+    coSparCC = correlation_main(f, meta, fname, spcc_corr_mat)
+
+    # running code-integration steps
+    # this step is responsible for running the CNM and LIASP algorithms
+    # and identifying the most important nodes in the network (the keystones)
+    identify_keystones("sparcc", coSparCC, fname)
 
     # copy the results to the corresponding environment directory
-    cpr(lsgrep('out',['']),'output/transposed/'+fname+'/sparcc/')
+    cpr(lsgrep('out',['']),'output/environments/'+fname+'/')
     # delete the temporary 'out' directory
     rmr(['out'])
 
@@ -68,5 +81,5 @@ print('\nTotal execution time: ', (datetime.now()-startTime))
 
 # running all analysis script
 startTime = datetime.now() # record start time
-sexec('./run_keystone_analysis.py')
+sexec('./run_keystone_analysis.py') # Keystones analysis
 print('\nPost-results execution time: ', (datetime.now()-startTime)) # record end time

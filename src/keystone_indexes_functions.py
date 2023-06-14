@@ -191,6 +191,16 @@ def LIASP(G, node, node_idx = None):
     # calculate the contribution to dissimilarity from indirect interactions of the removal of node
     LIASP_indir = np.sum(delta_eff_)/(n*(n-1))
 
+    # store the change in efficiency
+    total_eff_change = LIASP
+    dir_eff_change = LIASP_dir
+    indir_eff_change = LIASP_indir
+
+    # divide the change in efficiency by the efficiency of the graph without node
+    LIASP = LIASP/eff_removed
+    LIASP_dir = LIASP_dir/eff_removed
+    LIASP_indir = LIASP_indir/eff_removed
+
     # Sanity check
     try:
         # assert LIASP >= 0, "Error in LIASP Routine: LIASP is negative for node " + str(node)
@@ -201,20 +211,17 @@ def LIASP(G, node, node_idx = None):
         assert all(np.array([LIASP, LIASP_dir, LIASP_indir]) < 1.), "Error in LIASP Routine: LIASP, LIASP_dir, LIASP_indir are not all smaller then 1 for node " + str(node)
     except AssertionError as e:
         print(e)
-        print("LIASP: ", LIASP)
-        print("LIASP_dir: ", LIASP_dir)
-        print("LIASP_indir: ", LIASP_indir)
         print("Efficiency matrix of original graph:")
         print(eff_mat_original)
         print("Efficiency matrix of graph without node:")
         print(eff_mat_removed)
         print("Delta efficiency matrix:")
         print(delta_eff)
+        print("LIASP: ", LIASP)
+        print("LIASP_dir: ", LIASP_dir)
+        print("LIASP_indir: ", LIASP_indir)
         raise
 
-    path_increase = LIASP/eff_removed
-    path_increase_dir = LIASP_dir/eff_removed
-    path_increase_indir = LIASP_indir/eff_removed
 
     # end = time.time()
     # print("Time to calculate the LIASP indexes: %f"%(end-start))
@@ -224,9 +231,9 @@ def LIASP(G, node, node_idx = None):
             'LIASPindir': LIASP_indir,
             'effOriginal': eff_original,
             'effRemoved': eff_removed,
-            'pathIncrease': path_increase,
-            'pathIncreaseDir': path_increase_dir,
-            'pathIncreaseIndir': path_increase_indir,
+            'totalEffChange': total_eff_change,
+            'dirEffChange': dir_eff_change,
+            'indirEffChange': indir_eff_change,
             'node': node}
 
 
@@ -237,10 +244,6 @@ def LIASP_dissimilarity(base, G, prefix, Taxa, peak):
 
         # calculate LIASP for node
         LIASP_dict = LIASP(G, node)
-
-        # add EDpDM and iEDpDM to the dictionary for backwards compatibility
-        LIASP_dict['EDpDM'] = LIASP_dict['LIASP']
-        LIASP_dict['iEDpDM'] = LIASP_dict['LIASPindir']
 
         # store the dictionary
         dictionaries.append(LIASP_dict)
