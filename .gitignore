@@ -1,5 +1,5 @@
-output
-out
 __pycache__
-community_matrix/*.csv
 log.txt
+settings.json
+*out/
+*output/

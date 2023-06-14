@@ -1,19 +1,30 @@
 # -*- coding: utf-8 -*-
 """
 Created on Sat Nov 17 09:07:32 2018
+Modified on Sat Nov 19 09:30:00 2022
 
-@author: flavia
+@author: Flavia Mayumi
+modifications: Rafael Menezes
 """
 import numpy as np
 import networkx as nx
+import pandas as pd
 from scipy import stats
+from collections import defaultdict
+from functools import lru_cache
 
 def find_subgraphs(GG,Taxa):
+    '''
+    GG is a networkx graph
+    Taxa is a list of taxa
+
+    the function returns a list of the subgraphs of GG, sorted by size (from largest to smallest)
+    '''
     G = GG.copy()
     dis = list(nx.isolates(G))
-    node_list = list(Taxa)
-    for el in dis:
-        node_list.remove(el)
+    # node_list = list(Taxa)
+    # for el in dis:
+    #     node_list.remove(el)
     G.remove_nodes_from(dis)
     return sorted(nx.connected_components(G), key=len, reverse=True)
 
@@ -41,23 +52,37 @@ def rank_x(x):
     b = b+1
     return b
 
-def construct_dic_rank_dict_set_to_G(G,Taxa,k,metric):
-    rank_k = rank_x(k)
-    dict_k = dict(zip(Taxa, k))
-    dict_rank_k = dict(zip(Taxa, rank_k))
-    nx.set_node_attributes(G,values=dict_k,name=metric)
-    nx.set_node_attributes(G,values=dict_rank_k,name="rank_"+metric)
+def construct_rank_dict_set_to_G(G, Taxa, metric_dict, metric):
+    '''
+    G is a networkx graph
+    Taxa is a list of taxa (nodes of G)
+    metric_dict is a dictionary of values of the metric with the taxa as keys
+    metric is the name of the metric
 
-def construct_rank_dict_set_to_G(G,Taxa,dict_metric,metric):
+    the function:
+    1) constructs a dictionary with the ranks of the values of the metric
+    2) sets the dictionary as an attribute of the nodes of G
+    '''
+    # construct the dictionary with the ranks of the values of the metric
+    metric_values = np.array([metric_dict[t] for t in Taxa])
+    rank_k = np.argsort(metric_values) # returns an array with the indices of the sorted values
+    rank_k = np.argsort(rank_k) + 1 # returns an array with the ranks of the values of the metric
+    dict_k = dict(zip(Taxa, metric_values))
+    dict_rank_k = dict(zip(Taxa, rank_k))
+
+    # set the dictionary as an attribute of the nodes of G
+    nx.set_node_attributes(G,values=dict_k,name=metric)
+    nx.set_node_attributes(G,values=dict_rank_k,name=metric+"_rank")
+
+def _construct_rank_dict_set_to_G(G,Taxa,dict_metric,metric):
     nx.set_node_attributes(G,values=dict_metric,name=metric)
     k = []
     for taxon in Taxa:
         k.append(dict_metric[taxon])
     rank_k = rank_x(k)
     dict_rank_k = dict(zip(Taxa, rank_k))
-    nx.set_node_attributes(G,values=dict_rank_k,name="rank_"+metric)
+    nx.set_node_attributes(G,values=dict_rank_k,name=metric+"_rank")
     return k
-
 
 def filter_disconnected_nodes(G):
     g = G.copy()
@@ -65,37 +90,246 @@ def filter_disconnected_nodes(G):
     g.remove_nodes_from(toDel)
     return g
 
-def euclidians_distance_divided_and_msp(base,file_eu,G,rare,prefix,Taxa,peak):
-    diam = max_diameter_subgraphs(G,Taxa)
+def drop_weights(G):
+    '''Drop the weights from a networkx weighted graph.'''
+    # https://stackoverflow.com/a/74540827/13845224
+    for node, edges in nx.to_dict_of_dicts(G).items():
+        for edge, attrs in edges.items():
+            attrs.pop('weight', None)
+
+def calc_equivalent_increase_in_path_length(eff1, eff2):
+    '''
+    given the efficiencies of two graphs, the function returns the equivalent increase in path length.
+
+    The equivalent increase in path length is the increase in path of the network 1 that would be necessary to obtain the same efficiency of network 2.
+
+    the function returns the equivalent increase in path length of the efficiency matrices
+    '''
+
+    return eff1/eff2 - 1
+
+# @lru_cache(maxsize=256)
+def generate_efficiency_matrix(G):
+    '''
+    G is a networkx graph
+
+    the function returns the efficiency matrix of G
+    '''
+    # get the distance matrix
+    dist = nx.floyd_warshall_numpy(G)
+
+    # transform the distance matrix into an efficiency matrix
+    np.fill_diagonal(dist, 1)
+    eff = 1/dist
+    np.fill_diagonal(eff, 0)
+
+    return eff
+
+def LIASP(G, node, node_idx = None):
+    '''
+    G is a networkx graph
+    node is the index of a node of G (integer)
+    node_label is the label of the node (string)
+
+    the function returns the contribution to dissimilarity from direct interactions of the removal of node
+    '''
+    # get the index of the node
+    if node_idx is None:
+        node_idx = list(G.nodes()).index(node)
+    
+    import time
+    # start = time.time()
+
+    # remove weights from the graph
+    G = G.copy()
+    drop_weights(G)
+
+    # number of nodes in the graph
+    n = len(G.nodes())
+
+    # get the efficiency matrix of G
+    eff_mat_original = generate_efficiency_matrix(G)
+
+    # remove all edges connected to node from G
+    G_ = G.copy()
+    edges_incident_to_node = list(G_.edges(node))
+    G_.remove_edges_from(edges_incident_to_node)
+
+    # get the efficiency matrix of G_
+    eff_mat_removed = generate_efficiency_matrix(G_)
+    
+    # calculate the efficiencies of original and modified graphs
+    eff_original = nx.global_efficiency(G)
+    eff_removed = nx.global_efficiency(G_)
+
+    # calculate the difference between the efficiency matrices
+    delta_eff = eff_mat_original - eff_mat_removed
+    try:
+        assert np.all(delta_eff >= 0), "Error in LIASP Routine: For some pair of nodes, the efficiency of their interaction in the original graph is smaller than the efficiency of their interaction in the graph without node" + str(node)
+        assert np.all(eff_mat_original >= 0), "Error in LIASP Routine: For some pair of nodes, the efficiency of their interaction in the original graph is smaller than 0 in node" + str(node)
+        assert np.all(eff_mat_removed >= 0), "Error in LIASP Routine: For some pair of nodes, the efficiency of their interaction in the graph without node is smaller than 0 in node" + str(node)
+    except AssertionError as e:
+        print(e)
+        print("Efficiency matrix of original graph:")
+        print(eff_mat_original)
+        print("Efficiency matrix of graph without node:")
+        print(eff_mat_removed)
+        print("Delta efficiency matrix:")
+        print(delta_eff)
+        raise
+
+    # calculate the total dissimilarity and the contribution to dissimilarity from direct interactions of the removal of node
+    LIASP = eff_original - eff_removed#np.sum(delta_eff)/(n*(n-1))
+    # assert np.allclose(LIASP, eff1 - eff2), "Error in LIASP Routine: LIASP is not equal to the difference in global efficiency of the graph without node" + str(node)
+    LIASP_dir = 2*np.sum(delta_eff[node_idx, :])/(n*(n-1))
+
+    # create a copy of delta_eff, and remove lines and columns corresponding to node
+    delta_eff_ = delta_eff.copy()
+    delta_eff_ = np.delete(delta_eff_, node_idx, 0)
+    delta_eff_ = np.delete(delta_eff_, node_idx, 1)
+
+    # calculate the contribution to dissimilarity from indirect interactions of the removal of node
+    LIASP_indir = np.sum(delta_eff_)/(n*(n-1))
+
+    # store the change in efficiency
+    total_eff_change = LIASP
+    dir_eff_change = LIASP_dir
+    indir_eff_change = LIASP_indir
+
+    # divide the change in efficiency by the efficiency of the graph without node
+    # if the efficiency of the graph without node is 0, set it to the machine precision.
+    # Raise a warning if the efficiency of the graph without node is 0.
+    if eff_removed == 0:
+        print(f"Warning: efficiency of the graph when node {node} is removed is 0\n\
+                This might indicate ill-defined network. Setting it to the machine precision.")
+        eff_removed = np.finfo(float).eps
+    
+    LIASP = LIASP/eff_removed
+    LIASP_dir = LIASP_dir/eff_removed
+    LIASP_indir = LIASP_indir/eff_removed
+
+    # Sanity check
+    try:
+        # assert LIASP >= 0, "Error in LIASP Routine: LIASP is negative for node " + str(node)
+        # print(f"LIASP: {LIASP}, LIASP_dir: {LIASP_dir}, LIASP_indir: {LIASP_indir}")
+        # input()
+        assert all(np.array([LIASP, LIASP_dir, LIASP_indir]) >= 0), "Error in LIASP Routine: LIASP, LIASP_dir, LIASP_indir are not all positive for node " + str(node)
+        assert np.allclose(LIASP - LIASP_dir, LIASP_indir) , "Error in LIASP Routine: direct and indirect components of LIASP do not sum to the total value for graph without node " + str(node)
+    except AssertionError as e:
+        print(e)
+        print("Efficiency matrix of original graph:")
+        print(eff_mat_original)
+        print("Efficiency matrix of graph without node:")
+        print(eff_mat_removed)
+        print("Delta efficiency matrix:")
+        print(delta_eff)
+        print("LIASP: ", LIASP)
+        print("LIASP_dir: ", LIASP_dir)
+        print("LIASP_indir: ", LIASP_indir)
+        raise
+
+
+    # end = time.time()
+    # print("Time to calculate the LIASP indexes: %f"%(end-start))
+
+    return {'LIASP': LIASP,
+            'LIASPdir': LIASP_dir,
+            'LIASPindir': LIASP_indir,
+            'effOriginal': eff_original,
+            'effRemoved': eff_removed,
+            'totalEffChange': total_eff_change,
+            'dirEffChange': dir_eff_change,
+            'indirEffChange': indir_eff_change,
+            'node': node}
+
+
+def LIASP_dissimilarity(base, G, prefix, Taxa, peak):
+
+    dictionaries = []
+    for node in G.nodes():
+
+        # calculate LIASP for node
+        LIASP_dict = LIASP(G, node)
+
+        # store the dictionary
+        dictionaries.append(LIASP_dict)
+
+    # convert a list of dictionaries to a dictionary of lists
+    # https://stackoverflow.com/a/11450683/13845224
+    metrics = defaultdict(list)
+    for node_dict in dictionaries:
+        for key, val in node_dict.items():
+            metrics[key].append(val)
+
+    # add the metrics to the graph
+    for metric in metrics:
+        # if metric is 'node' go to the next iteration
+        if metric == 'node':
+            continue
+
+        # construct the rank of the metric and add it to the graph
+        construct_rank_dict_set_to_G(G,Taxa,dict(zip(metrics['node'], metrics[metric])),metric)
+
+        # save information
+        save_central_values(base, G, metric, prefix, peak)
+
+def _LIASP_dissimilarity(base,file_eu,G,rare,prefix,Taxa,peak):
+    # read LIASP data from the output of the Fortran code (liasp2.for)
     data = np.loadtxt(file_eu).T
-    dist = data[-2] # node full contribution
-    dist = dist[1:]/diam
-    dist2 = data[-1] # node indirect contribution
-    dist2 = dist2[1:]/diam
+    diss_total = data[-4] # total dissimilarity
+    diss_dir = data[-3] # contribution to dissimilarity from direct interactions
+    eff_orig = data[-2] # efficiency of the original network
+    eff_mod = data[-1] # efficiency of the modified network
 
-    for i,taxon in enumerate(Taxa):
-        length = nx.single_source_shortest_path_length(G,taxon)
-        scale = np.mean(np.array(list(length.values())))
-        dist[i] = float(dist[i])/scale if float(dist[i]) > 0. else float(dist[i])
-        dist2[i] = float(dist2[i])/scale if float(dist2[i]) > 0. else float(dist2[i])
+    # remove the first element of the arrays (0.)
+    diss_total = diss_total[1:]
+    diss_dir = diss_dir[1:]
+    eff_orig = eff_orig[1:]
+    eff_mod = eff_mod[1:]
 
-    # full contribution
-    metric = "EDpDM"
-    construct_dic_rank_dict_set_to_G(G,Taxa,dist,metric)
-    save_central_values(base,G,metric,prefix,peak)
+    # define the indirect contribution as the difference between the full and direct contribution
+    diss_ind = diss_total - diss_dir
 
-    # indirect contribution
-    metric = "iEDpDM"
-    construct_dic_rank_dict_set_to_G(G,Taxa,dist2,metric)
-    save_central_values(base,G,metric,prefix,peak)
+    # calculate the equivalent increase in path length
+    # if the efficiency of the modified network is 0, the equivalent increase in path length is set to 0
+    
+    path_inc_total = np.zeros(len(diss_total))
+    path_inc_dir = np.zeros(len(diss_dir))
+    path_inc_ind = np.zeros(len(diss_ind))
+
+    for idx, efficiency in enumerate(eff_mod):
+        if efficiency > 0:
+            path_inc_total[idx] = diss_total[idx]/efficiency
+            path_inc_dir[idx] = diss_dir[idx]/efficiency
+            path_inc_ind[idx] = diss_ind[idx]/efficiency
+
+    # Define the metrics that are going to be added to the graph
+    metrics = {"LIASP" : diss_total,
+            "EDpDM" : diss_total, # for back compatibility
+            "LIASP_dir" : diss_dir,
+            "LIASP_indir" : diss_ind,
+            "iEDpDM" : diss_ind, # for back compatibility
+            "path_increase" : path_inc_total,
+            "path_increase_dir" : path_inc_dir,
+            "path_increase_indir" : path_inc_ind}
+
+    # add the metrics to the graph
+    for metric in metrics:
+        construct_rank_dict_set_to_G(G,Taxa,dict(zip(Taxa,metrics[metric])),metric)
+        save_central_values(base, G, metric, prefix, peak)
 
 def save_central_values(base,G,metric,prefix,peak):
-    G_ = filter_disconnected_nodes(G)
-    nnk = get_values(G_,metric)
+    # G_ = filter_disconnected_nodes(G)
+    nnk = get_values(G,metric)
     k = np.array(nnk)
     number_keystones(base,k,metric,prefix,peak)
 
 def prod_dict(x1,x2,Taxa):
+    '''
+    x1 and x2 are dictionaries
+
+    the function returns a dictionary with the product of the values on dictionaries x1 and x2
+    '''
     prod = []
     for taxon in Taxa:
         prod.append(x1[taxon]*x2[taxon])
@@ -105,7 +339,7 @@ def number_keystones(base,k,metric,prefix,peak):
     X = k.copy()
     X.sort()
     mx = np.mean(X)
-    stdx = np.std(X,ddof=1)
+    stdx = np.std(X, ddof=1)
     medx = np.median(X)
     cutoff1 = mx + stdx
     cutoff2 = mx + 2*stdx
