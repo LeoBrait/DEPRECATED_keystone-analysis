@@ -46,18 +46,15 @@ for f in lsgrep('community_matrix',['phyla']):
     print('Community: %s\nMetadata: %s\n' % (f, meta))
 
     # checking if there is a computed sparcc matrix
-    if existOldData('output/environments/'+fname+'/sparcc_data/cor.tsv'):
+    if existOldData('output/transposed/'+fname+'/sparcc/sparcc_data/cor.tsv'):
         print('There is an already computed SparCC matrix for %s. Using it for the analysis.\n'%fname)
-        spcc_corr_mat = 'output/environments/'+fname+'/sparcc_data/cor.tsv'
-    elif existOldData('input/environments/'+fname+'/sparcc_data/cor.tsv.gz'):
-        #BUG
-        pass
+        spcc_corr_mat = 'output/transposed/'+fname+'/sparcc/sparcc_data/cor.tsv'
     else:
         print(f'NO SPARCC MATRIX FOUND! JUMPING {fname}')
         continue
 
     # Create output directory
-    mkdir_p(['output/environments/'+fname])
+    mkdir_p(['output/transposed/'+fname])
 
     # run the analysis
     # f : community matrix
@@ -72,7 +69,7 @@ for f in lsgrep('community_matrix',['phyla']):
     identify_keystones("sparcc", coSparCC, fname)
 
     # copy the results to the corresponding environment directory
-    cpr(lsgrep('out',['']),'output/environments/'+fname+'/')
+    cpr(lsgrep('out',['']),'output/transposed/'+fname+'/sparcc/')
     # delete the temporary 'out' directory
     rmr(['out'])
 

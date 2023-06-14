@@ -205,7 +205,7 @@ def main(inFile, inMeta, host, spcc_backlog):
 
     # creating the output folders
     # $[mkdir -p "raw_data" "gephi_data" "cnm_data" "nga_data" "figures" "sparcc_data" "liasp_data" "nx_data" "matrices"]
-    mkdir_p(["raw_data", "gephi_data", "cnm_data", "nga_data", "figures", "sparcc_data", "liasp_data", "nx_data", "matrices"])
+    mkdir_p(["raw_data", "sparcc/gephi_data", "sparcc/cnm_data", "sparcc/nga_data", "sparcc/figures", "sparcc/sparcc_data", "sparcc/liasp_data", "sparcc/nx_data", "sparcc/matrices"])
 
     debug("Getting already computed SparCC matrix...")
 
@@ -222,13 +222,13 @@ def main(inFile, inMeta, host, spcc_backlog):
     debug("Saving non-filtered correlation data...")
 
     # printing non filtered correlation matrix to file
-    coSparCC.to_csv("raw_data/correlation_matrix.csv")
+    coSparCC.to_csv("sparcc/raw_data/correlation_matrix.csv")
 
     # printing non filtered correlation matrix to file as gephi format
-    gp.printCorr("gephi_data/correlation_matrix.csv", np.array(coSpccPar), a, b, c)
+    gp.printCorr("sparcc/gephi_data/correlation_matrix.csv", np.array(coSpccPar), a, b, c)
 
     # printing nodes' labels using gephi format
-    gp.printNodes("gephi_data/nodes.csv", meta)
+    gp.printNodes("sparcc/gephi_data/nodes.csv", meta)
 
     debug("Executing Critical Network Method (CNM) and Largest Influence on Average Shortest Path (LIASP) algorithms...")
 

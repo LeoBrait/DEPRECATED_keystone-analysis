@@ -51,7 +51,7 @@ else:
     print('Wrong liasp option as arg2')
     sys.exit()
 
-df = pd.read_csv('output/all_environments/%s/keystones.csv'%level)
+df = pd.read_csv('output/transposed_all_environments/%s/keystones.csv'%level)
 
 # dropping to improve performance
 df.drop(columns=set(df.keys())-set(['Ecosystem','Habitat','Taxon','Abundance']+[i+'_isKeystone' for i in metrics]),inplace=True)
@@ -383,9 +383,9 @@ patches = [mpatches.Patch(facecolor=colors[i], label=labels[i], edgecolor='k', l
 leg = fig1.legend(handles=patches, frameon=False, fontsize=fontszleg, ncol=3)
 
 indirects = '_indirect' if indirect else ''
-fig1.savefig('output/all_environments/%s/legend%s.png'%(level,indirects),dpi=1000,bbox_inches='tight', pad_inches=.01)
-fig1.savefig('output/all_environments/%s/legend%s.svg'%(level,indirects),dpi=300,bbox_inches='tight', pad_inches=.01)
-fig1.savefig('output/all_environments/%s/legend%s.pdf'%(level,indirects),dpi=300,bbox_inches='tight', pad_inches=.01)
+fig1.savefig('output/transposed_all_environments/%s/legend%s.png'%(level,indirects),dpi=1000,bbox_inches='tight', pad_inches=.01)
+fig1.savefig('output/transposed_all_environments/%s/legend%s.svg'%(level,indirects),dpi=300,bbox_inches='tight', pad_inches=.01)
+fig1.savefig('output/transposed_all_environments/%s/legend%s.pdf'%(level,indirects),dpi=300,bbox_inches='tight', pad_inches=.01)
 
 # --------------------------------
 
@@ -447,6 +447,6 @@ plt.setp([ax.get_xticklines(),ax.get_yticklines()],color='#939393')
 
 # --------------------------------
 
-fig.savefig('output/all_environments/%s/liasp%s_validation.png'%(level,indirects),dpi=1000,bbox_inches='tight', pad_inches=.01)
-fig.savefig('output/all_environments/%s/liasp%s_validation.svg'%(level,indirects),dpi=300,bbox_inches='tight', pad_inches=.01)
-fig.savefig('output/all_environments/%s/liasp%s_validation.pdf'%(level,indirects),dpi=300,bbox_inches='tight', pad_inches=.01)
+fig.savefig('output/transposed_all_environments/%s/liasp%s_validation.png'%(level,indirects),dpi=1000,bbox_inches='tight', pad_inches=.01)
+fig.savefig('output/transposed_all_environments/%s/liasp%s_validation.svg'%(level,indirects),dpi=300,bbox_inches='tight', pad_inches=.01)
+fig.savefig('output/transposed_all_environments/%s/liasp%s_validation.pdf'%(level,indirects),dpi=300,bbox_inches='tight', pad_inches=.01)

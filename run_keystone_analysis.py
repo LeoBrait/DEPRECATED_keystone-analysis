@@ -11,8 +11,8 @@ print("\n\nStarting analysis through environments.\n\n")
 for level in ['phyla']:
 
     # create output directory
-    # mkdir -p @('output/all_environments/'+level)
-    mkdir_p(['output/all_environments/'+level])
+    # mkdir -p @('output/transposed_all_environments/'+level)
+    mkdir_p(['output/transposed_all_environments/'+level])
 
     # run the identification of keystones
     print("Concat keystones for %s." % level)
