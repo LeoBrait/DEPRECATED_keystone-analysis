@@ -208,7 +208,7 @@ def find_keystones_envi(base, peak, host):
     df.to_csv(base+'/matrices/filtered_correlation_matrix_%3.2f_pos.csv'%threshold)
 
     # Transform the filtered correlation matrix into a Networkx graph
-    G_pos = nx.from_numpy_matrix(correlation_matrix_pos)
+    G_pos = nx.from_numpy_array(correlation_matrix_pos)
 
     # saving adjacency matrix for the graphs
     adj = (correlation_matrix_pos != 0.)*1
