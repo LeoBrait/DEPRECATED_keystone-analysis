@@ -1,2 +1,5 @@
 __pycache__
 log.txt
+settings.json
+*out/
+*output/
