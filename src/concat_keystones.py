@@ -10,7 +10,7 @@ from xonsh_py import cat, lsgrep
 
 level = sys.argv[1]
 
-files = lsgrep('output/environments',[level])
+files = lsgrep('output/transposed/',[level])
 
 df = pd.DataFrame()
 

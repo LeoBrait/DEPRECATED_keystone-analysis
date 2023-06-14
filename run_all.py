@@ -66,7 +66,7 @@ for f in lsgrep('community_matrix',['phyla']):
     # running code-integration steps
     # this step is responsible for running the CNM and LIASP algorithms
     # and identifying the most important nodes in the network (the keystones)
-    identify_keystones("sparcc", coSparCC, fname)
+    # identify_keystones("output/transposed/"+fname+"/sparcc", coSparCC, fname)
 
     # copy the results to the corresponding environment directory
     cpr(lsgrep('out',['']),'output/transposed/'+fname+'/sparcc/')

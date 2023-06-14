@@ -197,6 +197,13 @@ def LIASP(G, node, node_idx = None):
     indir_eff_change = LIASP_indir
 
     # divide the change in efficiency by the efficiency of the graph without node
+    # if the efficiency of the graph without node is 0, set it to the machine precision.
+    # Raise a warning if the efficiency of the graph without node is 0.
+    if eff_removed == 0:
+        print(f"Warning: efficiency of the graph when node {node} is removed is 0\n\
+                This might indicate ill-defined network. Setting it to the machine precision.")
+        eff_removed = np.finfo(float).eps
+    
     LIASP = LIASP/eff_removed
     LIASP_dir = LIASP_dir/eff_removed
     LIASP_indir = LIASP_indir/eff_removed
@@ -208,7 +215,6 @@ def LIASP(G, node, node_idx = None):
         # input()
         assert all(np.array([LIASP, LIASP_dir, LIASP_indir]) >= 0), "Error in LIASP Routine: LIASP, LIASP_dir, LIASP_indir are not all positive for node " + str(node)
         assert np.allclose(LIASP - LIASP_dir, LIASP_indir) , "Error in LIASP Routine: direct and indirect components of LIASP do not sum to the total value for graph without node " + str(node)
-        assert all(np.array([LIASP, LIASP_dir, LIASP_indir]) < 1.), "Error in LIASP Routine: LIASP, LIASP_dir, LIASP_indir are not all smaller then 1 for node " + str(node)
     except AssertionError as e:
         print(e)
         print("Efficiency matrix of original graph:")

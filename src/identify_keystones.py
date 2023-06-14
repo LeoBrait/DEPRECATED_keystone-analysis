@@ -12,6 +12,7 @@ from metadata_topython_functions import metadata
 from table_keystones import table_analysis
 from detect_peaks import detect_peaks
 import networkx as nx
+import pickle
 
 # this function aims to execute the following steps:
 # - create the apropriate arg file for CNM code
@@ -265,7 +266,10 @@ def find_keystones_envi(base, peak, host):
         construct_rank_dict_set_to_G(G_pos,Taxa,list_dict_metrics_pos[i],metric)
         save_central_values(base,G_pos,metric,prefix_pos,peak)
 
-    nx.write_gpickle(G_pos,base+"/nx_data/"+prefix_pos+"_G.gpickle")
+    # nx.write_gpickle(G_pos,base+"/nx_data/"+prefix_pos+"_G.gpickle")
+    with open(base+"/nx_data/"+prefix_pos+"_G.gpickle", "wb") as f:
+         pickle.dump(G_pos, f, pickle.HIGHEST_PROTOCOL)
+
 
     # running the table_keystones procedure
     table_analysis(base, peak, G_pos, host)

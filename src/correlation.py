@@ -13,6 +13,8 @@ from scipy import stats as sp
 import os
 from xonsh_py import mkdir_p, rmr, cd
 
+from identify_keystones import identify_keystones
+
 def existOldData(path=None):
     """
     This function checks if the path exists
@@ -205,7 +207,7 @@ def main(inFile, inMeta, host, spcc_backlog):
 
     # creating the output folders
     # $[mkdir -p "raw_data" "gephi_data" "cnm_data" "nga_data" "figures" "sparcc_data" "liasp_data" "nx_data" "matrices"]
-    mkdir_p(["raw_data", "sparcc/gephi_data", "sparcc/cnm_data", "sparcc/nga_data", "sparcc/figures", "sparcc/sparcc_data", "sparcc/liasp_data", "sparcc/nx_data", "sparcc/matrices"])
+    mkdir_p(["sparcc/raw_data", "sparcc/gephi_data", "sparcc/cnm_data", "sparcc/nga_data", "sparcc/figures", "sparcc/sparcc_data", "sparcc/liasp_data", "sparcc/nx_data", "sparcc/matrices"])
 
     debug("Getting already computed SparCC matrix...")
 
@@ -231,6 +233,8 @@ def main(inFile, inMeta, host, spcc_backlog):
     gp.printNodes("sparcc/gephi_data/nodes.csv", meta)
 
     debug("Executing Critical Network Method (CNM) and Largest Influence on Average Shortest Path (LIASP) algorithms...")
+    # itg.run("sparcc", coSparCC, host)
+    identify_keystones("sparcc", coSparCC, host)
 
     cd('..')
     debug("Exiting...")

@@ -42,10 +42,10 @@ def mapColor(val):
 level = sys.argv[1]
 
 if sys.argv[2] == '1':
-    metrics = ['EDpDM', 'BC', 'Ddiv'] # for full contribution
+    metrics = ['LIASP', 'BC', 'D'] # for full contribution
     indirect = False
 elif sys.argv[2]== '2':
-    metrics = ['iEDpDM', 'BC', 'Ddiv'] # for indirect contribution
+    metrics = ['LIASPindir', 'BC', 'D'] # for indirect contribution
     indirect = True
 else:
     print('Wrong liasp option as arg2')
