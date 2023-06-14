@@ -191,8 +191,7 @@ def main(inFile, inMeta, host, spcc_backlog, rareAbund=0.1):
     debug("Getting already computed SparCC matrix...")
     # reading the data with all rows and columns sorted
     coSpccPar = pd.read_csv('../'+spcc_backlog,sep='\t',index_col=0).sort_index().sort_index(axis=1).values
-    coSpccPar.drop(index=delete,inplace=True)
-    coSpccPar.drop(columns=delete,inplace=True)
+    
 
     debug("Converting calculated data to DataFrame...")
 
