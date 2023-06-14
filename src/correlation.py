@@ -191,8 +191,6 @@ def main(inFile, inMeta, host, spcc_backlog, rareAbund=0.1):
     debug("Getting already computed SparCC matrix...")
     # reading the data with all rows and columns sorted
     coSpccPar = pd.read_csv('../'+spcc_backlog,sep='\t',index_col=0).sort_index().sort_index(axis=1).values
-    coSpccPar.drop(index=delete,inplace=True)
-    coSpccPar.drop(columns=delete,inplace=True)
 
     debug("Converting calculated data to DataFrame...")
 
@@ -205,7 +203,7 @@ def main(inFile, inMeta, host, spcc_backlog, rareAbund=0.1):
     coSparCC.to_csv("sparcc/raw_data/correlation_matrix.csv")
 
     # printing non filtered correlation matrix to file as gephi format
-    gp.printCorr("sparcc/gephi_data/correlation_matrix.csv", np.array(coSpccPar), a, b, c)
+    gp.printCorr("sparcc/gephi_data/correlation_matrix.csv", coSpccPar, a, b, c)
 
     # printing nodes' labels using gephi format
     gp.printNodes("sparcc/gephi_data/nodes.csv", meta)
