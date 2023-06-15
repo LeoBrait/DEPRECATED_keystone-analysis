@@ -1,0 +1,31 @@
+Converting annotation file to fastspar input format
+
+Traceback (most recent call last):
+  File "csvtool_pandas.py", line 2, in <module>
+    import pandas as pd
+  File "/home/leonardo/.local/lib/python3.6/site-packages/pandas/__init__.py", line 52, in <module>
+    from pandas.core.api import (
+  File "/home/leonardo/.local/lib/python3.6/site-packages/pandas/core/api.py", line 29, in <module>
+    from pandas.core.groupby import Grouper, NamedAgg
+  File "/home/leonardo/.local/lib/python3.6/site-packages/pandas/core/groupby/__init__.py", line 1, in <module>
+    from pandas.core.groupby.generic import DataFrameGroupBy, NamedAgg, SeriesGroupBy
+  File "/home/leonardo/.local/lib/python3.6/site-packages/pandas/core/groupby/generic.py", line 57, in <module>
+    from pandas.core.aggregation import (
+  File "/home/leonardo/.local/lib/python3.6/site-packages/pandas/core/aggregation.py", line 27, in <module>
+    from pandas.core.series import FrameOrSeriesUnion, Series
+  File "/home/leonardo/.local/lib/python3.6/site-packages/pandas/core/series.py", line 4996, in <module>
+    Series._add_series_or_dataframe_operations()
+  File "/home/leonardo/.local/lib/python3.6/site-packages/pandas/core/generic.py", line 10517, in _add_series_or_dataframe_operations
+    from pandas.core.window import (
+  File "/home/leonardo/.local/lib/python3.6/site-packages/pandas/core/window/__init__.py", line 1, in <module>
+    from pandas.core.window.ewm import ExponentialMovingWindow  # noqa:F401
+  File "/home/leonardo/.local/lib/python3.6/site-packages/pandas/core/window/ewm.py", line 20, in <module>
+    from pandas.core.window.rolling import _flex_binary_moment, _Rolling
+  File "<frozen importlib._bootstrap>", line 971, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 955, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 665, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 674, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 779, in get_code
+  File "<frozen importlib._bootstrap_external>", line 487, in _compile_bytecode
+KeyboardInterrupt
+./run_fastspar.sh: line 28: ./fastspar: No such file or directory

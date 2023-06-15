@@ -3,3 +3,6 @@ log.txt
 settings.json
 # *out/
 # *output/
+
+# Desconsider data obtainable from zip files
+data/input/taxon_abundances/*.csv
