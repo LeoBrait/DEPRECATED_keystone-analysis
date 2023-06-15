@@ -43,19 +43,6 @@ def main(inFile, inMeta, host, spcc_backlog):
     """
     This function is responsible for running the correlation analysis
 
-    The step by step of the analysis is:
-    1. Read the communit_matrix file
-    2. Remove empty rows and columns from the community matrix
-    3. Compute the co-occurrence matrices
-    4. Compute the correlation matrix
-    5. Compute the SparCC matrix
-    6. Compute the CNM and LIASP algorithms
-    7. Compute the keystone nodes
-    8. Compute the Venn diagram
-    9. Compute the Gephi files
-    10. Compute the networkx files
-    11. Compute the NGA files
-
     Parameters
     ----------
     inFile : string
