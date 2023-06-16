@@ -8,10 +8,6 @@ run_fastspar.sh
 submit.bash
 Converting annotation file to fastspar input format
 
-
-Warning: the following OTUs have only one unique permutation and it is recommended to remove them from this analysis:
-	Candidatus Veblenbacteria (row 50)
-
 Running SparCC iterations
 	Running iteration: 1
 	Running iteration: 2

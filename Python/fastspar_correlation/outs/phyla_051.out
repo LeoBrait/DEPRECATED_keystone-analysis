@@ -8,50 +8,6 @@ run_fastspar.sh
 submit.bash
 Converting annotation file to fastspar input format
 
-
-Warning: the following OTUs have only one unique permutation and it is recommended to remove them from this analysis:
-	Candidatus Tagabacteria (row 32)
-	Candidatus Ryanbacteria (row 33)
-	Candidatus Wildermuthbacteria (row 34)
-	Candidatus Niyogibacteria (row 41)
-	Candidatus Colwellbacteria (row 43)
-	Candidatus Brennerbacteria (row 46)
-	Candidatus Andersenbacteria (row 47)
-	Candidatus Jacksonbacteria (row 48)
-	Candidatus Parcubacteria (row 49)
-	Candidatus Veblenbacteria (row 50)
-	Candidatus Chisholmbacteria (row 60)
-	Candidatus Collierbacteria (row 61)
-	Candidatus Blackburnbacteria (row 64)
-	Candidatus Microgenomates (row 65)
-	Candidatus Gribaldobacteria (row 77)
-	Candidatus Desantisbacteria (row 80)
-	Candidatus Lindowbacteria (row 82)
-	Candidatus Wallbacteria (row 88)
-	candidate division CPR1 (row 89)
-	candidate division CPR2 (row 93)
-	Candidatus Fischerbacteria (row 95)
-	Candidatus Sumerlaeota (row 96)
-	candidate division WOR-3 (row 97)
-	Candidatus Wirthbacteria (row 98)
-	Candidatus Abawacabacteria (row 99)
-	Candidatus Absconditabacteria (row 100)
-	candidate division CPR3 (row 101)
-	Candidatus Delongbacteria (row 102)
-	Candidatus Calescamantes (row 103)
-	Candidatus Hydrogenedentes (row 120)
-	Fibrobacterota (row 121)
-	Candidatus Cloacimonetes (row 122)
-	Caldisericota (row 131)
-	Coprothermobacterota (row 140)
-	Candidatus Korarchaeota (row 144)
-	Nanoarchaeota (row 147)
-	Candidatus Diapherotrites (row 149)
-	Candidatus Altiarchaeota (row 150)
-	Candidatus Huberarchaea (row 152)
-	Candidatus Odinarchaeota (row 157)
-	Candidatus Thorarchaeota (row 158)
-
 Running SparCC iterations
 	Running iteration: 1
 	Running iteration: 2

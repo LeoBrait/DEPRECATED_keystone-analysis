@@ -1,0 +1,7 @@
+mean,1.8359045e-05
+median,1.3268583e-05
+std,1.7901463e-05
+number of keystones (mean + std),32
+number of keystones (mean + 2std),4
+number of keystones (median + std),32
+number of keystones (median + 2std),13

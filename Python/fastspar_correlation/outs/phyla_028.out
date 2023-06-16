@@ -1,76 +1,12 @@
 README.md
 community_matrix
 csvtool_pandas.py
-extra
 jobs
 output
 outs
 run_fastspar.sh
 submit.bash
 Converting annotation file to fastspar input format
-
-
-Warning: the following OTUs have only one unique permutation and it is recommended to remove them from this analysis:
-	Candidatus Margulisbacteria (row 6)
-	Candidatus Giovannonibacteria (row 19)
-	Candidatus Harrisonbacteria (row 24)
-	Candidatus Taylorbacteria (row 25)
-	Candidatus Sungbacteria (row 29)
-	Candidatus Jorgensenbacteria (row 30)
-	Candidatus Tagabacteria (row 32)
-	Candidatus Kuenenbacteria (row 36)
-	Candidatus Lloydbacteria (row 37)
-	Candidatus Niyogibacteria (row 41)
-	Candidatus Campbellbacteria (row 42)
-	Candidatus Vogelbacteria (row 44)
-	Candidatus Spechtbacteria (row 45)
-	Candidatus Brennerbacteria (row 46)
-	Candidatus Andersenbacteria (row 47)
-	Candidatus Jacksonbacteria (row 48)
-	Candidatus Parcubacteria (row 49)
-	Candidatus Veblenbacteria (row 50)
-	Candidatus Shapirobacteria (row 57)
-	Candidatus Chisholmbacteria (row 60)
-	Candidatus Woykebacteria (row 62)
-	Candidatus Pacebacteria (row 63)
-	Candidatus Blackburnbacteria (row 64)
-	Candidatus Microgenomates (row 65)
-	Candidatus Gribaldobacteria (row 77)
-	Candidatus Desantisbacteria (row 80)
-	Candidatus Edwardsbacteria (row 81)
-	Candidatus Dadabacteria (row 84)
-	Candidatus Raymondbacteria (row 86)
-	Candidatus Riflebacteria (row 87)
-	candidate division CPR1 (row 89)
-	Candidatus Coatesbacteria (row 90)
-	Candidatus Bipolaricaulota (row 91)
-	candidate division CPR2 (row 93)
-	Candidatus Fraserbacteria (row 94)
-	Candidatus Sumerlaeota (row 96)
-	candidate division WOR-3 (row 97)
-	Candidatus Wirthbacteria (row 98)
-	Candidatus Abawacabacteria (row 99)
-	candidate division CPR3 (row 101)
-	Candidatus Delongbacteria (row 102)
-	Candidatus Calescamantes (row 103)
-	Balneolota (row 116)
-	Candidatus Marinimicrobia (row 119)
-	Candidatus Hydrogenedentes (row 120)
-	Candidatus Cloacimonetes (row 122)
-	Chrysiogenota (row 135)
-	Calditrichota (row 137)
-	Dictyoglomota (row 139)
-	Coprothermobacterota (row 140)
-	Candidatus Korarchaeota (row 144)
-	Candidatus Woesearchaeota (row 146)
-	Nanoarchaeota (row 147)
-	Candidatus Altiarchaeota (row 150)
-	Candidatus Aenigmarchaeota (row 151)
-	Candidatus Huberarchaea (row 152)
-	Candidatus Nanohaloarchaeota (row 153)
-	Candidatus Lokiarchaeota (row 156)
-	Candidatus Odinarchaeota (row 157)
-	Candidatus Thorarchaeota (row 158)
 
 Running SparCC iterations
 	Running iteration: 1

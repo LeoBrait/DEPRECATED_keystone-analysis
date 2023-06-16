@@ -1,30 +1,12 @@
 README.md
 community_matrix
 csvtool_pandas.py
-extra
 jobs
 output
 outs
 run_fastspar.sh
 submit.bash
 Converting annotation file to fastspar input format
-
-
-Warning: the following OTUs have only one unique permutation and it is recommended to remove them from this analysis:
-	Candidatus Brennerbacteria (row 46)
-	Candidatus Jacksonbacteria (row 48)
-	Candidatus Parcubacteria (row 49)
-	Candidatus Veblenbacteria (row 50)
-	Candidatus Gribaldobacteria (row 77)
-	Candidatus Bipolaricaulota (row 91)
-	Candidatus Wirthbacteria (row 98)
-	Candidatus Delongbacteria (row 102)
-	Candidatus Calescamantes (row 103)
-	Candidatus Hydrogenedentes (row 120)
-	Candidatus Altiarchaeota (row 150)
-	Candidatus Aenigmarchaeota (row 151)
-	Candidatus Heimdallarchaeota (row 155)
-	Candidatus Odinarchaeota (row 157)
 
 Running SparCC iterations
 	Running iteration: 1

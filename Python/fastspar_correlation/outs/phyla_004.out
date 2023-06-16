@@ -1,17 +1,12 @@
 README.md
 community_matrix
 csvtool_pandas.py
-extra
 jobs
 output
 outs
 run_fastspar.sh
 submit.bash
 Converting annotation file to fastspar input format
-
-
-Warning: the following OTUs have only one unique permutation and it is recommended to remove them from this analysis:
-	Candidatus Aenigmarchaeota (row 151)
 
 Running SparCC iterations
 	Running iteration: 1

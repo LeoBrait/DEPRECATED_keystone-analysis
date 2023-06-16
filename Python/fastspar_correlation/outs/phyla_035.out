@@ -1,68 +1,12 @@
 README.md
 community_matrix
 csvtool_pandas.py
-extra
 jobs
 output
 outs
 run_fastspar.sh
 submit.bash
 Converting annotation file to fastspar input format
-
-
-Warning: the following OTUs have only one unique permutation and it is recommended to remove them from this analysis:
-	Candidatus Azambacteria (row 14)
-	Candidatus Portnoybacteria (row 27)
-	Candidatus Adlerbacteria (row 28)
-	Candidatus Sungbacteria (row 29)
-	Candidatus Tagabacteria (row 32)
-	Candidatus Wildermuthbacteria (row 34)
-	Candidatus Kuenenbacteria (row 36)
-	Candidatus Lloydbacteria (row 37)
-	Candidatus Yonathbacteria (row 40)
-	Candidatus Niyogibacteria (row 41)
-	Candidatus Campbellbacteria (row 42)
-	Candidatus Colwellbacteria (row 43)
-	Candidatus Vogelbacteria (row 44)
-	Candidatus Brennerbacteria (row 46)
-	Candidatus Andersenbacteria (row 47)
-	Candidatus Jacksonbacteria (row 48)
-	Candidatus Veblenbacteria (row 50)
-	Candidatus Chisholmbacteria (row 60)
-	Candidatus Blackburnbacteria (row 64)
-	candidate division NC10 (row 67)
-	Candidatus Glassbacteria (row 72)
-	Candidatus Lindowbacteria (row 82)
-	Candidatus Dadabacteria (row 84)
-	Candidatus Firestonebacteria (row 85)
-	Candidatus Riflebacteria (row 87)
-	Candidatus Wallbacteria (row 88)
-	candidate division CPR1 (row 89)
-	Candidatus Coatesbacteria (row 90)
-	Candidatus Fraserbacteria (row 94)
-	Candidatus Sumerlaeota (row 96)
-	candidate division WOR-3 (row 97)
-	Candidatus Wirthbacteria (row 98)
-	Candidatus Abawacabacteria (row 99)
-	candidate division CPR3 (row 101)
-	Candidatus Delongbacteria (row 102)
-	Candidatus Calescamantes (row 103)
-	Candidatus Hydrogenedentes (row 120)
-	Candidatus Tectomicrobia (row 127)
-	Calditrichota (row 137)
-	Dictyoglomota (row 139)
-	Coprothermobacterota (row 140)
-	Candidatus Bathyarchaeota (row 142)
-	Candidatus Korarchaeota (row 144)
-	Nanoarchaeota (row 147)
-	Candidatus Diapherotrites (row 149)
-	Candidatus Aenigmarchaeota (row 151)
-	Candidatus Huberarchaea (row 152)
-	Candidatus Nanohaloarchaeota (row 153)
-	Candidatus Thermoplasmatota (row 154)
-	Candidatus Lokiarchaeota (row 156)
-	Candidatus Odinarchaeota (row 157)
-	Candidatus Thorarchaeota (row 158)
 
 Running SparCC iterations
 	Running iteration: 1

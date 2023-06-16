@@ -79,5 +79,13 @@ print('\nTotal execution time: ', (datetime.now()-startTime))
 
 # running all analysis script
 startTime = datetime.now() # record start time
+#run the script that will generate the results run_keystone_analysis.py
+
+
+print("if error, try to Manually exclude karst from the analysis ")
 sexec('./run_keystone_analysis.py') # Keystones analysis
+#TODO: Maybe this should be replaced with -> exec(open('run_keystone_analysis.py').read())
+# This should solve the problem for Windows users
+#TODO: Manually excluded karst from the analysis to perform withou errors
+
 print('\nPost-results execution time: ', (datetime.now()-startTime)) # record end time

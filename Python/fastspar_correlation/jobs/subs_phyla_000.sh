@@ -6,8 +6,6 @@
 
 
 
-bash run_fastspar.sh ls &> outs/phyla_000.out
-bash run_fastspar.sh -Sr &> outs/phyla_001.out
 bash run_fastspar.sh community_matrix/agricultural_soil.phyla.csv &> outs/phyla_002.out
 bash run_fastspar.sh community_matrix/alkaline_environment.phyla.csv &> outs/phyla_003.out
 bash run_fastspar.sh community_matrix/anaerobic_sediment.phyla.csv &> outs/phyla_004.out
