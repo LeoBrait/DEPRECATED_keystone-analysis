@@ -34,17 +34,18 @@ startTime = datetime.now()
 # the metadata is stored in the 'metadata' directory and should have an identical
 # folder structure.
 for f in lsgrep('community_matrix',['phyla']):
-
+    
+    
     # get the environment name
     #ATTENTION: this is likely to break if the file name is not in the expected format
-    fname = f[:-4].split('/')[1].split('_')[0]
+    fname = f[17:]
 
     # checking if the actual file has metadata
     meta = lsgrep('metadata',[fname])
     meta = meta[0] if meta else "none"
 
     print('Community: %s\nMetadata: %s\n' % (f, meta))
-
+    print("fname: ", fname)
     # checking if there is a computed sparcc matrix
     if existOldData('output/transposed/'+fname+'/sparcc/sparcc_data/cor.tsv'):
         print('There is an already computed SparCC matrix for %s. Using it for the analysis.\n'%fname)

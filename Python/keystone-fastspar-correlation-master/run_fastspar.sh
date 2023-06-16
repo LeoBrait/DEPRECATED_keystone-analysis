@@ -26,4 +26,4 @@ echo -e 'Converting annotation file to fastspar input format\n'
 python3 csvtool_pandas.py community_matrix/${input} ${base}/${anot}
 
 # computing the original data
-./fastspar -c ${base}/$anot -r ${base}/cor.tsv -a ${base}/cov.tsv -t $nthreads -s $seed -i $iter -x $xter -e $corThr -y
+fastspar -c ${base}/$anot -r ${base}/cor.tsv -a ${base}/cov.tsv -t $nthreads -s $seed -i $iter -x $xter -e $corThr -y

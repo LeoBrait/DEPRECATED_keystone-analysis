@@ -38,7 +38,8 @@ cd $(pwd)
 			# echo "./run_fastspar.sh ${m} &> outs/${level}_$(printf "%03d" $l).out &" >> jobs/subs_${level}_${j}.sh
 
             # comment the line below if you want "parallel" execution
-			echo "./run_fastspar.sh ${m} &> outs/${level}_$(printf "%03d" $l).out" >> jobs/subs_${level}_${j}.sh
+			filename=$(basename "${m%.csv}")
+			echo "bash run_fastspar.sh ${m} &> outs/${filename}.out" >> jobs/subs_${level}_${j}.sh
 			let "l++"
 		done
 
@@ -48,3 +49,4 @@ cd $(pwd)
 	done
 
 done
+

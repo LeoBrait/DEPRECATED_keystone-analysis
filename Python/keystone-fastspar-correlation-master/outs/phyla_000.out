@@ -1,3 +1,12 @@
+README.md
+community_matrix
+csvtool_pandas.py
+extra
+jobs
+output
+outs
+run_fastspar.sh
+submit.bash
 Converting annotation file to fastspar input format
 
 Traceback (most recent call last):
@@ -15,5 +24,39 @@ Traceback (most recent call last):
     self._reader = parsers.TextReader(src, **kwds)
   File "pandas/_libs/parsers.pyx", line 382, in pandas._libs.parsers.TextReader.__cinit__
   File "pandas/_libs/parsers.pyx", line 674, in pandas._libs.parsers.TextReader._setup_parser_source
-FileNotFoundError: [Errno 2] No such file or directory: 'community_matrix/ls.csv'
-./run_fastspar.sh: line 28: ./fastspar: No such file or directory
+FileNotFoundError: [Errno 2] No such file or directory: 'community_matrix/ls'
+Program: FastSpar (c++ implementation of SparCC)
+Version 1.0.0
+Contact: Stephen Watts (s.watts2@student.unimelb.edu.au)
+
+Usage:
+  fastspar [options] --otu_table <path> --correlation <path> --covariance <path>
+
+  -c <path>, --otu_table <path>
+                OTU input OTU count table
+  -r <path>, -correlation <path>
+                Correlation output table
+  -a <path>, --covariance <path>
+                Covariance output table
+
+Options:
+  -i <int>, --iterations <int>
+                Number of interations to perform (default: 50)
+  -x <int>, --exclusion_iterations <int>
+                Number of exclusion interations to perform (default: 10)
+  -e <float>, --threshold <float>
+                Correlation strength exclusion threshold (default: 0.1)
+  -t <int>, --threads <int>
+                Number of threads (default: 1)
+  -s <int>, --seed <int>
+                Random number generator seed (default: 1)
+  -y, --yes
+                Assume yes for prompts (default: unset)
+
+Other:
+  -h        --help
+                Display this help and exit
+  -v        --version
+                Display version information and exit
+
+fastspar: error: OTU table output/transposed/ls/sparcc/sparcc_data/anot.tsv does not exist
