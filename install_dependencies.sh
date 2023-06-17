@@ -1,4 +1,4 @@
 #!/bin/bash
-
-# Running pip3 to install dependencies for the main program
-python3 -m pip install -r requirements.txt
+conda config --add channels bioconda
+conda config --add channels conda-forge
+conda create --name keystones --file requirements.txt
