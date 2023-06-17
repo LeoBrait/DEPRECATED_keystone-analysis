@@ -7,10 +7,8 @@ global_dir = os.path.join(src_dir, '..')
 
 ############################# Data Preprocessing ###############################
 
-metadata = pd.read_csv(
-    f'{data_dir}metadata/biome_classification.csv').filter(
+metadata = pd.read_csv(f'{data_dir}metadata/biome_classification.csv').filter(
         items=['samples', 'habitat', 'ecosystem'])
-
 annotation = pd.read_csv(f'{data_dir}taxon_abundances/kraken_custom_phyla.csv')
 
 merged_data = pd.merge(annotation, metadata, on='samples', how='inner')
