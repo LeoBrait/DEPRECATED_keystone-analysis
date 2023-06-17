@@ -7,3 +7,5 @@ settings.json
 # Desconsider data obtainable from zip files
 data/input/taxon_abundances/*.csv
 community_matrix/*.csv
+
+# Desconsider all the directories of a given directory
