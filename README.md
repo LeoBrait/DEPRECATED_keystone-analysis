@@ -36,9 +36,7 @@ All python packages required by the program are listed in `requirements.txt`. In
 bash install_dependencies.sh
 conda activate keystones
 ```
-We also use the R Language to the data wrangling. But we use it outside the conda environment.
-- R version 4.3.1 (2023-06-16) -- "Beagle Scouts"
-The version of the packages are listed in the R [main script](R/main.R).
+
 ## Data Preparation
 
 The first step is to prepare the data to be analyzed. Execute the main.R file to generate the data to be analyzed. From the metadata and tax occurence files, it will generate the files that will be used in the analysis. The files will be generated in the folder `data/`. The files generated are:

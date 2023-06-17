@@ -37,4 +37,3 @@ for (i in 1:length(habitat_up12)){
     subset_clean,
     paste0("community_matrix/", habitat_up12[i], ".phyla", ".csv"), row.names = FALSE)
 }
-

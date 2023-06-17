@@ -1,26 +1,20 @@
 import pandas as pd
 
-# Read the CSV file into a pandas DataFrame
-df = pd.read_csv('phyla.relative.matrix.csv')
+metadata = pd.read_csv('data/metadata/biome_classification.csv').filter(
+    items=['samples', 'habitat', 'ecosystem'])
+annotation = pd.read_csv('data/taxon_abundances/kraken_custom_phyla.csv')
 
-# Get unique habitat values
-habitats = df['habitat'].unique()
+merged_data = pd.merge(annotation, metadata, on='samples', how='inner')
 
-# Iterate over each unique habitat
-for habitat in habitats:
-    # Create a subset DataFrame based on the current habitat
-    subset = df[df['habitat'] == habitat]
-    
-    # Get unique ecosystem values in the current habitat subset
-    ecosystems = subset['ecosystem'].unique()
-    
-    # Iterate over each unique ecosystem in the current habitat
-    for ecosystem in ecosystems:
-        # Create a sub-subset DataFrame based on the current ecosystem
-        sub_subset = subset[subset['ecosystem'] == ecosystem]
-        
-        # Generate the filename based on habitat and ecosystem names
-        filename = f"{habitat}_{ecosystem}.csv"
-        
-        # Save the sub-subset DataFrame to a new CSV file
-        sub_subset.to_csv(filename, index=False)
+ecosystems = merged_data['ecosystem'].unique()
+
+for ecosystem in ecosystems:
+    subset = merged_data[merged_data['ecosystem'] == ecosystem]
+    habitats = subset['habitat'].unique()
+    for habitat in habitats:
+        sub_subset = subset[subset['habitat'] == habitat]
+        filename = f"data/community_subsets/{ecosystem}.{habitat}.csv"
+        if sub_subset.shape[0] < 12:
+            print(f"Skipping {filename} because it has fewer than 12 samples.")
+        else:
+            sub_subset.to_csv(filename, index=False)
