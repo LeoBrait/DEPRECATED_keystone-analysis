@@ -127,7 +127,7 @@ for subset_path in community_subsets:
         print('\nElapsed time: ', (datetime.now()-startTime))
  
 
-########################## Keystone Identification #############################
+################ Preprocessing for Keystones Identification ####################
 for f in community_subsets:
     
     #TODO: correct this for coherence with the rest of the code
@@ -146,9 +146,9 @@ for f in community_subsets:
     print('Community: %s\nMetadata: %s\n' % (f, meta))
     print("fname: ", fname)
     # checking if there is a computed sparcc matrix
-    if existOldData(f'{data_dir}fastspar_networks/'+fname+'/sparcc_data/cor.tsv'):
+    if existOldData(f'{data_dir}/fastspar_networks/'+fname+'/sparcc/sparcc_data/cor.tsv'):
         print('There is an already computed SparCC matrix for %s. Using it for the analysis.\n'%fname)
-        spcc_corr_mat = f'{data_dir}fastspar_networks/'+fname+'/sparcc_data/cor.tsv'
+        spcc_corr_mat = f'{data_dir}/fastspar_networks/'+fname+'/sparcc/sparcc_data/cor.tsv'
     else:
         print(f'NO SPARCC MATRIX FOUND! JUMPING {fname}')
         continue
@@ -176,16 +176,28 @@ for f in community_subsets:
 # record end time   
 print('\nTotal execution time: ', (datetime.now()-startTime))
 
-# running all analysis script
+
+
+################## Keystones identification ####################################
 startTime = datetime.now() # record start time
-#run the script that will generate the results run_keystone_analysis.py
 
+print("\n\nStarting analysis through environments.\n\n")
+for level in ['phyla']:
 
-print("if error, try to Manually exclude karst from the analysis ")
-#sexec(f'{src_dir}pipelines/run_keystone_analysis.py') # Keystones analysis
-exec(open(f'{src_dir}/pipelines/run_keystone_analysis.py').read())
-#TODO: Maybe this should be replaced with -> exec(open('run_keystone_analysis.py').read())
-# This should solve the problem for Windows users
-#TODO: Manually excluded karst from the analysis to perform withou errors
+    # create output directory
+    # mkdir -p @('output/transposed_all_environments/'+level)
+    mkdir_p(['output/transposed_all_environments/'+level])
 
-print('\nPost-results execution time: ', (datetime.now()-startTime)) # record end time
+    # run the identification of keystones
+    print("Concat keystones for %s." % level)
+    sexec('./src/concat_keystones.py '+level)
+
+    # Generate the  keystones heatmap (total effect)
+    print("Heatmap keystones for %s." % level)
+    sexec('./src/heatmap_keystones.py '+level+' 1')
+
+    # Generate the  keystones heatmap (indirect effect)
+    print("Heatmap keystones (indirect) for %s." % level)
+    sexec('./src/heatmap_keystones.py '+level+' 2')
+
+print('\nPost-results execution time: ', (datetime.now()-startTime))

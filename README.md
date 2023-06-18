@@ -52,8 +52,7 @@ Finally, you should copy the correlation matrices computed by your desired crite
 After installing all requirements and setting your files in the right directories, you can run the analysis just by doing:
 
 ```sh
-chmod +x run_all.py run_keystone_analysis.py correlation.py # making the files executable
-./run_all.py
+Python3 Python/main.py
 ```
 
 This script will index all input matrices you copied, check if they have metadata based on their filename and check for the matrix of edges (SparCC correlation matrix in our case). If the matrix of edges is found, the script proceeds to execute [`correlation.py`]((A)-Keystone-Analysis-Program) for each input matrix. After all, the script will call [`run_keystone_analysis.py` script](https://github.com/MeirellesLab/keystone-analysis/blob/master/run_keystone_analysis.py), which runs the scripts that need the outputs from all input matrices.
