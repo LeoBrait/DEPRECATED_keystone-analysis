@@ -24,7 +24,7 @@ global_dir = os.path.join(src_dir, '..')
 
 # Custom functions
 sys.path.append(f'{src_dir}/src')
-from xonsh_py import Logger, lsgrep, existOldData, mkdir_p, cpr, rmr, sexec
+from xonsh_py import Logger, lsgrep, existOldData, mkdir_p, cpr, rmr, sexec, cat
 from correlation import main as correlation_main
 from identify_keystones import identify_keystones
 sys.stderr = sys.stdout = Logger()
@@ -47,6 +47,7 @@ for ecosystem in ecosystems:
     for habitat in habitats:
         sub_subset = subset[subset['habitat'] == habitat]
         filename = f"{data_dir}community_subsets/{ecosystem}.{habitat}.tsv"
+        filename2 = f"{data_dir}community_subsets_raw/{ecosystem}.{habitat}.csv"
         
         if sub_subset.shape[0] < 12:
             print(f"Skipping {ecosystem}.{habitat} because it has"
@@ -56,9 +57,12 @@ for ecosystem in ecosystems:
             column_sums = sub_subset.sum()
             zero_sum_columns = column_sums[column_sums == 0].index
             sub_subset = sub_subset.drop(zero_sum_columns, axis=1)
+            sub_subset = sub_subset.drop(['habitat', 'ecosystem'], axis=1)
+
+            #TODO: remove this when correlation function is fixed
+            sub_subset.to_csv(filename2, sep=',', index=False)
 
             #prepare data for sparcc (transpose and remove metadata columns)
-            sub_subset = sub_subset.drop(['habitat', 'ecosystem'], axis=1)
             sub_subset = sub_subset.transpose().reset_index()
             sub_subset.columns = sub_subset.iloc[0]
             sub_subset = sub_subset.drop([0]).reset_index(drop=True).rename(
@@ -126,7 +130,8 @@ for subset_path in community_subsets:
  
 
 ################ Preprocessing for Keystones Identification ####################
-
+#TODO: remove this when correlation function is fixed
+community_subsets = glob.glob(f'{data_dir}community_subsets_raw/*.csv')
 for subset_path in community_subsets:
     
     #TODO: correct this for coherence with the rest of the code
@@ -149,13 +154,8 @@ for subset_path in community_subsets:
     # Create output directory
     mkdir_p([f'{data_dir}fastspar_networks/'+subset_name])
 
-
+    #TODO: Fix this
     coSparCC = correlation_main(subset_path, meta, subset_name, spcc_corr_mat)
-
-    # running code-integration steps
-    # this step is responsible for running the CNM and LIASP algorithms
-    # and identifying the most important nodes in the network (the keystones)
-    # identify_keystones("output/transposed/"+fname+"/sparcc", coSparCC, fname)
 
     # copy the results to the corresponding environment directory
     cpr(lsgrep('out',['']),f'{data_dir}fastspar_networks/'+subset_name+'/sparcc/')
@@ -171,15 +171,30 @@ print('\nTotal execution time: ', (datetime.now()-startTime))
 startTime = datetime.now() # record start time
 
 print("\n\nStarting analysis through environments.\n\n")
-for level in ['phyla']:
+mkdir_p(['data/fastspar_networks/transposed_all_environments/'])
 
-    # create output directory
-    # mkdir -p @('output/transposed_all_environments/'+level)
-    mkdir_p(['output/transposed_all_environments/'])
+level = sys.argv[1]
+files = glob.glob(f'{data_dir}fastspar_networks/*.tsv')
 
-    # run the identification of keystones
-    print("Concat keystones for %s." % level)
-    sexec('./src/concat_keystones.py '+level)
+df = pd.DataFrame()
+
+# reading all files
+for i in files:
+    try:
+        peak = i.read()
+    except:
+        # print('Could not read data of '+i)
+        continue
+
+#     # appending new table indexed by the Taxon name
+#     if os.path.exists(i+'/sparcc/figures/0p%s/keystones.csv'%peak):
+#         df = pd.concat([df, pd.read_csv(i+'/sparcc/figures/0p%s/keystones.csv'%(peak),index_col=0)],sort=False)
+#     else:
+#         print('There is no data for %s\n'%i)
+# df.to_csv('output/transposed_all_environments/%s/keystones.csv'%(level))
+
+
+# sexec('./src/concat_keystones.py '+level)
 
     # Generate the  keystones heatmap (total effect)
     # print("Heatmap keystones for %s." % level)

@@ -5,7 +5,7 @@ settings.json
 # *output/
 
 # Desconsider data obtainable from zip files
-data/community_subsets/*.csv
+data/community_subsets_raw/*.csv
 data/community_subsets/*.tsv
 data/taxon_abundances/*.csv
 data/fastspar_networks/*/
