@@ -8,5 +8,6 @@ settings.json
 data/community_subsets/*.csv
 data/community_subsets/*.tsv
 data/taxon_abundances/*.csv
+data/fastspar_networks/*/
 
 # Desconsider all the directories of a given directory

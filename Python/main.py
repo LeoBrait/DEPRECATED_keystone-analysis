@@ -3,6 +3,7 @@ import subprocess
 import os
 import sys
 import glob
+import pty
 
 src_dir = os.path.dirname(os.path.abspath(__file__))
 data_dir = os.path.join(src_dir, '..', 'data/')
@@ -63,17 +64,19 @@ for subset_path in community_subsets:
 
 
     fastspar_command = (
-        "fastspar "
-        "-c ${subset_path} "
-        "-r ${net_output}/cor.tsv "
-        "-a ${net_output}/cov.tsv "
+        f"fastspar "
+        "-c {subset_path} "
+        "-r {net_output}/cor.tsv "
+        "-a {net_output}/cov.tsv "
         "-t 4 "
         "-s 1 "
         "-i 3000 "
         "-x 50 "
         "-e 0.1 "
         "-y > "
-        "${net_output}/log.txt")
+        "{net_output}/log.txt")
+    fastspar_command = fastspar_command.replace("{subset_path}", subset_path)
+    fastspar_command = fastspar_command.replace("{net_output}", net_output)
     result = subprocess.run(fastspar_command, shell=True, capture_output=True)
     print(result.stdout)
 
