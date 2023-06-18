@@ -9,10 +9,9 @@ xter=50
 corThr=0.1
 seed=1
 
-# ------
 
 input=${1##*/}
-#input=${input%_*}
+
 
 base=output/transposed/$input/sparcc/sparcc_data
 anot=anot.tsv

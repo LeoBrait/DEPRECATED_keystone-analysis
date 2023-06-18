@@ -6,6 +6,7 @@ settings.json
 
 # Desconsider data obtainable from zip files
 data/community_subsets/*.csv
+data/community_subsets/*.tsv
 data/taxon_abundances/*.csv
 
 # Desconsider all the directories of a given directory
