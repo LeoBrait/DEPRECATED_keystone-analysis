@@ -101,14 +101,18 @@ for subset_path in community_subsets:
     print(result.stdout)
 
 ########################## Keystone Identification #############################
-for f in lsgrep('community_matrix',['phyla']):
+for f in community_subsets:
     
+    #TODO: correct this for coherence with the rest of the code
+    fname = (
+        f.split('/')[-1].split('.')[0] +
+        '.' +
+        f.split('/')[-1].split('.')[1])
+
     
-    # get the environment name
-    #ATTENTION: this is likely to break if the file name is not in the expected format
-    fname = f[17:]
 
     # checking if the actual file has metadata
+    # TODO: solve this artifact
     meta = lsgrep('metadata',[fname])
     meta = meta[0] if meta else "none"
 
