@@ -10,7 +10,7 @@ from xonsh_py import cat, lsgrep
 
 level = sys.argv[1]
 
-files = lsgrep('output/transposed/',[level])
+files = lsgrep(f'{data_dir}fastspar_networks/transposed/',[level])
 
 df = pd.DataFrame()
 

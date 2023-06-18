@@ -59,7 +59,8 @@ for ecosystem in ecosystems:
             sub_subset = sub_subset.drop(zero_sum_columns, axis=1)
             sub_subset = sub_subset.drop(['habitat', 'ecosystem'], axis=1)
 
-            #TODO: remove this when correlation function is fixed
+            #TODO: remove this when correlation function is fixed to accept
+            #transposed tsv files
             sub_subset.to_csv(filename2, sep=',', index=False)
 
             #prepare data for sparcc (transpose and remove metadata columns)
@@ -130,7 +131,7 @@ for subset_path in community_subsets:
  
 
 ################ Preprocessing for Keystones Identification ####################
-#TODO: remove this when correlation function is fixed
+#TODO: remove this when correlation function is fixed to accept tsv files
 community_subsets = glob.glob(f'{data_dir}community_subsets_raw/*.csv')
 for subset_path in community_subsets:
     
@@ -154,10 +155,11 @@ for subset_path in community_subsets:
     # Create output directory
     mkdir_p([f'{data_dir}fastspar_networks/'+subset_name])
 
-    #TODO: Fix this
+    #TODO: Fix this to accept tsv files and to not produce the out folder
     coSparCC = correlation_main(subset_path, meta, subset_name, spcc_corr_mat)
 
-    # copy the results to the corresponding environment directory
+    #TODO: for some reason the code iteracts using the out folder as a
+    # temporary folder, and the cpr function copies it to the output folder
     cpr(lsgrep('out',['']),f'{data_dir}fastspar_networks/'+subset_name+'/sparcc/')
     # delete the temporary 'out' directory
     rmr(['out'])
@@ -171,65 +173,24 @@ print('\nTotal execution time: ', (datetime.now()-startTime))
 startTime = datetime.now() # record start time
 
 print("\n\nStarting analysis through environments.\n\n")
-mkdir_p(['data/fastspar_networks/transposed_all_environments/'])
-
-level = sys.argv[1]
-files = glob.glob(f'{data_dir}fastspar_networks/*.tsv')
-
-df = pd.DataFrame()
-
-# reading all files
-for i in files:
-    try:
-        peak = i.read()
-    except:
-        # print('Could not read data of '+i)
-        continue
-
-#     # appending new table indexed by the Taxon name
-#     if os.path.exists(i+'/sparcc/figures/0p%s/keystones.csv'%peak):
-#         df = pd.concat([df, pd.read_csv(i+'/sparcc/figures/0p%s/keystones.csv'%(peak),index_col=0)],sort=False)
-#     else:
-#         print('There is no data for %s\n'%i)
-# df.to_csv('output/transposed_all_environments/%s/keystones.csv'%(level))
 
 
-# sexec('./src/concat_keystones.py '+level)
+level = 'phyla'
 
+# create output directory
+# mkdir -p @('output/transposed_all_environments/'+level)
+os.makedirs(f'{data_dir}fastspar_networks/transposed_all_environments/{level}', exist_ok=True)
+
+
+# run the identification of keystones
+print("Concat keystones for %s." % level)
+sexec(f'{src_dir}/src/concat_keystones.py '+level)
+
+    #TODO: heatmaps are not working due to the lack of the grephi module
     # Generate the  keystones heatmap (total effect)
     # print("Heatmap keystones for %s." % level)
     # sexec('./src/heatmap_keystones.py '+level+' 1')
 
-    # Generate the  keystones heatmap (indirect effect)
+    # # Generate the  keystones heatmap (indirect effect)
     # print("Heatmap keystones (indirect) for %s." % level)
     # sexec('./src/heatmap_keystones.py '+level+' 2')
-
-print('\nPost-results execution time: ', (datetime.now()-startTime))
-
-
-# Original: ####################################################################
-# import sys
-# sys.path.append('src')
-# from xonsh_py import mkdir_p, sexec
-
-# # this script aims to execute all analysis that needs more than one Ecossistem/habitat to work
-
-# print("\n\nStarting analysis through environments.\n\n")
-# # steps that uses all the generated data (usually used for analysis among all environments and taxonomic levels)
-# for level in ['phyla']:
-
-#     # create output directory
-#     # mkdir -p @('output/transposed_all_environments/'+level)
-#     mkdir_p(['output/transposed_all_environments/'+level])
-
-#     # run the identification of keystones
-#     print("Concat keystones for %s." % level)
-#     sexec('./src/concat_keystones.py '+level)
-
-#     # Generate the  keystones heatmap (total effect)
-#     print("Heatmap keystones for %s." % level)
-#     sexec('./src/heatmap_keystones.py '+level+' 1')
-
-#     # Generate the  keystones heatmap (indirect effect)
-#     print("Heatmap keystones (indirect) for %s." % level)
-#     sexec('./src/heatmap_keystones.py '+level+' 2')
