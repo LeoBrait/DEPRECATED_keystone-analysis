@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 import sys
-sys.path.append('src')
+sys.path.append(f'{src_dir}src')
 from xonsh_py import mkdir_p, sexec
 
 # this script aims to execute all analysis that needs more than one Ecossistem/habitat to work
