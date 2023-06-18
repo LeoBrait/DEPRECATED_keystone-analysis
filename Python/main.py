@@ -29,7 +29,6 @@ from correlation import main as correlation_main
 from identify_keystones import identify_keystones
 sys.stderr = sys.stdout = Logger()
 
-startTime = datetime.now()
 ############################# Data Preprocessing ###############################
 
 metadata = pd.read_csv(f'{data_dir}metadata/biome_classification.csv').filter(
@@ -74,6 +73,7 @@ if os.path.exists(f'{data_dir}community_subsets/groundwater.karst-porous.tsv'):
 
 ############################# Fastspar #########################################
 
+startTime = datetime.now()
 #create output generel directorie
 networks_dir = f'{data_dir}/fastspar_networks/'
 os.makedirs(f'{networks_dir}', exist_ok=True)
@@ -111,8 +111,6 @@ for subset_path in community_subsets:
     fastspar_command = fastspar_command.replace("{subset_path}", subset_path)
     fastspar_command = fastspar_command.replace("{net_output}", net_output)
 
-    #iterate(not ready yet)
-
     #run fastspar
     if existOldData(f'{net_output}/cor.tsv'):
         print('There is an already computed SparCC matrix for %s' %subset_name)
@@ -128,40 +126,31 @@ for subset_path in community_subsets:
  
 
 ################ Preprocessing for Keystones Identification ####################
-for f in community_subsets:
+
+for subset_path in community_subsets:
     
     #TODO: correct this for coherence with the rest of the code
-    fname = (
-        f.split('/')[-1].split('.')[0] +
+    subset_name = (
+        subset_path.split('/')[-1].split('.')[0] +
         '.' +
-        f.split('/')[-1].split('.')[1])
+        subset_path.split('/')[-1].split('.')[1])
 
+    meta = "none"
     
-
-    # checking if the actual file has metadata
-    # TODO: solve this artifact
-    meta = lsgrep('metadata',[fname])
-    meta = meta[0] if meta else "none"
-
-    print('Community: %s\nMetadata: %s\n' % (f, meta))
-    print("fname: ", fname)
     # checking if there is a computed sparcc matrix
-    if existOldData(f'{data_dir}/fastspar_networks/'+fname+'/sparcc/sparcc_data/cor.tsv'):
-        print('There is an already computed SparCC matrix for %s. Using it for the analysis.\n'%fname)
-        spcc_corr_mat = f'{data_dir}/fastspar_networks/'+fname+'/sparcc/sparcc_data/cor.tsv'
+    print("running keystones preprocessing for:", subset_name)
+    if existOldData(f'{data_dir}/fastspar_networks/'+subset_name+'/sparcc/sparcc_data/cor.tsv'):
+        print('There is an already computed SparCC matrix for %s. Using it for the analysis.\n'%subset_name)
+        spcc_corr_mat = f'{data_dir}/fastspar_networks/'+subset_name+'/sparcc/sparcc_data/cor.tsv'
     else:
-        print(f'NO SPARCC MATRIX FOUND! JUMPING {fname}')
+        print(f'NO SPARCC MATRIX FOUND! JUMPING {subset_name}')
         continue
 
     # Create output directory
-    mkdir_p([f'{data_dir}fastspar_networks/'+fname])
+    mkdir_p([f'{data_dir}fastspar_networks/'+subset_name])
 
-    # run the analysis
-    # f : community matrix
-    # meta : metadata
-    # fname : environment name
-    # spcc_corr_mat : sparcc matrix
-    coSparCC = correlation_main(f, meta, fname, spcc_corr_mat)
+
+    coSparCC = correlation_main(subset_path, meta, subset_name, spcc_corr_mat)
 
     # running code-integration steps
     # this step is responsible for running the CNM and LIASP algorithms
@@ -169,7 +158,7 @@ for f in community_subsets:
     # identify_keystones("output/transposed/"+fname+"/sparcc", coSparCC, fname)
 
     # copy the results to the corresponding environment directory
-    cpr(lsgrep('out',['']),f'{data_dir}fastspar_networks/'+fname+'/sparcc/')
+    cpr(lsgrep('out',['']),f'{data_dir}fastspar_networks/'+subset_name+'/sparcc/')
     # delete the temporary 'out' directory
     rmr(['out'])
 
@@ -186,18 +175,18 @@ for level in ['phyla']:
 
     # create output directory
     # mkdir -p @('output/transposed_all_environments/'+level)
-    mkdir_p(['output/transposed_all_environments/'+level])
+    mkdir_p(['output/transposed_all_environments/'])
 
     # run the identification of keystones
     print("Concat keystones for %s." % level)
     sexec('./src/concat_keystones.py '+level)
 
     # Generate the  keystones heatmap (total effect)
-    print("Heatmap keystones for %s." % level)
-    sexec('./src/heatmap_keystones.py '+level+' 1')
+    # print("Heatmap keystones for %s." % level)
+    # sexec('./src/heatmap_keystones.py '+level+' 1')
 
     # Generate the  keystones heatmap (indirect effect)
-    print("Heatmap keystones (indirect) for %s." % level)
-    sexec('./src/heatmap_keystones.py '+level+' 2')
+    # print("Heatmap keystones (indirect) for %s." % level)
+    # sexec('./src/heatmap_keystones.py '+level+' 2')
 
 print('\nPost-results execution time: ', (datetime.now()-startTime))
