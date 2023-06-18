@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?><module codename="org.gephi.core.library.wrapper">
+    <module_version install_time="1673987797233" last="true" origin="installer" specification_version="0.10.1">
+        <file crc="75800563" name="config/Modules/org-gephi-core-library-wrapper.xml"/>
+        <file crc="1524862673" name="modules/ext/org.gephi.core-library-wrapper/com-google-code-gson/gson.jar"/>
+        <file crc="2418094782" name="modules/ext/org.gephi.core-library-wrapper/commons-codec/commons-codec.jar"/>
+        <file crc="908197187" name="modules/ext/org.gephi.core-library-wrapper/commons-logging/commons-logging.jar"/>
+        <file crc="312139962" name="modules/ext/org.gephi.core-library-wrapper/net-java-dev/stax-utils.jar"/>
+        <file crc="257218013" name="modules/ext/org.gephi.core-library-wrapper/net-sf-trove4j/trove4j.jar"/>
+        <file crc="3735624343" name="modules/ext/org.gephi.core-library-wrapper/org-apache-commons/commons-compress.jar"/>
+        <file crc="4206470451" name="modules/ext/org.gephi.core-library-wrapper/org-apache-commons/commons-csv.jar"/>
+        <file crc="1566188769" name="modules/ext/org.gephi.core-library-wrapper/org-apache-commons/commons-math3.jar"/>
+        <file crc="2924501182" name="modules/ext/org.gephi.core-library-wrapper/org-apache-pdfbox/fontbox.jar"/>
+        <file crc="3694713747" name="modules/ext/org.gephi.core-library-wrapper/org-apache-pdfbox/pdfbox.jar"/>
+        <file crc="4135575409" name="modules/ext/org.gephi.core-library-wrapper/org-jfree/jcommon.jar"/>
+        <file crc="2688481381" name="modules/ext/org.gephi.core-library-wrapper/org-jfree/jfreechart.jar"/>
+        <file crc="1699625847" name="modules/org-gephi-core-library-wrapper.jar"/>
+    </module_version>
+</module>

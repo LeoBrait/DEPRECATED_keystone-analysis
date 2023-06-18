@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?><module codename="org.gephi.desktop.branding">
+    <module_version install_time="1673987796402" last="true" origin="installer" specification_version="0.10.1">
+        <file crc="3812734277" name="config/Modules/org-gephi-desktop-branding.xml"/>
+        <file crc="3267634708" name="core/locale/core_gephi.jar"/>
+        <file crc="1001602180" name="modules/ext/org.gephi.desktop-branding/io-sentry/sentry.jar"/>
+        <file crc="3532496553" name="modules/locale/org-netbeans-core-windows_gephi.jar"/>
+        <file crc="2384977769" name="modules/locale/org-netbeans-core_gephi.jar"/>
+        <file crc="1789349252" name="modules/locale/org-netbeans-swing-plaf_gephi.jar"/>
+        <file crc="1556178496" name="modules/org-gephi-desktop-branding.jar"/>
+    </module_version>
+</module>

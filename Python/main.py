@@ -1,13 +1,33 @@
-import pandas as pd
-import subprocess
-import os
-import sys
-import glob
-import pty
+#!/usr/bin/env python3
+try:
+    import pandas as pd
+    import subprocess
+    import os
+    import glob
+    import sys
+    import numpy
+    import gephitools
+    import scipy
+    import matplotlib
+    import mpl_toolkits
+    import networkx
+    import PIL
+except ImportError as e:
+    print(e)
+    sys.exit()
 
 src_dir = os.path.dirname(os.path.abspath(__file__))
 data_dir = os.path.join(src_dir, '..', 'data/')
 global_dir = os.path.join(src_dir, '..')
+
+sys.path.append(f'{src_dir}src')
+from xonsh_py import Logger, lsgrep, existOldData, mkdir_p, cpr, rmr, sexec
+sys.stderr = sys.stdout = Logger() # check src/xonsh_py.py for details
+from datetime import datetime
+from correlation import main as correlation_main
+from identify_keystones import identify_keystones
+
+startTime = datetime.now()
 
 ############################# Data Preprocessing ###############################
 
@@ -80,33 +100,60 @@ for subset_path in community_subsets:
     result = subprocess.run(fastspar_command, shell=True, capture_output=True)
     print(result.stdout)
 
-# bash_command = '''''
-# !/bin/bashls
-# [[ -z $1 ]] && echo 'Missing input file!' && exit 1
+########################## Keystone Identification #############################
+for f in lsgrep('community_matrix',['phyla']):
+    
+    
+    # get the environment name
+    #ATTENTION: this is likely to break if the file name is not in the expected format
+    fname = f[17:]
 
-# nthreads=4 # WARNING: It does contribute to randomness!
-# instead of a single seed, I'm using a random variable for all used fastspar steps
+    # checking if the actual file has metadata
+    meta = lsgrep('metadata',[fname])
+    meta = meta[0] if meta else "none"
 
-# iter=3000
-# xter=50
-# corThr=0.1
-# seed=1
+    print('Community: %s\nMetadata: %s\n' % (f, meta))
+    print("fname: ", fname)
+    # checking if there is a computed sparcc matrix
+    if existOldData('output/transposed/'+fname+'/sparcc/sparcc_data/cor.tsv'):
+        print('There is an already computed SparCC matrix for %s. Using it for the analysis.\n'%fname)
+        spcc_corr_mat = 'output/transposed/'+fname+'/sparcc/sparcc_data/cor.tsv'
+    else:
+        print(f'NO SPARCC MATRIX FOUND! JUMPING {fname}')
+        continue
+
+    # Create output directory
+    mkdir_p(['output/transposed/'+fname])
+
+    # run the analysis
+    # f : community matrix
+    # meta : metadata
+    # fname : environment name
+    # spcc_corr_mat : sparcc matrix
+    coSparCC = correlation_main(f, meta, fname, spcc_corr_mat)
+
+    # running code-integration steps
+    # this step is responsible for running the CNM and LIASP algorithms
+    # and identifying the most important nodes in the network (the keystones)
+    # identify_keystones("output/transposed/"+fname+"/sparcc", coSparCC, fname)
+
+    # copy the results to the corresponding environment directory
+    cpr(lsgrep('out',['']),'output/transposed/'+fname+'/sparcc/')
+    # delete the temporary 'out' directory
+    rmr(['out'])
+
+# record end time   
+print('\nTotal execution time: ', (datetime.now()-startTime))
+
+# running all analysis script
+startTime = datetime.now() # record start time
+#run the script that will generate the results run_keystone_analysis.py
 
 
-# input=${1##*/}
+print("if error, try to Manually exclude karst from the analysis ")
+sexec('./run_keystone_analysis.py') # Keystones analysis
+#TODO: Maybe this should be replaced with -> exec(open('run_keystone_analysis.py').read())
+# This should solve the problem for Windows users
+#TODO: Manually excluded karst from the analysis to perform withou errors
 
-
-# base=output/transposed/$input/sparcc/sparcc_data
-# anot=anot.tsv
-
-# creating final folder
-# rm -rf $base && mkdir -p $base
-
-# creating input file for sparcc
-# ls
-# echo -e 'Converting annotation file to fastspar input format\n'
-# python3 csvtool_pandas.py community_matrix/${input} ${base}/${anot}
-
-# computing the original data
-# fastspar -c ${base}/$anot -r ${base}/cor.tsv -a ${base}/cov.tsv -t $nthreads -s $seed -i $iter -x $xter -e $corThr -y
-# '''
+print('\nPost-results execution time: ', (datetime.now()-startTime)) # record end time
