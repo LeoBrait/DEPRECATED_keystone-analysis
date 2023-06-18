@@ -49,31 +49,33 @@ networks_dir = f'{data_dir}/fastspar_networks/'
 community_subsets = glob.glob(f'{data_dir}community_subsets/*.tsv')
 
 
-for subset in community_subsets:
+for subset_path in community_subsets:
     
     #get subset name
     subset_name = (
-        subset.split('/')[-1].split('.')[0] + 
+        subset_path.split('/')[-1].split('.')[0] + 
         '.' + 
-        subset.split('/')[-1].split('.')[1])
+        subset_path.split('/')[-1].split('.')[1])
 
-    
-    net_output = f'{networks_dir}/{subset}/sparcc_data/'
-    # os.mkdir(net_output)
+    os.makedirs(f'{networks_dir}{subset_name}', exist_ok=True)
+    net_output = f'{networks_dir}/{subset_name}/sparcc_data/'
+    os.makedirs(net_output, exist_ok=True)
 
 
-#     fastspar_command = (
-#         f""
-#         "fastspar "
-#         "-c ${subset} "
-#         "-r ${net_output}/cor.tsv "
-#         "-a ${net_output}/cov.tsv "
-#         "-t 4 "
-#         "-s 1 "
-#         "-i 3000 "
-#         "-x 50 "
-#         "-e 0.1 "
-#         "-y")
+    fastspar_command = (
+        "fastspar "
+        "-c ${subset_path} "
+        "-r ${net_output}/cor.tsv "
+        "-a ${net_output}/cov.tsv "
+        "-t 4 "
+        "-s 1 "
+        "-i 3000 "
+        "-x 50 "
+        "-e 0.1 "
+        "-y > "
+        "${net_output}/log.txt")
+    result = subprocess.run(fastspar_command, shell=True, capture_output=True)
+    print(result.stdout)
 
 # bash_command = '''''
 # !/bin/bashls
