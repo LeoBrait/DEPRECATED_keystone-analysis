@@ -4,12 +4,11 @@
 # each done by each input matrix in community_matrix
 nsubs=80
 
-#for level in class family phyla order genus; do
 for level in phyla;
 	do echo "${level}"
 
     # getting reverse size-ordered list of input files
-	list=( ls -Sr community_matrix/*csv)
+	list=( ls -Sr date/community_subsets/*csv)
 
 	n=0
 	for w in $(seq 0 $nsubs ${#list[@]});
