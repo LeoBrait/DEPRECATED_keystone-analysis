@@ -6,7 +6,7 @@ try:
     import glob
     import sys
     import numpy
-    import gephitools
+    #import gephitools
     import scipy
     import matplotlib
     import mpl_toolkits
@@ -20,7 +20,7 @@ src_dir = os.path.dirname(os.path.abspath(__file__))
 data_dir = os.path.join(src_dir, '..', 'data/')
 global_dir = os.path.join(src_dir, '..')
 
-sys.path.append(f'{src_dir}src')
+sys.path.append(f'{src_dir}/src')
 from xonsh_py import Logger, lsgrep, existOldData, mkdir_p, cpr, rmr, sexec
 sys.stderr = sys.stdout = Logger() # check src/xonsh_py.py for details
 from datetime import datetime
@@ -90,7 +90,7 @@ for subset_path in community_subsets:
         "-a {net_output}/cov.tsv "
         "-t 4 "
         "-s 1 "
-        "-i 3000 "
+        "-i 30 " #TODO: change this to 3000
         "-x 50 "
         "-e 0.1 "
         "-y > "
