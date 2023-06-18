@@ -11,3 +11,4 @@ data/taxon_abundances/*.csv
 data/fastspar_networks/*/
 
 # Desconsider all the directories of a given directory
+out/
