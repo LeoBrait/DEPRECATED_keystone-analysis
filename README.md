@@ -13,13 +13,6 @@ This repository holds all codes to reproduce the major part of the Keystones det
 
 The entire analysis aims to determine which are the Keystones nodes based on multiple metrics for a network constructed from a correlation matrix. It compares many metrics used on the paper and rank the Keystones through a continuous range of Keystoneness. It also employs the LIASP metric, proposed [here](~Paper de Roberto.~).
 
-
-## Overview
-
-![](https://github.com/MeirellesLab/keystone-webcontent/blob/master/major-fluxogram.svg)
-
-__Check the sidebar links for detailed information about this flowchart.__
-
 ## Requirements
 
 1. Data preparation
