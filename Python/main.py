@@ -49,7 +49,8 @@ for ecosystem in ecosystems:
     for habitat in habitats:
         sub_subset = subset[subset['habitat'] == habitat]
         filename = f"{data_dir}community_subsets/{ecosystem}.{habitat}.tsv"
-        filename2 = f"{data_dir}community_subsets_raw/{ecosystem}.{habitat}.csv"
+        #TODO: remove this when correlation function is fixed to accept tsv files
+        filename_tsv = f"{data_dir}community_subsets_raw/{ecosystem}.{habitat}.csv"
         
         if sub_subset.shape[0] < 12:
             print(f"Skipping {ecosystem}.{habitat} because it has"
@@ -64,7 +65,7 @@ for ecosystem in ecosystems:
             #TODO: remove this when correlation function is fixed to accept
             #transposed tsv files
             os.makedirs(f'{data_dir}community_subsets_raw/', exist_ok=True)
-            sub_subset.to_csv(filename2, sep=',', index=False)
+            sub_subset.to_csv(filename_tsv, sep=',', index=False)
 
             #prepare data for sparcc (transpose and remove metadata columns)
             os.makedirs(f'{data_dir}community_subsets/', exist_ok=True)
