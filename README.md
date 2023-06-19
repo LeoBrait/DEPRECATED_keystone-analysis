@@ -34,7 +34,7 @@ This program relies on a Python-3 interpreter and the anaconda package manager. 
 All python packages required by the program are listed in `requirements.txt`. In order to create and activate environment with all dependencies, you should install [anaconda 3](https://www.anaconda.com/) on your linux machine and run:
 
 ```bash
-bash install_dependencies.sh
+bash Python/install_dependencies.sh
 conda activate keystones
 ```
 ## Usage
