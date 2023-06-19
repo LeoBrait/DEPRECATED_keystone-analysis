@@ -28,7 +28,7 @@ All python packages required by the program are listed in `requirements.txt`. In
 
 ```bash
 bash Python/install_dependencies.sh
-conda activate keystones
+conda activate biome_keystones
 ```
 ## Usage
 

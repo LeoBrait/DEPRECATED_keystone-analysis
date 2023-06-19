@@ -62,6 +62,7 @@ for ecosystem in ecosystems:
 
             #TODO: remove this when correlation function is fixed to accept
             #transposed tsv files
+            os.makedirs(f'{data_dir}community_subsets_raw/', exist_ok=True)
             sub_subset.to_csv(filename2, sep=',', index=False)
 
             #prepare data for sparcc (transpose and remove metadata columns)
