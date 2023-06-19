@@ -73,9 +73,10 @@ for ecosystem in ecosystems:
             sub_subset.to_csv(filename, sep='\t', index=False)
 
 #TODO: remove this when karst porous is fixed
-if os.path.exists(f'{data_dir}community_subsets/groundwater.karst-porous.tsv'):
-    os.remove(f'{data_dir}community_subsets/groundwater.karst-porous.tsv')
-
+karst_file = f'{data_dir}community_subsets/groundwater.karst-porous.tsv'
+karst_file_tsv = f'{data_dir}community_subsets_raw/groundwater.karst-porous.csv'
+os.remove(karst_file)
+os.remove(karst_file_tsv)
 ############################# Fastspar #########################################
 startTime = datetime.now()
 
