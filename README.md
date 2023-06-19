@@ -39,8 +39,6 @@ conda activate keystones
 
 ## Data Preparation
 
-The first step is to prepare the data to be analyzed. Execute the main.R file to generate the data to be analyzed. From the metadata and tax occurence files, it will generate the files that will be used in the analysis. The files will be generated in the folder `data/`. The files generated are:
-
 You should have your input matrices copied into `community_matrix`. Their full description is deeply discussed [here]((1)-Community-Matrices). You may use the ones from the paper that you can find [here](https://github.com/MeirellesLab/keystone-analysis-community-input). Just download the repository and copy the files.
 
 You may also have metadata matrices about the nodes for your input matrix. Copy them inside `metadata` folder. They are well described [here]((3)-Metadata-Matrices).
