@@ -28,6 +28,7 @@ from xonsh_py import Logger, lsgrep, existOldData, mkdir_p, cpr, rmr, sexec, cat
 from correlation import main as correlation_main
 from identify_keystones import identify_keystones
 sys.stderr = sys.stdout = Logger()
+total_time = datetime.now()
 
 ############################# Data Preprocessing ###############################
 
@@ -71,22 +72,17 @@ for ecosystem in ecosystems:
 
             sub_subset.to_csv(filename, sep='\t', index=False)
 
-#delete karst porous table
 #TODO: remove this when karst porous is fixed
 if os.path.exists(f'{data_dir}community_subsets/groundwater.karst-porous.tsv'):
     os.remove(f'{data_dir}community_subsets/groundwater.karst-porous.tsv')
 
 ############################# Fastspar #########################################
-
 startTime = datetime.now()
-#create output generel directorie
+
 networks_dir = f'{data_dir}/fastspar_networks/'
 os.makedirs(f'{networks_dir}', exist_ok=True)
 
-#list jobs
 community_subsets = glob.glob(f'{data_dir}community_subsets/*.tsv')
-
-
 for subset_path in community_subsets:
     
     subset_name = (
@@ -131,10 +127,13 @@ for subset_path in community_subsets:
  
 
 ################ Preprocessing for Keystones Identification ####################
+startTime = datetime.now()
+
 #TODO: remove this when correlation function is fixed to accept tsv files
 community_subsets = glob.glob(f'{data_dir}community_subsets_raw/*.csv')
+
 for subset_path in community_subsets:
-    
+
     #TODO: correct this for coherence with the rest of the code
     subset_name = (
         subset_path.split('/')[-1].split('.')[0] +
@@ -144,28 +143,29 @@ for subset_path in community_subsets:
     meta = "none"
     
     # checking if there is a computed sparcc matrix
-    print("running keystones preprocessing for:", subset_name)
-    if existOldData(f'{data_dir}/fastspar_networks/'+subset_name+'/sparcc/sparcc_data/cor.tsv'):
-        print('There is an already computed SparCC matrix for %s. Using it for the analysis.\n'%subset_name)
-        spcc_corr_mat = f'{data_dir}/fastspar_networks/'+subset_name+'/sparcc/sparcc_data/cor.tsv'
+    if existOldData(f'{networks_dir}'+subset_name+'/sparcc/sparcc_data/cor.tsv'):
+        print('Using %s for the analysis correlation.\n'%subset_name)
+        spcc_corr_mat = f'{networks_dir}'+subset_name+'/sparcc/sparcc_data/cor.tsv'
     else:
         print(f'NO SPARCC MATRIX FOUND! JUMPING {subset_name}')
         continue
 
-    # Create output directory
-    mkdir_p([f'{data_dir}fastspar_networks/'+subset_name])
+    if existOldData(f'{networks_dir}'+subset_name+'/sparcc/keystones.csv'):
+        print(f'Keystones of {subset_name} already exist')
+    else:    
+        coSparCC = correlation_main(subset_path, meta, subset_name, spcc_corr_mat)
+        print(f'correlattion of {subset_name} finished.')
+        print('Progress: %s of %s' 
+                % (
+                community_subsets.index(subset_path) + 1,
+                len(community_subsets)))
+        print('\nElapsed time: ', (datetime.now()-startTime))
 
-    #TODO: Fix this to accept tsv files and to not produce the out folder
-    coSparCC = correlation_main(subset_path, meta, subset_name, spcc_corr_mat)
-
-    #TODO: for some reason the code iteracts using the out folder as a
-    # temporary folder, and the cpr function copies it to the output folder
-    cpr(lsgrep('out',['']),f'{data_dir}fastspar_networks/'+subset_name+'/sparcc/')
-    # delete the temporary 'out' directory
-    rmr(['out'])
-
-# record end time   
-print('\nTotal execution time: ', (datetime.now()-startTime))
+        #TODO: for some reason the code iteracts using the out folder as a
+        # temporary folder, and the cpr function copies it to the output folder
+        cpr(lsgrep('out',['']),f'{data_dir}fastspar_networks/'+subset_name+'/sparcc/')
+        rmr(['out'])
+        continue
 
 
 
@@ -173,19 +173,27 @@ print('\nTotal execution time: ', (datetime.now()-startTime))
 startTime = datetime.now() # record start time
 
 print("\n\nStarting analysis through environments.\n\n")
+os.makedirs(f'{data_dir}/final_keystones_table/', exist_ok=True)
 
+files = glob.glob(f'{data_dir}fastspar_networks/*')
+df = pd.DataFrame()
 
-level = 'phyla'
+# reading all files
+for i in files:
+    try:
+        peak = cat(i+'/sparcc/raw_data/cnm_highest_peak.txt').strip()
+    except:
+        print('Could not read data of '+i)
+        continue
 
-# create output directory
-# mkdir -p @('output/transposed_all_environments/'+level)
-os.makedirs(f'{data_dir}fastspar_networks/transposed_all_environments/{level}', exist_ok=True)
+    # appending new table indexed by the Taxon name
+    if os.path.exists(i+'/sparcc/figures/0p%s/keystones.csv'%peak):
+        df = pd.concat([df, pd.read_csv(i+'/sparcc/figures/0p%s/keystones.csv'%(peak),index_col=0)],sort=False)
+    else:
+        print('There is no data for %s\n'%i)
 
-
-# run the identification of keystones
-print("Concat keystones for %s." % level)
-sexec(f'{src_dir}/src/concat_keystones.py '+level)
-
+df.to_csv(f'{data_dir}/final_keystones_table/keystones.csv')
+    
     #TODO: heatmaps are not working due to the lack of the grephi module
     # Generate the  keystones heatmap (total effect)
     # print("Heatmap keystones for %s." % level)

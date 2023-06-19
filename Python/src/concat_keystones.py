@@ -1,10 +1,4 @@
 #!/usr/bin/env python3
-
-import os
-import pandas as pd
-import sys
-import os
-
 sys.path.append("src")
 from xonsh_py import cat, lsgrep
 
