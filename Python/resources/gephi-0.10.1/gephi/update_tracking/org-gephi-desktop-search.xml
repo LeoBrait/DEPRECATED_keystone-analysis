@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?><module codename="org.gephi.desktop.search">
-    <module_version install_time="1673987797335" last="true" origin="installer" specification_version="0.10.1">
-        <file crc="540400202" name="config/Modules/org-gephi-desktop-search.xml"/>
-        <file crc="1650416602" name="modules/org-gephi-desktop-search.jar"/>
-    </module_version>
-</module>

@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<module codename="checker_qual">
-    <module_version install_time="1673987798484" last="true" origin="installer" specification_version="3.5.0">
-        <file crc="221985351" name="config/Modules/checker_qual.xml"/>
-        <file crc="1221366033" name="modules/checker_qual.jar"/>
-    </module_version>
-</module>

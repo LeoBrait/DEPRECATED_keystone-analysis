@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?><module codename="org.gephi.mostrecentfiles.api">
-    <module_version install_time="1673987796030" last="true" origin="installer" specification_version="0.10.1">
-        <file crc="1109722412" name="config/Modules/org-gephi-mostrecentfiles-api.xml"/>
-        <file crc="3584542919" name="modules/org-gephi-mostrecentfiles-api.jar"/>
-    </module_version>
-</module>
