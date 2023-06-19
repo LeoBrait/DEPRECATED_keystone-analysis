@@ -145,17 +145,26 @@ for subset_path in community_subsets:
     meta = "none"
     
     # checking if there is a computed sparcc matrix
-    if existOldData(f'{networks_dir}'+subset_name+'/sparcc/sparcc_data/cor.tsv'):
+    if existOldData(f'{networks_dir}'
+                    +subset_name
+                    +'/sparcc/sparcc_data/cor.tsv'):
+        
         print('Using %s for the analysis correlation.\n'%subset_name)
-        spcc_corr_mat = f'{networks_dir}'+subset_name+'/sparcc/sparcc_data/cor.tsv'
+        spcc_corr_mat = (f'{networks_dir}'
+                        +subset_name
+                        +'/sparcc/sparcc_data/cor.tsv')
     else:
         print(f'NO SPARCC MATRIX FOUND! JUMPING {subset_name}')
         continue
 
-    if existOldData(f'{networks_dir}'+subset_name+'/sparcc/keystones.csv'):
+    if existOldData(f'{networks_dir}'+subset_name+'/sparcc/keystones.csv'):        
         print(f'Keystones of {subset_name} already exist')
     else:    
-        coSparCC = correlation_main(subset_path, meta, subset_name, spcc_corr_mat)
+        coSparCC = correlation_main(
+            subset_path,
+            meta,
+            subset_name,
+            spcc_corr_mat)
         print(f'correlattion of {subset_name} finished.')
         print('Progress: %s of %s' 
                 % (
@@ -165,7 +174,9 @@ for subset_path in community_subsets:
 
         #TODO: for some reason the code iteracts using the out folder as a
         # temporary folder, and the cpr function copies it to the output folder
-        cpr(lsgrep('out',['']),f'{data_dir}fastspar_networks/'+subset_name+'/sparcc/')
+        cpr(
+            lsgrep('out',['']),
+            f'{data_dir}fastspar_networks/'+subset_name+'/sparcc/')
         rmr(['out'])
         continue
 
@@ -190,7 +201,12 @@ for i in files:
 
     # appending new table indexed by the Taxon name
     if os.path.exists(i+'/sparcc/figures/0p%s/keystones.csv'%peak):
-        df = pd.concat([df, pd.read_csv(i+'/sparcc/figures/0p%s/keystones.csv'%(peak),index_col=0)],sort=False)
+        df = pd.concat(
+            [df,
+             pd.read_csv(
+                 i+'/sparcc/figures/0p%s/keystones.csv'%(peak),
+                 index_col=0)],
+            sort=False)
     else:
         print('There is no data for %s\n'%i)
 
