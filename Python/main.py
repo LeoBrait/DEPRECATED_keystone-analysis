@@ -32,11 +32,12 @@ total_time = datetime.now()
 
 ############################# Data Preprocessing ###############################
 
-metadata = pd.read_csv(f'{data_dir}metadata/biome_classification.csv').filter(
-        items=['samples', 'habitat', 'ecosystem'])
-annotation = pd.read_csv(f'{data_dir}taxon_abundances/kraken_custom_phyla.csv')
-
-merged_data = pd.merge(annotation, metadata, on='samples', how='inner')
+merged_data = pd.read_csv(
+    f'{data_dir}metadata/biome_classification.csv').filter(
+        items=['samples', 'habitat', 'ecosystem']).merge(
+            pd.read_csv(f'{data_dir}taxon_abundances/kraken_custom_phyla.csv'),
+            on='samples',
+            how='inner')
 
 # Subset data by ecosystem and habitat
 ecosystems = merged_data['ecosystem'].unique()
@@ -66,6 +67,7 @@ for ecosystem in ecosystems:
             sub_subset.to_csv(filename2, sep=',', index=False)
 
             #prepare data for sparcc (transpose and remove metadata columns)
+            os.makedirs(f'{data_dir}community_subsets/', exist_ok=True)
             sub_subset = sub_subset.transpose().reset_index()
             sub_subset.columns = sub_subset.iloc[0]
             sub_subset = sub_subset.drop([0]).reset_index(drop=True).rename(
@@ -78,6 +80,7 @@ karst_file = f'{data_dir}community_subsets/groundwater.karst-porous.tsv'
 karst_file_tsv = f'{data_dir}community_subsets_raw/groundwater.karst-porous.csv'
 os.remove(karst_file)
 os.remove(karst_file_tsv)
+
 ############################# Fastspar #########################################
 startTime = datetime.now()
 
@@ -183,7 +186,7 @@ for subset_path in community_subsets:
 
 
 ################## Keystones identification ####################################
-startTime = datetime.now() # record start time
+startTime = datetime.now()
 
 print("\n\nStarting analysis through environments.\n\n")
 os.makedirs(f'{data_dir}/final_keystones_table/', exist_ok=True)

@@ -1,1 +1,0 @@
-here the ecosystems and habitats are divided by dots in the file names
