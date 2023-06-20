@@ -26,16 +26,18 @@ The program inputs are basically two:
 This program relies on a Python-3 interpreter and the anaconda package manager. Also, it was tested and developed on Ubuntu-18-04(WSL) with the Anaconda3 environment manager but probably can be run on other Linux distributions and MacOS.  
 All python packages required by the program are listed in `requirements.txt`. In order to create and activate environment with all dependencies, you should install [anaconda 3](https://www.anaconda.com/) on your linux machine and run:
 
-```bash
+```sh
 bash Python/install_dependencies.sh
-conda activate biome_keystones
 ```
+* This is necessay just for the first time you run the program.
+
 ## Usage
 
 After installing all requirements and setting your files in the right directories, you can run the analysis just by doing:
 
 ```sh
-Python3 Python/main.py
+conda activate biome_keystones
+python3 Python/main.py
 ```
 
 This script will index all input matrices you gave, execute fastspar with bootstraping, check for the matrix of edges. If the matrix of edges is found, the script proceeds to execute [`correlation.py`]((A)-Keystone-Analysis-Program) for each input matrix.
