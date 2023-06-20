@@ -53,9 +53,9 @@ for ecosystem in ecosystems:
         filename_tsv = f"{data_dir}community_subsets_raw/{ecosystem}.{habitat}.csv"
         
         if sub_subset.shape[0] < 12:
-            print(f"Skipping {ecosystem}.{habitat} because it has"
-                  "fewer than 12 samples.")
-        else:
+            #print(f"Skipping {ecosystem}.{habitat} because it has"
+                  #"fewer than 12 samples.")
+        #else: #TODO Reactivate if you want a cutoff of 12 samples
             #drop columns with sum equal to 0 (irrelevant taxa)
             column_sums = sub_subset.sum()
             zero_sum_columns = column_sums[column_sums == 0].index
@@ -75,12 +75,12 @@ for ecosystem in ecosystems:
                 columns={sub_subset.columns[0]: "#OTU ID"})
 
             sub_subset.to_csv(filename, sep='\t', index=False)
-
+        continue
 #TODO: remove this when karst porous is fixed
-karst_file = f'{data_dir}community_subsets/groundwater.karst-porous.tsv'
-karst_file_tsv = f'{data_dir}community_subsets_raw/groundwater.karst-porous.csv'
-os.remove(karst_file)
-os.remove(karst_file_tsv)
+# karst_file = f'{data_dir}community_subsets/groundwater.karst-porous.tsv'
+# karst_file_tsv = f'{data_dir}community_subsets_raw/groundwater.karst-porous.csv'
+# os.remove(karst_file)
+# os.remove(karst_file_tsv)
 
 ############################# Fastspar #########################################
 startTime = datetime.now()
@@ -110,7 +110,7 @@ for subset_path in community_subsets:
         "-a {net_output}/cov.tsv "
         "-t 4 "
         "-s 1 "
-        "-i 3000 "
+        "-i 5000 "
         "-x 50 "
         "-e 0.1 "
         "-y > "
@@ -163,6 +163,10 @@ for subset_path in community_subsets:
 
     if existOldData(f'{networks_dir}'+subset_name+'/sparcc/keystones.csv'):        
         print(f'Keystones of {subset_name} already exist')
+        #TODO: reactivete the line below if you want to delete 
+        #the keystones tables
+        #os.remove(f'{networks_dir}'+subset_name+'/sparcc/keystones.csv')
+        
     else:    
         coSparCC = correlation_main(
             subset_path,

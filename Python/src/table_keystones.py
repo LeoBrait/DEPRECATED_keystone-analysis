@@ -25,9 +25,9 @@ def table_analysis(base, peak, G, host):
         Name of the ecosystem and habitat.
     """
     # get ecosystem and habitat names from "host" string
-    tmp = host.split('-')
-    ecosystem = ' '.join('-'.join(tmp[:-1]).split('.'))
-    habitat = ' '.join(tmp[-1].split('.')[:-1])
+    tmp = host.split('.')
+    ecosystem = tmp[0]
+    habitat = tmp[1]
     
     # set ecosystem and habitat names as node attributes
     nx.set_node_attributes(G,values=ecosystem, name="Ecosystem")
