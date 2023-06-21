@@ -89,7 +89,7 @@ for ecosystem in ecosystems:
 #*************************** Bootstraping **************************************
 startTime = datetime.now()
 
-bootstrap_dir = f'{data_dir}/bootstrap'
+bootstrap_dir = f'{data_dir}/bootstrap_biome/'
 os.makedirs(f'{bootstrap_dir}', exist_ok=True)
 
 bootstrap_subsets = [
@@ -110,7 +110,7 @@ for subset_path in bootstrap_subsets:
     #prepare specific output directories
     os.makedirs(f'{bootstrap_dir}/{subset_name}', exist_ok=True)
 
-    iteractions = [300, 400, 500, 1000, 1500, 2000, 2500, 3000, 3500, 4000, 4500]
+    iteractions = [300, 400, 500, 1000, 1500, 3000, 3500, 4000, 5000, 6000]
     
     for iteraction in iteractions:
         iter_name = str(iteraction)
@@ -122,7 +122,7 @@ for subset_path in bootstrap_subsets:
         else:
             os.makedirs(f'{iteraction_dir}', exist_ok=True)
             
-            for seed in range(1, 10):
+            for seed in range(1, 20):
                 out_cor = f'{iteraction_dir}/cor_'f'{seed}''.cor'
                 out_cov = f'{iteraction_dir}/cov_'f'{seed}''.cov'
                 remove = iteraction / 100
@@ -147,7 +147,7 @@ for subset_path in bootstrap_subsets:
                 with open(log_filepath, 'w') as log_file:
                     log_file.write(output)
                 
-                print(f"Finished {subset_name} with"
+                print(f"Finished {subset_name} with "
                       f"{iteraction} iteractions and seed {seed}")
                 print("elapsed time in bootstrap: ",
                       datetime.now() - startTime)
