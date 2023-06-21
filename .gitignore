@@ -4,6 +4,10 @@ settings.json
 # *out/
 # *output/
 
+#Desconsider data generated from the scripts
+data/summaries/
+data/bootstrap
+
 # Desconsider data obtainable from zip files
 data/community_subsets_raw/*.csv
 data/community_subsets/*.tsv

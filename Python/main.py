@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
+import sys
 try:
     import pandas as pd
     import subprocess
     import os
     import glob
-    import sys
     import numpy
     #import gephitools
     import scipy
@@ -16,6 +16,7 @@ except ImportError as e:
     print(e)
     sys.exit()
 from datetime import datetime
+from numpy.linalg import norm
 
 # Paths
 src_dir = os.path.dirname(os.path.abspath(__file__))
@@ -39,42 +40,135 @@ merged_data = pd.read_csv(
             on='samples',
             how='inner')
 
+#summarize the number of rows per habitat
+habitat_counts = merged_data.groupby('habitat').count()['samples']
+os.makedirs(f'{data_dir}summaries/', exist_ok=True)
+habitat_counts.to_csv(f'{data_dir}summaries/habitat_counts.csv')
+
 # Subset data by ecosystem and habitat
 ecosystems = merged_data['ecosystem'].unique()
 
 for ecosystem in ecosystems:
     subset = merged_data[merged_data['ecosystem'] == ecosystem]
     habitats = subset['habitat'].unique()
-    
+
     for habitat in habitats:
         sub_subset = subset[subset['habitat'] == habitat]
         filename = f"{data_dir}community_subsets/{ecosystem}.{habitat}.tsv"
-        
+  
         #TODO: remove this when correlation function is fixed to accept tsv files
         filename_tsv = f"{data_dir}community_subsets_raw/{ecosystem}.{habitat}.csv"
-        
-    
-        column_sums = sub_subset.sum()
-        zero_sum_columns = column_sums[column_sums == 0].index
-        sub_subset = sub_subset.drop(zero_sum_columns, axis=1)
-        sub_subset = sub_subset.drop(['habitat', 'ecosystem'], axis=1)
 
-        #TODO: remove this when correlation function is fixed to accept
-        #transposed tsv files
-        os.makedirs(f'{data_dir}community_subsets_raw/', exist_ok=True)
-        sub_subset.to_csv(filename_tsv, sep=',', index=False)
+        if sub_subset.shape[0] < 3:
+            print(f"Skipping {ecosystem}.{habitat} because it has"
+                  "fewer than 3 samples.")
+        else:
+            column_sums = sub_subset.sum()
+            zero_sum_columns = column_sums[column_sums == 0].index
+            sub_subset = sub_subset.drop(zero_sum_columns, axis=1)
+            sub_subset = sub_subset.drop(['habitat', 'ecosystem'], axis=1)
 
-        #prepare data for sparcc (transpose and remove metadata columns)
-        os.makedirs(f'{data_dir}community_subsets/', exist_ok=True)
-        sub_subset = sub_subset.transpose().reset_index()
-        sub_subset.columns = sub_subset.iloc[0]
-        sub_subset = sub_subset.drop([0]).reset_index(drop=True).rename(
+            #TODO: remove this when correlation function is fixed to accept
+            #transposed tsv files
+            os.makedirs(f'{data_dir}community_subsets_raw/', exist_ok=True)
+            sub_subset.to_csv(filename_tsv, sep=',', index=False)
+
+            #prepare data for sparcc (transpose and remove metadata columns)
+            os.makedirs(f'{data_dir}community_subsets/', exist_ok=True)
+            sub_subset = sub_subset.transpose().reset_index()
+            sub_subset.columns = sub_subset.iloc[0]
+            sub_subset = sub_subset.drop([0]).reset_index(drop=True).rename(
             columns={sub_subset.columns[0]: "#OTU ID"})
-        sub_subset.to_csv(filename, sep='\t', index=False)
+            sub_subset.to_csv(filename, sep='\t', index=False)
         continue
 
 ############################# Fastspar #########################################
+
+
+
+#*************************** Bootstraping **************************************
 startTime = datetime.now()
+
+bootstrap_dir = f'{data_dir}/bootstrap'
+os.makedirs(f'{bootstrap_dir}', exist_ok=True)
+
+bootstrap_subsets = [
+    f'{data_dir}community_subsets/animal_host-associated.aqueous_humour.tsv', #N=8
+    f'{data_dir}community_subsets/animal_host-associated.animal_feces.tsv',   #N=675
+    f'{data_dir}community_subsets/saline_water.estuarine_seawater.tsv',       #N=64
+    f'{data_dir}community_subsets/soil.savanna_soil.tsv',                     #N=21
+    f'{data_dir}community_subsets/soil.tundra_soil.tsv',                      #N=3
+    f'{data_dir}community_subsets/groundwater.mine.tsv']                      #N=3
+
+for subset_path in bootstrap_subsets:
+
+    subset_name = (
+        subset_path.split('/')[-1].split('.')[0] +
+        '.' +
+        subset_path.split('/')[-1].split('.')[1])
+    
+    #prepare specific output directories
+    os.makedirs(f'{bootstrap_dir}/{subset_name}', exist_ok=True)
+
+    iteractions = [300, 400, 500, 1000, 1500, 2000, 2500, 3000, 3500, 4000, 4500]
+    
+    for iteraction in iteractions:
+        iter_name = str(iteraction)
+        iteraction_dir = (f'{bootstrap_dir}/{subset_name}/{iter_name}')
+        
+        
+        if(os.path.exists(f'{iteraction_dir}')):
+            print(f'{subset_name} and {iteraction} already exists')
+        else:
+            os.makedirs(f'{iteraction_dir}', exist_ok=True)
+            
+            for seed in range(1, 10):
+                out_cor = f'{iteraction_dir}/cor_'f'{seed}''.cor'
+                out_cov = f'{iteraction_dir}/cov_'f'{seed}''.cov'
+
+                subprocess.run(['fastspar',
+                        '-c', f'{subset_path}',
+                        '-r', f'{out_cor}',
+                        '-a', f'{out_cov}',
+                        '-t', '5',
+                        '-s', int(seed),
+                        '-i', int(iteraction),
+                        '-x', int(iteraction / 100),
+                        '-e', 0.1,
+                        '-y'])
+                
+                print(f"Finished {subset_name} with"
+                      f"{iteraction} iteractions and seed {seed}")
+                print("elapsed time in bootstrap: ",
+                      datetime.now() - startTime)
+
+#*************************** Similarity of matrices ****************************          
+'''
+def cosine_similarity(matrix1, matrix2):
+    flattened1 = matrix1.flatten()
+    flattened2 = matrix2.flatten()
+    dot_product = np.dot(flattened1, flattened2)
+    norm_product = norm(flattened1) * norm(flattened2)
+    similarity = dot_product / norm_product
+    return similarity
+
+def calculate_similarity(matrices):
+    num_matrices = len(matrices)
+    similarity_matrix = numpy.zeros((num_matrices, num_matrices))
+
+    for i in range(num_matrices):
+        for j in range(i, num_matrices):  # Only calculate upper triangular matrix
+            similarity = cosine_similarity(matrices[i], matrices[j])
+            similarity_matrix[i, j] = similarity
+            similarity_matrix[j, i] = similarity  # Assign to both symmetric positions
+
+    return similarity_matrix
+
+
+similarity_matrix = calculate_similarity(matrices)
+print("Similarity matrix:")
+print(similarity_matrix)
+
 
 networks_dir = f'{data_dir}/fastspar_networks/'
 os.makedirs(f'{networks_dir}', exist_ok=True)
@@ -120,7 +214,7 @@ for subset_path in community_subsets:
             % (
                 community_subsets.index(subset_path) + 1,
                 len(community_subsets)))
-        print('\nElapsed time: ', (datetime.now()-startTime))
+        print('nElapsed time: ', (datetime.now()-startTime))
  
 
 ################ Preprocessing for Keystones Identification ####################
@@ -220,3 +314,4 @@ df.to_csv(f'{data_dir}/final_keystones_table/keystones.csv')
     # print("Heatmap keystones (indirect) for %s." % level)
     # sexec('./src/heatmap_keystones.py '+level+' 2')
 print('total time: ', (datetime.now()-startTime))
+'''
