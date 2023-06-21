@@ -93,14 +93,22 @@ bootstrap_dir = f'{data_dir}/performance_iteractions_fastspar/'
 os.makedirs(f'{bootstrap_dir}', exist_ok=True)
 
 bootstrap_subsets = [
-    f'{data_dir}community_subsets/animal_host-associated.aqueous_humour.tsv', #N=8
-    f'{data_dir}community_subsets/animal_host-associated.animal_feces.tsv',   #N=675
-    f'{data_dir}community_subsets/saline_water.coastal_seawater.tsv',         #N=286
-    f'{data_dir}community_subsets/saline_water.hypersaline_water.tsv',        #N=16
-    f'{data_dir}community_subsets/soil.savanna_soil.tsv',                     #N=21
-    f'{data_dir}community_subsets/soil.tundra_soil.tsv',                      #N=3
-    f'{data_dir}community_subsets/groundwater.porous_contaminated.tsv',       #N=48
-    f'{data_dir}community_subsets/groundwater.mine.tsv']                      #N=3
+    f'{data_dir}community_subsets/'
+        'animal_host-associated.aqueous_humour.tsv', #N=8
+    f'{data_dir}community_subsets/'
+        'animal_host-associated.animal_feces.tsv',   #N=675
+    f'{data_dir}community_subsets/'
+        'saline_water.coastal_seawater.tsv',         #N=286
+    f'{data_dir}community_subsets/'
+        'saline_water.hypersaline_water.tsv',        #N=16
+    f'{data_dir}community_subsets/'
+        'soil.savanna_soil.tsv',                     #N=21
+    f'{data_dir}community_subsets/'
+        'soil.tundra_soil.tsv',                      #N=3
+    f'{data_dir}community_subsets/'
+        'groundwater.porous_contaminated.tsv',       #N=48
+    f'{data_dir}community_subsets/'
+        'groundwater.mine.tsv']                      #N=3
 
 for subset_path in bootstrap_subsets:
 
@@ -112,7 +120,9 @@ for subset_path in bootstrap_subsets:
     #prepare specific output directories
     os.makedirs(f'{bootstrap_dir}/{subset_name}', exist_ok=True)
 
-    iteractions = [300, 400, 500, 1000, 1500, 3000, 3500, 4000, 5000, 6000, 7000, 8000, 9000]
+    iteractions = [300,  400,  500,  1000, 
+                   1500, 3000, 3500, 4000, 
+                   5000, 6000, 7000, 8000, 9000]
     
     for iteraction in iteractions:
         iter_name = str(iteraction)
@@ -129,7 +139,8 @@ for subset_path in bootstrap_subsets:
                 out_cov = f'{iteraction_dir}/cov_'f'{seed}''.cov'
                 remove = iteraction / 2.5
                 remove = int(remove)
-
+                
+                network_time = datetime.now()
                 completed_process = subprocess.run(['fastspar',
                         '-c', f'{subset_path}',
                         '-r', f'{out_cor}',
@@ -143,11 +154,17 @@ for subset_path in bootstrap_subsets:
                         stdout=subprocess.PIPE,
                         stderr=subprocess.PIPE, text=True)
                 
+                
                 log_filepath = f'{iteraction_dir}/log_'f'{seed}''.txt'
                 
                 output = completed_process.stdout
                 with open(log_filepath, 'w') as log_file:
                     log_file.write(output)
+                
+                network_time = datetime.now() - network_time
+                time_filepath = f'{iteraction_dir}/time_'f'{seed}''.txt'
+                with open(time_filepath, 'w') as time_file:
+                    time_file.write(str(network_time))
                 
                 print(f"Finished {subset_name} with "
                       f"{iteraction} iteractions and seed {seed}")
