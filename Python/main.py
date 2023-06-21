@@ -89,7 +89,7 @@ for ecosystem in ecosystems:
 #*************************** Bootstraping **************************************
 startTime = datetime.now()
 
-bootstrap_dir = f'{data_dir}/bootstrap_biome/'
+bootstrap_dir = f'{data_dir}/performance_iteractions_fastspar/'
 os.makedirs(f'{bootstrap_dir}', exist_ok=True)
 
 bootstrap_subsets = [
