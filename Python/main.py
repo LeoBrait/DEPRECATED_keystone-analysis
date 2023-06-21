@@ -125,17 +125,27 @@ for subset_path in bootstrap_subsets:
             for seed in range(1, 10):
                 out_cor = f'{iteraction_dir}/cor_'f'{seed}''.cor'
                 out_cov = f'{iteraction_dir}/cov_'f'{seed}''.cov'
+                remove = iteraction / 100
+                remove = int(remove)
 
-                subprocess.run(['fastspar',
+                completed_process = subprocess.run(['fastspar',
                         '-c', f'{subset_path}',
                         '-r', f'{out_cor}',
                         '-a', f'{out_cov}',
                         '-t', '5',
-                        '-s', int(seed),
-                        '-i', int(iteraction),
-                        '-x', int(iteraction / 100),
-                        '-e', 0.1,
-                        '-y'])
+                        '-s', f'{seed}',
+                        '-i', f'{iteraction}',
+                        '-x', f'{remove}',
+                        '-e', '0.1',
+                        '-y'],
+                        stdout=subprocess.PIPE,
+                        stderr=subprocess.PIPE, text=True)
+                
+                log_filepath = f'{iteraction_dir}/log_'f'{seed}''.txt'
+                
+                output = completed_process.stdout
+                with open(log_filepath, 'w') as log_file:
+                    log_file.write(output)
                 
                 print(f"Finished {subset_name} with"
                       f"{iteraction} iteractions and seed {seed}")
