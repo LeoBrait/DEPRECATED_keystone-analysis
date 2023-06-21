@@ -41,7 +41,7 @@ merged_data = pd.read_csv(
             how='inner')
 
 #summarize the number of rows per habitat
-habitat_counts = merged_data.groupby('habitat').count()['samples']
+habitat_counts = merged_data.groupby(['ecosystem','habitat']).count()['samples']
 os.makedirs(f'{data_dir}summaries/', exist_ok=True)
 habitat_counts.to_csv(f'{data_dir}summaries/habitat_counts.csv')
 
@@ -95,9 +95,11 @@ os.makedirs(f'{bootstrap_dir}', exist_ok=True)
 bootstrap_subsets = [
     f'{data_dir}community_subsets/animal_host-associated.aqueous_humour.tsv', #N=8
     f'{data_dir}community_subsets/animal_host-associated.animal_feces.tsv',   #N=675
-    f'{data_dir}community_subsets/saline_water.estuarine_seawater.tsv',       #N=64
+    f'{data_dir}community_subsets/saline_water.coastal_seawater.tsv',         #N=286
+    f'{data_dir}community_subsets/saline_water.hypersaline_water.tsv',        #N=16
     f'{data_dir}community_subsets/soil.savanna_soil.tsv',                     #N=21
     f'{data_dir}community_subsets/soil.tundra_soil.tsv',                      #N=3
+    f'{data_dir}community_subsets/groundwater.porous_contaminated.tsv',       #N=48
     f'{data_dir}community_subsets/groundwater.mine.tsv']                      #N=3
 
 for subset_path in bootstrap_subsets:
@@ -110,7 +112,7 @@ for subset_path in bootstrap_subsets:
     #prepare specific output directories
     os.makedirs(f'{bootstrap_dir}/{subset_name}', exist_ok=True)
 
-    iteractions = [300, 400, 500, 1000, 1500, 3000, 3500, 4000, 5000, 6000]
+    iteractions = [300, 400, 500, 1000, 1500, 3000, 3500, 4000, 5000, 6000, 7000, 8000, 9000]
     
     for iteraction in iteractions:
         iter_name = str(iteraction)
@@ -122,10 +124,10 @@ for subset_path in bootstrap_subsets:
         else:
             os.makedirs(f'{iteraction_dir}', exist_ok=True)
             
-            for seed in range(1, 20):
+            for seed in range(0, 20):
                 out_cor = f'{iteraction_dir}/cor_'f'{seed}''.cor'
                 out_cov = f'{iteraction_dir}/cov_'f'{seed}''.cov'
-                remove = iteraction / 100
+                remove = iteraction / 2.5
                 remove = int(remove)
 
                 completed_process = subprocess.run(['fastspar',
