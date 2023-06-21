@@ -89,16 +89,22 @@ for ecosystem in ecosystems:
 #*************************** Bootstraping **************************************
 startTime = datetime.now()
 
-bootstrap_dir = f'{data_dir}/bootstrap_biome/'
+bootstrap_dir = f'{data_dir}/performance_iteractions_fastspar/'
 os.makedirs(f'{bootstrap_dir}', exist_ok=True)
 
 bootstrap_subsets = [
-    f'{data_dir}community_subsets/animal_host-associated.aqueous_humour.tsv', #N=8
-    f'{data_dir}community_subsets/animal_host-associated.animal_feces.tsv',   #N=675
-    f'{data_dir}community_subsets/saline_water.estuarine_seawater.tsv',       #N=64
-    f'{data_dir}community_subsets/soil.savanna_soil.tsv',                     #N=21
-    f'{data_dir}community_subsets/soil.tundra_soil.tsv',                      #N=3
-    f'{data_dir}community_subsets/groundwater.mine.tsv']                      #N=3
+    f'{data_dir}community_subsets/'
+        'animal_host-associated.aqueous_humour.tsv', #N=8
+    f'{data_dir}community_subsets/'
+        'animal_host-associated.animal_feces.tsv',   #N=675
+    f'{data_dir}community_subsets/'
+        'saline_water.estuarine_seawater.tsv',       #N=64
+    f'{data_dir}community_subsets/'
+        'soil.savanna_soil.tsv',                     #N=21
+    f'{data_dir}community_subsets/'
+        'soil.tundra_soil.tsv',                      #N=3
+    f'{data_dir}community_subsets/'
+        'groundwater.mine.tsv']                      #N=3
 
 for subset_path in bootstrap_subsets:
 
