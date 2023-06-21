@@ -145,7 +145,7 @@ for subset_path in bootstrap_subsets:
                         '-c', f'{subset_path}',
                         '-r', f'{out_cor}',
                         '-a', f'{out_cov}',
-                        '-t', '5',
+                        '-t', '20',
                         '-s', f'{seed}',
                         '-i', f'{iteraction}',
                         '-x', f'{remove}',
