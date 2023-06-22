@@ -35,49 +35,45 @@ do
     #parse the file name without the .tsv
     filename=$(basename -- "$subset_path")
     filename="${filename%.*}"
-    for iteraction in "${iteractions[@]}"
+    habitat_dir="${performance_dir}/${filename}"
 
+    for iteraction in "${iteractions[@]}"
     do
-        for seed in "${seeds[@]}"
-        do
-            #Environment for each iteraction and seed
-            habitat_dir="${performance_dir}/${filename}"
-            iteraction_dir="${habitat_dir}/${iteraction}"
-            out_cor="$iteraction_dir/cor_${seed}.cor"
-            out_cov="$iteraction_dir/cov_${seed}.cov"
-            log="$iteraction_dir/log_${seed}.txt"
-            time_var="$iteraction_dir/time_${seed}.txt"
-            remove=$(echo "scale=2; $iteraction / 2.5" | bc | cut -d '.' -f 1)
-            mkdir -p "${habitat_dir}"
+        iteraction_dir="${habitat_dir}/${iteraction}"
+
+            for seed in "${seeds[@]}"
+            do
+                out_cor="$iteraction_dir/cor_${seed}.cor"
+                out_cov="$iteraction_dir/cov_${seed}.cov"
+                log="$iteraction_dir/log_${seed}.txt"
+                time_var="$iteraction_dir/time_${seed}.txt"
+                if [ ! "${out_cor}" ]; then
+                    echo "echo The job for: ${filename} with ${iteraction} an ${seed} was already done"
+                else
+
+                    #Environment for each iteraction and seed
+                    remove=$(echo "scale=2; $iteraction / 10" | bc | cut -d '.' -f 1)
             
-            #create the jobs
-            echo "echo The job for: ${filename} with ${iteraction} is running"
-            echo "mkdir -p ${iteraction_dir}"
-            echo "start_time=\$(date -u +%s.%N)"
-            echo "fastspar " \
-              "-c ${subset_path} "\
-              "-r ${out_cor} " \
-              "-a ${out_cov} " \
-              "-t 2 " \
-              "-s ${seed} " \
-              "-i ${iteraction} " \
-              "-x ${remove} " \
-              "-e 0.1 " \
-              "-y > ${log} "
-            #save the time in job chunk
-            echo "end_time=\$(date -u +%s.%N)"
-            echo "elapsed_time=\$(echo \$end_time - \$start_time | bc)"
-            echo "echo \$elapsed_time > ${time_var}"
-            
-            #debug
-            echo "echo Start Time: \$start_time"
-            echo "echo End Time: \$end_time"
-            echo "echo Elapsed Time: \$elapsed_time"
-            echo "The job for: ${filename} with ${iteraction} already exists"
-            echo
+                    #create the jobs
+                    echo "echo The job for: ${filename} with ${iteraction} an ${seed} is running"
+                    echo "mkdir -p ${habitat_dir}"
+                    echo "mkdir -p ${iteraction_dir}"
+                    echo "fastspar " \
+                        "-c ${subset_path} "\
+                        "-r ${out_cor} " \
+                        "-a ${out_cov} " \
+                        "-t 2 " \
+                        "-s ${seed} " \
+                        "-i ${iteraction} " \
+                        "-x ${remove} " \
+                        "-e 0.1 " \
+                        "-y > ${log} "
+                    echo
+                fi
+            done
         done
-    done
 done > Shell/jobs/performance_iteractions.txt
+
 
 # Run the jobs 5 process
 xargs -P 5 -I {} bash -c "{}" < Shell/jobs/performance_iteractions.txt
