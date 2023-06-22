@@ -1,208 +1,44 @@
-echo The job for: animal_host-associated.aqueous_humour with 300 an 1 is running
-mkdir -p data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour
-mkdir -p data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/300
-fastspar  -c data/community_subsets/animal_host-associated.aqueous_humour.tsv  -r data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/300/cor_1.cor  -a data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/300/cov_1.cov  -t 2  -s 1  -i 300  -x 30  -e 0.1  -y > data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/300/log_1.txt 
-
-echo The job for: animal_host-associated.aqueous_humour with 300 an 2 is running
-mkdir -p data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour
-mkdir -p data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/300
-fastspar  -c data/community_subsets/animal_host-associated.aqueous_humour.tsv  -r data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/300/cor_2.cor  -a data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/300/cov_2.cov  -t 2  -s 2  -i 300  -x 30  -e 0.1  -y > data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/300/log_2.txt 
-
-echo The job for: animal_host-associated.aqueous_humour with 300 an 3 is running
-mkdir -p data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour
-mkdir -p data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/300
-fastspar  -c data/community_subsets/animal_host-associated.aqueous_humour.tsv  -r data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/300/cor_3.cor  -a data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/300/cov_3.cov  -t 2  -s 3  -i 300  -x 30  -e 0.1  -y > data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/300/log_3.txt 
-
-echo The job for: animal_host-associated.aqueous_humour with 300 an 4 is running
-mkdir -p data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour
-mkdir -p data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/300
-fastspar  -c data/community_subsets/animal_host-associated.aqueous_humour.tsv  -r data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/300/cor_4.cor  -a data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/300/cov_4.cov  -t 2  -s 4  -i 300  -x 30  -e 0.1  -y > data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/300/log_4.txt 
-
-echo The job for: animal_host-associated.aqueous_humour with 300 an 5 is running
-mkdir -p data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour
-mkdir -p data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/300
-fastspar  -c data/community_subsets/animal_host-associated.aqueous_humour.tsv  -r data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/300/cor_5.cor  -a data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/300/cov_5.cov  -t 2  -s 5  -i 300  -x 30  -e 0.1  -y > data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/300/log_5.txt 
-
-echo The job for: animal_host-associated.aqueous_humour with 300 an 6 is running
-mkdir -p data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour
-mkdir -p data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/300
-fastspar  -c data/community_subsets/animal_host-associated.aqueous_humour.tsv  -r data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/300/cor_6.cor  -a data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/300/cov_6.cov  -t 2  -s 6  -i 300  -x 30  -e 0.1  -y > data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/300/log_6.txt 
-
-echo The job for: animal_host-associated.aqueous_humour with 300 an 7 is running
-mkdir -p data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour
-mkdir -p data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/300
-fastspar  -c data/community_subsets/animal_host-associated.aqueous_humour.tsv  -r data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/300/cor_7.cor  -a data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/300/cov_7.cov  -t 2  -s 7  -i 300  -x 30  -e 0.1  -y > data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/300/log_7.txt 
-
-echo The job for: animal_host-associated.aqueous_humour with 300 an 8 is running
-mkdir -p data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour
-mkdir -p data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/300
-fastspar  -c data/community_subsets/animal_host-associated.aqueous_humour.tsv  -r data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/300/cor_8.cor  -a data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/300/cov_8.cov  -t 2  -s 8  -i 300  -x 30  -e 0.1  -y > data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/300/log_8.txt 
-
-echo The job for: animal_host-associated.aqueous_humour with 300 an 9 is running
-mkdir -p data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour
-mkdir -p data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/300
-fastspar  -c data/community_subsets/animal_host-associated.aqueous_humour.tsv  -r data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/300/cor_9.cor  -a data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/300/cov_9.cov  -t 2  -s 9  -i 300  -x 30  -e 0.1  -y > data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/300/log_9.txt 
-
-echo The job for: animal_host-associated.aqueous_humour with 300 an 10 is running
-mkdir -p data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour
-mkdir -p data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/300
-fastspar  -c data/community_subsets/animal_host-associated.aqueous_humour.tsv  -r data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/300/cor_10.cor  -a data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/300/cov_10.cov  -t 2  -s 10  -i 300  -x 30  -e 0.1  -y > data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/300/log_10.txt 
-
-echo The job for: animal_host-associated.aqueous_humour with 300 an 11 is running
-mkdir -p data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour
-mkdir -p data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/300
-fastspar  -c data/community_subsets/animal_host-associated.aqueous_humour.tsv  -r data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/300/cor_11.cor  -a data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/300/cov_11.cov  -t 2  -s 11  -i 300  -x 30  -e 0.1  -y > data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/300/log_11.txt 
-
-echo The job for: animal_host-associated.aqueous_humour with 300 an 12 is running
-mkdir -p data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour
-mkdir -p data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/300
-fastspar  -c data/community_subsets/animal_host-associated.aqueous_humour.tsv  -r data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/300/cor_12.cor  -a data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/300/cov_12.cov  -t 2  -s 12  -i 300  -x 30  -e 0.1  -y > data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/300/log_12.txt 
-
-echo The job for: animal_host-associated.aqueous_humour with 300 an 13 is running
-mkdir -p data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour
-mkdir -p data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/300
-fastspar  -c data/community_subsets/animal_host-associated.aqueous_humour.tsv  -r data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/300/cor_13.cor  -a data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/300/cov_13.cov  -t 2  -s 13  -i 300  -x 30  -e 0.1  -y > data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/300/log_13.txt 
-
-echo The job for: animal_host-associated.aqueous_humour with 300 an 14 is running
-mkdir -p data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour
-mkdir -p data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/300
-fastspar  -c data/community_subsets/animal_host-associated.aqueous_humour.tsv  -r data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/300/cor_14.cor  -a data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/300/cov_14.cov  -t 2  -s 14  -i 300  -x 30  -e 0.1  -y > data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/300/log_14.txt 
-
-echo The job for: animal_host-associated.aqueous_humour with 300 an 15 is running
-mkdir -p data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour
-mkdir -p data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/300
-fastspar  -c data/community_subsets/animal_host-associated.aqueous_humour.tsv  -r data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/300/cor_15.cor  -a data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/300/cov_15.cov  -t 2  -s 15  -i 300  -x 30  -e 0.1  -y > data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/300/log_15.txt 
-
-echo The job for: animal_host-associated.aqueous_humour with 300 an 16 is running
-mkdir -p data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour
-mkdir -p data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/300
-fastspar  -c data/community_subsets/animal_host-associated.aqueous_humour.tsv  -r data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/300/cor_16.cor  -a data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/300/cov_16.cov  -t 2  -s 16  -i 300  -x 30  -e 0.1  -y > data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/300/log_16.txt 
-
-echo The job for: animal_host-associated.aqueous_humour with 300 an 17 is running
-mkdir -p data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour
-mkdir -p data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/300
-fastspar  -c data/community_subsets/animal_host-associated.aqueous_humour.tsv  -r data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/300/cor_17.cor  -a data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/300/cov_17.cov  -t 2  -s 17  -i 300  -x 30  -e 0.1  -y > data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/300/log_17.txt 
-
-echo The job for: animal_host-associated.aqueous_humour with 300 an 18 is running
-mkdir -p data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour
-mkdir -p data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/300
-fastspar  -c data/community_subsets/animal_host-associated.aqueous_humour.tsv  -r data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/300/cor_18.cor  -a data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/300/cov_18.cov  -t 2  -s 18  -i 300  -x 30  -e 0.1  -y > data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/300/log_18.txt 
-
-echo The job for: animal_host-associated.aqueous_humour with 300 an 19 is running
-mkdir -p data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour
-mkdir -p data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/300
-fastspar  -c data/community_subsets/animal_host-associated.aqueous_humour.tsv  -r data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/300/cor_19.cor  -a data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/300/cov_19.cov  -t 2  -s 19  -i 300  -x 30  -e 0.1  -y > data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/300/log_19.txt 
-
-echo The job for: animal_host-associated.aqueous_humour with 300 an 20 is running
-mkdir -p data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour
-mkdir -p data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/300
-fastspar  -c data/community_subsets/animal_host-associated.aqueous_humour.tsv  -r data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/300/cor_20.cor  -a data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/300/cov_20.cov  -t 2  -s 20  -i 300  -x 30  -e 0.1  -y > data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/300/log_20.txt 
-
-echo The job for: animal_host-associated.aqueous_humour with 400 an 1 is running
-mkdir -p data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour
-mkdir -p data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/400
-fastspar  -c data/community_subsets/animal_host-associated.aqueous_humour.tsv  -r data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/400/cor_1.cor  -a data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/400/cov_1.cov  -t 2  -s 1  -i 400  -x 40  -e 0.1  -y > data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/400/log_1.txt 
-
-echo The job for: animal_host-associated.aqueous_humour with 400 an 2 is running
-mkdir -p data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour
-mkdir -p data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/400
-fastspar  -c data/community_subsets/animal_host-associated.aqueous_humour.tsv  -r data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/400/cor_2.cor  -a data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/400/cov_2.cov  -t 2  -s 2  -i 400  -x 40  -e 0.1  -y > data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/400/log_2.txt 
-
-echo The job for: animal_host-associated.aqueous_humour with 400 an 3 is running
-mkdir -p data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour
-mkdir -p data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/400
-fastspar  -c data/community_subsets/animal_host-associated.aqueous_humour.tsv  -r data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/400/cor_3.cor  -a data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/400/cov_3.cov  -t 2  -s 3  -i 400  -x 40  -e 0.1  -y > data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/400/log_3.txt 
-
-echo The job for: animal_host-associated.aqueous_humour with 400 an 4 is running
-mkdir -p data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour
-mkdir -p data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/400
-fastspar  -c data/community_subsets/animal_host-associated.aqueous_humour.tsv  -r data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/400/cor_4.cor  -a data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/400/cov_4.cov  -t 2  -s 4  -i 400  -x 40  -e 0.1  -y > data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/400/log_4.txt 
-
-echo The job for: animal_host-associated.aqueous_humour with 400 an 5 is running
-mkdir -p data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour
-mkdir -p data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/400
-fastspar  -c data/community_subsets/animal_host-associated.aqueous_humour.tsv  -r data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/400/cor_5.cor  -a data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/400/cov_5.cov  -t 2  -s 5  -i 400  -x 40  -e 0.1  -y > data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/400/log_5.txt 
-
-echo The job for: animal_host-associated.aqueous_humour with 400 an 6 is running
-mkdir -p data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour
-mkdir -p data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/400
-fastspar  -c data/community_subsets/animal_host-associated.aqueous_humour.tsv  -r data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/400/cor_6.cor  -a data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/400/cov_6.cov  -t 2  -s 6  -i 400  -x 40  -e 0.1  -y > data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/400/log_6.txt 
-
-echo The job for: animal_host-associated.aqueous_humour with 400 an 7 is running
-mkdir -p data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour
-mkdir -p data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/400
-fastspar  -c data/community_subsets/animal_host-associated.aqueous_humour.tsv  -r data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/400/cor_7.cor  -a data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/400/cov_7.cov  -t 2  -s 7  -i 400  -x 40  -e 0.1  -y > data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/400/log_7.txt 
-
-echo The job for: animal_host-associated.aqueous_humour with 400 an 8 is running
-mkdir -p data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour
-mkdir -p data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/400
-fastspar  -c data/community_subsets/animal_host-associated.aqueous_humour.tsv  -r data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/400/cor_8.cor  -a data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/400/cov_8.cov  -t 2  -s 8  -i 400  -x 40  -e 0.1  -y > data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/400/log_8.txt 
-
-echo The job for: animal_host-associated.aqueous_humour with 400 an 9 is running
-mkdir -p data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour
-mkdir -p data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/400
-fastspar  -c data/community_subsets/animal_host-associated.aqueous_humour.tsv  -r data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/400/cor_9.cor  -a data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/400/cov_9.cov  -t 2  -s 9  -i 400  -x 40  -e 0.1  -y > data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/400/log_9.txt 
-
-echo The job for: animal_host-associated.aqueous_humour with 400 an 10 is running
-mkdir -p data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour
-mkdir -p data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/400
-fastspar  -c data/community_subsets/animal_host-associated.aqueous_humour.tsv  -r data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/400/cor_10.cor  -a data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/400/cov_10.cov  -t 2  -s 10  -i 400  -x 40  -e 0.1  -y > data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/400/log_10.txt 
-
-echo The job for: animal_host-associated.aqueous_humour with 400 an 11 is running
-mkdir -p data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour
-mkdir -p data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/400
-fastspar  -c data/community_subsets/animal_host-associated.aqueous_humour.tsv  -r data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/400/cor_11.cor  -a data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/400/cov_11.cov  -t 2  -s 11  -i 400  -x 40  -e 0.1  -y > data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/400/log_11.txt 
-
-echo The job for: animal_host-associated.aqueous_humour with 400 an 12 is running
-mkdir -p data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour
-mkdir -p data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/400
-fastspar  -c data/community_subsets/animal_host-associated.aqueous_humour.tsv  -r data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/400/cor_12.cor  -a data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/400/cov_12.cov  -t 2  -s 12  -i 400  -x 40  -e 0.1  -y > data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/400/log_12.txt 
-
-echo The job for: animal_host-associated.aqueous_humour with 400 an 13 is running
-mkdir -p data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour
-mkdir -p data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/400
-fastspar  -c data/community_subsets/animal_host-associated.aqueous_humour.tsv  -r data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/400/cor_13.cor  -a data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/400/cov_13.cov  -t 2  -s 13  -i 400  -x 40  -e 0.1  -y > data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/400/log_13.txt 
-
-echo The job for: animal_host-associated.aqueous_humour with 400 an 14 is running
-mkdir -p data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour
-mkdir -p data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/400
-fastspar  -c data/community_subsets/animal_host-associated.aqueous_humour.tsv  -r data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/400/cor_14.cor  -a data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/400/cov_14.cov  -t 2  -s 14  -i 400  -x 40  -e 0.1  -y > data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/400/log_14.txt 
-
-echo The job for: animal_host-associated.aqueous_humour with 400 an 15 is running
-mkdir -p data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour
-mkdir -p data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/400
-fastspar  -c data/community_subsets/animal_host-associated.aqueous_humour.tsv  -r data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/400/cor_15.cor  -a data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/400/cov_15.cov  -t 2  -s 15  -i 400  -x 40  -e 0.1  -y > data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/400/log_15.txt 
-
-echo The job for: animal_host-associated.aqueous_humour with 400 an 16 is running
-mkdir -p data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour
-mkdir -p data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/400
-fastspar  -c data/community_subsets/animal_host-associated.aqueous_humour.tsv  -r data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/400/cor_16.cor  -a data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/400/cov_16.cov  -t 2  -s 16  -i 400  -x 40  -e 0.1  -y > data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/400/log_16.txt 
-
-echo The job for: animal_host-associated.aqueous_humour with 400 an 17 is running
-mkdir -p data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour
-mkdir -p data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/400
-fastspar  -c data/community_subsets/animal_host-associated.aqueous_humour.tsv  -r data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/400/cor_17.cor  -a data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/400/cov_17.cov  -t 2  -s 17  -i 400  -x 40  -e 0.1  -y > data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/400/log_17.txt 
-
-echo The job for: animal_host-associated.aqueous_humour with 400 an 18 is running
-mkdir -p data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour
-mkdir -p data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/400
-fastspar  -c data/community_subsets/animal_host-associated.aqueous_humour.tsv  -r data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/400/cor_18.cor  -a data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/400/cov_18.cov  -t 2  -s 18  -i 400  -x 40  -e 0.1  -y > data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/400/log_18.txt 
-
-echo The job for: animal_host-associated.aqueous_humour with 400 an 19 is running
-mkdir -p data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour
-mkdir -p data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/400
-fastspar  -c data/community_subsets/animal_host-associated.aqueous_humour.tsv  -r data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/400/cor_19.cor  -a data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/400/cov_19.cov  -t 2  -s 19  -i 400  -x 40  -e 0.1  -y > data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/400/log_19.txt 
-
-echo The job for: animal_host-associated.aqueous_humour with 400 an 20 is running
-mkdir -p data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour
-mkdir -p data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/400
-fastspar  -c data/community_subsets/animal_host-associated.aqueous_humour.tsv  -r data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/400/cor_20.cor  -a data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/400/cov_20.cov  -t 2  -s 20  -i 400  -x 40  -e 0.1  -y > data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/400/log_20.txt 
-
-echo The job for: animal_host-associated.aqueous_humour with 500 an 1 is running
-mkdir -p data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour
-mkdir -p data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/500
-fastspar  -c data/community_subsets/animal_host-associated.aqueous_humour.tsv  -r data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/500/cor_1.cor  -a data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/500/cov_1.cov  -t 2  -s 1  -i 500  -x 50  -e 0.1  -y > data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/500/log_1.txt 
-
+echo The job for: animal_host-associated.aqueous_humour with 300 an 1 was already done
+echo The job for: animal_host-associated.aqueous_humour with 300 an 2 was already done
+echo The job for: animal_host-associated.aqueous_humour with 300 an 3 was already done
+echo The job for: animal_host-associated.aqueous_humour with 300 an 4 was already done
+echo The job for: animal_host-associated.aqueous_humour with 300 an 5 was already done
+echo The job for: animal_host-associated.aqueous_humour with 300 an 6 was already done
+echo The job for: animal_host-associated.aqueous_humour with 300 an 7 was already done
+echo The job for: animal_host-associated.aqueous_humour with 300 an 8 was already done
+echo The job for: animal_host-associated.aqueous_humour with 300 an 9 was already done
+echo The job for: animal_host-associated.aqueous_humour with 300 an 10 was already done
+echo The job for: animal_host-associated.aqueous_humour with 300 an 11 was already done
+echo The job for: animal_host-associated.aqueous_humour with 300 an 12 was already done
+echo The job for: animal_host-associated.aqueous_humour with 300 an 13 was already done
+echo The job for: animal_host-associated.aqueous_humour with 300 an 14 was already done
+echo The job for: animal_host-associated.aqueous_humour with 300 an 15 was already done
+echo The job for: animal_host-associated.aqueous_humour with 300 an 16 was already done
+echo The job for: animal_host-associated.aqueous_humour with 300 an 17 was already done
+echo The job for: animal_host-associated.aqueous_humour with 300 an 18 was already done
+echo The job for: animal_host-associated.aqueous_humour with 300 an 19 was already done
+echo The job for: animal_host-associated.aqueous_humour with 300 an 20 was already done
+echo The job for: animal_host-associated.aqueous_humour with 400 an 1 was already done
+echo The job for: animal_host-associated.aqueous_humour with 400 an 2 was already done
+echo The job for: animal_host-associated.aqueous_humour with 400 an 3 was already done
+echo The job for: animal_host-associated.aqueous_humour with 400 an 4 was already done
+echo The job for: animal_host-associated.aqueous_humour with 400 an 5 was already done
+echo The job for: animal_host-associated.aqueous_humour with 400 an 6 was already done
+echo The job for: animal_host-associated.aqueous_humour with 400 an 7 was already done
+echo The job for: animal_host-associated.aqueous_humour with 400 an 8 was already done
+echo The job for: animal_host-associated.aqueous_humour with 400 an 9 was already done
+echo The job for: animal_host-associated.aqueous_humour with 400 an 10 was already done
+echo The job for: animal_host-associated.aqueous_humour with 400 an 11 was already done
+echo The job for: animal_host-associated.aqueous_humour with 400 an 12 was already done
+echo The job for: animal_host-associated.aqueous_humour with 400 an 13 was already done
+echo The job for: animal_host-associated.aqueous_humour with 400 an 14 was already done
+echo The job for: animal_host-associated.aqueous_humour with 400 an 15 was already done
+echo The job for: animal_host-associated.aqueous_humour with 400 an 16 was already done
+echo The job for: animal_host-associated.aqueous_humour with 400 an 17 was already done
+echo The job for: animal_host-associated.aqueous_humour with 400 an 18 was already done
+echo The job for: animal_host-associated.aqueous_humour with 400 an 19 was already done
+echo The job for: animal_host-associated.aqueous_humour with 400 an 20 was already done
+echo The job for: animal_host-associated.aqueous_humour with 500 an 1 was already done
 echo The job for: animal_host-associated.aqueous_humour with 500 an 2 is running
 mkdir -p data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour
 mkdir -p data/performance_fastspar_iteractions/animal_host-associated.aqueous_humour/500

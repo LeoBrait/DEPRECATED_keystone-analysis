@@ -43,11 +43,11 @@ do
 
             for seed in "${seeds[@]}"
             do
-                out_cor="$iteraction_dir/cor_${seed}.cor"
-                out_cov="$iteraction_dir/cov_${seed}.cov"
-                log="$iteraction_dir/log_${seed}.txt"
-                time_var="$iteraction_dir/time_${seed}.txt"
-                if [ ! "${out_cor}" ]; then
+                out_cor="${iteraction_dir}/cor_${seed}.cor"
+                out_cov="${iteraction_dir}/cov_${seed}.cov"
+                log="${iteraction_dir}/log_${seed}.txt"
+                time_var="${iteraction_dir}/time_${seed}.txt"
+                if [ -f "${out_cor}" ]; then
                     echo "echo The job for: ${filename} with ${iteraction} an ${seed} was already done"
                 else
 
