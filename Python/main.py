@@ -110,6 +110,7 @@ bootstrap_subsets = [
     f'{data_dir}community_subsets/'
         'groundwater.mine.tsv']                      #N=3
 
+processes = []
 for subset_path in bootstrap_subsets:
 
     subset_name = (
@@ -134,14 +135,16 @@ for subset_path in bootstrap_subsets:
         else:
             os.makedirs(f'{iteraction_dir}', exist_ok=True)
             
-            for seed in range(0, 20):
-                out_cor = f'{iteraction_dir}/cor_'f'{seed}''.cor'
-                out_cov = f'{iteraction_dir}/cov_'f'{seed}''.cov'
-                remove = iteraction / 2.5
-                remove = int(remove)
+            if len(processes) < 3:
+
+                for seed in range(0, 20):
+                    out_cor = f'{iteraction_dir}/cor_'f'{seed}''.cor'
+                    out_cov = f'{iteraction_dir}/cov_'f'{seed}''.cov'
+                    remove = iteraction / 2.5
+                    remove = int(remove)
                 
-                network_time = datetime.now()
-                completed_process = subprocess.run(['fastspar',
+                    network_time = datetime.now()
+                    completed_process = subprocess.Popen(['fastspar',
                         '-c', f'{subset_path}',
                         '-r', f'{out_cor}',
                         '-a', f'{out_cov}',
@@ -153,23 +156,27 @@ for subset_path in bootstrap_subsets:
                         '-y'],
                         stdout=subprocess.PIPE,
                         stderr=subprocess.PIPE, text=True)
+                    
+                    processes.append(completed_process)
+                    log_filepath = f'{iteraction_dir}/log_'f'{seed}''.txt'
                 
+                    output = completed_process.stdout.read().decode('utf-8')
+                    with open(log_filepath, 'w') as log_file:
+                        log_file.write(output)
                 
-                log_filepath = f'{iteraction_dir}/log_'f'{seed}''.txt'
+                    network_time = datetime.now() - network_time
+                    time_filepath = f'{iteraction_dir}/time_'f'{seed}''.txt'
+                    with open(time_filepath, 'w') as time_file:
+                        time_file.write(str(network_time))
                 
-                output = completed_process.stdout
-                with open(log_filepath, 'w') as log_file:
-                    log_file.write(output)
-                
-                network_time = datetime.now() - network_time
-                time_filepath = f'{iteraction_dir}/time_'f'{seed}''.txt'
-                with open(time_filepath, 'w') as time_file:
-                    time_file.write(str(network_time))
-                
-                print(f"Finished {subset_name} with "
+                    print(f"Finished {subset_name} with "
                       f"{iteraction} iteractions and seed {seed}")
-                print("elapsed time in bootstrap: ",
+                    print("elapsed time in bootstrap: ",
                       datetime.now() - startTime)
+                else:
+                    for process in processes:
+                        process.wait()
+                    processes = []
 
 #*************************** Similarity of matrices ****************************          
 '''
