@@ -19,7 +19,13 @@ The entire analysis aims to determine which are the Keystones nodes based on mul
 
 The program inputs are basically two:
 - A occurence matrix, which the first column reffer to the samples(i.e, communities) and the other columns reffer to the OTUs. The values are the abundances. The ocurrence matrix can be found [here](data/taxon_abundances). Extract the given files just right there or use your own data.  
-- A metadata matrix, which the first column reffer to the samples(i.e, communities) and the other columns reffer to the metadata. In this pipeline we use habitat and ecosystem as metadata. The metadata matrix can be found [here](data/metadata). Extract the given files just right there or use your own data.  
+- A metadata matrix, which the first column reffer to the samples(i.e, communities) and the other columns reffer to the metadata. In this pipeline we use habitat and ecosystem as metadata. The metadata matrix can be found [here](data/metadata). Extract the given files just right there or use your own data.
+
+Once in the keystone-analysis directory you can run
+
+```sh
+unzip data/taxon_abundances/kraken_relative_matrix_biome_db.zip
+```
 
 2. Software dependencies
 
@@ -27,7 +33,7 @@ This program relies on a Python-3 interpreter and the anaconda package manager. 
 All python packages required by the program are listed in `requirements.txt`. In order to create and activate environment with all dependencies, you should install [anaconda 3](https://www.anaconda.com/) on your linux machine and run:
 
 ```sh
-bash Python/install_dependencies.sh
+bash Shell/install_dependencies.sh
 ```
 * This is necessay just for the first time you run the program.
 
@@ -37,7 +43,7 @@ After installing all requirements and setting your files in the right directorie
 
 ```sh
 conda activate biome_keystones
-python3 Python/main.py
+bash Shell/main.sh
 ```
 
 This script will index all input matrices you gave, execute fastspar with bootstraping, check for the matrix of edges. If the matrix of edges is found, the script proceeds to execute [`correlation.py`]((A)-Keystone-Analysis-Program) for each input matrix.

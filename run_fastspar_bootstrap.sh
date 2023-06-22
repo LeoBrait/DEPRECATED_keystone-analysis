@@ -31,6 +31,7 @@ for iter in 125 250 500 750 1500 3000 4500; do
 done
 
 # bootstrapping
+# create fake habitats
 iter=3000
 path=${base}/boot_iter_${iter}
 
@@ -41,6 +42,7 @@ for seed in {1..2}; do
 done
 
 # not random seeded fake correlation
+# takes the synthetic habitats and calculate fake habitats
 for seed in {1..2}; do
     sseed=$(printf "%03d" $seed)
     for i in {0..999}; do
