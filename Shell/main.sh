@@ -41,37 +41,39 @@ do
     do
         iteraction_dir="${habitat_dir}/${iteraction}"
 
-            for seed in "${seeds[@]}"
-            do
-                out_cor="${iteraction_dir}/cor_${seed}.cor"
-                out_cov="${iteraction_dir}/cov_${seed}.cov"
-                log="${iteraction_dir}/log_${seed}.txt"
-                time_var="${iteraction_dir}/time_${seed}.txt"
-                if [ -f "${out_cor}" ]; then
-                    echo "echo The job for: ${filename} with ${iteraction} an ${seed} was already done"
-                else
+        for seed in "${seeds[@]}"
+        do
+            out_cor="${iteraction_dir}/cor_${seed}.cor"
+            out_cov="${iteraction_dir}/cov_${seed}.cov"
+            log="${iteraction_dir}/log_${seed}.txt"
+            time_var="${iteraction_dir}/time_${seed}.txt"
+            if [ -f "${out_cor}" ]; then
+                echo "echo The job for: " \
+                    "${filename} with ${iteraction} an ${seed} was already done"
+            else
 
-                    #Environment for each iteraction and seed
-                    remove=$(echo "scale=2; $iteraction / 10" | bc | cut -d '.' -f 1)
+                #Environment for each iteraction and seed
+                remove=$(echo "scale=2; $iteraction / 10" | bc | cut -d '.' -f 1)
             
-                    #create the jobs
-                    echo "echo The job for: ${filename} with ${iteraction} an ${seed} is running"
-                    echo "mkdir -p ${habitat_dir}"
-                    echo "mkdir -p ${iteraction_dir}"
-                    echo "fastspar " \
-                        "-c ${subset_path} "\
-                        "-r ${out_cor} " \
-                        "-a ${out_cov} " \
-                        "-t 2 " \
-                        "-s ${seed} " \
-                        "-i ${iteraction} " \
-                        "-x ${remove} " \
-                        "-e 0.1 " \
-                        "-y > ${log} "
-                    echo
-                fi
-            done
+                #create the jobs
+                echo "echo The job for:" \
+                " ${filename} with ${iteraction} an ${seed} is running"
+                echo "mkdir -p ${habitat_dir}"
+                echo "mkdir -p ${iteraction_dir}"
+                echo "fastspar " \
+                    "-c ${subset_path} "\
+                    "-r ${out_cor} " \
+                    "-a ${out_cov} " \
+                    "-t 2 " \
+                    "-s ${seed} " \
+                    "-i ${iteraction} " \
+                    "-x ${remove} " \
+                    "-e 0.1 " \
+                    "-y > ${log} "
+                echo
+            fi
         done
+    done
 done > Shell/jobs/performance_iteractions.txt
 
 
