@@ -6,7 +6,8 @@ python3 Python/pipelines/data_preprocessing.py
 
 ################ performance fastspar iteractions ##############################
 
-communities_path=data/community_subsets/
+# Environment **************************
+communities_path=data/community_subsets
 booststrap_subsets=( 
     "${communities_path}/animal_host-associated.aqueous_humour.tsv" #N=8
     "${communities_path}/animal_host-associated.animal_feces.tsv"   #N=675
@@ -27,13 +28,15 @@ seeds=( 1  2  3  4  5  6  7  8  9 10
 performance_dir=data/performance_fastspar_iteractions
 mkdir -p "${performance_dir}"
 
-#create a job list
+# Job List ***************************
+job_creation_time=$(date +%Y-%m-%d_%H-%M-%S)
 for subset_path in "${booststrap_subsets[@]}"
 do
     #parse the file name without the .tsv
     filename=$(basename -- "$subset_path")
     filename="${filename%.*}"
     for iteraction in "${iteractions[@]}"
+
     do
         for seed in "${seeds[@]}"
         do
@@ -44,30 +47,37 @@ do
             out_cov="$iteraction_dir/cov_${seed}.cov"
             log="$iteraction_dir/log_${seed}.txt"
             time_var="$iteraction_dir/time_${seed}.txt"
-            remove=$(echo "scale=2; $iteraction / 2.5" | bc)
-
+            remove=$(echo "scale=2; $iteraction / 2.5" | bc | cut -d '.' -f 1)
+            mkdir -p "${habitat_dir}"
+            
             #create the jobs
-            echo "if [[ ! -d "\${iteraction_dir}" ]]; then"
-            echo " start_time=\$(date -u +%s.%N)"
-            echo " mkdir -p ${habitat_dir}"
-            echo " mkdir -p ${iteraction_dir}"
-            echo " fastspar " \
+            echo "echo The job for: ${filename} with ${iteraction} is running"
+            echo "mkdir -p ${iteraction_dir}"
+            echo "start_time=\$(date -u +%s.%N)"
+            echo "fastspar " \
               "-c ${subset_path} "\
               "-r ${out_cor} " \
               "-a ${out_cov} " \
-              "-t 5 " \
+              "-t 2 " \
               "-s ${seed} " \
               "-i ${iteraction} " \
               "-x ${remove} " \
               "-e 0.1 " \
               "-y > ${log} "
-            echo " end_time=\$("date" -u +%s.%N) > ${time_var}"
-            echo "else: echo "The job for: " \
-              ${filename} with ${iteraction} already exists"
-            echo "fi"
+            #save the time in job chunk
+            echo "end_time=\$(date -u +%s.%N)"
+            echo "elapsed_time=\$(echo \$end_time - \$start_time | bc)"
+            echo "echo \$elapsed_time > ${time_var}"
+            
+            #debug
+            echo "echo Start Time: \$start_time"
+            echo "echo End Time: \$end_time"
+            echo "echo Elapsed Time: \$elapsed_time"
+            echo "The job for: ${filename} with ${iteraction} already exists"
             echo
         done
     done
 done > Shell/jobs/performance_iteractions.txt
 
-xargs -P 20 -I {} bash -c "{}" < Shell/jobs/performance_iteractions.sh
+# Run the jobs 5 process
+xargs -P 5 -I {} bash -c "{}" < Shell/jobs/performance_iteractions.txt
