@@ -52,17 +52,18 @@ do
             echo " mkdir -p ${habitat_dir}"
             echo " mkdir -p ${iteraction_dir}"
             echo " fastspar " \
-            "-c ${subset_path} "\
-            "-r ${out_cor} " \
-            "-a ${out_cov} " \
-            "-t 5 " \
-            "-s ${seed} " \
-            "-i ${iteraction} " \
-            "-x ${remove} " \
-            "-e 0.1 " \
-            "-y > ${log} "
+              "-c ${subset_path} "\
+              "-r ${out_cor} " \
+              "-a ${out_cov} " \
+              "-t 5 " \
+              "-s ${seed} " \
+              "-i ${iteraction} " \
+              "-x ${remove} " \
+              "-e 0.1 " \
+              "-y > ${log} "
             echo " end_time=\$("date" -u +%s.%N) > ${time_var}"
-            echo "else: echo "The job for ${filename} with ${iteraction} already exists""
+            echo "else: echo "The job for: " \
+              ${filename} with ${iteraction} already exists"
             echo "fi"
             echo
         done
