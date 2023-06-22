@@ -20,8 +20,8 @@ from numpy.linalg import norm
 
 # Paths
 src_dir = os.path.dirname(os.path.abspath(__file__))
-data_dir = os.path.join(src_dir, '..', 'data/')
-global_dir = os.path.join(src_dir, '..')
+data_dir = os.path.join(src_dir, '../..', 'data/')
+global_dir = os.path.join(src_dir, '../..')
 
 # Custom functions
 sys.path.append(f'{src_dir}/src')
@@ -134,21 +134,20 @@ for subset_path in bootstrap_subsets:
             print(f'{subset_name} and {iteraction} already exists')
         else:
             os.makedirs(f'{iteraction_dir}', exist_ok=True)
-            
-            if len(processes) < 3:
+    
 
-                for seed in range(0, 20):
+            for seed in range(0, 20):
                     out_cor = f'{iteraction_dir}/cor_'f'{seed}''.cor'
                     out_cov = f'{iteraction_dir}/cov_'f'{seed}''.cov'
                     remove = iteraction / 2.5
                     remove = int(remove)
                 
                     network_time = datetime.now()
-                    completed_process = subprocess.Popen(['fastspar',
+                    completed_process = subprocess.run(['fastspar',
                         '-c', f'{subset_path}',
                         '-r', f'{out_cor}',
                         '-a', f'{out_cov}',
-                        '-t', '20',
+                        '-t', '5',
                         '-s', f'{seed}',
                         '-i', f'{iteraction}',
                         '-x', f'{remove}',
@@ -157,10 +156,9 @@ for subset_path in bootstrap_subsets:
                         stdout=subprocess.PIPE,
                         stderr=subprocess.PIPE, text=True)
                     
-                    processes.append(completed_process)
                     log_filepath = f'{iteraction_dir}/log_'f'{seed}''.txt'
                 
-                    output = completed_process.stdout.read().decode('utf-8')
+                    output = completed_process.stdout
                     with open(log_filepath, 'w') as log_file:
                         log_file.write(output)
                 
@@ -173,10 +171,7 @@ for subset_path in bootstrap_subsets:
                       f"{iteraction} iteractions and seed {seed}")
                     print("elapsed time in bootstrap: ",
                       datetime.now() - startTime)
-                else:
-                    for process in processes:
-                        process.wait()
-                    processes = []
+         
 
 #*************************** Similarity of matrices ****************************          
 '''
