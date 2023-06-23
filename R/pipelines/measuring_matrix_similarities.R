@@ -1,3 +1,4 @@
+sci.pe
 library("tidyverse")
 source("R/data_processing/calculate_cosine_similarity.R")
 
@@ -25,31 +26,40 @@ for (i in 1:length(iter_sets_paths)) {
   for (j in 1:length(iter_sets_paths[[i]])) {
     
     tables[[j]] <- as.matrix(read_tsv(iter_sets_paths[[i]][j]))
-    iter_sets[[ iter_names[i] ]] [[j]] <- tables[[j]]
+    iter_sets[[ iter_names[i] ]] [[j]] <- as.data.frame(tables[[j]])
+    colnames(iter_sets[[ iter_names[i] ]] [[j]]) <- NULL
+    iter_sets[[ iter_names[i] ]] [[j]][1] <- NULL
 
   }}
 
-#calculate cosine similarity
-test <- list()
-for (i in 1:20) {
-  test[[i]] <- as.data.frame(iter_sets[["300"]][[i]])
-  colnames(test[[i]]) <- NULL
-  test[[i]][1] <- NULL
-  test[[i]] <- as.matrix(test[[i]])
-
+convert_to_numeric <- function(df) {
+  char_cols <- sapply(df, is.character)
+  df[char_cols] <- lapply(df[char_cols], as.numeric)
+  df
 }
-x <- test[[1]]
 
-flattened1 <- as.vector(test[[1]])
-flattened2 <- as.vector(test[[2]])
+
+# Convert data frames to numerical matrices
+matrix_list <- lapply(iter_sets$"300", function(df) as.matrix(convert_to_numeric(df)))
+
+x <- as.matrix(matrix_list[[1]])
+
+
+x <- cosine_similarity(matrix_list[[1]], matrix_list[[2]])
+
+
+flattened1 <- c(matrix_list[[1]])
+flattened2 <- c(matrix_list[[2]])
 dot_product <- sum(flattened1 * flattened2)
-  norm_product <- sqrt(sum(flattened1^2)) * sqrt(sum(flattened2^2))
-  similarity <- dot_product / norm_product
-  return(similarity)
+norm_product <- sqrt(sum(flattened1^2)) * sqrt(sum(flattened2^2))
+similarity <- dot_product / norm_product
+
+
+sim300 <- similarity
 
 
 
-results_simiralities <- compute_matrices_similarity(test)
+results_simiralities <- compute_matrices_similarity(matrix_list)
 
 length(iter_sets[["300"]])
 
