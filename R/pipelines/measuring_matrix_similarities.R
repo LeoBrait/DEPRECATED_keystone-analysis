@@ -1,6 +1,64 @@
 library("tidyverse")
 source("R/data_processing/calculate_cosine_similarity.R")
 
+#manual test
+aqueous_humour <- dir("data/performance_fastspar_iterations/animal_host-associated.aqueous_humour", full.names = TRUE)
+iter_names <- dir("data/performance_fastspar_iterations/animal_host-associated.aqueous_humour")
+
+for (i in 1:length(aqueous_humour)) {
+
+  iter_sets_paths <- list()
+  
+  for(j in 1:length(iter_names)) {
+    iter_sets_paths[[iter_names[j]]] <- dir(aqueous_humour[j], pattern = ".cor", full.names = TRUE)
+  }
+
+}
+
+#load the tables
+iter_sets <- list()
+tables <-  list()
+for (i in 1:length(iter_sets_paths)) {
+  
+  iter_sets[[ iter_names[i] ]] <- list()
+  
+  for (j in 1:length(iter_sets_paths[[i]])) {
+    
+    tables[[j]] <- as.matrix(read_tsv(iter_sets_paths[[i]][j]))
+    iter_sets[[ iter_names[i] ]] [[j]] <- tables[[j]]
+
+  }}
+
+#calculate cosine similarity
+test <- list()
+for (i in 1:20) {
+  test[[i]] <- as.data.frame(iter_sets[["300"]][[i]])
+  colnames(test[[i]]) <- NULL
+  test[[i]][1] <- NULL
+  test[[i]] <- as.matrix(test[[i]])
+
+}
+x <- test[[1]]
+
+flattened1 <- as.vector(test[[1]])
+flattened2 <- as.vector(test[[2]])
+dot_product <- sum(flattened1 * flattened2)
+  norm_product <- sqrt(sum(flattened1^2)) * sqrt(sum(flattened2^2))
+  similarity <- dot_product / norm_product
+  return(similarity)
+
+
+
+results_simiralities <- compute_matrices_similarity(test)
+
+length(iter_sets[["300"]])
+
+
+
+
+
+
+
 # Check directories inside the data folder
 habitats <- dir("data/performance_fastspar_iterations")
 data_object <- list()
@@ -24,17 +82,17 @@ for (habitat in habitats) {
       table_path <- file.path(interaction_path, table)
       
       # Load the table data (adjust this step based on your specific requirements)
-      table_data <- read_tsv(table_path)
+      table_data <- as.matrix(read_tsv(table_path)) #try remove as matrix
       
-      # Store the table data within the interaction data
-      #interaction_data[[table]] <- table_data
-    }}}
+      #Store the table data within the interaction data
+      interaction_data[[table]] <- table_data
+     }
     
-#     # Store the interaction data within the habitat data
-#     habitat_data[[interaction]] <- interaction_data
-#   }
+    # Store the interaction data within the habitat data
+    habitat_data[[interaction]] <- interaction_data
+  }
   
-#   # Store the habitat data within the data object
-#   data_object[[habitat]] <- habitat_data
-# }
+  # Store the habitat data within the data object
+  data_object[[habitat]] <- habitat_data
+}
 
