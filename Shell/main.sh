@@ -1,15 +1,15 @@
 #!/bin/bash
-
+#Author: Bright Mage
 
 ######################### Data pre-process #####################################
 
 python3 Python/pipelines/data_preprocessing.py
 
-################ performance fastspar iterations ##############################
+######################### performance fastspar iterations ######################
 
 # Environment ******************************************************************
 communities_path=data/community_subsets
-booststrap_subsets=( 
+iterations_test_subsets=( 
     "${communities_path}/animal_host-associated.aqueous_humour.tsv" #N=8
     "${communities_path}/animal_host-associated.animal_feces.tsv"   #N=675
     "${communities_path}/saline_water.coastal_seawater.tsv"         #N=286
@@ -31,7 +31,7 @@ performance_dir=data/performance_fastspar_iterations
 mkdir -p "${performance_dir}"
 
 # Job List *********************************************************************
-for subset_path in "${booststrap_subsets[@]}"
+for subset_path in "${iterations_test_subsets[@]}"
 do
     #parse the file name without the .tsv
     filename=$(basename -- "$subset_path")
