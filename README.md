@@ -29,8 +29,8 @@ unzip data/taxon_abundances/kraken_relative_matrix_biome_db.zip
 
 2. Software dependencies
 
-This program relies on a Python-3 interpreter and the anaconda package manager. Also, it was tested and developed on Ubuntu-18-04(WSL) with the Anaconda3 environment manager but probably can be run on other Linux distributions and MacOS.  
-All python packages required by the program are listed in `requirements.txt`. In order to create and activate environment with all dependencies, you should install [anaconda 3](https://www.anaconda.com/) on your linux machine and run:
+This program relies on a Python-3 interpreter and the anaconda (or miniconda) package manager. Also, it was tested and developed on Ubuntu-18-04(WSL) with the Anaconda3 environment manager but probably can be run on other Linux distributions and MacOS.  
+All python packages required by the program are listed in `requirements.txt`. In order to create and activate environment with all dependencies, you should install [anaconda 3](https://www.anaconda.com/) or miniconda on your linux machine and run:
 
 ```sh
 bash Shell/install_dependencies.sh
@@ -39,10 +39,9 @@ bash Shell/install_dependencies.sh
 
 ## Usage
 
-After installing all requirements and setting your files in the right directories, you can run the analysis just by doing:
+After installing all requirements and setting your files in the right directories, you should check for the environment settings in the file [main.sh](Shell/main.sh). In this program we use environment switchs between R and Python environments, so please make sure your package manager and profiles path are correctly assigned. After that, you can run the analysis just by doing:
 
 ```sh
-conda activate biome_keystones
 bash Shell/main.sh
 ```
 

@@ -1,4 +1,5 @@
 #!/bin/bash
 conda config --add channels bioconda
 conda config --add channels conda-forge
-conda create --name biome_keystones --file Python/requirements.txt
+conda create --name pyshell_biome_keystones --file requirements_pyshell.txt
+conda create --name R_biome_keystones --file requirements_r.txt

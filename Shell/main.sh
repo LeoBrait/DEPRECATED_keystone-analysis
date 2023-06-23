@@ -3,9 +3,12 @@
 
 # Environment Settings
 package_manager="miniconda3"
+parallel=20
 
 ######################### Data pre-process #####################################
 
+source ~/$package_manager/etc/profile.d/conda.sh
+conda activate pyshell_biome_keystones
 python3 Python/pipelines/data_preprocessing.py
 
 ######################### performance fastspar iterations ######################
@@ -87,12 +90,12 @@ done > Shell/jobs/performance_iterations.txt
 
 # Run the jobs *****************************************************************
 
-xargs -P 20 -I {} bash -c "{}" < Shell/jobs/performance_iterations.txt
+xargs -P $parallel -I {} bash -c "{}" < Shell/jobs/performance_iterations.txt
 
 # Maxrix similarities **********************************************************
-source ~/$package_manager/etc/profile.d/conda.sh
+
 conda activate R_biome_keystones
-Rscript R/data_processing/calculate_cosine_similarity.R
+Rscript R/pipelines/measuring_matrix_similarities.R
 
 ######################### Fastspar P-values ####################################
 
