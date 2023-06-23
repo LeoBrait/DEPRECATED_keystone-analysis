@@ -36,6 +36,13 @@ All python packages required by the program are listed in `requirements.txt`. In
 bash Shell/install_dependencies.sh
 ```
 * This is necessay just for the first time you run the program.
+* **Troubleshooting:** If you have problems to find your conda installation and profiles, you can try the following:
+
+```sh
+which conda
+```
+
+
 
 ## Usage
 

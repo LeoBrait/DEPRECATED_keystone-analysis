@@ -3,11 +3,14 @@
 
 # Environment Settings
 package_manager="miniconda3"
+source ~/$package_manager/etc/profile.d/conda.sh
+
+# Computational resources
 parallel=20
 
 ######################### Data pre-process #####################################
 
-source ~/$package_manager/etc/profile.d/conda.sh
+
 conda activate pyshell_biome_keystones
 python3 Python/pipelines/data_preprocessing.py
 
