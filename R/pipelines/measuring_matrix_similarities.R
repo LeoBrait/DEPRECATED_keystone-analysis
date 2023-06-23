@@ -1,4 +1,4 @@
-sci.pe
+options(scipen = 9999999)
 library("tidyverse")
 source("R/data_processing/calculate_cosine_similarity.R")
 
@@ -40,7 +40,7 @@ convert_to_numeric <- function(df) {
 
 
 # Convert data frames to numerical matrices
-matrix_list <- lapply(iter_sets$"300", function(df) as.matrix(convert_to_numeric(df)))
+matrix_list <- lapply(iter_sets$"16000", function(df) as.matrix(convert_to_numeric(df)))
 
 x <- as.matrix(matrix_list[[1]])
 
@@ -61,48 +61,16 @@ sim300 <- similarity
 
 results_simiralities <- compute_matrices_similarity(matrix_list)
 
-length(iter_sets[["300"]])
+# get half of the matrix and convert to vector
+results_simiralities <- as.vector(results_simiralities[upper.tri(results_simiralities, diag = TRUE)])
 
 
+data <- as.data.frame(results_simiralities)
 
-
-
-
-
-# Check directories inside the data folder
-habitats <- dir("data/performance_fastspar_iterations")
-data_object <- list()
-
-# Iterate over habitats
-for (habitat in habitats) {
-  habitat_path <- paste0("data/performance_fastspar_iterations/", habitat)
-
-  # Get interactions within the habitat
-  interactions <- dir(habitat_path)
-  habitat_data <- list()
-
-  # Iterate over interactions within the habitat
-  for (interaction in interactions) {
-    interaction_path <- file.path(habitat_path, interaction)
-    tables <- dir(interaction_path, pattern = ".cor")
-    interaction_data <- list()
-
-    # Iterate over tables within the interaction
-    for (table in tables) {
-      table_path <- file.path(interaction_path, table)
-      
-      # Load the table data (adjust this step based on your specific requirements)
-      table_data <- as.matrix(read_tsv(table_path)) #try remove as matrix
-      
-      #Store the table data within the interaction data
-      interaction_data[[table]] <- table_data
-     }
-    
-    # Store the interaction data within the habitat data
-    habitat_data[[interaction]] <- interaction_data
-  }
-  
-  # Store the habitat data within the data object
-  data_object[[habitat]] <- habitat_data
-}
-
+ggplot(data = data
+        , aes(x = results_simiralities)) +
+    geom_histogram(bins = 100) +
+    labs(x = "Cosine similarity", y = "Frequency") +
+    theme_bw(
+)
+ggsave("cosine_similarity.png", width = 10, height = 10, units = "cm")

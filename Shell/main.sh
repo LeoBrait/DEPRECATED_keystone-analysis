@@ -34,7 +34,10 @@ iterations=(   300   400   500  1000
               9000  12000 14000 16000)
 
 seeds=( 1  2  3  4  5  6  7  8  9 10
-       11 12 13 14 15 16 17 18 19 20)
+       11 12 13 14 15 16 17 18 19 20
+       21 22 23 24 25 26 27 28 29 30
+       31 32 33 34 35 36 37 38 39 40
+       41 42 43 44 45 46 47 48 49 50)
 
 performance_dir=data/performance_fastspar_iterations
 mkdir -p "${performance_dir}"
@@ -97,8 +100,8 @@ xargs -P $parallel -I {} bash -c "{}" < Shell/jobs/performance_iterations.txt
 
 # Maxrix similarities **********************************************************
 
-conda activate R_biome_keystones
-Rscript R/pipelines/measuring_matrix_similarities.R
+# conda activate R_biome_keystones
+# Rscript R/pipelines/measuring_matrix_similarities.R
 
 ######################### Fastspar P-values ####################################
 
