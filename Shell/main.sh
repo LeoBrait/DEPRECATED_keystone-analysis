@@ -1,6 +1,9 @@
 #!/bin/bash
 #Author: Bright Mage
 
+# Environment Settings
+package_manager="miniconda3"
+
 ######################### Data pre-process #####################################
 
 python3 Python/pipelines/data_preprocessing.py
@@ -87,6 +90,9 @@ done > Shell/jobs/performance_iterations.txt
 xargs -P 20 -I {} bash -c "{}" < Shell/jobs/performance_iterations.txt
 
 # Maxrix similarities **********************************************************
+source ~/$package_manager/etc/profile.d/conda.sh
+conda activate R_biome_keystones
+Rscript R/data_processing/calculate_cosine_similarity.R
 
 ######################### Fastspar P-values ####################################
 
