@@ -6,7 +6,7 @@ package_manager="miniconda3"
 source ~/$package_manager/etc/profile.d/conda.sh
 
 # Computational resources
-parallel=20
+parallel=40
 
 ######################### Data pre-process #####################################
 
@@ -75,16 +75,16 @@ do
                             "seed ${seed} is running..."
                 echo "mkdir -p ${habitat_dir}"
                 echo "mkdir -p ${iteration_dir}"
-                echo "fastspar " \
+                echo "fastspar "\
                     "-c ${subset_path} "\
-                    "-r ${out_cor} " \
-                    "-a ${out_cov} " \
-                    "-t 2 " \
-                    "-s $seed " \
-                    "-i $iteration " \
-                    "-x $remove " \
-                    "-e 0.1 " \
-                    "-y > ${log} "
+                    "-r ${out_cor} "\
+                    "-a ${out_cov} "\
+                    "-t 2 "\
+                    "-s $seed "\
+                    "-i $iteration "\
+                    "-x $remove "\
+                    "-e 0.1 "\
+                    "-y > ${log}"
                 echo "echo ${filename} with ${iteration} iterations," \
                         " and seed ${seed} done!"
                 echo

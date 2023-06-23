@@ -62,7 +62,7 @@ sim300 <- similarity
 results_simiralities <- compute_matrices_similarity(matrix_list)
 
 # get half of the matrix and convert to vector
-results_simiralities <- as.vector(results_simiralities[upper.tri(results_simiralities, diag = TRUE)])
+results_simiralities <- as.vector(results_simiralities[upper.tri(results_simiralities, diag = FALSE)])
 
 
 data <- as.data.frame(results_simiralities)
