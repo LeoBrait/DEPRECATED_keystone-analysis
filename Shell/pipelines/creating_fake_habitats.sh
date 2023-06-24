@@ -5,6 +5,7 @@ communities_path=data/community_subsets
 tablenames_real=($(\ls ${communities_path}))
 general_synthetics_dir=data/synthetic_habitats
 mkdir -p "${general_synthetics_dir}"
+mkdir -p "synthetic_habitats_logs"
 
 # Job creation *****************************************************************
 for single_tablename_real in "${tablenames_real[@]}"; 
@@ -16,7 +17,7 @@ do
     synt_habitat_dir="${general_synthetics_dir}/${habitat}"
 
     #Environment for each iteration and seed
-    log="${synt_habitat_dir}/log.txt"
+    log="synthetic_habitats_logs/log_${habitat}.txt"
                      
     #create the jobs file in jobs folder
     echo "echo fake_habitat for: ${habitat} is running..."

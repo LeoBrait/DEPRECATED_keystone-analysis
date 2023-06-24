@@ -109,19 +109,22 @@ xargs -P $parallel -I {} bash -c "{}" < Shell/jobs/performance_iterations.txt
 # Environment ******************************************************************
 conda activate pyshell_biome_keystones
 
+# Defining the control function
 confirm() {
     read -N 1 REPLY
     echo
     if [[ "$REPLY" = "y" || "$REPLY" = "Y" ]]; then
-        $2 $3
+        shift
+        "$@"
     else
         echo "Cancelled by user: $1"
-        exit 1
     fi
 }
 
+# Ask the user / run the code
 echo "Do you want to create fake habitats for the p-values check?[y/n]" 
 confirm "Habitat creation" source Shell/pipelines/creating_fake_habitats.sh
+
 
 
 ## ask to run the line bellow
