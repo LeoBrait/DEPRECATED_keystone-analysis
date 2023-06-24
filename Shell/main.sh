@@ -109,42 +109,19 @@ xargs -P $parallel -I {} bash -c "{}" < Shell/jobs/performance_iterations.txt
 # Environment ******************************************************************
 conda activate pyshell_biome_keystones
 
-# Defining the control function
-confirm() {
-    read -N 1 REPLY
-    echo
-    if [[ "$REPLY" = "y" || "$REPLY" = "Y" ]]; then
-        shift
-        "$@"
+# check if the directory data/synthtic_habitats exists
+if [ ! -d "data/synthetic_habitats" ]; then
+    source Shell/pipelines/creating_fake_habitats.sh
     else
-        echo "Cancelled by user: $1"
-    fi
-}
+        echo "Seems that the synthetic habitats are already created." \
+            "jumping to the next step..."
+fi
 
-# Ask the user / run the code
-echo "Do you want to create fake habitats for the p-values check?[y/n]" 
-confirm "Habitat creation" source Shell/pipelines/creating_fake_habitats.sh
-
+# Run fastspar with synthetic communities **************************************
+source Shell/pipelines/fastspar_synthetics.sh
 
 
-## ask to run the line bellow
-# echo "Do you want to run a line?"
-# read -p "Enter the line number: " line
-# source ~/Shell/pipelines/fastspar_pvalues.sh
-
-# echo "Do you want to run a line?"
-# read -p "Enter the line number: " line
-# #do fastspar on fake habitats
-# for seed in {1..2}; do
-#     sseed=$(printf "%03d" $seed)
-#     for i in {0..999}; do
-#         if [[ ! -f ${path}/${sseed}/cor/${i}.tsv ]]; then
-#             fastspar -c ${path}/${sseed}/anot/a_${i}.tsv -r ${path}/${sseed}/cor/${i}.tsv -a ${path}/${sseed}/cov/${i}.tsv -t $nthreads -s 1 -i $iter -x $xter -e $corThr -y
-#         fi
-#     done
-# done
-
-# # Test real correlations vs. fake *********************************************
+# # Test real correlations vs. fake ********************************************
 # for seed in {1..2}; do
 #     sseed=$(printf "%03d" $seed)
 #     fastspar_pvalues -c ${base}/$anot -r ${path}/${sseed}/cor.tsv -n 1000 -p ${path}/${sseed}/cor/ -o ${path}/${sseed}/pval.tsv -t $nthreads
