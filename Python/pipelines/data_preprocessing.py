@@ -13,13 +13,13 @@ pre_process_time = datetime.now()
 
 #TODO: DECIDE THE FACTOR OF MULTIPLICATION TO AVOID FLOATING POINT ERRORS
 #multiply each relative abundance for 1000
-# kraken_custom_phyla = pd.read_csv(f'{data_dir}taxon_abundances/kraken_custom_phyla.csv')
-# kraken_custom_phyla.iloc[:,1:] = kraken_custom_phyla.iloc[:,1:].apply(lambda x: x*1000)
+kraken_custom_phyla = pd.read_csv(f'{data_dir}taxon_abundances/kraken_custom_phyla.csv')
+kraken_custom_phyla.iloc[:,1:] = kraken_custom_phyla.iloc[:,1:].apply(lambda x: x*1000)
 
 merged_data = pd.read_csv(
     f'{data_dir}metadata/biome_classification.csv').filter(
         items=['samples', 'habitat', 'ecosystem']).merge(
-            pd.read_csv(f'{data_dir}taxon_abundances/kraken_custom_phyla.csv'),
+            kraken_custom_phyla,
             on='samples',
             how='inner')
 
