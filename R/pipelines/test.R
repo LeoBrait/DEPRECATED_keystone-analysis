@@ -9,12 +9,11 @@ source("R/data_processing/calculate_cosine_similarity.R")
 
 # Manual test
 habitat <- dir("data/performance_fastspar_iterations/", full.names = TRUE)
-
+habitat_names <- dir("data/performance_fastspar_iterations/")
 
 iter_names <- dir("data/performance_fastspar_iterations/animal_host-associated.animal_feces/")
 numeric <- as.numeric(iter_names) %>% sort()
 iter_names <- as.character(numeric)
-
 
 # Set up parallel processing
 cores <- detectCores() - 10
@@ -23,7 +22,6 @@ registerDoParallel(cl)
 
 # Function to compute similarity matrix for a given habitat and iteration
 compute_similarity <- function(habitat_path, iteration_name) {
-
   full_path <- paste0(habitat_path, "/", iteration_name)
   iter_sets_paths <- dir(full_path, pattern = ".cor", full.names = TRUE)
   
@@ -50,12 +48,16 @@ compute_similarity <- function(habitat_path, iteration_name) {
   # Compute similarity matrix
   results_similarities <- compute_matrices_similarity(matrix_list)
   
-  return(as.vector(results_similarities[upper.tri(results_similarities, diag = FALSE)]))
+  # Return as a named data frame
+  result_df <- data.frame(habitat_names[1], as.vector(results_similarities[upper.tri(results_similarities, diag = FALSE)]))
+  names(result_df) <- c("Habitat", iteration_name)
+  
+  return(result_df)
 }
 
 # Compute similarities for each habitat and iteration using parallel processing
-results <- foreach(path = habitat, .combine = rbind) %:%
-           foreach(iteration = iter_names, .combine = rbind) %dopar% {
+results <- foreach(path = habitat, .combine = list) %:%
+           foreach(iteration = iter_names, .combine = list) %dopar% {
              compute_similarity(path, iteration)
            }
 
@@ -63,12 +65,7 @@ results <- foreach(path = habitat, .combine = rbind) %:%
 stopCluster(cl)
 registerDoSEQ()
 
-# Create a dataframe to store the results
-results_df <- as.data.frame(results)
-colnames(results_df) <- iter_names
-
-# Print the dataframe
-print(results_df)
-
+# Print the list of data frames
+print(results)
 
 ###foreach
