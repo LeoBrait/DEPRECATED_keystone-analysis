@@ -13,6 +13,8 @@ data/community_subsets_raw/*.csv
 data/community_subsets/*.tsv
 data/taxon_abundances/*.csv
 data/fastspar_networks/*/
+data/performance_fastspar_iterations
+data/synthetic_fastspar
 
 
 # Desconsider all the directories of a given directory

@@ -10,7 +10,6 @@ parallel=40
 
 ######################### Data pre-process #####################################
 
-
 conda activate pyshell_biome_keystones
 python3 Python/pipelines/data_preprocessing.py
 
@@ -29,9 +28,7 @@ iterations_test_subsets=(
     "${communities_path}/groundwater.mine.tsv")                     #N=3
 
 iterations=(   300   400   500  1000
-              1500  3000  3500  4000
-              5000  6000  7000  8000
-              9000  12000 14000 16000)
+              1500  3000  3500  4000)
 
 seeds=( 1  2  3  4  5  6  7  8  9 10
        11 12 13 14 15 16 17 18 19 20
