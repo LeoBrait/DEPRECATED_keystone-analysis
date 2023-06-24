@@ -5,7 +5,8 @@ general_log.txt
 
 #Desconsider data generated from the scripts
 data/summaries/
-data/synthtic_habitats
+data/synthetic_habitats
+synthetic_habitats_logs
 
 # Desconsider data obtainable from zip files
 data/community_subsets_raw/*.csv

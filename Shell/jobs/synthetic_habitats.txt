@@ -1,400 +1,400 @@
 echo fake_habitat for: animal_host-associated.animal_feces is running...
 mkdir -p data/synthetic_habitats/animal_host-associated.animal_feces
-fastspar_bootstrap -c data/community_subsets/animal_host-associated.animal_feces.tsv -n 250 -p data/synthetic_habitats/animal_host-associated.animal_feces/fake_animal_host-associated.animal_feces -t 2  -s 1 > data/synthetic_habitats/logs/log_animal_host-associated.animal_feces.txt
+fastspar_bootstrap -c data/community_subsets/animal_host-associated.animal_feces.tsv -n 250 -p data/synthetic_habitats/animal_host-associated.animal_feces/fake_animal_host-associated.animal_feces -t 2  -s 1 > synthetic_habitats_logs/log_animal_host-associated.animal_feces.txt
 echo fake animal_host-associated.animal_feces done!
 
 echo fake_habitat for: animal_host-associated.animal_gut is running...
 mkdir -p data/synthetic_habitats/animal_host-associated.animal_gut
-fastspar_bootstrap -c data/community_subsets/animal_host-associated.animal_gut.tsv -n 250 -p data/synthetic_habitats/animal_host-associated.animal_gut/fake_animal_host-associated.animal_gut -t 2  -s 1 > data/synthetic_habitats/logs/log_animal_host-associated.animal_gut.txt
+fastspar_bootstrap -c data/community_subsets/animal_host-associated.animal_gut.tsv -n 250 -p data/synthetic_habitats/animal_host-associated.animal_gut/fake_animal_host-associated.animal_gut -t 2  -s 1 > synthetic_habitats_logs/log_animal_host-associated.animal_gut.txt
 echo fake animal_host-associated.animal_gut done!
 
 echo fake_habitat for: animal_host-associated.animal_manure is running...
 mkdir -p data/synthetic_habitats/animal_host-associated.animal_manure
-fastspar_bootstrap -c data/community_subsets/animal_host-associated.animal_manure.tsv -n 250 -p data/synthetic_habitats/animal_host-associated.animal_manure/fake_animal_host-associated.animal_manure -t 2  -s 1 > data/synthetic_habitats/logs/log_animal_host-associated.animal_manure.txt
+fastspar_bootstrap -c data/community_subsets/animal_host-associated.animal_manure.tsv -n 250 -p data/synthetic_habitats/animal_host-associated.animal_manure/fake_animal_host-associated.animal_manure -t 2  -s 1 > synthetic_habitats_logs/log_animal_host-associated.animal_manure.txt
 echo fake animal_host-associated.animal_manure done!
 
 echo fake_habitat for: animal_host-associated.aqueous_humour is running...
 mkdir -p data/synthetic_habitats/animal_host-associated.aqueous_humour
-fastspar_bootstrap -c data/community_subsets/animal_host-associated.aqueous_humour.tsv -n 250 -p data/synthetic_habitats/animal_host-associated.aqueous_humour/fake_animal_host-associated.aqueous_humour -t 2  -s 1 > data/synthetic_habitats/logs/log_animal_host-associated.aqueous_humour.txt
+fastspar_bootstrap -c data/community_subsets/animal_host-associated.aqueous_humour.tsv -n 250 -p data/synthetic_habitats/animal_host-associated.aqueous_humour/fake_animal_host-associated.aqueous_humour -t 2  -s 1 > synthetic_habitats_logs/log_animal_host-associated.aqueous_humour.txt
 echo fake animal_host-associated.aqueous_humour done!
 
 echo fake_habitat for: animal_host-associated.beef is running...
 mkdir -p data/synthetic_habitats/animal_host-associated.beef
-fastspar_bootstrap -c data/community_subsets/animal_host-associated.beef.tsv -n 250 -p data/synthetic_habitats/animal_host-associated.beef/fake_animal_host-associated.beef -t 2  -s 1 > data/synthetic_habitats/logs/log_animal_host-associated.beef.txt
+fastspar_bootstrap -c data/community_subsets/animal_host-associated.beef.tsv -n 250 -p data/synthetic_habitats/animal_host-associated.beef/fake_animal_host-associated.beef -t 2  -s 1 > synthetic_habitats_logs/log_animal_host-associated.beef.txt
 echo fake animal_host-associated.beef done!
 
 echo fake_habitat for: animal_host-associated.bodily_fluid is running...
 mkdir -p data/synthetic_habitats/animal_host-associated.bodily_fluid
-fastspar_bootstrap -c data/community_subsets/animal_host-associated.bodily_fluid.tsv -n 250 -p data/synthetic_habitats/animal_host-associated.bodily_fluid/fake_animal_host-associated.bodily_fluid -t 2  -s 1 > data/synthetic_habitats/logs/log_animal_host-associated.bodily_fluid.txt
+fastspar_bootstrap -c data/community_subsets/animal_host-associated.bodily_fluid.tsv -n 250 -p data/synthetic_habitats/animal_host-associated.bodily_fluid/fake_animal_host-associated.bodily_fluid -t 2  -s 1 > synthetic_habitats_logs/log_animal_host-associated.bodily_fluid.txt
 echo fake animal_host-associated.bodily_fluid done!
 
 echo fake_habitat for: animal_host-associated.chyme is running...
 mkdir -p data/synthetic_habitats/animal_host-associated.chyme
-fastspar_bootstrap -c data/community_subsets/animal_host-associated.chyme.tsv -n 250 -p data/synthetic_habitats/animal_host-associated.chyme/fake_animal_host-associated.chyme -t 2  -s 1 > data/synthetic_habitats/logs/log_animal_host-associated.chyme.txt
+fastspar_bootstrap -c data/community_subsets/animal_host-associated.chyme.tsv -n 250 -p data/synthetic_habitats/animal_host-associated.chyme/fake_animal_host-associated.chyme -t 2  -s 1 > synthetic_habitats_logs/log_animal_host-associated.chyme.txt
 echo fake animal_host-associated.chyme done!
 
 echo fake_habitat for: animal_host-associated.coral is running...
 mkdir -p data/synthetic_habitats/animal_host-associated.coral
-fastspar_bootstrap -c data/community_subsets/animal_host-associated.coral.tsv -n 250 -p data/synthetic_habitats/animal_host-associated.coral/fake_animal_host-associated.coral -t 2  -s 1 > data/synthetic_habitats/logs/log_animal_host-associated.coral.txt
+fastspar_bootstrap -c data/community_subsets/animal_host-associated.coral.tsv -n 250 -p data/synthetic_habitats/animal_host-associated.coral/fake_animal_host-associated.coral -t 2  -s 1 > synthetic_habitats_logs/log_animal_host-associated.coral.txt
 echo fake animal_host-associated.coral done!
 
 echo fake_habitat for: animal_host-associated.rumen is running...
 mkdir -p data/synthetic_habitats/animal_host-associated.rumen
-fastspar_bootstrap -c data/community_subsets/animal_host-associated.rumen.tsv -n 250 -p data/synthetic_habitats/animal_host-associated.rumen/fake_animal_host-associated.rumen -t 2  -s 1 > data/synthetic_habitats/logs/log_animal_host-associated.rumen.txt
+fastspar_bootstrap -c data/community_subsets/animal_host-associated.rumen.tsv -n 250 -p data/synthetic_habitats/animal_host-associated.rumen/fake_animal_host-associated.rumen -t 2  -s 1 > synthetic_habitats_logs/log_animal_host-associated.rumen.txt
 echo fake animal_host-associated.rumen done!
 
 echo fake_habitat for: animal_host-associated.sponge is running...
 mkdir -p data/synthetic_habitats/animal_host-associated.sponge
-fastspar_bootstrap -c data/community_subsets/animal_host-associated.sponge.tsv -n 250 -p data/synthetic_habitats/animal_host-associated.sponge/fake_animal_host-associated.sponge -t 2  -s 1 > data/synthetic_habitats/logs/log_animal_host-associated.sponge.txt
+fastspar_bootstrap -c data/community_subsets/animal_host-associated.sponge.tsv -n 250 -p data/synthetic_habitats/animal_host-associated.sponge/fake_animal_host-associated.sponge -t 2  -s 1 > synthetic_habitats_logs/log_animal_host-associated.sponge.txt
 echo fake animal_host-associated.sponge done!
 
 echo fake_habitat for: freshwater.alkaline_environment is running...
 mkdir -p data/synthetic_habitats/freshwater.alkaline_environment
-fastspar_bootstrap -c data/community_subsets/freshwater.alkaline_environment.tsv -n 250 -p data/synthetic_habitats/freshwater.alkaline_environment/fake_freshwater.alkaline_environment -t 2  -s 1 > data/synthetic_habitats/logs/log_freshwater.alkaline_environment.txt
+fastspar_bootstrap -c data/community_subsets/freshwater.alkaline_environment.tsv -n 250 -p data/synthetic_habitats/freshwater.alkaline_environment/fake_freshwater.alkaline_environment -t 2  -s 1 > synthetic_habitats_logs/log_freshwater.alkaline_environment.txt
 echo fake freshwater.alkaline_environment done!
 
 echo fake_habitat for: freshwater.drinking_water_reservoir is running...
 mkdir -p data/synthetic_habitats/freshwater.drinking_water_reservoir
-fastspar_bootstrap -c data/community_subsets/freshwater.drinking_water_reservoir.tsv -n 250 -p data/synthetic_habitats/freshwater.drinking_water_reservoir/fake_freshwater.drinking_water_reservoir -t 2  -s 1 > data/synthetic_habitats/logs/log_freshwater.drinking_water_reservoir.txt
+fastspar_bootstrap -c data/community_subsets/freshwater.drinking_water_reservoir.tsv -n 250 -p data/synthetic_habitats/freshwater.drinking_water_reservoir/fake_freshwater.drinking_water_reservoir -t 2  -s 1 > synthetic_habitats_logs/log_freshwater.drinking_water_reservoir.txt
 echo fake freshwater.drinking_water_reservoir done!
 
 echo fake_habitat for: freshwater.freshwater_biofilm is running...
 mkdir -p data/synthetic_habitats/freshwater.freshwater_biofilm
-fastspar_bootstrap -c data/community_subsets/freshwater.freshwater_biofilm.tsv -n 250 -p data/synthetic_habitats/freshwater.freshwater_biofilm/fake_freshwater.freshwater_biofilm -t 2  -s 1 > data/synthetic_habitats/logs/log_freshwater.freshwater_biofilm.txt
+fastspar_bootstrap -c data/community_subsets/freshwater.freshwater_biofilm.tsv -n 250 -p data/synthetic_habitats/freshwater.freshwater_biofilm/fake_freshwater.freshwater_biofilm -t 2  -s 1 > synthetic_habitats_logs/log_freshwater.freshwater_biofilm.txt
 echo fake freshwater.freshwater_biofilm done!
 
 echo fake_habitat for: freshwater.hot_spring is running...
 mkdir -p data/synthetic_habitats/freshwater.hot_spring
-fastspar_bootstrap -c data/community_subsets/freshwater.hot_spring.tsv -n 250 -p data/synthetic_habitats/freshwater.hot_spring/fake_freshwater.hot_spring -t 2  -s 1 > data/synthetic_habitats/logs/log_freshwater.hot_spring.txt
+fastspar_bootstrap -c data/community_subsets/freshwater.hot_spring.tsv -n 250 -p data/synthetic_habitats/freshwater.hot_spring/fake_freshwater.hot_spring -t 2  -s 1 > synthetic_habitats_logs/log_freshwater.hot_spring.txt
 echo fake freshwater.hot_spring done!
 
 echo fake_habitat for: freshwater.lake is running...
 mkdir -p data/synthetic_habitats/freshwater.lake
-fastspar_bootstrap -c data/community_subsets/freshwater.lake.tsv -n 250 -p data/synthetic_habitats/freshwater.lake/fake_freshwater.lake -t 2  -s 1 > data/synthetic_habitats/logs/log_freshwater.lake.txt
+fastspar_bootstrap -c data/community_subsets/freshwater.lake.tsv -n 250 -p data/synthetic_habitats/freshwater.lake/fake_freshwater.lake -t 2  -s 1 > synthetic_habitats_logs/log_freshwater.lake.txt
 echo fake freshwater.lake done!
 
 echo fake_habitat for: freshwater.river is running...
 mkdir -p data/synthetic_habitats/freshwater.river
-fastspar_bootstrap -c data/community_subsets/freshwater.river.tsv -n 250 -p data/synthetic_habitats/freshwater.river/fake_freshwater.river -t 2  -s 1 > data/synthetic_habitats/logs/log_freshwater.river.txt
+fastspar_bootstrap -c data/community_subsets/freshwater.river.tsv -n 250 -p data/synthetic_habitats/freshwater.river/fake_freshwater.river -t 2  -s 1 > synthetic_habitats_logs/log_freshwater.river.txt
 echo fake freshwater.river done!
 
 echo fake_habitat for: freshwater.stream_biofilm is running...
 mkdir -p data/synthetic_habitats/freshwater.stream_biofilm
-fastspar_bootstrap -c data/community_subsets/freshwater.stream_biofilm.tsv -n 250 -p data/synthetic_habitats/freshwater.stream_biofilm/fake_freshwater.stream_biofilm -t 2  -s 1 > data/synthetic_habitats/logs/log_freshwater.stream_biofilm.txt
+fastspar_bootstrap -c data/community_subsets/freshwater.stream_biofilm.tsv -n 250 -p data/synthetic_habitats/freshwater.stream_biofilm/fake_freshwater.stream_biofilm -t 2  -s 1 > synthetic_habitats_logs/log_freshwater.stream_biofilm.txt
 echo fake freshwater.stream_biofilm done!
 
 echo fake_habitat for: freshwater.stream is running...
 mkdir -p data/synthetic_habitats/freshwater.stream
-fastspar_bootstrap -c data/community_subsets/freshwater.stream.tsv -n 250 -p data/synthetic_habitats/freshwater.stream/fake_freshwater.stream -t 2  -s 1 > data/synthetic_habitats/logs/log_freshwater.stream.txt
+fastspar_bootstrap -c data/community_subsets/freshwater.stream.tsv -n 250 -p data/synthetic_habitats/freshwater.stream/fake_freshwater.stream -t 2  -s 1 > synthetic_habitats_logs/log_freshwater.stream.txt
 echo fake freshwater.stream done!
 
 echo fake_habitat for: groundwater.geyser is running...
 mkdir -p data/synthetic_habitats/groundwater.geyser
-fastspar_bootstrap -c data/community_subsets/groundwater.geyser.tsv -n 250 -p data/synthetic_habitats/groundwater.geyser/fake_groundwater.geyser -t 2  -s 1 > data/synthetic_habitats/logs/log_groundwater.geyser.txt
+fastspar_bootstrap -c data/community_subsets/groundwater.geyser.tsv -n 250 -p data/synthetic_habitats/groundwater.geyser/fake_groundwater.geyser -t 2  -s 1 > synthetic_habitats_logs/log_groundwater.geyser.txt
 echo fake groundwater.geyser done!
 
 echo fake_habitat for: groundwater.karst-porous is running...
 mkdir -p data/synthetic_habitats/groundwater.karst-porous
-fastspar_bootstrap -c data/community_subsets/groundwater.karst-porous.tsv -n 250 -p data/synthetic_habitats/groundwater.karst-porous/fake_groundwater.karst-porous -t 2  -s 1 > data/synthetic_habitats/logs/log_groundwater.karst-porous.txt
+fastspar_bootstrap -c data/community_subsets/groundwater.karst-porous.tsv -n 250 -p data/synthetic_habitats/groundwater.karst-porous/fake_groundwater.karst-porous -t 2  -s 1 > synthetic_habitats_logs/log_groundwater.karst-porous.txt
 echo fake groundwater.karst-porous done!
 
 echo fake_habitat for: groundwater.mine is running...
 mkdir -p data/synthetic_habitats/groundwater.mine
-fastspar_bootstrap -c data/community_subsets/groundwater.mine.tsv -n 250 -p data/synthetic_habitats/groundwater.mine/fake_groundwater.mine -t 2  -s 1 > data/synthetic_habitats/logs/log_groundwater.mine.txt
+fastspar_bootstrap -c data/community_subsets/groundwater.mine.tsv -n 250 -p data/synthetic_habitats/groundwater.mine/fake_groundwater.mine -t 2  -s 1 > synthetic_habitats_logs/log_groundwater.mine.txt
 echo fake groundwater.mine done!
 
 echo fake_habitat for: groundwater.porous_contaminated is running...
 mkdir -p data/synthetic_habitats/groundwater.porous_contaminated
-fastspar_bootstrap -c data/community_subsets/groundwater.porous_contaminated.tsv -n 250 -p data/synthetic_habitats/groundwater.porous_contaminated/fake_groundwater.porous_contaminated -t 2  -s 1 > data/synthetic_habitats/logs/log_groundwater.porous_contaminated.txt
+fastspar_bootstrap -c data/community_subsets/groundwater.porous_contaminated.tsv -n 250 -p data/synthetic_habitats/groundwater.porous_contaminated/fake_groundwater.porous_contaminated -t 2  -s 1 > synthetic_habitats_logs/log_groundwater.porous_contaminated.txt
 echo fake groundwater.porous_contaminated done!
 
 echo fake_habitat for: groundwater.porous is running...
 mkdir -p data/synthetic_habitats/groundwater.porous
-fastspar_bootstrap -c data/community_subsets/groundwater.porous.tsv -n 250 -p data/synthetic_habitats/groundwater.porous/fake_groundwater.porous -t 2  -s 1 > data/synthetic_habitats/logs/log_groundwater.porous.txt
+fastspar_bootstrap -c data/community_subsets/groundwater.porous.tsv -n 250 -p data/synthetic_habitats/groundwater.porous/fake_groundwater.porous -t 2  -s 1 > synthetic_habitats_logs/log_groundwater.porous.txt
 echo fake groundwater.porous done!
 
 echo fake_habitat for: groundwater.subsurface_saline is running...
 mkdir -p data/synthetic_habitats/groundwater.subsurface_saline
-fastspar_bootstrap -c data/community_subsets/groundwater.subsurface_saline.tsv -n 250 -p data/synthetic_habitats/groundwater.subsurface_saline/fake_groundwater.subsurface_saline -t 2  -s 1 > data/synthetic_habitats/logs/log_groundwater.subsurface_saline.txt
+fastspar_bootstrap -c data/community_subsets/groundwater.subsurface_saline.tsv -n 250 -p data/synthetic_habitats/groundwater.subsurface_saline/fake_groundwater.subsurface_saline -t 2  -s 1 > synthetic_habitats_logs/log_groundwater.subsurface_saline.txt
 echo fake groundwater.subsurface_saline done!
 
 echo fake_habitat for: human_host-associated.bone is running...
 mkdir -p data/synthetic_habitats/human_host-associated.bone
-fastspar_bootstrap -c data/community_subsets/human_host-associated.bone.tsv -n 250 -p data/synthetic_habitats/human_host-associated.bone/fake_human_host-associated.bone -t 2  -s 1 > data/synthetic_habitats/logs/log_human_host-associated.bone.txt
+fastspar_bootstrap -c data/community_subsets/human_host-associated.bone.tsv -n 250 -p data/synthetic_habitats/human_host-associated.bone/fake_human_host-associated.bone -t 2  -s 1 > synthetic_habitats_logs/log_human_host-associated.bone.txt
 echo fake human_host-associated.bone done!
 
 echo fake_habitat for: human_host-associated.human_associated_biofilm is running...
 mkdir -p data/synthetic_habitats/human_host-associated.human_associated_biofilm
-fastspar_bootstrap -c data/community_subsets/human_host-associated.human_associated_biofilm.tsv -n 250 -p data/synthetic_habitats/human_host-associated.human_associated_biofilm/fake_human_host-associated.human_associated_biofilm -t 2  -s 1 > data/synthetic_habitats/logs/log_human_host-associated.human_associated_biofilm.txt
+fastspar_bootstrap -c data/community_subsets/human_host-associated.human_associated_biofilm.tsv -n 250 -p data/synthetic_habitats/human_host-associated.human_associated_biofilm/fake_human_host-associated.human_associated_biofilm -t 2  -s 1 > synthetic_habitats_logs/log_human_host-associated.human_associated_biofilm.txt
 echo fake human_host-associated.human_associated_biofilm done!
 
 echo fake_habitat for: human_host-associated.human_feces is running...
 mkdir -p data/synthetic_habitats/human_host-associated.human_feces
-fastspar_bootstrap -c data/community_subsets/human_host-associated.human_feces.tsv -n 250 -p data/synthetic_habitats/human_host-associated.human_feces/fake_human_host-associated.human_feces -t 2  -s 1 > data/synthetic_habitats/logs/log_human_host-associated.human_feces.txt
+fastspar_bootstrap -c data/community_subsets/human_host-associated.human_feces.tsv -n 250 -p data/synthetic_habitats/human_host-associated.human_feces/fake_human_host-associated.human_feces -t 2  -s 1 > synthetic_habitats_logs/log_human_host-associated.human_feces.txt
 echo fake human_host-associated.human_feces done!
 
 echo fake_habitat for: human_host-associated.human-gut is running...
 mkdir -p data/synthetic_habitats/human_host-associated.human-gut
-fastspar_bootstrap -c data/community_subsets/human_host-associated.human-gut.tsv -n 250 -p data/synthetic_habitats/human_host-associated.human-gut/fake_human_host-associated.human-gut -t 2  -s 1 > data/synthetic_habitats/logs/log_human_host-associated.human-gut.txt
+fastspar_bootstrap -c data/community_subsets/human_host-associated.human-gut.tsv -n 250 -p data/synthetic_habitats/human_host-associated.human-gut/fake_human_host-associated.human-gut -t 2  -s 1 > synthetic_habitats_logs/log_human_host-associated.human-gut.txt
 echo fake human_host-associated.human-gut done!
 
 echo fake_habitat for: human_host-associated.human-skin is running...
 mkdir -p data/synthetic_habitats/human_host-associated.human-skin
-fastspar_bootstrap -c data/community_subsets/human_host-associated.human-skin.tsv -n 250 -p data/synthetic_habitats/human_host-associated.human-skin/fake_human_host-associated.human-skin -t 2  -s 1 > data/synthetic_habitats/logs/log_human_host-associated.human-skin.txt
+fastspar_bootstrap -c data/community_subsets/human_host-associated.human-skin.tsv -n 250 -p data/synthetic_habitats/human_host-associated.human-skin/fake_human_host-associated.human-skin -t 2  -s 1 > synthetic_habitats_logs/log_human_host-associated.human-skin.txt
 echo fake human_host-associated.human-skin done!
 
 echo fake_habitat for: human_host-associated.lung is running...
 mkdir -p data/synthetic_habitats/human_host-associated.lung
-fastspar_bootstrap -c data/community_subsets/human_host-associated.lung.tsv -n 250 -p data/synthetic_habitats/human_host-associated.lung/fake_human_host-associated.lung -t 2  -s 1 > data/synthetic_habitats/logs/log_human_host-associated.lung.txt
+fastspar_bootstrap -c data/community_subsets/human_host-associated.lung.tsv -n 250 -p data/synthetic_habitats/human_host-associated.lung/fake_human_host-associated.lung -t 2  -s 1 > synthetic_habitats_logs/log_human_host-associated.lung.txt
 echo fake human_host-associated.lung done!
 
 echo fake_habitat for: human_host-associated.saliva is running...
 mkdir -p data/synthetic_habitats/human_host-associated.saliva
-fastspar_bootstrap -c data/community_subsets/human_host-associated.saliva.tsv -n 250 -p data/synthetic_habitats/human_host-associated.saliva/fake_human_host-associated.saliva -t 2  -s 1 > data/synthetic_habitats/logs/log_human_host-associated.saliva.txt
+fastspar_bootstrap -c data/community_subsets/human_host-associated.saliva.tsv -n 250 -p data/synthetic_habitats/human_host-associated.saliva/fake_human_host-associated.saliva -t 2  -s 1 > synthetic_habitats_logs/log_human_host-associated.saliva.txt
 echo fake human_host-associated.saliva done!
 
 echo fake_habitat for: plant-associated.plant-associated_hypersaline_water is running...
 mkdir -p data/synthetic_habitats/plant-associated.plant-associated_hypersaline_water
-fastspar_bootstrap -c data/community_subsets/plant-associated.plant-associated_hypersaline_water.tsv -n 250 -p data/synthetic_habitats/plant-associated.plant-associated_hypersaline_water/fake_plant-associated.plant-associated_hypersaline_water -t 2  -s 1 > data/synthetic_habitats/logs/log_plant-associated.plant-associated_hypersaline_water.txt
+fastspar_bootstrap -c data/community_subsets/plant-associated.plant-associated_hypersaline_water.tsv -n 250 -p data/synthetic_habitats/plant-associated.plant-associated_hypersaline_water/fake_plant-associated.plant-associated_hypersaline_water -t 2  -s 1 > synthetic_habitats_logs/log_plant-associated.plant-associated_hypersaline_water.txt
 echo fake plant-associated.plant-associated_hypersaline_water done!
 
 echo fake_habitat for: plant-associated.plant-associated is running...
 mkdir -p data/synthetic_habitats/plant-associated.plant-associated
-fastspar_bootstrap -c data/community_subsets/plant-associated.plant-associated.tsv -n 250 -p data/synthetic_habitats/plant-associated.plant-associated/fake_plant-associated.plant-associated -t 2  -s 1 > data/synthetic_habitats/logs/log_plant-associated.plant-associated.txt
+fastspar_bootstrap -c data/community_subsets/plant-associated.plant-associated.tsv -n 250 -p data/synthetic_habitats/plant-associated.plant-associated/fake_plant-associated.plant-associated -t 2  -s 1 > synthetic_habitats_logs/log_plant-associated.plant-associated.txt
 echo fake plant-associated.plant-associated done!
 
 echo fake_habitat for: plant-associated.wood_fall is running...
 mkdir -p data/synthetic_habitats/plant-associated.wood_fall
-fastspar_bootstrap -c data/community_subsets/plant-associated.wood_fall.tsv -n 250 -p data/synthetic_habitats/plant-associated.wood_fall/fake_plant-associated.wood_fall -t 2  -s 1 > data/synthetic_habitats/logs/log_plant-associated.wood_fall.txt
+fastspar_bootstrap -c data/community_subsets/plant-associated.wood_fall.tsv -n 250 -p data/synthetic_habitats/plant-associated.wood_fall/fake_plant-associated.wood_fall -t 2  -s 1 > synthetic_habitats_logs/log_plant-associated.wood_fall.txt
 echo fake plant-associated.wood_fall done!
 
 echo fake_habitat for: saline_water.alkaline_salt_lake is running...
 mkdir -p data/synthetic_habitats/saline_water.alkaline_salt_lake
-fastspar_bootstrap -c data/community_subsets/saline_water.alkaline_salt_lake.tsv -n 250 -p data/synthetic_habitats/saline_water.alkaline_salt_lake/fake_saline_water.alkaline_salt_lake -t 2  -s 1 > data/synthetic_habitats/logs/log_saline_water.alkaline_salt_lake.txt
+fastspar_bootstrap -c data/community_subsets/saline_water.alkaline_salt_lake.tsv -n 250 -p data/synthetic_habitats/saline_water.alkaline_salt_lake/fake_saline_water.alkaline_salt_lake -t 2  -s 1 > synthetic_habitats_logs/log_saline_water.alkaline_salt_lake.txt
 echo fake saline_water.alkaline_salt_lake done!
 
 echo fake_habitat for: saline_water.anoxic_seawater is running...
 mkdir -p data/synthetic_habitats/saline_water.anoxic_seawater
-fastspar_bootstrap -c data/community_subsets/saline_water.anoxic_seawater.tsv -n 250 -p data/synthetic_habitats/saline_water.anoxic_seawater/fake_saline_water.anoxic_seawater -t 2  -s 1 > data/synthetic_habitats/logs/log_saline_water.anoxic_seawater.txt
+fastspar_bootstrap -c data/community_subsets/saline_water.anoxic_seawater.tsv -n 250 -p data/synthetic_habitats/saline_water.anoxic_seawater/fake_saline_water.anoxic_seawater -t 2  -s 1 > synthetic_habitats_logs/log_saline_water.anoxic_seawater.txt
 echo fake saline_water.anoxic_seawater done!
 
 echo fake_habitat for: saline_water.coastal_seawater is running...
 mkdir -p data/synthetic_habitats/saline_water.coastal_seawater
-fastspar_bootstrap -c data/community_subsets/saline_water.coastal_seawater.tsv -n 250 -p data/synthetic_habitats/saline_water.coastal_seawater/fake_saline_water.coastal_seawater -t 2  -s 1 > data/synthetic_habitats/logs/log_saline_water.coastal_seawater.txt
+fastspar_bootstrap -c data/community_subsets/saline_water.coastal_seawater.tsv -n 250 -p data/synthetic_habitats/saline_water.coastal_seawater/fake_saline_water.coastal_seawater -t 2  -s 1 > synthetic_habitats_logs/log_saline_water.coastal_seawater.txt
 echo fake saline_water.coastal_seawater done!
 
 echo fake_habitat for: saline_water.coral_reef_biofilm is running...
 mkdir -p data/synthetic_habitats/saline_water.coral_reef_biofilm
-fastspar_bootstrap -c data/community_subsets/saline_water.coral_reef_biofilm.tsv -n 250 -p data/synthetic_habitats/saline_water.coral_reef_biofilm/fake_saline_water.coral_reef_biofilm -t 2  -s 1 > data/synthetic_habitats/logs/log_saline_water.coral_reef_biofilm.txt
+fastspar_bootstrap -c data/community_subsets/saline_water.coral_reef_biofilm.tsv -n 250 -p data/synthetic_habitats/saline_water.coral_reef_biofilm/fake_saline_water.coral_reef_biofilm -t 2  -s 1 > synthetic_habitats_logs/log_saline_water.coral_reef_biofilm.txt
 echo fake saline_water.coral_reef_biofilm done!
 
 echo fake_habitat for: saline_water.coral_reef_seawater is running...
 mkdir -p data/synthetic_habitats/saline_water.coral_reef_seawater
-fastspar_bootstrap -c data/community_subsets/saline_water.coral_reef_seawater.tsv -n 250 -p data/synthetic_habitats/saline_water.coral_reef_seawater/fake_saline_water.coral_reef_seawater -t 2  -s 1 > data/synthetic_habitats/logs/log_saline_water.coral_reef_seawater.txt
+fastspar_bootstrap -c data/community_subsets/saline_water.coral_reef_seawater.tsv -n 250 -p data/synthetic_habitats/saline_water.coral_reef_seawater/fake_saline_water.coral_reef_seawater -t 2  -s 1 > synthetic_habitats_logs/log_saline_water.coral_reef_seawater.txt
 echo fake saline_water.coral_reef_seawater done!
 
 echo fake_habitat for: saline_water.estuarine_seawater is running...
 mkdir -p data/synthetic_habitats/saline_water.estuarine_seawater
-fastspar_bootstrap -c data/community_subsets/saline_water.estuarine_seawater.tsv -n 250 -p data/synthetic_habitats/saline_water.estuarine_seawater/fake_saline_water.estuarine_seawater -t 2  -s 1 > data/synthetic_habitats/logs/log_saline_water.estuarine_seawater.txt
+fastspar_bootstrap -c data/community_subsets/saline_water.estuarine_seawater.tsv -n 250 -p data/synthetic_habitats/saline_water.estuarine_seawater/fake_saline_water.estuarine_seawater -t 2  -s 1 > synthetic_habitats_logs/log_saline_water.estuarine_seawater.txt
 echo fake saline_water.estuarine_seawater done!
 
 echo fake_habitat for: saline_water.hydrothermal_vent is running...
 mkdir -p data/synthetic_habitats/saline_water.hydrothermal_vent
-fastspar_bootstrap -c data/community_subsets/saline_water.hydrothermal_vent.tsv -n 250 -p data/synthetic_habitats/saline_water.hydrothermal_vent/fake_saline_water.hydrothermal_vent -t 2  -s 1 > data/synthetic_habitats/logs/log_saline_water.hydrothermal_vent.txt
+fastspar_bootstrap -c data/community_subsets/saline_water.hydrothermal_vent.tsv -n 250 -p data/synthetic_habitats/saline_water.hydrothermal_vent/fake_saline_water.hydrothermal_vent -t 2  -s 1 > synthetic_habitats_logs/log_saline_water.hydrothermal_vent.txt
 echo fake saline_water.hydrothermal_vent done!
 
 echo fake_habitat for: saline_water.hypersaline_water is running...
 mkdir -p data/synthetic_habitats/saline_water.hypersaline_water
-fastspar_bootstrap -c data/community_subsets/saline_water.hypersaline_water.tsv -n 250 -p data/synthetic_habitats/saline_water.hypersaline_water/fake_saline_water.hypersaline_water -t 2  -s 1 > data/synthetic_habitats/logs/log_saline_water.hypersaline_water.txt
+fastspar_bootstrap -c data/community_subsets/saline_water.hypersaline_water.tsv -n 250 -p data/synthetic_habitats/saline_water.hypersaline_water/fake_saline_water.hypersaline_water -t 2  -s 1 > synthetic_habitats_logs/log_saline_water.hypersaline_water.txt
 echo fake saline_water.hypersaline_water done!
 
 echo fake_habitat for: saline_water.oceanic_seawater is running...
 mkdir -p data/synthetic_habitats/saline_water.oceanic_seawater
-fastspar_bootstrap -c data/community_subsets/saline_water.oceanic_seawater.tsv -n 250 -p data/synthetic_habitats/saline_water.oceanic_seawater/fake_saline_water.oceanic_seawater -t 2  -s 1 > data/synthetic_habitats/logs/log_saline_water.oceanic_seawater.txt
+fastspar_bootstrap -c data/community_subsets/saline_water.oceanic_seawater.tsv -n 250 -p data/synthetic_habitats/saline_water.oceanic_seawater/fake_saline_water.oceanic_seawater -t 2  -s 1 > synthetic_habitats_logs/log_saline_water.oceanic_seawater.txt
 echo fake saline_water.oceanic_seawater done!
 
 echo fake_habitat for: saline_water.polar_seawater is running...
 mkdir -p data/synthetic_habitats/saline_water.polar_seawater
-fastspar_bootstrap -c data/community_subsets/saline_water.polar_seawater.tsv -n 250 -p data/synthetic_habitats/saline_water.polar_seawater/fake_saline_water.polar_seawater -t 2  -s 1 > data/synthetic_habitats/logs/log_saline_water.polar_seawater.txt
+fastspar_bootstrap -c data/community_subsets/saline_water.polar_seawater.tsv -n 250 -p data/synthetic_habitats/saline_water.polar_seawater/fake_saline_water.polar_seawater -t 2  -s 1 > synthetic_habitats_logs/log_saline_water.polar_seawater.txt
 echo fake saline_water.polar_seawater done!
 
 echo fake_habitat for: saline_water.river_saline is running...
 mkdir -p data/synthetic_habitats/saline_water.river_saline
-fastspar_bootstrap -c data/community_subsets/saline_water.river_saline.tsv -n 250 -p data/synthetic_habitats/saline_water.river_saline/fake_saline_water.river_saline -t 2  -s 1 > data/synthetic_habitats/logs/log_saline_water.river_saline.txt
+fastspar_bootstrap -c data/community_subsets/saline_water.river_saline.tsv -n 250 -p data/synthetic_habitats/saline_water.river_saline/fake_saline_water.river_saline -t 2  -s 1 > synthetic_habitats_logs/log_saline_water.river_saline.txt
 echo fake saline_water.river_saline done!
 
 echo fake_habitat for: saline_water.saline_evaporation_pond is running...
 mkdir -p data/synthetic_habitats/saline_water.saline_evaporation_pond
-fastspar_bootstrap -c data/community_subsets/saline_water.saline_evaporation_pond.tsv -n 250 -p data/synthetic_habitats/saline_water.saline_evaporation_pond/fake_saline_water.saline_evaporation_pond -t 2  -s 1 > data/synthetic_habitats/logs/log_saline_water.saline_evaporation_pond.txt
+fastspar_bootstrap -c data/community_subsets/saline_water.saline_evaporation_pond.tsv -n 250 -p data/synthetic_habitats/saline_water.saline_evaporation_pond/fake_saline_water.saline_evaporation_pond -t 2  -s 1 > synthetic_habitats_logs/log_saline_water.saline_evaporation_pond.txt
 echo fake saline_water.saline_evaporation_pond done!
 
 echo fake_habitat for: saline_water.saline_water_biofilm is running...
 mkdir -p data/synthetic_habitats/saline_water.saline_water_biofilm
-fastspar_bootstrap -c data/community_subsets/saline_water.saline_water_biofilm.tsv -n 250 -p data/synthetic_habitats/saline_water.saline_water_biofilm/fake_saline_water.saline_water_biofilm -t 2  -s 1 > data/synthetic_habitats/logs/log_saline_water.saline_water_biofilm.txt
+fastspar_bootstrap -c data/community_subsets/saline_water.saline_water_biofilm.tsv -n 250 -p data/synthetic_habitats/saline_water.saline_water_biofilm/fake_saline_water.saline_water_biofilm -t 2  -s 1 > synthetic_habitats_logs/log_saline_water.saline_water_biofilm.txt
 echo fake saline_water.saline_water_biofilm done!
 
 echo fake_habitat for: saline_water.salt_lake is running...
 mkdir -p data/synthetic_habitats/saline_water.salt_lake
-fastspar_bootstrap -c data/community_subsets/saline_water.salt_lake.tsv -n 250 -p data/synthetic_habitats/saline_water.salt_lake/fake_saline_water.salt_lake -t 2  -s 1 > data/synthetic_habitats/logs/log_saline_water.salt_lake.txt
+fastspar_bootstrap -c data/community_subsets/saline_water.salt_lake.tsv -n 250 -p data/synthetic_habitats/saline_water.salt_lake/fake_saline_water.salt_lake -t 2  -s 1 > synthetic_habitats_logs/log_saline_water.salt_lake.txt
 echo fake saline_water.salt_lake done!
 
 echo fake_habitat for: sediment.anaerobic_sediment is running...
 mkdir -p data/synthetic_habitats/sediment.anaerobic_sediment
-fastspar_bootstrap -c data/community_subsets/sediment.anaerobic_sediment.tsv -n 250 -p data/synthetic_habitats/sediment.anaerobic_sediment/fake_sediment.anaerobic_sediment -t 2  -s 1 > data/synthetic_habitats/logs/log_sediment.anaerobic_sediment.txt
+fastspar_bootstrap -c data/community_subsets/sediment.anaerobic_sediment.tsv -n 250 -p data/synthetic_habitats/sediment.anaerobic_sediment/fake_sediment.anaerobic_sediment -t 2  -s 1 > synthetic_habitats_logs/log_sediment.anaerobic_sediment.txt
 echo fake sediment.anaerobic_sediment done!
 
 echo fake_habitat for: sediment.coastal_marine_sediment is running...
 mkdir -p data/synthetic_habitats/sediment.coastal_marine_sediment
-fastspar_bootstrap -c data/community_subsets/sediment.coastal_marine_sediment.tsv -n 250 -p data/synthetic_habitats/sediment.coastal_marine_sediment/fake_sediment.coastal_marine_sediment -t 2  -s 1 > data/synthetic_habitats/logs/log_sediment.coastal_marine_sediment.txt
+fastspar_bootstrap -c data/community_subsets/sediment.coastal_marine_sediment.tsv -n 250 -p data/synthetic_habitats/sediment.coastal_marine_sediment/fake_sediment.coastal_marine_sediment -t 2  -s 1 > synthetic_habitats_logs/log_sediment.coastal_marine_sediment.txt
 echo fake sediment.coastal_marine_sediment done!
 
 echo fake_habitat for: sediment.continental_slope_sediment is running...
 mkdir -p data/synthetic_habitats/sediment.continental_slope_sediment
-fastspar_bootstrap -c data/community_subsets/sediment.continental_slope_sediment.tsv -n 250 -p data/synthetic_habitats/sediment.continental_slope_sediment/fake_sediment.continental_slope_sediment -t 2  -s 1 > data/synthetic_habitats/logs/log_sediment.continental_slope_sediment.txt
+fastspar_bootstrap -c data/community_subsets/sediment.continental_slope_sediment.tsv -n 250 -p data/synthetic_habitats/sediment.continental_slope_sediment/fake_sediment.continental_slope_sediment -t 2  -s 1 > synthetic_habitats_logs/log_sediment.continental_slope_sediment.txt
 echo fake sediment.continental_slope_sediment done!
 
 echo fake_habitat for: sediment.desert_sediment is running...
 mkdir -p data/synthetic_habitats/sediment.desert_sediment
-fastspar_bootstrap -c data/community_subsets/sediment.desert_sediment.tsv -n 250 -p data/synthetic_habitats/sediment.desert_sediment/fake_sediment.desert_sediment -t 2  -s 1 > data/synthetic_habitats/logs/log_sediment.desert_sediment.txt
+fastspar_bootstrap -c data/community_subsets/sediment.desert_sediment.tsv -n 250 -p data/synthetic_habitats/sediment.desert_sediment/fake_sediment.desert_sediment -t 2  -s 1 > synthetic_habitats_logs/log_sediment.desert_sediment.txt
 echo fake sediment.desert_sediment done!
 
 echo fake_habitat for: sediment.lake_sediment is running...
 mkdir -p data/synthetic_habitats/sediment.lake_sediment
-fastspar_bootstrap -c data/community_subsets/sediment.lake_sediment.tsv -n 250 -p data/synthetic_habitats/sediment.lake_sediment/fake_sediment.lake_sediment -t 2  -s 1 > data/synthetic_habitats/logs/log_sediment.lake_sediment.txt
+fastspar_bootstrap -c data/community_subsets/sediment.lake_sediment.tsv -n 250 -p data/synthetic_habitats/sediment.lake_sediment/fake_sediment.lake_sediment -t 2  -s 1 > synthetic_habitats_logs/log_sediment.lake_sediment.txt
 echo fake sediment.lake_sediment done!
 
 echo fake_habitat for: sediment.mangrove_sediment is running...
 mkdir -p data/synthetic_habitats/sediment.mangrove_sediment
-fastspar_bootstrap -c data/community_subsets/sediment.mangrove_sediment.tsv -n 250 -p data/synthetic_habitats/sediment.mangrove_sediment/fake_sediment.mangrove_sediment -t 2  -s 1 > data/synthetic_habitats/logs/log_sediment.mangrove_sediment.txt
+fastspar_bootstrap -c data/community_subsets/sediment.mangrove_sediment.tsv -n 250 -p data/synthetic_habitats/sediment.mangrove_sediment/fake_sediment.mangrove_sediment -t 2  -s 1 > synthetic_habitats_logs/log_sediment.mangrove_sediment.txt
 echo fake sediment.mangrove_sediment done!
 
 echo fake_habitat for: sediment.oil_affected_sediment is running...
 mkdir -p data/synthetic_habitats/sediment.oil_affected_sediment
-fastspar_bootstrap -c data/community_subsets/sediment.oil_affected_sediment.tsv -n 250 -p data/synthetic_habitats/sediment.oil_affected_sediment/fake_sediment.oil_affected_sediment -t 2  -s 1 > data/synthetic_habitats/logs/log_sediment.oil_affected_sediment.txt
+fastspar_bootstrap -c data/community_subsets/sediment.oil_affected_sediment.tsv -n 250 -p data/synthetic_habitats/sediment.oil_affected_sediment/fake_sediment.oil_affected_sediment -t 2  -s 1 > synthetic_habitats_logs/log_sediment.oil_affected_sediment.txt
 echo fake sediment.oil_affected_sediment done!
 
 echo fake_habitat for: sediment.river_sediment is running...
 mkdir -p data/synthetic_habitats/sediment.river_sediment
-fastspar_bootstrap -c data/community_subsets/sediment.river_sediment.tsv -n 250 -p data/synthetic_habitats/sediment.river_sediment/fake_sediment.river_sediment -t 2  -s 1 > data/synthetic_habitats/logs/log_sediment.river_sediment.txt
+fastspar_bootstrap -c data/community_subsets/sediment.river_sediment.tsv -n 250 -p data/synthetic_habitats/sediment.river_sediment/fake_sediment.river_sediment -t 2  -s 1 > synthetic_habitats_logs/log_sediment.river_sediment.txt
 echo fake sediment.river_sediment done!
 
 echo fake_habitat for: sediment.saline_marsh_sediment is running...
 mkdir -p data/synthetic_habitats/sediment.saline_marsh_sediment
-fastspar_bootstrap -c data/community_subsets/sediment.saline_marsh_sediment.tsv -n 250 -p data/synthetic_habitats/sediment.saline_marsh_sediment/fake_sediment.saline_marsh_sediment -t 2  -s 1 > data/synthetic_habitats/logs/log_sediment.saline_marsh_sediment.txt
+fastspar_bootstrap -c data/community_subsets/sediment.saline_marsh_sediment.tsv -n 250 -p data/synthetic_habitats/sediment.saline_marsh_sediment/fake_sediment.saline_marsh_sediment -t 2  -s 1 > synthetic_habitats_logs/log_sediment.saline_marsh_sediment.txt
 echo fake sediment.saline_marsh_sediment done!
 
 echo fake_habitat for: soil.agricultural_soil is running...
 mkdir -p data/synthetic_habitats/soil.agricultural_soil
-fastspar_bootstrap -c data/community_subsets/soil.agricultural_soil.tsv -n 250 -p data/synthetic_habitats/soil.agricultural_soil/fake_soil.agricultural_soil -t 2  -s 1 > data/synthetic_habitats/logs/log_soil.agricultural_soil.txt
+fastspar_bootstrap -c data/community_subsets/soil.agricultural_soil.tsv -n 250 -p data/synthetic_habitats/soil.agricultural_soil/fake_soil.agricultural_soil -t 2  -s 1 > synthetic_habitats_logs/log_soil.agricultural_soil.txt
 echo fake soil.agricultural_soil done!
 
 echo fake_habitat for: soil.compost is running...
 mkdir -p data/synthetic_habitats/soil.compost
-fastspar_bootstrap -c data/community_subsets/soil.compost.tsv -n 250 -p data/synthetic_habitats/soil.compost/fake_soil.compost -t 2  -s 1 > data/synthetic_habitats/logs/log_soil.compost.txt
+fastspar_bootstrap -c data/community_subsets/soil.compost.tsv -n 250 -p data/synthetic_habitats/soil.compost/fake_soil.compost -t 2  -s 1 > synthetic_habitats_logs/log_soil.compost.txt
 echo fake soil.compost done!
 
 echo fake_habitat for: soil.contaminated_soil is running...
 mkdir -p data/synthetic_habitats/soil.contaminated_soil
-fastspar_bootstrap -c data/community_subsets/soil.contaminated_soil.tsv -n 250 -p data/synthetic_habitats/soil.contaminated_soil/fake_soil.contaminated_soil -t 2  -s 1 > data/synthetic_habitats/logs/log_soil.contaminated_soil.txt
+fastspar_bootstrap -c data/community_subsets/soil.contaminated_soil.tsv -n 250 -p data/synthetic_habitats/soil.contaminated_soil/fake_soil.contaminated_soil -t 2  -s 1 > synthetic_habitats_logs/log_soil.contaminated_soil.txt
 echo fake soil.contaminated_soil done!
 
 echo fake_habitat for: soil.desert_soil is running...
 mkdir -p data/synthetic_habitats/soil.desert_soil
-fastspar_bootstrap -c data/community_subsets/soil.desert_soil.tsv -n 250 -p data/synthetic_habitats/soil.desert_soil/fake_soil.desert_soil -t 2  -s 1 > data/synthetic_habitats/logs/log_soil.desert_soil.txt
+fastspar_bootstrap -c data/community_subsets/soil.desert_soil.tsv -n 250 -p data/synthetic_habitats/soil.desert_soil/fake_soil.desert_soil -t 2  -s 1 > synthetic_habitats_logs/log_soil.desert_soil.txt
 echo fake soil.desert_soil done!
 
 echo fake_habitat for: soil.farm_soil is running...
 mkdir -p data/synthetic_habitats/soil.farm_soil
-fastspar_bootstrap -c data/community_subsets/soil.farm_soil.tsv -n 250 -p data/synthetic_habitats/soil.farm_soil/fake_soil.farm_soil -t 2  -s 1 > data/synthetic_habitats/logs/log_soil.farm_soil.txt
+fastspar_bootstrap -c data/community_subsets/soil.farm_soil.tsv -n 250 -p data/synthetic_habitats/soil.farm_soil/fake_soil.farm_soil -t 2  -s 1 > synthetic_habitats_logs/log_soil.farm_soil.txt
 echo fake soil.farm_soil done!
 
 echo fake_habitat for: soil.forest_soil is running...
 mkdir -p data/synthetic_habitats/soil.forest_soil
-fastspar_bootstrap -c data/community_subsets/soil.forest_soil.tsv -n 250 -p data/synthetic_habitats/soil.forest_soil/fake_soil.forest_soil -t 2  -s 1 > data/synthetic_habitats/logs/log_soil.forest_soil.txt
+fastspar_bootstrap -c data/community_subsets/soil.forest_soil.tsv -n 250 -p data/synthetic_habitats/soil.forest_soil/fake_soil.forest_soil -t 2  -s 1 > synthetic_habitats_logs/log_soil.forest_soil.txt
 echo fake soil.forest_soil done!
 
 echo fake_habitat for: soil.garden_soil is running...
 mkdir -p data/synthetic_habitats/soil.garden_soil
-fastspar_bootstrap -c data/community_subsets/soil.garden_soil.tsv -n 250 -p data/synthetic_habitats/soil.garden_soil/fake_soil.garden_soil -t 2  -s 1 > data/synthetic_habitats/logs/log_soil.garden_soil.txt
+fastspar_bootstrap -c data/community_subsets/soil.garden_soil.tsv -n 250 -p data/synthetic_habitats/soil.garden_soil/fake_soil.garden_soil -t 2  -s 1 > synthetic_habitats_logs/log_soil.garden_soil.txt
 echo fake soil.garden_soil done!
 
 echo fake_habitat for: soil.grassland is running...
 mkdir -p data/synthetic_habitats/soil.grassland
-fastspar_bootstrap -c data/community_subsets/soil.grassland.tsv -n 250 -p data/synthetic_habitats/soil.grassland/fake_soil.grassland -t 2  -s 1 > data/synthetic_habitats/logs/log_soil.grassland.txt
+fastspar_bootstrap -c data/community_subsets/soil.grassland.tsv -n 250 -p data/synthetic_habitats/soil.grassland/fake_soil.grassland -t 2  -s 1 > synthetic_habitats_logs/log_soil.grassland.txt
 echo fake soil.grassland done!
 
 echo fake_habitat for: soil.meadow_soil is running...
 mkdir -p data/synthetic_habitats/soil.meadow_soil
-fastspar_bootstrap -c data/community_subsets/soil.meadow_soil.tsv -n 250 -p data/synthetic_habitats/soil.meadow_soil/fake_soil.meadow_soil -t 2  -s 1 > data/synthetic_habitats/logs/log_soil.meadow_soil.txt
+fastspar_bootstrap -c data/community_subsets/soil.meadow_soil.tsv -n 250 -p data/synthetic_habitats/soil.meadow_soil/fake_soil.meadow_soil -t 2  -s 1 > synthetic_habitats_logs/log_soil.meadow_soil.txt
 echo fake soil.meadow_soil done!
 
 echo fake_habitat for: soil.park_soil is running...
 mkdir -p data/synthetic_habitats/soil.park_soil
-fastspar_bootstrap -c data/community_subsets/soil.park_soil.tsv -n 250 -p data/synthetic_habitats/soil.park_soil/fake_soil.park_soil -t 2  -s 1 > data/synthetic_habitats/logs/log_soil.park_soil.txt
+fastspar_bootstrap -c data/community_subsets/soil.park_soil.tsv -n 250 -p data/synthetic_habitats/soil.park_soil/fake_soil.park_soil -t 2  -s 1 > synthetic_habitats_logs/log_soil.park_soil.txt
 echo fake soil.park_soil done!
 
 echo fake_habitat for: soil.pasture_soil is running...
 mkdir -p data/synthetic_habitats/soil.pasture_soil
-fastspar_bootstrap -c data/community_subsets/soil.pasture_soil.tsv -n 250 -p data/synthetic_habitats/soil.pasture_soil/fake_soil.pasture_soil -t 2  -s 1 > data/synthetic_habitats/logs/log_soil.pasture_soil.txt
+fastspar_bootstrap -c data/community_subsets/soil.pasture_soil.tsv -n 250 -p data/synthetic_habitats/soil.pasture_soil/fake_soil.pasture_soil -t 2  -s 1 > synthetic_habitats_logs/log_soil.pasture_soil.txt
 echo fake soil.pasture_soil done!
 
 echo fake_habitat for: soil.peat_soil is running...
 mkdir -p data/synthetic_habitats/soil.peat_soil
-fastspar_bootstrap -c data/community_subsets/soil.peat_soil.tsv -n 250 -p data/synthetic_habitats/soil.peat_soil/fake_soil.peat_soil -t 2  -s 1 > data/synthetic_habitats/logs/log_soil.peat_soil.txt
+fastspar_bootstrap -c data/community_subsets/soil.peat_soil.tsv -n 250 -p data/synthetic_habitats/soil.peat_soil/fake_soil.peat_soil -t 2  -s 1 > synthetic_habitats_logs/log_soil.peat_soil.txt
 echo fake soil.peat_soil done!
 
 echo fake_habitat for: soil.permafrost is running...
 mkdir -p data/synthetic_habitats/soil.permafrost
-fastspar_bootstrap -c data/community_subsets/soil.permafrost.tsv -n 250 -p data/synthetic_habitats/soil.permafrost/fake_soil.permafrost -t 2  -s 1 > data/synthetic_habitats/logs/log_soil.permafrost.txt
+fastspar_bootstrap -c data/community_subsets/soil.permafrost.tsv -n 250 -p data/synthetic_habitats/soil.permafrost/fake_soil.permafrost -t 2  -s 1 > synthetic_habitats_logs/log_soil.permafrost.txt
 echo fake soil.permafrost done!
 
 echo fake_habitat for: soil.prairie is running...
 mkdir -p data/synthetic_habitats/soil.prairie
-fastspar_bootstrap -c data/community_subsets/soil.prairie.tsv -n 250 -p data/synthetic_habitats/soil.prairie/fake_soil.prairie -t 2  -s 1 > data/synthetic_habitats/logs/log_soil.prairie.txt
+fastspar_bootstrap -c data/community_subsets/soil.prairie.tsv -n 250 -p data/synthetic_habitats/soil.prairie/fake_soil.prairie -t 2  -s 1 > synthetic_habitats_logs/log_soil.prairie.txt
 echo fake soil.prairie done!
 
 echo fake_habitat for: soil.rhizosphere is running...
 mkdir -p data/synthetic_habitats/soil.rhizosphere
-fastspar_bootstrap -c data/community_subsets/soil.rhizosphere.tsv -n 250 -p data/synthetic_habitats/soil.rhizosphere/fake_soil.rhizosphere -t 2  -s 1 > data/synthetic_habitats/logs/log_soil.rhizosphere.txt
+fastspar_bootstrap -c data/community_subsets/soil.rhizosphere.tsv -n 250 -p data/synthetic_habitats/soil.rhizosphere/fake_soil.rhizosphere -t 2  -s 1 > synthetic_habitats_logs/log_soil.rhizosphere.txt
 echo fake soil.rhizosphere done!
 
 echo fake_habitat for: soil.saline_marsh is running...
 mkdir -p data/synthetic_habitats/soil.saline_marsh
-fastspar_bootstrap -c data/community_subsets/soil.saline_marsh.tsv -n 250 -p data/synthetic_habitats/soil.saline_marsh/fake_soil.saline_marsh -t 2  -s 1 > data/synthetic_habitats/logs/log_soil.saline_marsh.txt
+fastspar_bootstrap -c data/community_subsets/soil.saline_marsh.tsv -n 250 -p data/synthetic_habitats/soil.saline_marsh/fake_soil.saline_marsh -t 2  -s 1 > synthetic_habitats_logs/log_soil.saline_marsh.txt
 echo fake soil.saline_marsh done!
 
 echo fake_habitat for: soil.savanna_soil is running...
 mkdir -p data/synthetic_habitats/soil.savanna_soil
-fastspar_bootstrap -c data/community_subsets/soil.savanna_soil.tsv -n 250 -p data/synthetic_habitats/soil.savanna_soil/fake_soil.savanna_soil -t 2  -s 1 > data/synthetic_habitats/logs/log_soil.savanna_soil.txt
+fastspar_bootstrap -c data/community_subsets/soil.savanna_soil.tsv -n 250 -p data/synthetic_habitats/soil.savanna_soil/fake_soil.savanna_soil -t 2  -s 1 > synthetic_habitats_logs/log_soil.savanna_soil.txt
 echo fake soil.savanna_soil done!
 
 echo fake_habitat for: soil.shrubland_soil is running...
 mkdir -p data/synthetic_habitats/soil.shrubland_soil
-fastspar_bootstrap -c data/community_subsets/soil.shrubland_soil.tsv -n 250 -p data/synthetic_habitats/soil.shrubland_soil/fake_soil.shrubland_soil -t 2  -s 1 > data/synthetic_habitats/logs/log_soil.shrubland_soil.txt
+fastspar_bootstrap -c data/community_subsets/soil.shrubland_soil.tsv -n 250 -p data/synthetic_habitats/soil.shrubland_soil/fake_soil.shrubland_soil -t 2  -s 1 > synthetic_habitats_logs/log_soil.shrubland_soil.txt
 echo fake soil.shrubland_soil done!
 
 echo fake_habitat for: soil.tundra_soil is running...
 mkdir -p data/synthetic_habitats/soil.tundra_soil
-fastspar_bootstrap -c data/community_subsets/soil.tundra_soil.tsv -n 250 -p data/synthetic_habitats/soil.tundra_soil/fake_soil.tundra_soil -t 2  -s 1 > data/synthetic_habitats/logs/log_soil.tundra_soil.txt
+fastspar_bootstrap -c data/community_subsets/soil.tundra_soil.tsv -n 250 -p data/synthetic_habitats/soil.tundra_soil/fake_soil.tundra_soil -t 2  -s 1 > synthetic_habitats_logs/log_soil.tundra_soil.txt
 echo fake soil.tundra_soil done!
 
 echo fake_habitat for: wastewater.reactor_sludge is running...
 mkdir -p data/synthetic_habitats/wastewater.reactor_sludge
-fastspar_bootstrap -c data/community_subsets/wastewater.reactor_sludge.tsv -n 250 -p data/synthetic_habitats/wastewater.reactor_sludge/fake_wastewater.reactor_sludge -t 2  -s 1 > data/synthetic_habitats/logs/log_wastewater.reactor_sludge.txt
+fastspar_bootstrap -c data/community_subsets/wastewater.reactor_sludge.tsv -n 250 -p data/synthetic_habitats/wastewater.reactor_sludge/fake_wastewater.reactor_sludge -t 2  -s 1 > synthetic_habitats_logs/log_wastewater.reactor_sludge.txt
 echo fake wastewater.reactor_sludge done!
 
 echo fake_habitat for: wastewater.sewage is running...
 mkdir -p data/synthetic_habitats/wastewater.sewage
-fastspar_bootstrap -c data/community_subsets/wastewater.sewage.tsv -n 250 -p data/synthetic_habitats/wastewater.sewage/fake_wastewater.sewage -t 2  -s 1 > data/synthetic_habitats/logs/log_wastewater.sewage.txt
+fastspar_bootstrap -c data/community_subsets/wastewater.sewage.tsv -n 250 -p data/synthetic_habitats/wastewater.sewage/fake_wastewater.sewage -t 2  -s 1 > synthetic_habitats_logs/log_wastewater.sewage.txt
 echo fake wastewater.sewage done!
 
 echo fake_habitat for: wastewater.sludge is running...
 mkdir -p data/synthetic_habitats/wastewater.sludge
-fastspar_bootstrap -c data/community_subsets/wastewater.sludge.tsv -n 250 -p data/synthetic_habitats/wastewater.sludge/fake_wastewater.sludge -t 2  -s 1 > data/synthetic_habitats/logs/log_wastewater.sludge.txt
+fastspar_bootstrap -c data/community_subsets/wastewater.sludge.tsv -n 250 -p data/synthetic_habitats/wastewater.sludge/fake_wastewater.sludge -t 2  -s 1 > synthetic_habitats_logs/log_wastewater.sludge.txt
 echo fake wastewater.sludge done!
 
 echo fake_habitat for: wastewater.wastewater_treatment_plant is running...
 mkdir -p data/synthetic_habitats/wastewater.wastewater_treatment_plant
-fastspar_bootstrap -c data/community_subsets/wastewater.wastewater_treatment_plant.tsv -n 250 -p data/synthetic_habitats/wastewater.wastewater_treatment_plant/fake_wastewater.wastewater_treatment_plant -t 2  -s 1 > data/synthetic_habitats/logs/log_wastewater.wastewater_treatment_plant.txt
+fastspar_bootstrap -c data/community_subsets/wastewater.wastewater_treatment_plant.tsv -n 250 -p data/synthetic_habitats/wastewater.wastewater_treatment_plant/fake_wastewater.wastewater_treatment_plant -t 2  -s 1 > synthetic_habitats_logs/log_wastewater.wastewater_treatment_plant.txt
 echo fake wastewater.wastewater_treatment_plant done!
 
