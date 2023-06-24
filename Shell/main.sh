@@ -107,21 +107,21 @@ xargs -P $parallel -I {} bash -c "{}" < Shell/jobs/performance_iterations.txt
 ######################### Fastspar P-values ####################################
 
 # Environment ******************************************************************
-# conda activate pyshell_biome_keystones
-# source ~/Shell/pipelines/fastspar_pvalues.sh
+conda activate pyshell_biome_keystones
 
 confirm() {
     read -N 1 REPLY
     echo
     if [[ "$REPLY" = "y" || "$REPLY" = "Y" ]]; then
-        "$@"
+        $2 $3
     else
-        echo "Cancelled by user"
+        echo "Cancelled by user: $1"
         exit 1
     fi
 }
-echo "Do you want to create fake habitats?"
-confirm source ~/Shell/pipelines/creating_fake_habitats.sh
+
+echo "Do you want to create fake habitats for the p-values check?[y/n]" 
+confirm "Habitat creation" source Shell/pipelines/creating_fake_habitats.sh
 
 
 ## ask to run the line bellow
