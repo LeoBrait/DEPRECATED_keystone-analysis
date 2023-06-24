@@ -1,17 +1,24 @@
 options(scipen = 9999999)
 library("tidyverse")
+library("stringr")
 source("R/data_processing/calculate_cosine_similarity.R")
 
 #manual test
-aqueous_humour <- dir("data/performance_fastspar_iterations/animal_host-associated.aqueous_humour", full.names = TRUE)
-iter_names <- dir("data/performance_fastspar_iterations/animal_host-associated.aqueous_humour")
+habitat <- dir("data/performance_fastspar_iterations/animal_host-associated.habitat", full.names = TRUE)
+orderer <- as.numeric(str_extract(habitat, "\\d+"))
+habitat <- habitat[order(orderer)]
 
-for (i in 1:length(aqueous_humour)) {
+
+iter_names <- dir("data/performance_fastspar_iterations/animal_host-associated.habitat")
+iter_names <- iter_names[order(orderer)]
+
+
+for (i in 1:length(habitat)) {
 
   iter_sets_paths <- list()
   
   for(j in 1:length(iter_names)) {
-    iter_sets_paths[[iter_names[j]]] <- dir(aqueous_humour[j], pattern = ".cor", full.names = TRUE)
+    iter_sets_paths[[iter_names[j]]] <- dir(habitat[j], pattern = ".cor", full.names = TRUE)
   }
 
 }
@@ -42,35 +49,6 @@ convert_to_numeric <- function(df) {
 # Convert data frames to numerical matrices
 matrix_list <- lapply(iter_sets$"16000", function(df) as.matrix(convert_to_numeric(df)))
 
-x <- as.matrix(matrix_list[[1]])
-
-
-x <- cosine_similarity(matrix_list[[1]], matrix_list[[2]])
-
-
-flattened1 <- c(matrix_list[[1]])
-flattened2 <- c(matrix_list[[2]])
-dot_product <- sum(flattened1 * flattened2)
-norm_product <- sqrt(sum(flattened1^2)) * sqrt(sum(flattened2^2))
-similarity <- dot_product / norm_product
-
-
-sim300 <- similarity
-
-
-
 results_simiralities <- compute_matrices_similarity(matrix_list)
 
-# get half of the matrix and convert to vector
 results_simiralities <- as.vector(results_simiralities[upper.tri(results_simiralities, diag = FALSE)])
-
-
-data <- as.data.frame(results_simiralities)
-
-ggplot(data = data
-        , aes(x = results_simiralities)) +
-    geom_histogram(bins = 100) +
-    labs(x = "Cosine similarity", y = "Frequency") +
-    theme_bw(
-)
-ggsave("cosine_similarity.png", width = 10, height = 10, units = "cm")
