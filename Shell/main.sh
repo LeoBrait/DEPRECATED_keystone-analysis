@@ -103,69 +103,34 @@ xargs -P $parallel -I {} bash -c "{}" < Shell/jobs/performance_iterations.txt
 # conda activate R_biome_keystones
 # Rscript R/pipelines/measuring_matrix_similarities.R
 
+
 ######################### Fastspar P-values ####################################
 
 # Environment ******************************************************************
+# conda activate pyshell_biome_keystones
+# source ~/Shell/pipelines/fastspar_pvalues.sh
 
-conda activate pyshell_biome_keystones
-communities_path=data/community_subsets
+confirm() {
+    read -N 1 REPLY
+    echo
+    if [[ "$REPLY" = "y" || "$REPLY" = "Y" ]]; then
+        "$@"
+    else
+        echo "Cancelled by user"
+        exit 1
+    fi
+}
+echo "Do you want to create fake habitats?"
+confirm source ~/Shell/pipelines/creating_fake_habitats.sh
 
-seeds=(1 2 3 4 5)
 
-general_fake_dir=data/fake_habitats
-mkdir -p "${general_fake_dir}"
+## ask to run the line bellow
+# echo "Do you want to run a line?"
+# read -p "Enter the line number: " line
+# source ~/Shell/pipelines/fastspar_pvalues.sh
 
-#list of achives inside the folder
-subsets=($(\ls ${communities_path}))
-
-for subset_path in "${subsets[@]}"; 
-do
-    #parse the file name without the .tsv
-    filename=$(basename -- "${subset_path}")
-    filename="${filename%.*}"
-    fake_habitat_dir="${general_fake_dir}/${filename}"
-
-    for seed in "${seeds[@]}"; 
-    do
-        #Environment for each iteration and seed
-        log="${fake_habitat_dir}/log_${seed}.txt"
-        
-        #check the pre-existence of each output
-        if [ -f "${fake_habitat_dir}/fake_${seed}.tsv" ]; then
-            echo "echo The Sparcc for: " \
-                    "fake ${filename} ${seed} already exists" > general_log.txt
-        else                
-            #create the jobs file in jobs folder
-            echo "echo fake_habitat for:" \
-                    " ${filename} seed: ${seed} is running..."
-            echo "mkdir -p ${fake_habitat_dir}"
-            echo "fastspar_bootstrap" \
-                    "-c ${communities_path}/${subset_path} " \
-                    "-n 1000 " \
-                    "-p ${fake_habitat_dir}/" \
-                    "-t 2 " \
-                    "-s $seed > ${log}"
-            echo "echo fake ${filename}, seed: ${seed} done!"
-            echo
-        fi
-    done
-done > Shell/jobs/fake_habitats.txt
-
-# Run the jobs *****************************************************************
-
-xargs -P $parallel -I {} bash -c "{}" < Shell/jobs/fake_habitats.txt
-
-# for seed in {1..2}; do
-#     sseed=$(printf "%03d" $seed)
-#     mkdir -p ${communities_path}/ ${path}/${sseed}/cor ${path}/${sseed}/cov
-#     fastspar_bootstrap -c ${base}/$anot -n 1000 -p ${path}/${sseed}/anot/a -t $nthreads -s $seed
-# done
-# # for seed in {1..2}; do
-#     sseed=$(printf "%03d" $seed)
-#     mkdir -p ${path}/${sseed}/anot ${path}/${sseed}/cor ${path}/${sseed}/cov
-#     fastspar_bootstrap -c ${base}/$anot -n 1000 -p ${path}/${sseed}/anot/a -t $nthreads -s $seed
-# done
-
+# echo "Do you want to run a line?"
+# read -p "Enter the line number: " line
 # #do fastspar on fake habitats
 # for seed in {1..2}; do
 #     sseed=$(printf "%03d" $seed)
