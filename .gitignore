@@ -19,3 +19,4 @@ data/synthetic_fastspar
 
 # Desconsider all the directories of a given directory
 out/
+nohup.out

@@ -9,12 +9,23 @@ source ~/$package_manager/etc/profile.d/conda.sh
 parallel=40
 definitive_iter=4000
 
-######################### Data pre-process #####################################
+echo "
+################################################################################
+#                              Preprocessing Data                              #
+################################################################################
+Start time: $(date "+%Y-%m-%d %H:%M:%S")"
+
 
 conda activate pyshell_biome_keystones
 python3 Python/pipelines/data_preprocessing.py
 
-######################### performance fastspar iterations ######################
+
+echo "
+################################################################################
+#                     performancing fastspar iterations                        #
+################################################################################
+Start time: $(date "+%Y-%m-%d %H:%M:%S")"
+
 
 # Environment ******************************************************************
 communities_path=data/community_subsets
@@ -91,41 +102,66 @@ do
     done
 done > Shell/jobs/performance_iterations.txt
 
-
-# Run the jobs *****************************************************************
-
+# Run the jobs 
 xargs -P $parallel -I {} bash -c "{}" < Shell/jobs/performance_iterations.txt
 
-# Maxrix similarities **********************************************************
-
+# Maxrix similarities
 # conda activate R_biome_keystones
 # Rscript R/pipelines/measuring_matrix_similarities.R
 
-echo "\n"\
-"###########################################################################\n"\
-"###################### Fastspar for all communities #######################\n"\
-"###########################################################################\n"\
+echo "
+################################################################################
+#                          Fastspar for all communities                        #
+################################################################################
+Start time: $(date "+%Y-%m-%d %H:%M:%S")"
+
 
 conda activate pyshell_biome_keystones
+communities_path=data/community_subsets
+tablenames=($(\ls ${communities_path}))
+fastspar_dir=data/fastspar_correlations
+mkdir -p "${fastspar_dir}"
 
-# Still to be done.
+# Job List
+for tablename in "${tablenames[@]}";
+do
+    #parse the file name without the .tsv
+    filename=$(basename -- "$tablename")
+    filename="${filename%.*}"
 
-echo "\n"\
-"###########################################################################\n"\
-"############################ Fastspar P-values ############################\n"\
-"###########################################################################\n"\
+    #create the jobs file in jobs folder
+    echo "echo The Sparcc for: ${filename} is running..."
+    echo "mkdir -p ${fastspar_dir}/${filename}"
+    echo "fastspar "\
+            "-c ${communities_path}/${tablename} "\
+            "-r ${fastspar_dir}/${filename}/${filename}.cor "\
+            "-a ${fastspar_dir}/${filename}/${filename}.cov "\
+            "-t 2 "\
+            "-s 1 "\
+            "-i $definitive_iter "\
+            "-x 15 "\
+            "-e 0.1 "\
+            "-y > ${fastspar_dir}/${filename}/${filename}.log"
+    echo "echo ${filename} done!"
+    echo
+done > Shell/jobs/fastspar_all_communities.txt
 
-# Generate Synthetic habitats **************************************************
 
+echo "
+################################################################################
+#                              Fastspar P-values                               #
+################################################################################
+Start time: $(date "+%Y-%m-%d %H:%M:%S")"
+
+# Generate Synthetic habitats
 if [ ! -d "data/synthetic_habitats" ]; then
     source Shell/pipelines/creating_fake_habitats.sh
     else
-        echo "Seems that the synthetic habitats are already created." \
-            "jumping to the next step..."
+        echo "Seems that the synthetic habitats are already created.
+                jumping to the next step..."
 fi
 
-# Run fastspar with synthetic communities **************************************
-
+# Run fastspar with synthetic communities
 source Shell/pipelines/fastspar_synthetics.sh
 
 # # Test real correlations vs. fake ********************************************
@@ -156,3 +192,4 @@ source Shell/pipelines/fastspar_synthetics.sh
 
 
 #fastspar_pvalues -c ${base}/$anot -r ${path}/${sseed}/cor.tsv -n 1000 -p ${path}/${sseed}/cor/ -o ${path}/${sseed}/pval.tsv -t $nthreads
+echo "End time: $(date "+%Y-%m-%d %H:%M:%S")"
