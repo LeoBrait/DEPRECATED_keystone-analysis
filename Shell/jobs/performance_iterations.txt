@@ -1,0 +1,448 @@
+echo The Sparcc for:  animal_host-associated.aqueous_humour with 300 iterations, seed 1..20 is running...
+fastspar  -c data/community_subsets/animal_host-associated.aqueous_humour.tsv  -r data/performance_fastspar_iterations/animal_host-associated.aqueous_humour/300/cor_1..20 -a data/performance_fastspar_iterations/animal_host-associated.aqueous_humour/300/cov_1..20 -t 2  -s 1..20  -i 300  -x 10  -e 0.1  -y > data/performance_fastspar_iterations/animal_host-associated.aqueous_humour/300/log_1..20.txt
+echo animal_host-associated.aqueous_humour with 300 iterations,  and seed 1..20 done!
+
+echo The Sparcc for:  animal_host-associated.aqueous_humour with 400 iterations, seed 1..20 is running...
+fastspar  -c data/community_subsets/animal_host-associated.aqueous_humour.tsv  -r data/performance_fastspar_iterations/animal_host-associated.aqueous_humour/400/cor_1..20 -a data/performance_fastspar_iterations/animal_host-associated.aqueous_humour/400/cov_1..20 -t 2  -s 1..20  -i 400  -x 10  -e 0.1  -y > data/performance_fastspar_iterations/animal_host-associated.aqueous_humour/400/log_1..20.txt
+echo animal_host-associated.aqueous_humour with 400 iterations,  and seed 1..20 done!
+
+echo The Sparcc for:  animal_host-associated.aqueous_humour with 500 iterations, seed 1..20 is running...
+fastspar  -c data/community_subsets/animal_host-associated.aqueous_humour.tsv  -r data/performance_fastspar_iterations/animal_host-associated.aqueous_humour/500/cor_1..20 -a data/performance_fastspar_iterations/animal_host-associated.aqueous_humour/500/cov_1..20 -t 2  -s 1..20  -i 500  -x 10  -e 0.1  -y > data/performance_fastspar_iterations/animal_host-associated.aqueous_humour/500/log_1..20.txt
+echo animal_host-associated.aqueous_humour with 500 iterations,  and seed 1..20 done!
+
+echo The Sparcc for:  animal_host-associated.aqueous_humour with 600 iterations, seed 1..20 is running...
+fastspar  -c data/community_subsets/animal_host-associated.aqueous_humour.tsv  -r data/performance_fastspar_iterations/animal_host-associated.aqueous_humour/600/cor_1..20 -a data/performance_fastspar_iterations/animal_host-associated.aqueous_humour/600/cov_1..20 -t 2  -s 1..20  -i 600  -x 10  -e 0.1  -y > data/performance_fastspar_iterations/animal_host-associated.aqueous_humour/600/log_1..20.txt
+echo animal_host-associated.aqueous_humour with 600 iterations,  and seed 1..20 done!
+
+echo The Sparcc for:  animal_host-associated.aqueous_humour with 700 iterations, seed 1..20 is running...
+fastspar  -c data/community_subsets/animal_host-associated.aqueous_humour.tsv  -r data/performance_fastspar_iterations/animal_host-associated.aqueous_humour/700/cor_1..20 -a data/performance_fastspar_iterations/animal_host-associated.aqueous_humour/700/cov_1..20 -t 2  -s 1..20  -i 700  -x 10  -e 0.1  -y > data/performance_fastspar_iterations/animal_host-associated.aqueous_humour/700/log_1..20.txt
+echo animal_host-associated.aqueous_humour with 700 iterations,  and seed 1..20 done!
+
+echo The Sparcc for:  animal_host-associated.aqueous_humour with 800 iterations, seed 1..20 is running...
+fastspar  -c data/community_subsets/animal_host-associated.aqueous_humour.tsv  -r data/performance_fastspar_iterations/animal_host-associated.aqueous_humour/800/cor_1..20 -a data/performance_fastspar_iterations/animal_host-associated.aqueous_humour/800/cov_1..20 -t 2  -s 1..20  -i 800  -x 10  -e 0.1  -y > data/performance_fastspar_iterations/animal_host-associated.aqueous_humour/800/log_1..20.txt
+echo animal_host-associated.aqueous_humour with 800 iterations,  and seed 1..20 done!
+
+echo The Sparcc for:  animal_host-associated.aqueous_humour with 900 iterations, seed 1..20 is running...
+fastspar  -c data/community_subsets/animal_host-associated.aqueous_humour.tsv  -r data/performance_fastspar_iterations/animal_host-associated.aqueous_humour/900/cor_1..20 -a data/performance_fastspar_iterations/animal_host-associated.aqueous_humour/900/cov_1..20 -t 2  -s 1..20  -i 900  -x 10  -e 0.1  -y > data/performance_fastspar_iterations/animal_host-associated.aqueous_humour/900/log_1..20.txt
+echo animal_host-associated.aqueous_humour with 900 iterations,  and seed 1..20 done!
+
+echo The Sparcc for:  animal_host-associated.aqueous_humour with 1000 iterations, seed 1..20 is running...
+fastspar  -c data/community_subsets/animal_host-associated.aqueous_humour.tsv  -r data/performance_fastspar_iterations/animal_host-associated.aqueous_humour/1000/cor_1..20 -a data/performance_fastspar_iterations/animal_host-associated.aqueous_humour/1000/cov_1..20 -t 2  -s 1..20  -i 1000  -x 10  -e 0.1  -y > data/performance_fastspar_iterations/animal_host-associated.aqueous_humour/1000/log_1..20.txt
+echo animal_host-associated.aqueous_humour with 1000 iterations,  and seed 1..20 done!
+
+echo The Sparcc for:  animal_host-associated.aqueous_humour with 1000 iterations, seed 1..20 is running...
+fastspar  -c data/community_subsets/animal_host-associated.aqueous_humour.tsv  -r data/performance_fastspar_iterations/animal_host-associated.aqueous_humour/1000/cor_1..20 -a data/performance_fastspar_iterations/animal_host-associated.aqueous_humour/1000/cov_1..20 -t 2  -s 1..20  -i 1000  -x 10  -e 0.1  -y > data/performance_fastspar_iterations/animal_host-associated.aqueous_humour/1000/log_1..20.txt
+echo animal_host-associated.aqueous_humour with 1000 iterations,  and seed 1..20 done!
+
+echo The Sparcc for:  animal_host-associated.aqueous_humour with 2000 iterations, seed 1..20 is running...
+fastspar  -c data/community_subsets/animal_host-associated.aqueous_humour.tsv  -r data/performance_fastspar_iterations/animal_host-associated.aqueous_humour/2000/cor_1..20 -a data/performance_fastspar_iterations/animal_host-associated.aqueous_humour/2000/cov_1..20 -t 2  -s 1..20  -i 2000  -x 10  -e 0.1  -y > data/performance_fastspar_iterations/animal_host-associated.aqueous_humour/2000/log_1..20.txt
+echo animal_host-associated.aqueous_humour with 2000 iterations,  and seed 1..20 done!
+
+echo The Sparcc for:  animal_host-associated.aqueous_humour with 3000 iterations, seed 1..20 is running...
+fastspar  -c data/community_subsets/animal_host-associated.aqueous_humour.tsv  -r data/performance_fastspar_iterations/animal_host-associated.aqueous_humour/3000/cor_1..20 -a data/performance_fastspar_iterations/animal_host-associated.aqueous_humour/3000/cov_1..20 -t 2  -s 1..20  -i 3000  -x 10  -e 0.1  -y > data/performance_fastspar_iterations/animal_host-associated.aqueous_humour/3000/log_1..20.txt
+echo animal_host-associated.aqueous_humour with 3000 iterations,  and seed 1..20 done!
+
+echo The Sparcc for:  animal_host-associated.aqueous_humour with 4000 iterations, seed 1..20 is running...
+fastspar  -c data/community_subsets/animal_host-associated.aqueous_humour.tsv  -r data/performance_fastspar_iterations/animal_host-associated.aqueous_humour/4000/cor_1..20 -a data/performance_fastspar_iterations/animal_host-associated.aqueous_humour/4000/cov_1..20 -t 2  -s 1..20  -i 4000  -x 10  -e 0.1  -y > data/performance_fastspar_iterations/animal_host-associated.aqueous_humour/4000/log_1..20.txt
+echo animal_host-associated.aqueous_humour with 4000 iterations,  and seed 1..20 done!
+
+echo The Sparcc for:  animal_host-associated.aqueous_humour with 5000 iterations, seed 1..20 is running...
+fastspar  -c data/community_subsets/animal_host-associated.aqueous_humour.tsv  -r data/performance_fastspar_iterations/animal_host-associated.aqueous_humour/5000/cor_1..20 -a data/performance_fastspar_iterations/animal_host-associated.aqueous_humour/5000/cov_1..20 -t 2  -s 1..20  -i 5000  -x 10  -e 0.1  -y > data/performance_fastspar_iterations/animal_host-associated.aqueous_humour/5000/log_1..20.txt
+echo animal_host-associated.aqueous_humour with 5000 iterations,  and seed 1..20 done!
+
+echo The Sparcc for:  animal_host-associated.aqueous_humour with 6000 iterations, seed 1..20 is running...
+fastspar  -c data/community_subsets/animal_host-associated.aqueous_humour.tsv  -r data/performance_fastspar_iterations/animal_host-associated.aqueous_humour/6000/cor_1..20 -a data/performance_fastspar_iterations/animal_host-associated.aqueous_humour/6000/cov_1..20 -t 2  -s 1..20  -i 6000  -x 10  -e 0.1  -y > data/performance_fastspar_iterations/animal_host-associated.aqueous_humour/6000/log_1..20.txt
+echo animal_host-associated.aqueous_humour with 6000 iterations,  and seed 1..20 done!
+
+echo The Sparcc for:  animal_host-associated.animal_feces with 300 iterations, seed 1..20 is running...
+fastspar  -c data/community_subsets/animal_host-associated.animal_feces.tsv  -r data/performance_fastspar_iterations/animal_host-associated.animal_feces/300/cor_1..20 -a data/performance_fastspar_iterations/animal_host-associated.animal_feces/300/cov_1..20 -t 2  -s 1..20  -i 300  -x 10  -e 0.1  -y > data/performance_fastspar_iterations/animal_host-associated.animal_feces/300/log_1..20.txt
+echo animal_host-associated.animal_feces with 300 iterations,  and seed 1..20 done!
+
+echo The Sparcc for:  animal_host-associated.animal_feces with 400 iterations, seed 1..20 is running...
+fastspar  -c data/community_subsets/animal_host-associated.animal_feces.tsv  -r data/performance_fastspar_iterations/animal_host-associated.animal_feces/400/cor_1..20 -a data/performance_fastspar_iterations/animal_host-associated.animal_feces/400/cov_1..20 -t 2  -s 1..20  -i 400  -x 10  -e 0.1  -y > data/performance_fastspar_iterations/animal_host-associated.animal_feces/400/log_1..20.txt
+echo animal_host-associated.animal_feces with 400 iterations,  and seed 1..20 done!
+
+echo The Sparcc for:  animal_host-associated.animal_feces with 500 iterations, seed 1..20 is running...
+fastspar  -c data/community_subsets/animal_host-associated.animal_feces.tsv  -r data/performance_fastspar_iterations/animal_host-associated.animal_feces/500/cor_1..20 -a data/performance_fastspar_iterations/animal_host-associated.animal_feces/500/cov_1..20 -t 2  -s 1..20  -i 500  -x 10  -e 0.1  -y > data/performance_fastspar_iterations/animal_host-associated.animal_feces/500/log_1..20.txt
+echo animal_host-associated.animal_feces with 500 iterations,  and seed 1..20 done!
+
+echo The Sparcc for:  animal_host-associated.animal_feces with 600 iterations, seed 1..20 is running...
+fastspar  -c data/community_subsets/animal_host-associated.animal_feces.tsv  -r data/performance_fastspar_iterations/animal_host-associated.animal_feces/600/cor_1..20 -a data/performance_fastspar_iterations/animal_host-associated.animal_feces/600/cov_1..20 -t 2  -s 1..20  -i 600  -x 10  -e 0.1  -y > data/performance_fastspar_iterations/animal_host-associated.animal_feces/600/log_1..20.txt
+echo animal_host-associated.animal_feces with 600 iterations,  and seed 1..20 done!
+
+echo The Sparcc for:  animal_host-associated.animal_feces with 700 iterations, seed 1..20 is running...
+fastspar  -c data/community_subsets/animal_host-associated.animal_feces.tsv  -r data/performance_fastspar_iterations/animal_host-associated.animal_feces/700/cor_1..20 -a data/performance_fastspar_iterations/animal_host-associated.animal_feces/700/cov_1..20 -t 2  -s 1..20  -i 700  -x 10  -e 0.1  -y > data/performance_fastspar_iterations/animal_host-associated.animal_feces/700/log_1..20.txt
+echo animal_host-associated.animal_feces with 700 iterations,  and seed 1..20 done!
+
+echo The Sparcc for:  animal_host-associated.animal_feces with 800 iterations, seed 1..20 is running...
+fastspar  -c data/community_subsets/animal_host-associated.animal_feces.tsv  -r data/performance_fastspar_iterations/animal_host-associated.animal_feces/800/cor_1..20 -a data/performance_fastspar_iterations/animal_host-associated.animal_feces/800/cov_1..20 -t 2  -s 1..20  -i 800  -x 10  -e 0.1  -y > data/performance_fastspar_iterations/animal_host-associated.animal_feces/800/log_1..20.txt
+echo animal_host-associated.animal_feces with 800 iterations,  and seed 1..20 done!
+
+echo The Sparcc for:  animal_host-associated.animal_feces with 900 iterations, seed 1..20 is running...
+fastspar  -c data/community_subsets/animal_host-associated.animal_feces.tsv  -r data/performance_fastspar_iterations/animal_host-associated.animal_feces/900/cor_1..20 -a data/performance_fastspar_iterations/animal_host-associated.animal_feces/900/cov_1..20 -t 2  -s 1..20  -i 900  -x 10  -e 0.1  -y > data/performance_fastspar_iterations/animal_host-associated.animal_feces/900/log_1..20.txt
+echo animal_host-associated.animal_feces with 900 iterations,  and seed 1..20 done!
+
+echo The Sparcc for:  animal_host-associated.animal_feces with 1000 iterations, seed 1..20 is running...
+fastspar  -c data/community_subsets/animal_host-associated.animal_feces.tsv  -r data/performance_fastspar_iterations/animal_host-associated.animal_feces/1000/cor_1..20 -a data/performance_fastspar_iterations/animal_host-associated.animal_feces/1000/cov_1..20 -t 2  -s 1..20  -i 1000  -x 10  -e 0.1  -y > data/performance_fastspar_iterations/animal_host-associated.animal_feces/1000/log_1..20.txt
+echo animal_host-associated.animal_feces with 1000 iterations,  and seed 1..20 done!
+
+echo The Sparcc for:  animal_host-associated.animal_feces with 1000 iterations, seed 1..20 is running...
+fastspar  -c data/community_subsets/animal_host-associated.animal_feces.tsv  -r data/performance_fastspar_iterations/animal_host-associated.animal_feces/1000/cor_1..20 -a data/performance_fastspar_iterations/animal_host-associated.animal_feces/1000/cov_1..20 -t 2  -s 1..20  -i 1000  -x 10  -e 0.1  -y > data/performance_fastspar_iterations/animal_host-associated.animal_feces/1000/log_1..20.txt
+echo animal_host-associated.animal_feces with 1000 iterations,  and seed 1..20 done!
+
+echo The Sparcc for:  animal_host-associated.animal_feces with 2000 iterations, seed 1..20 is running...
+fastspar  -c data/community_subsets/animal_host-associated.animal_feces.tsv  -r data/performance_fastspar_iterations/animal_host-associated.animal_feces/2000/cor_1..20 -a data/performance_fastspar_iterations/animal_host-associated.animal_feces/2000/cov_1..20 -t 2  -s 1..20  -i 2000  -x 10  -e 0.1  -y > data/performance_fastspar_iterations/animal_host-associated.animal_feces/2000/log_1..20.txt
+echo animal_host-associated.animal_feces with 2000 iterations,  and seed 1..20 done!
+
+echo The Sparcc for:  animal_host-associated.animal_feces with 3000 iterations, seed 1..20 is running...
+fastspar  -c data/community_subsets/animal_host-associated.animal_feces.tsv  -r data/performance_fastspar_iterations/animal_host-associated.animal_feces/3000/cor_1..20 -a data/performance_fastspar_iterations/animal_host-associated.animal_feces/3000/cov_1..20 -t 2  -s 1..20  -i 3000  -x 10  -e 0.1  -y > data/performance_fastspar_iterations/animal_host-associated.animal_feces/3000/log_1..20.txt
+echo animal_host-associated.animal_feces with 3000 iterations,  and seed 1..20 done!
+
+echo The Sparcc for:  animal_host-associated.animal_feces with 4000 iterations, seed 1..20 is running...
+fastspar  -c data/community_subsets/animal_host-associated.animal_feces.tsv  -r data/performance_fastspar_iterations/animal_host-associated.animal_feces/4000/cor_1..20 -a data/performance_fastspar_iterations/animal_host-associated.animal_feces/4000/cov_1..20 -t 2  -s 1..20  -i 4000  -x 10  -e 0.1  -y > data/performance_fastspar_iterations/animal_host-associated.animal_feces/4000/log_1..20.txt
+echo animal_host-associated.animal_feces with 4000 iterations,  and seed 1..20 done!
+
+echo The Sparcc for:  animal_host-associated.animal_feces with 5000 iterations, seed 1..20 is running...
+fastspar  -c data/community_subsets/animal_host-associated.animal_feces.tsv  -r data/performance_fastspar_iterations/animal_host-associated.animal_feces/5000/cor_1..20 -a data/performance_fastspar_iterations/animal_host-associated.animal_feces/5000/cov_1..20 -t 2  -s 1..20  -i 5000  -x 10  -e 0.1  -y > data/performance_fastspar_iterations/animal_host-associated.animal_feces/5000/log_1..20.txt
+echo animal_host-associated.animal_feces with 5000 iterations,  and seed 1..20 done!
+
+echo The Sparcc for:  animal_host-associated.animal_feces with 6000 iterations, seed 1..20 is running...
+fastspar  -c data/community_subsets/animal_host-associated.animal_feces.tsv  -r data/performance_fastspar_iterations/animal_host-associated.animal_feces/6000/cor_1..20 -a data/performance_fastspar_iterations/animal_host-associated.animal_feces/6000/cov_1..20 -t 2  -s 1..20  -i 6000  -x 10  -e 0.1  -y > data/performance_fastspar_iterations/animal_host-associated.animal_feces/6000/log_1..20.txt
+echo animal_host-associated.animal_feces with 6000 iterations,  and seed 1..20 done!
+
+echo The Sparcc for:  saline_water.coastal_seawater with 300 iterations, seed 1..20 is running...
+fastspar  -c data/community_subsets/saline_water.coastal_seawater.tsv  -r data/performance_fastspar_iterations/saline_water.coastal_seawater/300/cor_1..20 -a data/performance_fastspar_iterations/saline_water.coastal_seawater/300/cov_1..20 -t 2  -s 1..20  -i 300  -x 10  -e 0.1  -y > data/performance_fastspar_iterations/saline_water.coastal_seawater/300/log_1..20.txt
+echo saline_water.coastal_seawater with 300 iterations,  and seed 1..20 done!
+
+echo The Sparcc for:  saline_water.coastal_seawater with 400 iterations, seed 1..20 is running...
+fastspar  -c data/community_subsets/saline_water.coastal_seawater.tsv  -r data/performance_fastspar_iterations/saline_water.coastal_seawater/400/cor_1..20 -a data/performance_fastspar_iterations/saline_water.coastal_seawater/400/cov_1..20 -t 2  -s 1..20  -i 400  -x 10  -e 0.1  -y > data/performance_fastspar_iterations/saline_water.coastal_seawater/400/log_1..20.txt
+echo saline_water.coastal_seawater with 400 iterations,  and seed 1..20 done!
+
+echo The Sparcc for:  saline_water.coastal_seawater with 500 iterations, seed 1..20 is running...
+fastspar  -c data/community_subsets/saline_water.coastal_seawater.tsv  -r data/performance_fastspar_iterations/saline_water.coastal_seawater/500/cor_1..20 -a data/performance_fastspar_iterations/saline_water.coastal_seawater/500/cov_1..20 -t 2  -s 1..20  -i 500  -x 10  -e 0.1  -y > data/performance_fastspar_iterations/saline_water.coastal_seawater/500/log_1..20.txt
+echo saline_water.coastal_seawater with 500 iterations,  and seed 1..20 done!
+
+echo The Sparcc for:  saline_water.coastal_seawater with 600 iterations, seed 1..20 is running...
+fastspar  -c data/community_subsets/saline_water.coastal_seawater.tsv  -r data/performance_fastspar_iterations/saline_water.coastal_seawater/600/cor_1..20 -a data/performance_fastspar_iterations/saline_water.coastal_seawater/600/cov_1..20 -t 2  -s 1..20  -i 600  -x 10  -e 0.1  -y > data/performance_fastspar_iterations/saline_water.coastal_seawater/600/log_1..20.txt
+echo saline_water.coastal_seawater with 600 iterations,  and seed 1..20 done!
+
+echo The Sparcc for:  saline_water.coastal_seawater with 700 iterations, seed 1..20 is running...
+fastspar  -c data/community_subsets/saline_water.coastal_seawater.tsv  -r data/performance_fastspar_iterations/saline_water.coastal_seawater/700/cor_1..20 -a data/performance_fastspar_iterations/saline_water.coastal_seawater/700/cov_1..20 -t 2  -s 1..20  -i 700  -x 10  -e 0.1  -y > data/performance_fastspar_iterations/saline_water.coastal_seawater/700/log_1..20.txt
+echo saline_water.coastal_seawater with 700 iterations,  and seed 1..20 done!
+
+echo The Sparcc for:  saline_water.coastal_seawater with 800 iterations, seed 1..20 is running...
+fastspar  -c data/community_subsets/saline_water.coastal_seawater.tsv  -r data/performance_fastspar_iterations/saline_water.coastal_seawater/800/cor_1..20 -a data/performance_fastspar_iterations/saline_water.coastal_seawater/800/cov_1..20 -t 2  -s 1..20  -i 800  -x 10  -e 0.1  -y > data/performance_fastspar_iterations/saline_water.coastal_seawater/800/log_1..20.txt
+echo saline_water.coastal_seawater with 800 iterations,  and seed 1..20 done!
+
+echo The Sparcc for:  saline_water.coastal_seawater with 900 iterations, seed 1..20 is running...
+fastspar  -c data/community_subsets/saline_water.coastal_seawater.tsv  -r data/performance_fastspar_iterations/saline_water.coastal_seawater/900/cor_1..20 -a data/performance_fastspar_iterations/saline_water.coastal_seawater/900/cov_1..20 -t 2  -s 1..20  -i 900  -x 10  -e 0.1  -y > data/performance_fastspar_iterations/saline_water.coastal_seawater/900/log_1..20.txt
+echo saline_water.coastal_seawater with 900 iterations,  and seed 1..20 done!
+
+echo The Sparcc for:  saline_water.coastal_seawater with 1000 iterations, seed 1..20 is running...
+fastspar  -c data/community_subsets/saline_water.coastal_seawater.tsv  -r data/performance_fastspar_iterations/saline_water.coastal_seawater/1000/cor_1..20 -a data/performance_fastspar_iterations/saline_water.coastal_seawater/1000/cov_1..20 -t 2  -s 1..20  -i 1000  -x 10  -e 0.1  -y > data/performance_fastspar_iterations/saline_water.coastal_seawater/1000/log_1..20.txt
+echo saline_water.coastal_seawater with 1000 iterations,  and seed 1..20 done!
+
+echo The Sparcc for:  saline_water.coastal_seawater with 1000 iterations, seed 1..20 is running...
+fastspar  -c data/community_subsets/saline_water.coastal_seawater.tsv  -r data/performance_fastspar_iterations/saline_water.coastal_seawater/1000/cor_1..20 -a data/performance_fastspar_iterations/saline_water.coastal_seawater/1000/cov_1..20 -t 2  -s 1..20  -i 1000  -x 10  -e 0.1  -y > data/performance_fastspar_iterations/saline_water.coastal_seawater/1000/log_1..20.txt
+echo saline_water.coastal_seawater with 1000 iterations,  and seed 1..20 done!
+
+echo The Sparcc for:  saline_water.coastal_seawater with 2000 iterations, seed 1..20 is running...
+fastspar  -c data/community_subsets/saline_water.coastal_seawater.tsv  -r data/performance_fastspar_iterations/saline_water.coastal_seawater/2000/cor_1..20 -a data/performance_fastspar_iterations/saline_water.coastal_seawater/2000/cov_1..20 -t 2  -s 1..20  -i 2000  -x 10  -e 0.1  -y > data/performance_fastspar_iterations/saline_water.coastal_seawater/2000/log_1..20.txt
+echo saline_water.coastal_seawater with 2000 iterations,  and seed 1..20 done!
+
+echo The Sparcc for:  saline_water.coastal_seawater with 3000 iterations, seed 1..20 is running...
+fastspar  -c data/community_subsets/saline_water.coastal_seawater.tsv  -r data/performance_fastspar_iterations/saline_water.coastal_seawater/3000/cor_1..20 -a data/performance_fastspar_iterations/saline_water.coastal_seawater/3000/cov_1..20 -t 2  -s 1..20  -i 3000  -x 10  -e 0.1  -y > data/performance_fastspar_iterations/saline_water.coastal_seawater/3000/log_1..20.txt
+echo saline_water.coastal_seawater with 3000 iterations,  and seed 1..20 done!
+
+echo The Sparcc for:  saline_water.coastal_seawater with 4000 iterations, seed 1..20 is running...
+fastspar  -c data/community_subsets/saline_water.coastal_seawater.tsv  -r data/performance_fastspar_iterations/saline_water.coastal_seawater/4000/cor_1..20 -a data/performance_fastspar_iterations/saline_water.coastal_seawater/4000/cov_1..20 -t 2  -s 1..20  -i 4000  -x 10  -e 0.1  -y > data/performance_fastspar_iterations/saline_water.coastal_seawater/4000/log_1..20.txt
+echo saline_water.coastal_seawater with 4000 iterations,  and seed 1..20 done!
+
+echo The Sparcc for:  saline_water.coastal_seawater with 5000 iterations, seed 1..20 is running...
+fastspar  -c data/community_subsets/saline_water.coastal_seawater.tsv  -r data/performance_fastspar_iterations/saline_water.coastal_seawater/5000/cor_1..20 -a data/performance_fastspar_iterations/saline_water.coastal_seawater/5000/cov_1..20 -t 2  -s 1..20  -i 5000  -x 10  -e 0.1  -y > data/performance_fastspar_iterations/saline_water.coastal_seawater/5000/log_1..20.txt
+echo saline_water.coastal_seawater with 5000 iterations,  and seed 1..20 done!
+
+echo The Sparcc for:  saline_water.coastal_seawater with 6000 iterations, seed 1..20 is running...
+fastspar  -c data/community_subsets/saline_water.coastal_seawater.tsv  -r data/performance_fastspar_iterations/saline_water.coastal_seawater/6000/cor_1..20 -a data/performance_fastspar_iterations/saline_water.coastal_seawater/6000/cov_1..20 -t 2  -s 1..20  -i 6000  -x 10  -e 0.1  -y > data/performance_fastspar_iterations/saline_water.coastal_seawater/6000/log_1..20.txt
+echo saline_water.coastal_seawater with 6000 iterations,  and seed 1..20 done!
+
+echo The Sparcc for:  saline_water.hypersaline_water with 300 iterations, seed 1..20 is running...
+fastspar  -c data/community_subsets/saline_water.hypersaline_water.tsv  -r data/performance_fastspar_iterations/saline_water.hypersaline_water/300/cor_1..20 -a data/performance_fastspar_iterations/saline_water.hypersaline_water/300/cov_1..20 -t 2  -s 1..20  -i 300  -x 10  -e 0.1  -y > data/performance_fastspar_iterations/saline_water.hypersaline_water/300/log_1..20.txt
+echo saline_water.hypersaline_water with 300 iterations,  and seed 1..20 done!
+
+echo The Sparcc for:  saline_water.hypersaline_water with 400 iterations, seed 1..20 is running...
+fastspar  -c data/community_subsets/saline_water.hypersaline_water.tsv  -r data/performance_fastspar_iterations/saline_water.hypersaline_water/400/cor_1..20 -a data/performance_fastspar_iterations/saline_water.hypersaline_water/400/cov_1..20 -t 2  -s 1..20  -i 400  -x 10  -e 0.1  -y > data/performance_fastspar_iterations/saline_water.hypersaline_water/400/log_1..20.txt
+echo saline_water.hypersaline_water with 400 iterations,  and seed 1..20 done!
+
+echo The Sparcc for:  saline_water.hypersaline_water with 500 iterations, seed 1..20 is running...
+fastspar  -c data/community_subsets/saline_water.hypersaline_water.tsv  -r data/performance_fastspar_iterations/saline_water.hypersaline_water/500/cor_1..20 -a data/performance_fastspar_iterations/saline_water.hypersaline_water/500/cov_1..20 -t 2  -s 1..20  -i 500  -x 10  -e 0.1  -y > data/performance_fastspar_iterations/saline_water.hypersaline_water/500/log_1..20.txt
+echo saline_water.hypersaline_water with 500 iterations,  and seed 1..20 done!
+
+echo The Sparcc for:  saline_water.hypersaline_water with 600 iterations, seed 1..20 is running...
+fastspar  -c data/community_subsets/saline_water.hypersaline_water.tsv  -r data/performance_fastspar_iterations/saline_water.hypersaline_water/600/cor_1..20 -a data/performance_fastspar_iterations/saline_water.hypersaline_water/600/cov_1..20 -t 2  -s 1..20  -i 600  -x 10  -e 0.1  -y > data/performance_fastspar_iterations/saline_water.hypersaline_water/600/log_1..20.txt
+echo saline_water.hypersaline_water with 600 iterations,  and seed 1..20 done!
+
+echo The Sparcc for:  saline_water.hypersaline_water with 700 iterations, seed 1..20 is running...
+fastspar  -c data/community_subsets/saline_water.hypersaline_water.tsv  -r data/performance_fastspar_iterations/saline_water.hypersaline_water/700/cor_1..20 -a data/performance_fastspar_iterations/saline_water.hypersaline_water/700/cov_1..20 -t 2  -s 1..20  -i 700  -x 10  -e 0.1  -y > data/performance_fastspar_iterations/saline_water.hypersaline_water/700/log_1..20.txt
+echo saline_water.hypersaline_water with 700 iterations,  and seed 1..20 done!
+
+echo The Sparcc for:  saline_water.hypersaline_water with 800 iterations, seed 1..20 is running...
+fastspar  -c data/community_subsets/saline_water.hypersaline_water.tsv  -r data/performance_fastspar_iterations/saline_water.hypersaline_water/800/cor_1..20 -a data/performance_fastspar_iterations/saline_water.hypersaline_water/800/cov_1..20 -t 2  -s 1..20  -i 800  -x 10  -e 0.1  -y > data/performance_fastspar_iterations/saline_water.hypersaline_water/800/log_1..20.txt
+echo saline_water.hypersaline_water with 800 iterations,  and seed 1..20 done!
+
+echo The Sparcc for:  saline_water.hypersaline_water with 900 iterations, seed 1..20 is running...
+fastspar  -c data/community_subsets/saline_water.hypersaline_water.tsv  -r data/performance_fastspar_iterations/saline_water.hypersaline_water/900/cor_1..20 -a data/performance_fastspar_iterations/saline_water.hypersaline_water/900/cov_1..20 -t 2  -s 1..20  -i 900  -x 10  -e 0.1  -y > data/performance_fastspar_iterations/saline_water.hypersaline_water/900/log_1..20.txt
+echo saline_water.hypersaline_water with 900 iterations,  and seed 1..20 done!
+
+echo The Sparcc for:  saline_water.hypersaline_water with 1000 iterations, seed 1..20 is running...
+fastspar  -c data/community_subsets/saline_water.hypersaline_water.tsv  -r data/performance_fastspar_iterations/saline_water.hypersaline_water/1000/cor_1..20 -a data/performance_fastspar_iterations/saline_water.hypersaline_water/1000/cov_1..20 -t 2  -s 1..20  -i 1000  -x 10  -e 0.1  -y > data/performance_fastspar_iterations/saline_water.hypersaline_water/1000/log_1..20.txt
+echo saline_water.hypersaline_water with 1000 iterations,  and seed 1..20 done!
+
+echo The Sparcc for:  saline_water.hypersaline_water with 1000 iterations, seed 1..20 is running...
+fastspar  -c data/community_subsets/saline_water.hypersaline_water.tsv  -r data/performance_fastspar_iterations/saline_water.hypersaline_water/1000/cor_1..20 -a data/performance_fastspar_iterations/saline_water.hypersaline_water/1000/cov_1..20 -t 2  -s 1..20  -i 1000  -x 10  -e 0.1  -y > data/performance_fastspar_iterations/saline_water.hypersaline_water/1000/log_1..20.txt
+echo saline_water.hypersaline_water with 1000 iterations,  and seed 1..20 done!
+
+echo The Sparcc for:  saline_water.hypersaline_water with 2000 iterations, seed 1..20 is running...
+fastspar  -c data/community_subsets/saline_water.hypersaline_water.tsv  -r data/performance_fastspar_iterations/saline_water.hypersaline_water/2000/cor_1..20 -a data/performance_fastspar_iterations/saline_water.hypersaline_water/2000/cov_1..20 -t 2  -s 1..20  -i 2000  -x 10  -e 0.1  -y > data/performance_fastspar_iterations/saline_water.hypersaline_water/2000/log_1..20.txt
+echo saline_water.hypersaline_water with 2000 iterations,  and seed 1..20 done!
+
+echo The Sparcc for:  saline_water.hypersaline_water with 3000 iterations, seed 1..20 is running...
+fastspar  -c data/community_subsets/saline_water.hypersaline_water.tsv  -r data/performance_fastspar_iterations/saline_water.hypersaline_water/3000/cor_1..20 -a data/performance_fastspar_iterations/saline_water.hypersaline_water/3000/cov_1..20 -t 2  -s 1..20  -i 3000  -x 10  -e 0.1  -y > data/performance_fastspar_iterations/saline_water.hypersaline_water/3000/log_1..20.txt
+echo saline_water.hypersaline_water with 3000 iterations,  and seed 1..20 done!
+
+echo The Sparcc for:  saline_water.hypersaline_water with 4000 iterations, seed 1..20 is running...
+fastspar  -c data/community_subsets/saline_water.hypersaline_water.tsv  -r data/performance_fastspar_iterations/saline_water.hypersaline_water/4000/cor_1..20 -a data/performance_fastspar_iterations/saline_water.hypersaline_water/4000/cov_1..20 -t 2  -s 1..20  -i 4000  -x 10  -e 0.1  -y > data/performance_fastspar_iterations/saline_water.hypersaline_water/4000/log_1..20.txt
+echo saline_water.hypersaline_water with 4000 iterations,  and seed 1..20 done!
+
+echo The Sparcc for:  saline_water.hypersaline_water with 5000 iterations, seed 1..20 is running...
+fastspar  -c data/community_subsets/saline_water.hypersaline_water.tsv  -r data/performance_fastspar_iterations/saline_water.hypersaline_water/5000/cor_1..20 -a data/performance_fastspar_iterations/saline_water.hypersaline_water/5000/cov_1..20 -t 2  -s 1..20  -i 5000  -x 10  -e 0.1  -y > data/performance_fastspar_iterations/saline_water.hypersaline_water/5000/log_1..20.txt
+echo saline_water.hypersaline_water with 5000 iterations,  and seed 1..20 done!
+
+echo The Sparcc for:  saline_water.hypersaline_water with 6000 iterations, seed 1..20 is running...
+fastspar  -c data/community_subsets/saline_water.hypersaline_water.tsv  -r data/performance_fastspar_iterations/saline_water.hypersaline_water/6000/cor_1..20 -a data/performance_fastspar_iterations/saline_water.hypersaline_water/6000/cov_1..20 -t 2  -s 1..20  -i 6000  -x 10  -e 0.1  -y > data/performance_fastspar_iterations/saline_water.hypersaline_water/6000/log_1..20.txt
+echo saline_water.hypersaline_water with 6000 iterations,  and seed 1..20 done!
+
+echo The Sparcc for:  soil.savanna_soil with 300 iterations, seed 1..20 is running...
+fastspar  -c data/community_subsets/soil.savanna_soil.tsv  -r data/performance_fastspar_iterations/soil.savanna_soil/300/cor_1..20 -a data/performance_fastspar_iterations/soil.savanna_soil/300/cov_1..20 -t 2  -s 1..20  -i 300  -x 10  -e 0.1  -y > data/performance_fastspar_iterations/soil.savanna_soil/300/log_1..20.txt
+echo soil.savanna_soil with 300 iterations,  and seed 1..20 done!
+
+echo The Sparcc for:  soil.savanna_soil with 400 iterations, seed 1..20 is running...
+fastspar  -c data/community_subsets/soil.savanna_soil.tsv  -r data/performance_fastspar_iterations/soil.savanna_soil/400/cor_1..20 -a data/performance_fastspar_iterations/soil.savanna_soil/400/cov_1..20 -t 2  -s 1..20  -i 400  -x 10  -e 0.1  -y > data/performance_fastspar_iterations/soil.savanna_soil/400/log_1..20.txt
+echo soil.savanna_soil with 400 iterations,  and seed 1..20 done!
+
+echo The Sparcc for:  soil.savanna_soil with 500 iterations, seed 1..20 is running...
+fastspar  -c data/community_subsets/soil.savanna_soil.tsv  -r data/performance_fastspar_iterations/soil.savanna_soil/500/cor_1..20 -a data/performance_fastspar_iterations/soil.savanna_soil/500/cov_1..20 -t 2  -s 1..20  -i 500  -x 10  -e 0.1  -y > data/performance_fastspar_iterations/soil.savanna_soil/500/log_1..20.txt
+echo soil.savanna_soil with 500 iterations,  and seed 1..20 done!
+
+echo The Sparcc for:  soil.savanna_soil with 600 iterations, seed 1..20 is running...
+fastspar  -c data/community_subsets/soil.savanna_soil.tsv  -r data/performance_fastspar_iterations/soil.savanna_soil/600/cor_1..20 -a data/performance_fastspar_iterations/soil.savanna_soil/600/cov_1..20 -t 2  -s 1..20  -i 600  -x 10  -e 0.1  -y > data/performance_fastspar_iterations/soil.savanna_soil/600/log_1..20.txt
+echo soil.savanna_soil with 600 iterations,  and seed 1..20 done!
+
+echo The Sparcc for:  soil.savanna_soil with 700 iterations, seed 1..20 is running...
+fastspar  -c data/community_subsets/soil.savanna_soil.tsv  -r data/performance_fastspar_iterations/soil.savanna_soil/700/cor_1..20 -a data/performance_fastspar_iterations/soil.savanna_soil/700/cov_1..20 -t 2  -s 1..20  -i 700  -x 10  -e 0.1  -y > data/performance_fastspar_iterations/soil.savanna_soil/700/log_1..20.txt
+echo soil.savanna_soil with 700 iterations,  and seed 1..20 done!
+
+echo The Sparcc for:  soil.savanna_soil with 800 iterations, seed 1..20 is running...
+fastspar  -c data/community_subsets/soil.savanna_soil.tsv  -r data/performance_fastspar_iterations/soil.savanna_soil/800/cor_1..20 -a data/performance_fastspar_iterations/soil.savanna_soil/800/cov_1..20 -t 2  -s 1..20  -i 800  -x 10  -e 0.1  -y > data/performance_fastspar_iterations/soil.savanna_soil/800/log_1..20.txt
+echo soil.savanna_soil with 800 iterations,  and seed 1..20 done!
+
+echo The Sparcc for:  soil.savanna_soil with 900 iterations, seed 1..20 is running...
+fastspar  -c data/community_subsets/soil.savanna_soil.tsv  -r data/performance_fastspar_iterations/soil.savanna_soil/900/cor_1..20 -a data/performance_fastspar_iterations/soil.savanna_soil/900/cov_1..20 -t 2  -s 1..20  -i 900  -x 10  -e 0.1  -y > data/performance_fastspar_iterations/soil.savanna_soil/900/log_1..20.txt
+echo soil.savanna_soil with 900 iterations,  and seed 1..20 done!
+
+echo The Sparcc for:  soil.savanna_soil with 1000 iterations, seed 1..20 is running...
+fastspar  -c data/community_subsets/soil.savanna_soil.tsv  -r data/performance_fastspar_iterations/soil.savanna_soil/1000/cor_1..20 -a data/performance_fastspar_iterations/soil.savanna_soil/1000/cov_1..20 -t 2  -s 1..20  -i 1000  -x 10  -e 0.1  -y > data/performance_fastspar_iterations/soil.savanna_soil/1000/log_1..20.txt
+echo soil.savanna_soil with 1000 iterations,  and seed 1..20 done!
+
+echo The Sparcc for:  soil.savanna_soil with 1000 iterations, seed 1..20 is running...
+fastspar  -c data/community_subsets/soil.savanna_soil.tsv  -r data/performance_fastspar_iterations/soil.savanna_soil/1000/cor_1..20 -a data/performance_fastspar_iterations/soil.savanna_soil/1000/cov_1..20 -t 2  -s 1..20  -i 1000  -x 10  -e 0.1  -y > data/performance_fastspar_iterations/soil.savanna_soil/1000/log_1..20.txt
+echo soil.savanna_soil with 1000 iterations,  and seed 1..20 done!
+
+echo The Sparcc for:  soil.savanna_soil with 2000 iterations, seed 1..20 is running...
+fastspar  -c data/community_subsets/soil.savanna_soil.tsv  -r data/performance_fastspar_iterations/soil.savanna_soil/2000/cor_1..20 -a data/performance_fastspar_iterations/soil.savanna_soil/2000/cov_1..20 -t 2  -s 1..20  -i 2000  -x 10  -e 0.1  -y > data/performance_fastspar_iterations/soil.savanna_soil/2000/log_1..20.txt
+echo soil.savanna_soil with 2000 iterations,  and seed 1..20 done!
+
+echo The Sparcc for:  soil.savanna_soil with 3000 iterations, seed 1..20 is running...
+fastspar  -c data/community_subsets/soil.savanna_soil.tsv  -r data/performance_fastspar_iterations/soil.savanna_soil/3000/cor_1..20 -a data/performance_fastspar_iterations/soil.savanna_soil/3000/cov_1..20 -t 2  -s 1..20  -i 3000  -x 10  -e 0.1  -y > data/performance_fastspar_iterations/soil.savanna_soil/3000/log_1..20.txt
+echo soil.savanna_soil with 3000 iterations,  and seed 1..20 done!
+
+echo The Sparcc for:  soil.savanna_soil with 4000 iterations, seed 1..20 is running...
+fastspar  -c data/community_subsets/soil.savanna_soil.tsv  -r data/performance_fastspar_iterations/soil.savanna_soil/4000/cor_1..20 -a data/performance_fastspar_iterations/soil.savanna_soil/4000/cov_1..20 -t 2  -s 1..20  -i 4000  -x 10  -e 0.1  -y > data/performance_fastspar_iterations/soil.savanna_soil/4000/log_1..20.txt
+echo soil.savanna_soil with 4000 iterations,  and seed 1..20 done!
+
+echo The Sparcc for:  soil.savanna_soil with 5000 iterations, seed 1..20 is running...
+fastspar  -c data/community_subsets/soil.savanna_soil.tsv  -r data/performance_fastspar_iterations/soil.savanna_soil/5000/cor_1..20 -a data/performance_fastspar_iterations/soil.savanna_soil/5000/cov_1..20 -t 2  -s 1..20  -i 5000  -x 10  -e 0.1  -y > data/performance_fastspar_iterations/soil.savanna_soil/5000/log_1..20.txt
+echo soil.savanna_soil with 5000 iterations,  and seed 1..20 done!
+
+echo The Sparcc for:  soil.savanna_soil with 6000 iterations, seed 1..20 is running...
+fastspar  -c data/community_subsets/soil.savanna_soil.tsv  -r data/performance_fastspar_iterations/soil.savanna_soil/6000/cor_1..20 -a data/performance_fastspar_iterations/soil.savanna_soil/6000/cov_1..20 -t 2  -s 1..20  -i 6000  -x 10  -e 0.1  -y > data/performance_fastspar_iterations/soil.savanna_soil/6000/log_1..20.txt
+echo soil.savanna_soil with 6000 iterations,  and seed 1..20 done!
+
+echo The Sparcc for:  soil.tundra_soil with 300 iterations, seed 1..20 is running...
+fastspar  -c data/community_subsets/soil.tundra_soil.tsv  -r data/performance_fastspar_iterations/soil.tundra_soil/300/cor_1..20 -a data/performance_fastspar_iterations/soil.tundra_soil/300/cov_1..20 -t 2  -s 1..20  -i 300  -x 10  -e 0.1  -y > data/performance_fastspar_iterations/soil.tundra_soil/300/log_1..20.txt
+echo soil.tundra_soil with 300 iterations,  and seed 1..20 done!
+
+echo The Sparcc for:  soil.tundra_soil with 400 iterations, seed 1..20 is running...
+fastspar  -c data/community_subsets/soil.tundra_soil.tsv  -r data/performance_fastspar_iterations/soil.tundra_soil/400/cor_1..20 -a data/performance_fastspar_iterations/soil.tundra_soil/400/cov_1..20 -t 2  -s 1..20  -i 400  -x 10  -e 0.1  -y > data/performance_fastspar_iterations/soil.tundra_soil/400/log_1..20.txt
+echo soil.tundra_soil with 400 iterations,  and seed 1..20 done!
+
+echo The Sparcc for:  soil.tundra_soil with 500 iterations, seed 1..20 is running...
+fastspar  -c data/community_subsets/soil.tundra_soil.tsv  -r data/performance_fastspar_iterations/soil.tundra_soil/500/cor_1..20 -a data/performance_fastspar_iterations/soil.tundra_soil/500/cov_1..20 -t 2  -s 1..20  -i 500  -x 10  -e 0.1  -y > data/performance_fastspar_iterations/soil.tundra_soil/500/log_1..20.txt
+echo soil.tundra_soil with 500 iterations,  and seed 1..20 done!
+
+echo The Sparcc for:  soil.tundra_soil with 600 iterations, seed 1..20 is running...
+fastspar  -c data/community_subsets/soil.tundra_soil.tsv  -r data/performance_fastspar_iterations/soil.tundra_soil/600/cor_1..20 -a data/performance_fastspar_iterations/soil.tundra_soil/600/cov_1..20 -t 2  -s 1..20  -i 600  -x 10  -e 0.1  -y > data/performance_fastspar_iterations/soil.tundra_soil/600/log_1..20.txt
+echo soil.tundra_soil with 600 iterations,  and seed 1..20 done!
+
+echo The Sparcc for:  soil.tundra_soil with 700 iterations, seed 1..20 is running...
+fastspar  -c data/community_subsets/soil.tundra_soil.tsv  -r data/performance_fastspar_iterations/soil.tundra_soil/700/cor_1..20 -a data/performance_fastspar_iterations/soil.tundra_soil/700/cov_1..20 -t 2  -s 1..20  -i 700  -x 10  -e 0.1  -y > data/performance_fastspar_iterations/soil.tundra_soil/700/log_1..20.txt
+echo soil.tundra_soil with 700 iterations,  and seed 1..20 done!
+
+echo The Sparcc for:  soil.tundra_soil with 800 iterations, seed 1..20 is running...
+fastspar  -c data/community_subsets/soil.tundra_soil.tsv  -r data/performance_fastspar_iterations/soil.tundra_soil/800/cor_1..20 -a data/performance_fastspar_iterations/soil.tundra_soil/800/cov_1..20 -t 2  -s 1..20  -i 800  -x 10  -e 0.1  -y > data/performance_fastspar_iterations/soil.tundra_soil/800/log_1..20.txt
+echo soil.tundra_soil with 800 iterations,  and seed 1..20 done!
+
+echo The Sparcc for:  soil.tundra_soil with 900 iterations, seed 1..20 is running...
+fastspar  -c data/community_subsets/soil.tundra_soil.tsv  -r data/performance_fastspar_iterations/soil.tundra_soil/900/cor_1..20 -a data/performance_fastspar_iterations/soil.tundra_soil/900/cov_1..20 -t 2  -s 1..20  -i 900  -x 10  -e 0.1  -y > data/performance_fastspar_iterations/soil.tundra_soil/900/log_1..20.txt
+echo soil.tundra_soil with 900 iterations,  and seed 1..20 done!
+
+echo The Sparcc for:  soil.tundra_soil with 1000 iterations, seed 1..20 is running...
+fastspar  -c data/community_subsets/soil.tundra_soil.tsv  -r data/performance_fastspar_iterations/soil.tundra_soil/1000/cor_1..20 -a data/performance_fastspar_iterations/soil.tundra_soil/1000/cov_1..20 -t 2  -s 1..20  -i 1000  -x 10  -e 0.1  -y > data/performance_fastspar_iterations/soil.tundra_soil/1000/log_1..20.txt
+echo soil.tundra_soil with 1000 iterations,  and seed 1..20 done!
+
+echo The Sparcc for:  soil.tundra_soil with 1000 iterations, seed 1..20 is running...
+fastspar  -c data/community_subsets/soil.tundra_soil.tsv  -r data/performance_fastspar_iterations/soil.tundra_soil/1000/cor_1..20 -a data/performance_fastspar_iterations/soil.tundra_soil/1000/cov_1..20 -t 2  -s 1..20  -i 1000  -x 10  -e 0.1  -y > data/performance_fastspar_iterations/soil.tundra_soil/1000/log_1..20.txt
+echo soil.tundra_soil with 1000 iterations,  and seed 1..20 done!
+
+echo The Sparcc for:  soil.tundra_soil with 2000 iterations, seed 1..20 is running...
+fastspar  -c data/community_subsets/soil.tundra_soil.tsv  -r data/performance_fastspar_iterations/soil.tundra_soil/2000/cor_1..20 -a data/performance_fastspar_iterations/soil.tundra_soil/2000/cov_1..20 -t 2  -s 1..20  -i 2000  -x 10  -e 0.1  -y > data/performance_fastspar_iterations/soil.tundra_soil/2000/log_1..20.txt
+echo soil.tundra_soil with 2000 iterations,  and seed 1..20 done!
+
+echo The Sparcc for:  soil.tundra_soil with 3000 iterations, seed 1..20 is running...
+fastspar  -c data/community_subsets/soil.tundra_soil.tsv  -r data/performance_fastspar_iterations/soil.tundra_soil/3000/cor_1..20 -a data/performance_fastspar_iterations/soil.tundra_soil/3000/cov_1..20 -t 2  -s 1..20  -i 3000  -x 10  -e 0.1  -y > data/performance_fastspar_iterations/soil.tundra_soil/3000/log_1..20.txt
+echo soil.tundra_soil with 3000 iterations,  and seed 1..20 done!
+
+echo The Sparcc for:  soil.tundra_soil with 4000 iterations, seed 1..20 is running...
+fastspar  -c data/community_subsets/soil.tundra_soil.tsv  -r data/performance_fastspar_iterations/soil.tundra_soil/4000/cor_1..20 -a data/performance_fastspar_iterations/soil.tundra_soil/4000/cov_1..20 -t 2  -s 1..20  -i 4000  -x 10  -e 0.1  -y > data/performance_fastspar_iterations/soil.tundra_soil/4000/log_1..20.txt
+echo soil.tundra_soil with 4000 iterations,  and seed 1..20 done!
+
+echo The Sparcc for:  soil.tundra_soil with 5000 iterations, seed 1..20 is running...
+fastspar  -c data/community_subsets/soil.tundra_soil.tsv  -r data/performance_fastspar_iterations/soil.tundra_soil/5000/cor_1..20 -a data/performance_fastspar_iterations/soil.tundra_soil/5000/cov_1..20 -t 2  -s 1..20  -i 5000  -x 10  -e 0.1  -y > data/performance_fastspar_iterations/soil.tundra_soil/5000/log_1..20.txt
+echo soil.tundra_soil with 5000 iterations,  and seed 1..20 done!
+
+echo The Sparcc for:  soil.tundra_soil with 6000 iterations, seed 1..20 is running...
+fastspar  -c data/community_subsets/soil.tundra_soil.tsv  -r data/performance_fastspar_iterations/soil.tundra_soil/6000/cor_1..20 -a data/performance_fastspar_iterations/soil.tundra_soil/6000/cov_1..20 -t 2  -s 1..20  -i 6000  -x 10  -e 0.1  -y > data/performance_fastspar_iterations/soil.tundra_soil/6000/log_1..20.txt
+echo soil.tundra_soil with 6000 iterations,  and seed 1..20 done!
+
+echo The Sparcc for:  groundwater.porous_contaminated with 300 iterations, seed 1..20 is running...
+fastspar  -c data/community_subsets/groundwater.porous_contaminated.tsv  -r data/performance_fastspar_iterations/groundwater.porous_contaminated/300/cor_1..20 -a data/performance_fastspar_iterations/groundwater.porous_contaminated/300/cov_1..20 -t 2  -s 1..20  -i 300  -x 10  -e 0.1  -y > data/performance_fastspar_iterations/groundwater.porous_contaminated/300/log_1..20.txt
+echo groundwater.porous_contaminated with 300 iterations,  and seed 1..20 done!
+
+echo The Sparcc for:  groundwater.porous_contaminated with 400 iterations, seed 1..20 is running...
+fastspar  -c data/community_subsets/groundwater.porous_contaminated.tsv  -r data/performance_fastspar_iterations/groundwater.porous_contaminated/400/cor_1..20 -a data/performance_fastspar_iterations/groundwater.porous_contaminated/400/cov_1..20 -t 2  -s 1..20  -i 400  -x 10  -e 0.1  -y > data/performance_fastspar_iterations/groundwater.porous_contaminated/400/log_1..20.txt
+echo groundwater.porous_contaminated with 400 iterations,  and seed 1..20 done!
+
+echo The Sparcc for:  groundwater.porous_contaminated with 500 iterations, seed 1..20 is running...
+fastspar  -c data/community_subsets/groundwater.porous_contaminated.tsv  -r data/performance_fastspar_iterations/groundwater.porous_contaminated/500/cor_1..20 -a data/performance_fastspar_iterations/groundwater.porous_contaminated/500/cov_1..20 -t 2  -s 1..20  -i 500  -x 10  -e 0.1  -y > data/performance_fastspar_iterations/groundwater.porous_contaminated/500/log_1..20.txt
+echo groundwater.porous_contaminated with 500 iterations,  and seed 1..20 done!
+
+echo The Sparcc for:  groundwater.porous_contaminated with 600 iterations, seed 1..20 is running...
+fastspar  -c data/community_subsets/groundwater.porous_contaminated.tsv  -r data/performance_fastspar_iterations/groundwater.porous_contaminated/600/cor_1..20 -a data/performance_fastspar_iterations/groundwater.porous_contaminated/600/cov_1..20 -t 2  -s 1..20  -i 600  -x 10  -e 0.1  -y > data/performance_fastspar_iterations/groundwater.porous_contaminated/600/log_1..20.txt
+echo groundwater.porous_contaminated with 600 iterations,  and seed 1..20 done!
+
+echo The Sparcc for:  groundwater.porous_contaminated with 700 iterations, seed 1..20 is running...
+fastspar  -c data/community_subsets/groundwater.porous_contaminated.tsv  -r data/performance_fastspar_iterations/groundwater.porous_contaminated/700/cor_1..20 -a data/performance_fastspar_iterations/groundwater.porous_contaminated/700/cov_1..20 -t 2  -s 1..20  -i 700  -x 10  -e 0.1  -y > data/performance_fastspar_iterations/groundwater.porous_contaminated/700/log_1..20.txt
+echo groundwater.porous_contaminated with 700 iterations,  and seed 1..20 done!
+
+echo The Sparcc for:  groundwater.porous_contaminated with 800 iterations, seed 1..20 is running...
+fastspar  -c data/community_subsets/groundwater.porous_contaminated.tsv  -r data/performance_fastspar_iterations/groundwater.porous_contaminated/800/cor_1..20 -a data/performance_fastspar_iterations/groundwater.porous_contaminated/800/cov_1..20 -t 2  -s 1..20  -i 800  -x 10  -e 0.1  -y > data/performance_fastspar_iterations/groundwater.porous_contaminated/800/log_1..20.txt
+echo groundwater.porous_contaminated with 800 iterations,  and seed 1..20 done!
+
+echo The Sparcc for:  groundwater.porous_contaminated with 900 iterations, seed 1..20 is running...
+fastspar  -c data/community_subsets/groundwater.porous_contaminated.tsv  -r data/performance_fastspar_iterations/groundwater.porous_contaminated/900/cor_1..20 -a data/performance_fastspar_iterations/groundwater.porous_contaminated/900/cov_1..20 -t 2  -s 1..20  -i 900  -x 10  -e 0.1  -y > data/performance_fastspar_iterations/groundwater.porous_contaminated/900/log_1..20.txt
+echo groundwater.porous_contaminated with 900 iterations,  and seed 1..20 done!
+
+echo The Sparcc for:  groundwater.porous_contaminated with 1000 iterations, seed 1..20 is running...
+fastspar  -c data/community_subsets/groundwater.porous_contaminated.tsv  -r data/performance_fastspar_iterations/groundwater.porous_contaminated/1000/cor_1..20 -a data/performance_fastspar_iterations/groundwater.porous_contaminated/1000/cov_1..20 -t 2  -s 1..20  -i 1000  -x 10  -e 0.1  -y > data/performance_fastspar_iterations/groundwater.porous_contaminated/1000/log_1..20.txt
+echo groundwater.porous_contaminated with 1000 iterations,  and seed 1..20 done!
+
+echo The Sparcc for:  groundwater.porous_contaminated with 1000 iterations, seed 1..20 is running...
+fastspar  -c data/community_subsets/groundwater.porous_contaminated.tsv  -r data/performance_fastspar_iterations/groundwater.porous_contaminated/1000/cor_1..20 -a data/performance_fastspar_iterations/groundwater.porous_contaminated/1000/cov_1..20 -t 2  -s 1..20  -i 1000  -x 10  -e 0.1  -y > data/performance_fastspar_iterations/groundwater.porous_contaminated/1000/log_1..20.txt
+echo groundwater.porous_contaminated with 1000 iterations,  and seed 1..20 done!
+
+echo The Sparcc for:  groundwater.porous_contaminated with 2000 iterations, seed 1..20 is running...
+fastspar  -c data/community_subsets/groundwater.porous_contaminated.tsv  -r data/performance_fastspar_iterations/groundwater.porous_contaminated/2000/cor_1..20 -a data/performance_fastspar_iterations/groundwater.porous_contaminated/2000/cov_1..20 -t 2  -s 1..20  -i 2000  -x 10  -e 0.1  -y > data/performance_fastspar_iterations/groundwater.porous_contaminated/2000/log_1..20.txt
+echo groundwater.porous_contaminated with 2000 iterations,  and seed 1..20 done!
+
+echo The Sparcc for:  groundwater.porous_contaminated with 3000 iterations, seed 1..20 is running...
+fastspar  -c data/community_subsets/groundwater.porous_contaminated.tsv  -r data/performance_fastspar_iterations/groundwater.porous_contaminated/3000/cor_1..20 -a data/performance_fastspar_iterations/groundwater.porous_contaminated/3000/cov_1..20 -t 2  -s 1..20  -i 3000  -x 10  -e 0.1  -y > data/performance_fastspar_iterations/groundwater.porous_contaminated/3000/log_1..20.txt
+echo groundwater.porous_contaminated with 3000 iterations,  and seed 1..20 done!
+
+echo The Sparcc for:  groundwater.porous_contaminated with 4000 iterations, seed 1..20 is running...
+fastspar  -c data/community_subsets/groundwater.porous_contaminated.tsv  -r data/performance_fastspar_iterations/groundwater.porous_contaminated/4000/cor_1..20 -a data/performance_fastspar_iterations/groundwater.porous_contaminated/4000/cov_1..20 -t 2  -s 1..20  -i 4000  -x 10  -e 0.1  -y > data/performance_fastspar_iterations/groundwater.porous_contaminated/4000/log_1..20.txt
+echo groundwater.porous_contaminated with 4000 iterations,  and seed 1..20 done!
+
+echo The Sparcc for:  groundwater.porous_contaminated with 5000 iterations, seed 1..20 is running...
+fastspar  -c data/community_subsets/groundwater.porous_contaminated.tsv  -r data/performance_fastspar_iterations/groundwater.porous_contaminated/5000/cor_1..20 -a data/performance_fastspar_iterations/groundwater.porous_contaminated/5000/cov_1..20 -t 2  -s 1..20  -i 5000  -x 10  -e 0.1  -y > data/performance_fastspar_iterations/groundwater.porous_contaminated/5000/log_1..20.txt
+echo groundwater.porous_contaminated with 5000 iterations,  and seed 1..20 done!
+
+echo The Sparcc for:  groundwater.porous_contaminated with 6000 iterations, seed 1..20 is running...
+fastspar  -c data/community_subsets/groundwater.porous_contaminated.tsv  -r data/performance_fastspar_iterations/groundwater.porous_contaminated/6000/cor_1..20 -a data/performance_fastspar_iterations/groundwater.porous_contaminated/6000/cov_1..20 -t 2  -s 1..20  -i 6000  -x 10  -e 0.1  -y > data/performance_fastspar_iterations/groundwater.porous_contaminated/6000/log_1..20.txt
+echo groundwater.porous_contaminated with 6000 iterations,  and seed 1..20 done!
+
+echo The Sparcc for:  groundwater.mine with 300 iterations, seed 1..20 is running...
+fastspar  -c data/community_subsets/groundwater.mine.tsv  -r data/performance_fastspar_iterations/groundwater.mine/300/cor_1..20 -a data/performance_fastspar_iterations/groundwater.mine/300/cov_1..20 -t 2  -s 1..20  -i 300  -x 10  -e 0.1  -y > data/performance_fastspar_iterations/groundwater.mine/300/log_1..20.txt
+echo groundwater.mine with 300 iterations,  and seed 1..20 done!
+
+echo The Sparcc for:  groundwater.mine with 400 iterations, seed 1..20 is running...
+fastspar  -c data/community_subsets/groundwater.mine.tsv  -r data/performance_fastspar_iterations/groundwater.mine/400/cor_1..20 -a data/performance_fastspar_iterations/groundwater.mine/400/cov_1..20 -t 2  -s 1..20  -i 400  -x 10  -e 0.1  -y > data/performance_fastspar_iterations/groundwater.mine/400/log_1..20.txt
+echo groundwater.mine with 400 iterations,  and seed 1..20 done!
+
+echo The Sparcc for:  groundwater.mine with 500 iterations, seed 1..20 is running...
+fastspar  -c data/community_subsets/groundwater.mine.tsv  -r data/performance_fastspar_iterations/groundwater.mine/500/cor_1..20 -a data/performance_fastspar_iterations/groundwater.mine/500/cov_1..20 -t 2  -s 1..20  -i 500  -x 10  -e 0.1  -y > data/performance_fastspar_iterations/groundwater.mine/500/log_1..20.txt
+echo groundwater.mine with 500 iterations,  and seed 1..20 done!
+
+echo The Sparcc for:  groundwater.mine with 600 iterations, seed 1..20 is running...
+fastspar  -c data/community_subsets/groundwater.mine.tsv  -r data/performance_fastspar_iterations/groundwater.mine/600/cor_1..20 -a data/performance_fastspar_iterations/groundwater.mine/600/cov_1..20 -t 2  -s 1..20  -i 600  -x 10  -e 0.1  -y > data/performance_fastspar_iterations/groundwater.mine/600/log_1..20.txt
+echo groundwater.mine with 600 iterations,  and seed 1..20 done!
+
+echo The Sparcc for:  groundwater.mine with 700 iterations, seed 1..20 is running...
+fastspar  -c data/community_subsets/groundwater.mine.tsv  -r data/performance_fastspar_iterations/groundwater.mine/700/cor_1..20 -a data/performance_fastspar_iterations/groundwater.mine/700/cov_1..20 -t 2  -s 1..20  -i 700  -x 10  -e 0.1  -y > data/performance_fastspar_iterations/groundwater.mine/700/log_1..20.txt
+echo groundwater.mine with 700 iterations,  and seed 1..20 done!
+
+echo The Sparcc for:  groundwater.mine with 800 iterations, seed 1..20 is running...
+fastspar  -c data/community_subsets/groundwater.mine.tsv  -r data/performance_fastspar_iterations/groundwater.mine/800/cor_1..20 -a data/performance_fastspar_iterations/groundwater.mine/800/cov_1..20 -t 2  -s 1..20  -i 800  -x 10  -e 0.1  -y > data/performance_fastspar_iterations/groundwater.mine/800/log_1..20.txt
+echo groundwater.mine with 800 iterations,  and seed 1..20 done!
+
+echo The Sparcc for:  groundwater.mine with 900 iterations, seed 1..20 is running...
+fastspar  -c data/community_subsets/groundwater.mine.tsv  -r data/performance_fastspar_iterations/groundwater.mine/900/cor_1..20 -a data/performance_fastspar_iterations/groundwater.mine/900/cov_1..20 -t 2  -s 1..20  -i 900  -x 10  -e 0.1  -y > data/performance_fastspar_iterations/groundwater.mine/900/log_1..20.txt
+echo groundwater.mine with 900 iterations,  and seed 1..20 done!
+
+echo The Sparcc for:  groundwater.mine with 1000 iterations, seed 1..20 is running...
+fastspar  -c data/community_subsets/groundwater.mine.tsv  -r data/performance_fastspar_iterations/groundwater.mine/1000/cor_1..20 -a data/performance_fastspar_iterations/groundwater.mine/1000/cov_1..20 -t 2  -s 1..20  -i 1000  -x 10  -e 0.1  -y > data/performance_fastspar_iterations/groundwater.mine/1000/log_1..20.txt
+echo groundwater.mine with 1000 iterations,  and seed 1..20 done!
+
+echo The Sparcc for:  groundwater.mine with 1000 iterations, seed 1..20 is running...
+fastspar  -c data/community_subsets/groundwater.mine.tsv  -r data/performance_fastspar_iterations/groundwater.mine/1000/cor_1..20 -a data/performance_fastspar_iterations/groundwater.mine/1000/cov_1..20 -t 2  -s 1..20  -i 1000  -x 10  -e 0.1  -y > data/performance_fastspar_iterations/groundwater.mine/1000/log_1..20.txt
+echo groundwater.mine with 1000 iterations,  and seed 1..20 done!
+
+echo The Sparcc for:  groundwater.mine with 2000 iterations, seed 1..20 is running...
+fastspar  -c data/community_subsets/groundwater.mine.tsv  -r data/performance_fastspar_iterations/groundwater.mine/2000/cor_1..20 -a data/performance_fastspar_iterations/groundwater.mine/2000/cov_1..20 -t 2  -s 1..20  -i 2000  -x 10  -e 0.1  -y > data/performance_fastspar_iterations/groundwater.mine/2000/log_1..20.txt
+echo groundwater.mine with 2000 iterations,  and seed 1..20 done!
+
+echo The Sparcc for:  groundwater.mine with 3000 iterations, seed 1..20 is running...
+fastspar  -c data/community_subsets/groundwater.mine.tsv  -r data/performance_fastspar_iterations/groundwater.mine/3000/cor_1..20 -a data/performance_fastspar_iterations/groundwater.mine/3000/cov_1..20 -t 2  -s 1..20  -i 3000  -x 10  -e 0.1  -y > data/performance_fastspar_iterations/groundwater.mine/3000/log_1..20.txt
+echo groundwater.mine with 3000 iterations,  and seed 1..20 done!
+
+echo The Sparcc for:  groundwater.mine with 4000 iterations, seed 1..20 is running...
+fastspar  -c data/community_subsets/groundwater.mine.tsv  -r data/performance_fastspar_iterations/groundwater.mine/4000/cor_1..20 -a data/performance_fastspar_iterations/groundwater.mine/4000/cov_1..20 -t 2  -s 1..20  -i 4000  -x 10  -e 0.1  -y > data/performance_fastspar_iterations/groundwater.mine/4000/log_1..20.txt
+echo groundwater.mine with 4000 iterations,  and seed 1..20 done!
+
+echo The Sparcc for:  groundwater.mine with 5000 iterations, seed 1..20 is running...
+fastspar  -c data/community_subsets/groundwater.mine.tsv  -r data/performance_fastspar_iterations/groundwater.mine/5000/cor_1..20 -a data/performance_fastspar_iterations/groundwater.mine/5000/cov_1..20 -t 2  -s 1..20  -i 5000  -x 10  -e 0.1  -y > data/performance_fastspar_iterations/groundwater.mine/5000/log_1..20.txt
+echo groundwater.mine with 5000 iterations,  and seed 1..20 done!
+
+echo The Sparcc for:  groundwater.mine with 6000 iterations, seed 1..20 is running...
+fastspar  -c data/community_subsets/groundwater.mine.tsv  -r data/performance_fastspar_iterations/groundwater.mine/6000/cor_1..20 -a data/performance_fastspar_iterations/groundwater.mine/6000/cov_1..20 -t 2  -s 1..20  -i 6000  -x 10  -e 0.1  -y > data/performance_fastspar_iterations/groundwater.mine/6000/log_1..20.txt
+echo groundwater.mine with 6000 iterations,  and seed 1..20 done!
+

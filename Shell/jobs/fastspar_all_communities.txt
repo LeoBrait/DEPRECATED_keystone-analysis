@@ -1,0 +1,320 @@
+echo The Sparcc for: animal_host-associated.animal_feces is running...
+fastspar  -c data/community_subsets/animal_host-associated.animal_feces.tsv  -r data/fastspar_correlations/animal_host-associated.animal_feces/cor_animal_host-associated.animal_feces -a data/fastspar_correlations/animal_host-associated.animal_feces/cov_animal_host-associated.animal_feces -t 2  -s 1  -i 10000  -x 15  -e 0.1  -y > data/fastspar_correlations/animal_host-associated.animal_feces/log_animal_host-associated.animal_feces.txt
+echo animal_host-associated.animal_feces done!
+
+echo The Sparcc for: animal_host-associated.animal_gut is running...
+fastspar  -c data/community_subsets/animal_host-associated.animal_gut.tsv  -r data/fastspar_correlations/animal_host-associated.animal_gut/cor_animal_host-associated.animal_gut -a data/fastspar_correlations/animal_host-associated.animal_gut/cov_animal_host-associated.animal_gut -t 2  -s 1  -i 10000  -x 15  -e 0.1  -y > data/fastspar_correlations/animal_host-associated.animal_gut/log_animal_host-associated.animal_gut.txt
+echo animal_host-associated.animal_gut done!
+
+echo The Sparcc for: animal_host-associated.animal_manure is running...
+fastspar  -c data/community_subsets/animal_host-associated.animal_manure.tsv  -r data/fastspar_correlations/animal_host-associated.animal_manure/cor_animal_host-associated.animal_manure -a data/fastspar_correlations/animal_host-associated.animal_manure/cov_animal_host-associated.animal_manure -t 2  -s 1  -i 10000  -x 15  -e 0.1  -y > data/fastspar_correlations/animal_host-associated.animal_manure/log_animal_host-associated.animal_manure.txt
+echo animal_host-associated.animal_manure done!
+
+echo The Sparcc for: animal_host-associated.aqueous_humour is running...
+fastspar  -c data/community_subsets/animal_host-associated.aqueous_humour.tsv  -r data/fastspar_correlations/animal_host-associated.aqueous_humour/cor_animal_host-associated.aqueous_humour -a data/fastspar_correlations/animal_host-associated.aqueous_humour/cov_animal_host-associated.aqueous_humour -t 2  -s 1  -i 10000  -x 15  -e 0.1  -y > data/fastspar_correlations/animal_host-associated.aqueous_humour/log_animal_host-associated.aqueous_humour.txt
+echo animal_host-associated.aqueous_humour done!
+
+echo The Sparcc for: animal_host-associated.beef is running...
+fastspar  -c data/community_subsets/animal_host-associated.beef.tsv  -r data/fastspar_correlations/animal_host-associated.beef/cor_animal_host-associated.beef -a data/fastspar_correlations/animal_host-associated.beef/cov_animal_host-associated.beef -t 2  -s 1  -i 10000  -x 15  -e 0.1  -y > data/fastspar_correlations/animal_host-associated.beef/log_animal_host-associated.beef.txt
+echo animal_host-associated.beef done!
+
+echo The Sparcc for: animal_host-associated.bodily_fluid is running...
+fastspar  -c data/community_subsets/animal_host-associated.bodily_fluid.tsv  -r data/fastspar_correlations/animal_host-associated.bodily_fluid/cor_animal_host-associated.bodily_fluid -a data/fastspar_correlations/animal_host-associated.bodily_fluid/cov_animal_host-associated.bodily_fluid -t 2  -s 1  -i 10000  -x 15  -e 0.1  -y > data/fastspar_correlations/animal_host-associated.bodily_fluid/log_animal_host-associated.bodily_fluid.txt
+echo animal_host-associated.bodily_fluid done!
+
+echo The Sparcc for: animal_host-associated.chyme is running...
+fastspar  -c data/community_subsets/animal_host-associated.chyme.tsv  -r data/fastspar_correlations/animal_host-associated.chyme/cor_animal_host-associated.chyme -a data/fastspar_correlations/animal_host-associated.chyme/cov_animal_host-associated.chyme -t 2  -s 1  -i 10000  -x 15  -e 0.1  -y > data/fastspar_correlations/animal_host-associated.chyme/log_animal_host-associated.chyme.txt
+echo animal_host-associated.chyme done!
+
+echo The Sparcc for: animal_host-associated.coral is running...
+fastspar  -c data/community_subsets/animal_host-associated.coral.tsv  -r data/fastspar_correlations/animal_host-associated.coral/cor_animal_host-associated.coral -a data/fastspar_correlations/animal_host-associated.coral/cov_animal_host-associated.coral -t 2  -s 1  -i 10000  -x 15  -e 0.1  -y > data/fastspar_correlations/animal_host-associated.coral/log_animal_host-associated.coral.txt
+echo animal_host-associated.coral done!
+
+echo The Sparcc for: animal_host-associated.rumen is running...
+fastspar  -c data/community_subsets/animal_host-associated.rumen.tsv  -r data/fastspar_correlations/animal_host-associated.rumen/cor_animal_host-associated.rumen -a data/fastspar_correlations/animal_host-associated.rumen/cov_animal_host-associated.rumen -t 2  -s 1  -i 10000  -x 15  -e 0.1  -y > data/fastspar_correlations/animal_host-associated.rumen/log_animal_host-associated.rumen.txt
+echo animal_host-associated.rumen done!
+
+echo The Sparcc for: animal_host-associated.sponge is running...
+fastspar  -c data/community_subsets/animal_host-associated.sponge.tsv  -r data/fastspar_correlations/animal_host-associated.sponge/cor_animal_host-associated.sponge -a data/fastspar_correlations/animal_host-associated.sponge/cov_animal_host-associated.sponge -t 2  -s 1  -i 10000  -x 15  -e 0.1  -y > data/fastspar_correlations/animal_host-associated.sponge/log_animal_host-associated.sponge.txt
+echo animal_host-associated.sponge done!
+
+echo The Sparcc for: freshwater.alkaline_environment is running...
+fastspar  -c data/community_subsets/freshwater.alkaline_environment.tsv  -r data/fastspar_correlations/freshwater.alkaline_environment/cor_freshwater.alkaline_environment -a data/fastspar_correlations/freshwater.alkaline_environment/cov_freshwater.alkaline_environment -t 2  -s 1  -i 10000  -x 15  -e 0.1  -y > data/fastspar_correlations/freshwater.alkaline_environment/log_freshwater.alkaline_environment.txt
+echo freshwater.alkaline_environment done!
+
+echo The Sparcc for: freshwater.drinking_water_reservoir is running...
+fastspar  -c data/community_subsets/freshwater.drinking_water_reservoir.tsv  -r data/fastspar_correlations/freshwater.drinking_water_reservoir/cor_freshwater.drinking_water_reservoir -a data/fastspar_correlations/freshwater.drinking_water_reservoir/cov_freshwater.drinking_water_reservoir -t 2  -s 1  -i 10000  -x 15  -e 0.1  -y > data/fastspar_correlations/freshwater.drinking_water_reservoir/log_freshwater.drinking_water_reservoir.txt
+echo freshwater.drinking_water_reservoir done!
+
+echo The Sparcc for: freshwater.freshwater_biofilm is running...
+fastspar  -c data/community_subsets/freshwater.freshwater_biofilm.tsv  -r data/fastspar_correlations/freshwater.freshwater_biofilm/cor_freshwater.freshwater_biofilm -a data/fastspar_correlations/freshwater.freshwater_biofilm/cov_freshwater.freshwater_biofilm -t 2  -s 1  -i 10000  -x 15  -e 0.1  -y > data/fastspar_correlations/freshwater.freshwater_biofilm/log_freshwater.freshwater_biofilm.txt
+echo freshwater.freshwater_biofilm done!
+
+echo The Sparcc for: freshwater.hot_spring is running...
+fastspar  -c data/community_subsets/freshwater.hot_spring.tsv  -r data/fastspar_correlations/freshwater.hot_spring/cor_freshwater.hot_spring -a data/fastspar_correlations/freshwater.hot_spring/cov_freshwater.hot_spring -t 2  -s 1  -i 10000  -x 15  -e 0.1  -y > data/fastspar_correlations/freshwater.hot_spring/log_freshwater.hot_spring.txt
+echo freshwater.hot_spring done!
+
+echo The Sparcc for: freshwater.lake is running...
+fastspar  -c data/community_subsets/freshwater.lake.tsv  -r data/fastspar_correlations/freshwater.lake/cor_freshwater.lake -a data/fastspar_correlations/freshwater.lake/cov_freshwater.lake -t 2  -s 1  -i 10000  -x 15  -e 0.1  -y > data/fastspar_correlations/freshwater.lake/log_freshwater.lake.txt
+echo freshwater.lake done!
+
+echo The Sparcc for: freshwater.river is running...
+fastspar  -c data/community_subsets/freshwater.river.tsv  -r data/fastspar_correlations/freshwater.river/cor_freshwater.river -a data/fastspar_correlations/freshwater.river/cov_freshwater.river -t 2  -s 1  -i 10000  -x 15  -e 0.1  -y > data/fastspar_correlations/freshwater.river/log_freshwater.river.txt
+echo freshwater.river done!
+
+echo The Sparcc for: freshwater.stream_biofilm is running...
+fastspar  -c data/community_subsets/freshwater.stream_biofilm.tsv  -r data/fastspar_correlations/freshwater.stream_biofilm/cor_freshwater.stream_biofilm -a data/fastspar_correlations/freshwater.stream_biofilm/cov_freshwater.stream_biofilm -t 2  -s 1  -i 10000  -x 15  -e 0.1  -y > data/fastspar_correlations/freshwater.stream_biofilm/log_freshwater.stream_biofilm.txt
+echo freshwater.stream_biofilm done!
+
+echo The Sparcc for: freshwater.stream is running...
+fastspar  -c data/community_subsets/freshwater.stream.tsv  -r data/fastspar_correlations/freshwater.stream/cor_freshwater.stream -a data/fastspar_correlations/freshwater.stream/cov_freshwater.stream -t 2  -s 1  -i 10000  -x 15  -e 0.1  -y > data/fastspar_correlations/freshwater.stream/log_freshwater.stream.txt
+echo freshwater.stream done!
+
+echo The Sparcc for: groundwater.geyser is running...
+fastspar  -c data/community_subsets/groundwater.geyser.tsv  -r data/fastspar_correlations/groundwater.geyser/cor_groundwater.geyser -a data/fastspar_correlations/groundwater.geyser/cov_groundwater.geyser -t 2  -s 1  -i 10000  -x 15  -e 0.1  -y > data/fastspar_correlations/groundwater.geyser/log_groundwater.geyser.txt
+echo groundwater.geyser done!
+
+echo The Sparcc for: groundwater.karst-porous is running...
+fastspar  -c data/community_subsets/groundwater.karst-porous.tsv  -r data/fastspar_correlations/groundwater.karst-porous/cor_groundwater.karst-porous -a data/fastspar_correlations/groundwater.karst-porous/cov_groundwater.karst-porous -t 2  -s 1  -i 10000  -x 15  -e 0.1  -y > data/fastspar_correlations/groundwater.karst-porous/log_groundwater.karst-porous.txt
+echo groundwater.karst-porous done!
+
+echo The Sparcc for: groundwater.mine is running...
+fastspar  -c data/community_subsets/groundwater.mine.tsv  -r data/fastspar_correlations/groundwater.mine/cor_groundwater.mine -a data/fastspar_correlations/groundwater.mine/cov_groundwater.mine -t 2  -s 1  -i 10000  -x 15  -e 0.1  -y > data/fastspar_correlations/groundwater.mine/log_groundwater.mine.txt
+echo groundwater.mine done!
+
+echo The Sparcc for: groundwater.porous_contaminated is running...
+fastspar  -c data/community_subsets/groundwater.porous_contaminated.tsv  -r data/fastspar_correlations/groundwater.porous_contaminated/cor_groundwater.porous_contaminated -a data/fastspar_correlations/groundwater.porous_contaminated/cov_groundwater.porous_contaminated -t 2  -s 1  -i 10000  -x 15  -e 0.1  -y > data/fastspar_correlations/groundwater.porous_contaminated/log_groundwater.porous_contaminated.txt
+echo groundwater.porous_contaminated done!
+
+echo The Sparcc for: groundwater.porous is running...
+fastspar  -c data/community_subsets/groundwater.porous.tsv  -r data/fastspar_correlations/groundwater.porous/cor_groundwater.porous -a data/fastspar_correlations/groundwater.porous/cov_groundwater.porous -t 2  -s 1  -i 10000  -x 15  -e 0.1  -y > data/fastspar_correlations/groundwater.porous/log_groundwater.porous.txt
+echo groundwater.porous done!
+
+echo The Sparcc for: groundwater.subsurface_saline is running...
+fastspar  -c data/community_subsets/groundwater.subsurface_saline.tsv  -r data/fastspar_correlations/groundwater.subsurface_saline/cor_groundwater.subsurface_saline -a data/fastspar_correlations/groundwater.subsurface_saline/cov_groundwater.subsurface_saline -t 2  -s 1  -i 10000  -x 15  -e 0.1  -y > data/fastspar_correlations/groundwater.subsurface_saline/log_groundwater.subsurface_saline.txt
+echo groundwater.subsurface_saline done!
+
+echo The Sparcc for: human_host-associated.bone is running...
+fastspar  -c data/community_subsets/human_host-associated.bone.tsv  -r data/fastspar_correlations/human_host-associated.bone/cor_human_host-associated.bone -a data/fastspar_correlations/human_host-associated.bone/cov_human_host-associated.bone -t 2  -s 1  -i 10000  -x 15  -e 0.1  -y > data/fastspar_correlations/human_host-associated.bone/log_human_host-associated.bone.txt
+echo human_host-associated.bone done!
+
+echo The Sparcc for: human_host-associated.human_associated_biofilm is running...
+fastspar  -c data/community_subsets/human_host-associated.human_associated_biofilm.tsv  -r data/fastspar_correlations/human_host-associated.human_associated_biofilm/cor_human_host-associated.human_associated_biofilm -a data/fastspar_correlations/human_host-associated.human_associated_biofilm/cov_human_host-associated.human_associated_biofilm -t 2  -s 1  -i 10000  -x 15  -e 0.1  -y > data/fastspar_correlations/human_host-associated.human_associated_biofilm/log_human_host-associated.human_associated_biofilm.txt
+echo human_host-associated.human_associated_biofilm done!
+
+echo The Sparcc for: human_host-associated.human_feces is running...
+fastspar  -c data/community_subsets/human_host-associated.human_feces.tsv  -r data/fastspar_correlations/human_host-associated.human_feces/cor_human_host-associated.human_feces -a data/fastspar_correlations/human_host-associated.human_feces/cov_human_host-associated.human_feces -t 2  -s 1  -i 10000  -x 15  -e 0.1  -y > data/fastspar_correlations/human_host-associated.human_feces/log_human_host-associated.human_feces.txt
+echo human_host-associated.human_feces done!
+
+echo The Sparcc for: human_host-associated.human-gut is running...
+fastspar  -c data/community_subsets/human_host-associated.human-gut.tsv  -r data/fastspar_correlations/human_host-associated.human-gut/cor_human_host-associated.human-gut -a data/fastspar_correlations/human_host-associated.human-gut/cov_human_host-associated.human-gut -t 2  -s 1  -i 10000  -x 15  -e 0.1  -y > data/fastspar_correlations/human_host-associated.human-gut/log_human_host-associated.human-gut.txt
+echo human_host-associated.human-gut done!
+
+echo The Sparcc for: human_host-associated.human-skin is running...
+fastspar  -c data/community_subsets/human_host-associated.human-skin.tsv  -r data/fastspar_correlations/human_host-associated.human-skin/cor_human_host-associated.human-skin -a data/fastspar_correlations/human_host-associated.human-skin/cov_human_host-associated.human-skin -t 2  -s 1  -i 10000  -x 15  -e 0.1  -y > data/fastspar_correlations/human_host-associated.human-skin/log_human_host-associated.human-skin.txt
+echo human_host-associated.human-skin done!
+
+echo The Sparcc for: human_host-associated.lung is running...
+fastspar  -c data/community_subsets/human_host-associated.lung.tsv  -r data/fastspar_correlations/human_host-associated.lung/cor_human_host-associated.lung -a data/fastspar_correlations/human_host-associated.lung/cov_human_host-associated.lung -t 2  -s 1  -i 10000  -x 15  -e 0.1  -y > data/fastspar_correlations/human_host-associated.lung/log_human_host-associated.lung.txt
+echo human_host-associated.lung done!
+
+echo The Sparcc for: human_host-associated.saliva is running...
+fastspar  -c data/community_subsets/human_host-associated.saliva.tsv  -r data/fastspar_correlations/human_host-associated.saliva/cor_human_host-associated.saliva -a data/fastspar_correlations/human_host-associated.saliva/cov_human_host-associated.saliva -t 2  -s 1  -i 10000  -x 15  -e 0.1  -y > data/fastspar_correlations/human_host-associated.saliva/log_human_host-associated.saliva.txt
+echo human_host-associated.saliva done!
+
+echo The Sparcc for: plant-associated.plant-associated_hypersaline_water is running...
+fastspar  -c data/community_subsets/plant-associated.plant-associated_hypersaline_water.tsv  -r data/fastspar_correlations/plant-associated.plant-associated_hypersaline_water/cor_plant-associated.plant-associated_hypersaline_water -a data/fastspar_correlations/plant-associated.plant-associated_hypersaline_water/cov_plant-associated.plant-associated_hypersaline_water -t 2  -s 1  -i 10000  -x 15  -e 0.1  -y > data/fastspar_correlations/plant-associated.plant-associated_hypersaline_water/log_plant-associated.plant-associated_hypersaline_water.txt
+echo plant-associated.plant-associated_hypersaline_water done!
+
+echo The Sparcc for: plant-associated.plant-associated is running...
+fastspar  -c data/community_subsets/plant-associated.plant-associated.tsv  -r data/fastspar_correlations/plant-associated.plant-associated/cor_plant-associated.plant-associated -a data/fastspar_correlations/plant-associated.plant-associated/cov_plant-associated.plant-associated -t 2  -s 1  -i 10000  -x 15  -e 0.1  -y > data/fastspar_correlations/plant-associated.plant-associated/log_plant-associated.plant-associated.txt
+echo plant-associated.plant-associated done!
+
+echo The Sparcc for: plant-associated.wood_fall is running...
+fastspar  -c data/community_subsets/plant-associated.wood_fall.tsv  -r data/fastspar_correlations/plant-associated.wood_fall/cor_plant-associated.wood_fall -a data/fastspar_correlations/plant-associated.wood_fall/cov_plant-associated.wood_fall -t 2  -s 1  -i 10000  -x 15  -e 0.1  -y > data/fastspar_correlations/plant-associated.wood_fall/log_plant-associated.wood_fall.txt
+echo plant-associated.wood_fall done!
+
+echo The Sparcc for: saline_water.alkaline_salt_lake is running...
+fastspar  -c data/community_subsets/saline_water.alkaline_salt_lake.tsv  -r data/fastspar_correlations/saline_water.alkaline_salt_lake/cor_saline_water.alkaline_salt_lake -a data/fastspar_correlations/saline_water.alkaline_salt_lake/cov_saline_water.alkaline_salt_lake -t 2  -s 1  -i 10000  -x 15  -e 0.1  -y > data/fastspar_correlations/saline_water.alkaline_salt_lake/log_saline_water.alkaline_salt_lake.txt
+echo saline_water.alkaline_salt_lake done!
+
+echo The Sparcc for: saline_water.anoxic_seawater is running...
+fastspar  -c data/community_subsets/saline_water.anoxic_seawater.tsv  -r data/fastspar_correlations/saline_water.anoxic_seawater/cor_saline_water.anoxic_seawater -a data/fastspar_correlations/saline_water.anoxic_seawater/cov_saline_water.anoxic_seawater -t 2  -s 1  -i 10000  -x 15  -e 0.1  -y > data/fastspar_correlations/saline_water.anoxic_seawater/log_saline_water.anoxic_seawater.txt
+echo saline_water.anoxic_seawater done!
+
+echo The Sparcc for: saline_water.coastal_seawater is running...
+fastspar  -c data/community_subsets/saline_water.coastal_seawater.tsv  -r data/fastspar_correlations/saline_water.coastal_seawater/cor_saline_water.coastal_seawater -a data/fastspar_correlations/saline_water.coastal_seawater/cov_saline_water.coastal_seawater -t 2  -s 1  -i 10000  -x 15  -e 0.1  -y > data/fastspar_correlations/saline_water.coastal_seawater/log_saline_water.coastal_seawater.txt
+echo saline_water.coastal_seawater done!
+
+echo The Sparcc for: saline_water.coral_reef_biofilm is running...
+fastspar  -c data/community_subsets/saline_water.coral_reef_biofilm.tsv  -r data/fastspar_correlations/saline_water.coral_reef_biofilm/cor_saline_water.coral_reef_biofilm -a data/fastspar_correlations/saline_water.coral_reef_biofilm/cov_saline_water.coral_reef_biofilm -t 2  -s 1  -i 10000  -x 15  -e 0.1  -y > data/fastspar_correlations/saline_water.coral_reef_biofilm/log_saline_water.coral_reef_biofilm.txt
+echo saline_water.coral_reef_biofilm done!
+
+echo The Sparcc for: saline_water.coral_reef_seawater is running...
+fastspar  -c data/community_subsets/saline_water.coral_reef_seawater.tsv  -r data/fastspar_correlations/saline_water.coral_reef_seawater/cor_saline_water.coral_reef_seawater -a data/fastspar_correlations/saline_water.coral_reef_seawater/cov_saline_water.coral_reef_seawater -t 2  -s 1  -i 10000  -x 15  -e 0.1  -y > data/fastspar_correlations/saline_water.coral_reef_seawater/log_saline_water.coral_reef_seawater.txt
+echo saline_water.coral_reef_seawater done!
+
+echo The Sparcc for: saline_water.estuarine_seawater is running...
+fastspar  -c data/community_subsets/saline_water.estuarine_seawater.tsv  -r data/fastspar_correlations/saline_water.estuarine_seawater/cor_saline_water.estuarine_seawater -a data/fastspar_correlations/saline_water.estuarine_seawater/cov_saline_water.estuarine_seawater -t 2  -s 1  -i 10000  -x 15  -e 0.1  -y > data/fastspar_correlations/saline_water.estuarine_seawater/log_saline_water.estuarine_seawater.txt
+echo saline_water.estuarine_seawater done!
+
+echo The Sparcc for: saline_water.hydrothermal_vent is running...
+fastspar  -c data/community_subsets/saline_water.hydrothermal_vent.tsv  -r data/fastspar_correlations/saline_water.hydrothermal_vent/cor_saline_water.hydrothermal_vent -a data/fastspar_correlations/saline_water.hydrothermal_vent/cov_saline_water.hydrothermal_vent -t 2  -s 1  -i 10000  -x 15  -e 0.1  -y > data/fastspar_correlations/saline_water.hydrothermal_vent/log_saline_water.hydrothermal_vent.txt
+echo saline_water.hydrothermal_vent done!
+
+echo The Sparcc for: saline_water.hypersaline_water is running...
+fastspar  -c data/community_subsets/saline_water.hypersaline_water.tsv  -r data/fastspar_correlations/saline_water.hypersaline_water/cor_saline_water.hypersaline_water -a data/fastspar_correlations/saline_water.hypersaline_water/cov_saline_water.hypersaline_water -t 2  -s 1  -i 10000  -x 15  -e 0.1  -y > data/fastspar_correlations/saline_water.hypersaline_water/log_saline_water.hypersaline_water.txt
+echo saline_water.hypersaline_water done!
+
+echo The Sparcc for: saline_water.oceanic_seawater is running...
+fastspar  -c data/community_subsets/saline_water.oceanic_seawater.tsv  -r data/fastspar_correlations/saline_water.oceanic_seawater/cor_saline_water.oceanic_seawater -a data/fastspar_correlations/saline_water.oceanic_seawater/cov_saline_water.oceanic_seawater -t 2  -s 1  -i 10000  -x 15  -e 0.1  -y > data/fastspar_correlations/saline_water.oceanic_seawater/log_saline_water.oceanic_seawater.txt
+echo saline_water.oceanic_seawater done!
+
+echo The Sparcc for: saline_water.polar_seawater is running...
+fastspar  -c data/community_subsets/saline_water.polar_seawater.tsv  -r data/fastspar_correlations/saline_water.polar_seawater/cor_saline_water.polar_seawater -a data/fastspar_correlations/saline_water.polar_seawater/cov_saline_water.polar_seawater -t 2  -s 1  -i 10000  -x 15  -e 0.1  -y > data/fastspar_correlations/saline_water.polar_seawater/log_saline_water.polar_seawater.txt
+echo saline_water.polar_seawater done!
+
+echo The Sparcc for: saline_water.river_saline is running...
+fastspar  -c data/community_subsets/saline_water.river_saline.tsv  -r data/fastspar_correlations/saline_water.river_saline/cor_saline_water.river_saline -a data/fastspar_correlations/saline_water.river_saline/cov_saline_water.river_saline -t 2  -s 1  -i 10000  -x 15  -e 0.1  -y > data/fastspar_correlations/saline_water.river_saline/log_saline_water.river_saline.txt
+echo saline_water.river_saline done!
+
+echo The Sparcc for: saline_water.saline_evaporation_pond is running...
+fastspar  -c data/community_subsets/saline_water.saline_evaporation_pond.tsv  -r data/fastspar_correlations/saline_water.saline_evaporation_pond/cor_saline_water.saline_evaporation_pond -a data/fastspar_correlations/saline_water.saline_evaporation_pond/cov_saline_water.saline_evaporation_pond -t 2  -s 1  -i 10000  -x 15  -e 0.1  -y > data/fastspar_correlations/saline_water.saline_evaporation_pond/log_saline_water.saline_evaporation_pond.txt
+echo saline_water.saline_evaporation_pond done!
+
+echo The Sparcc for: saline_water.saline_water_biofilm is running...
+fastspar  -c data/community_subsets/saline_water.saline_water_biofilm.tsv  -r data/fastspar_correlations/saline_water.saline_water_biofilm/cor_saline_water.saline_water_biofilm -a data/fastspar_correlations/saline_water.saline_water_biofilm/cov_saline_water.saline_water_biofilm -t 2  -s 1  -i 10000  -x 15  -e 0.1  -y > data/fastspar_correlations/saline_water.saline_water_biofilm/log_saline_water.saline_water_biofilm.txt
+echo saline_water.saline_water_biofilm done!
+
+echo The Sparcc for: saline_water.salt_lake is running...
+fastspar  -c data/community_subsets/saline_water.salt_lake.tsv  -r data/fastspar_correlations/saline_water.salt_lake/cor_saline_water.salt_lake -a data/fastspar_correlations/saline_water.salt_lake/cov_saline_water.salt_lake -t 2  -s 1  -i 10000  -x 15  -e 0.1  -y > data/fastspar_correlations/saline_water.salt_lake/log_saline_water.salt_lake.txt
+echo saline_water.salt_lake done!
+
+echo The Sparcc for: sediment.anaerobic_sediment is running...
+fastspar  -c data/community_subsets/sediment.anaerobic_sediment.tsv  -r data/fastspar_correlations/sediment.anaerobic_sediment/cor_sediment.anaerobic_sediment -a data/fastspar_correlations/sediment.anaerobic_sediment/cov_sediment.anaerobic_sediment -t 2  -s 1  -i 10000  -x 15  -e 0.1  -y > data/fastspar_correlations/sediment.anaerobic_sediment/log_sediment.anaerobic_sediment.txt
+echo sediment.anaerobic_sediment done!
+
+echo The Sparcc for: sediment.coastal_marine_sediment is running...
+fastspar  -c data/community_subsets/sediment.coastal_marine_sediment.tsv  -r data/fastspar_correlations/sediment.coastal_marine_sediment/cor_sediment.coastal_marine_sediment -a data/fastspar_correlations/sediment.coastal_marine_sediment/cov_sediment.coastal_marine_sediment -t 2  -s 1  -i 10000  -x 15  -e 0.1  -y > data/fastspar_correlations/sediment.coastal_marine_sediment/log_sediment.coastal_marine_sediment.txt
+echo sediment.coastal_marine_sediment done!
+
+echo The Sparcc for: sediment.continental_slope_sediment is running...
+fastspar  -c data/community_subsets/sediment.continental_slope_sediment.tsv  -r data/fastspar_correlations/sediment.continental_slope_sediment/cor_sediment.continental_slope_sediment -a data/fastspar_correlations/sediment.continental_slope_sediment/cov_sediment.continental_slope_sediment -t 2  -s 1  -i 10000  -x 15  -e 0.1  -y > data/fastspar_correlations/sediment.continental_slope_sediment/log_sediment.continental_slope_sediment.txt
+echo sediment.continental_slope_sediment done!
+
+echo The Sparcc for: sediment.desert_sediment is running...
+fastspar  -c data/community_subsets/sediment.desert_sediment.tsv  -r data/fastspar_correlations/sediment.desert_sediment/cor_sediment.desert_sediment -a data/fastspar_correlations/sediment.desert_sediment/cov_sediment.desert_sediment -t 2  -s 1  -i 10000  -x 15  -e 0.1  -y > data/fastspar_correlations/sediment.desert_sediment/log_sediment.desert_sediment.txt
+echo sediment.desert_sediment done!
+
+echo The Sparcc for: sediment.lake_sediment is running...
+fastspar  -c data/community_subsets/sediment.lake_sediment.tsv  -r data/fastspar_correlations/sediment.lake_sediment/cor_sediment.lake_sediment -a data/fastspar_correlations/sediment.lake_sediment/cov_sediment.lake_sediment -t 2  -s 1  -i 10000  -x 15  -e 0.1  -y > data/fastspar_correlations/sediment.lake_sediment/log_sediment.lake_sediment.txt
+echo sediment.lake_sediment done!
+
+echo The Sparcc for: sediment.mangrove_sediment is running...
+fastspar  -c data/community_subsets/sediment.mangrove_sediment.tsv  -r data/fastspar_correlations/sediment.mangrove_sediment/cor_sediment.mangrove_sediment -a data/fastspar_correlations/sediment.mangrove_sediment/cov_sediment.mangrove_sediment -t 2  -s 1  -i 10000  -x 15  -e 0.1  -y > data/fastspar_correlations/sediment.mangrove_sediment/log_sediment.mangrove_sediment.txt
+echo sediment.mangrove_sediment done!
+
+echo The Sparcc for: sediment.oil_affected_sediment is running...
+fastspar  -c data/community_subsets/sediment.oil_affected_sediment.tsv  -r data/fastspar_correlations/sediment.oil_affected_sediment/cor_sediment.oil_affected_sediment -a data/fastspar_correlations/sediment.oil_affected_sediment/cov_sediment.oil_affected_sediment -t 2  -s 1  -i 10000  -x 15  -e 0.1  -y > data/fastspar_correlations/sediment.oil_affected_sediment/log_sediment.oil_affected_sediment.txt
+echo sediment.oil_affected_sediment done!
+
+echo The Sparcc for: sediment.river_sediment is running...
+fastspar  -c data/community_subsets/sediment.river_sediment.tsv  -r data/fastspar_correlations/sediment.river_sediment/cor_sediment.river_sediment -a data/fastspar_correlations/sediment.river_sediment/cov_sediment.river_sediment -t 2  -s 1  -i 10000  -x 15  -e 0.1  -y > data/fastspar_correlations/sediment.river_sediment/log_sediment.river_sediment.txt
+echo sediment.river_sediment done!
+
+echo The Sparcc for: sediment.saline_marsh_sediment is running...
+fastspar  -c data/community_subsets/sediment.saline_marsh_sediment.tsv  -r data/fastspar_correlations/sediment.saline_marsh_sediment/cor_sediment.saline_marsh_sediment -a data/fastspar_correlations/sediment.saline_marsh_sediment/cov_sediment.saline_marsh_sediment -t 2  -s 1  -i 10000  -x 15  -e 0.1  -y > data/fastspar_correlations/sediment.saline_marsh_sediment/log_sediment.saline_marsh_sediment.txt
+echo sediment.saline_marsh_sediment done!
+
+echo The Sparcc for: soil.agricultural_soil is running...
+fastspar  -c data/community_subsets/soil.agricultural_soil.tsv  -r data/fastspar_correlations/soil.agricultural_soil/cor_soil.agricultural_soil -a data/fastspar_correlations/soil.agricultural_soil/cov_soil.agricultural_soil -t 2  -s 1  -i 10000  -x 15  -e 0.1  -y > data/fastspar_correlations/soil.agricultural_soil/log_soil.agricultural_soil.txt
+echo soil.agricultural_soil done!
+
+echo The Sparcc for: soil.compost is running...
+fastspar  -c data/community_subsets/soil.compost.tsv  -r data/fastspar_correlations/soil.compost/cor_soil.compost -a data/fastspar_correlations/soil.compost/cov_soil.compost -t 2  -s 1  -i 10000  -x 15  -e 0.1  -y > data/fastspar_correlations/soil.compost/log_soil.compost.txt
+echo soil.compost done!
+
+echo The Sparcc for: soil.contaminated_soil is running...
+fastspar  -c data/community_subsets/soil.contaminated_soil.tsv  -r data/fastspar_correlations/soil.contaminated_soil/cor_soil.contaminated_soil -a data/fastspar_correlations/soil.contaminated_soil/cov_soil.contaminated_soil -t 2  -s 1  -i 10000  -x 15  -e 0.1  -y > data/fastspar_correlations/soil.contaminated_soil/log_soil.contaminated_soil.txt
+echo soil.contaminated_soil done!
+
+echo The Sparcc for: soil.desert_soil is running...
+fastspar  -c data/community_subsets/soil.desert_soil.tsv  -r data/fastspar_correlations/soil.desert_soil/cor_soil.desert_soil -a data/fastspar_correlations/soil.desert_soil/cov_soil.desert_soil -t 2  -s 1  -i 10000  -x 15  -e 0.1  -y > data/fastspar_correlations/soil.desert_soil/log_soil.desert_soil.txt
+echo soil.desert_soil done!
+
+echo The Sparcc for: soil.farm_soil is running...
+fastspar  -c data/community_subsets/soil.farm_soil.tsv  -r data/fastspar_correlations/soil.farm_soil/cor_soil.farm_soil -a data/fastspar_correlations/soil.farm_soil/cov_soil.farm_soil -t 2  -s 1  -i 10000  -x 15  -e 0.1  -y > data/fastspar_correlations/soil.farm_soil/log_soil.farm_soil.txt
+echo soil.farm_soil done!
+
+echo The Sparcc for: soil.forest_soil is running...
+fastspar  -c data/community_subsets/soil.forest_soil.tsv  -r data/fastspar_correlations/soil.forest_soil/cor_soil.forest_soil -a data/fastspar_correlations/soil.forest_soil/cov_soil.forest_soil -t 2  -s 1  -i 10000  -x 15  -e 0.1  -y > data/fastspar_correlations/soil.forest_soil/log_soil.forest_soil.txt
+echo soil.forest_soil done!
+
+echo The Sparcc for: soil.garden_soil is running...
+fastspar  -c data/community_subsets/soil.garden_soil.tsv  -r data/fastspar_correlations/soil.garden_soil/cor_soil.garden_soil -a data/fastspar_correlations/soil.garden_soil/cov_soil.garden_soil -t 2  -s 1  -i 10000  -x 15  -e 0.1  -y > data/fastspar_correlations/soil.garden_soil/log_soil.garden_soil.txt
+echo soil.garden_soil done!
+
+echo The Sparcc for: soil.grassland is running...
+fastspar  -c data/community_subsets/soil.grassland.tsv  -r data/fastspar_correlations/soil.grassland/cor_soil.grassland -a data/fastspar_correlations/soil.grassland/cov_soil.grassland -t 2  -s 1  -i 10000  -x 15  -e 0.1  -y > data/fastspar_correlations/soil.grassland/log_soil.grassland.txt
+echo soil.grassland done!
+
+echo The Sparcc for: soil.meadow_soil is running...
+fastspar  -c data/community_subsets/soil.meadow_soil.tsv  -r data/fastspar_correlations/soil.meadow_soil/cor_soil.meadow_soil -a data/fastspar_correlations/soil.meadow_soil/cov_soil.meadow_soil -t 2  -s 1  -i 10000  -x 15  -e 0.1  -y > data/fastspar_correlations/soil.meadow_soil/log_soil.meadow_soil.txt
+echo soil.meadow_soil done!
+
+echo The Sparcc for: soil.park_soil is running...
+fastspar  -c data/community_subsets/soil.park_soil.tsv  -r data/fastspar_correlations/soil.park_soil/cor_soil.park_soil -a data/fastspar_correlations/soil.park_soil/cov_soil.park_soil -t 2  -s 1  -i 10000  -x 15  -e 0.1  -y > data/fastspar_correlations/soil.park_soil/log_soil.park_soil.txt
+echo soil.park_soil done!
+
+echo The Sparcc for: soil.pasture_soil is running...
+fastspar  -c data/community_subsets/soil.pasture_soil.tsv  -r data/fastspar_correlations/soil.pasture_soil/cor_soil.pasture_soil -a data/fastspar_correlations/soil.pasture_soil/cov_soil.pasture_soil -t 2  -s 1  -i 10000  -x 15  -e 0.1  -y > data/fastspar_correlations/soil.pasture_soil/log_soil.pasture_soil.txt
+echo soil.pasture_soil done!
+
+echo The Sparcc for: soil.peat_soil is running...
+fastspar  -c data/community_subsets/soil.peat_soil.tsv  -r data/fastspar_correlations/soil.peat_soil/cor_soil.peat_soil -a data/fastspar_correlations/soil.peat_soil/cov_soil.peat_soil -t 2  -s 1  -i 10000  -x 15  -e 0.1  -y > data/fastspar_correlations/soil.peat_soil/log_soil.peat_soil.txt
+echo soil.peat_soil done!
+
+echo The Sparcc for: soil.permafrost is running...
+fastspar  -c data/community_subsets/soil.permafrost.tsv  -r data/fastspar_correlations/soil.permafrost/cor_soil.permafrost -a data/fastspar_correlations/soil.permafrost/cov_soil.permafrost -t 2  -s 1  -i 10000  -x 15  -e 0.1  -y > data/fastspar_correlations/soil.permafrost/log_soil.permafrost.txt
+echo soil.permafrost done!
+
+echo The Sparcc for: soil.prairie is running...
+fastspar  -c data/community_subsets/soil.prairie.tsv  -r data/fastspar_correlations/soil.prairie/cor_soil.prairie -a data/fastspar_correlations/soil.prairie/cov_soil.prairie -t 2  -s 1  -i 10000  -x 15  -e 0.1  -y > data/fastspar_correlations/soil.prairie/log_soil.prairie.txt
+echo soil.prairie done!
+
+echo The Sparcc for: soil.rhizosphere is running...
+fastspar  -c data/community_subsets/soil.rhizosphere.tsv  -r data/fastspar_correlations/soil.rhizosphere/cor_soil.rhizosphere -a data/fastspar_correlations/soil.rhizosphere/cov_soil.rhizosphere -t 2  -s 1  -i 10000  -x 15  -e 0.1  -y > data/fastspar_correlations/soil.rhizosphere/log_soil.rhizosphere.txt
+echo soil.rhizosphere done!
+
+echo The Sparcc for: soil.saline_marsh is running...
+fastspar  -c data/community_subsets/soil.saline_marsh.tsv  -r data/fastspar_correlations/soil.saline_marsh/cor_soil.saline_marsh -a data/fastspar_correlations/soil.saline_marsh/cov_soil.saline_marsh -t 2  -s 1  -i 10000  -x 15  -e 0.1  -y > data/fastspar_correlations/soil.saline_marsh/log_soil.saline_marsh.txt
+echo soil.saline_marsh done!
+
+echo The Sparcc for: soil.savanna_soil is running...
+fastspar  -c data/community_subsets/soil.savanna_soil.tsv  -r data/fastspar_correlations/soil.savanna_soil/cor_soil.savanna_soil -a data/fastspar_correlations/soil.savanna_soil/cov_soil.savanna_soil -t 2  -s 1  -i 10000  -x 15  -e 0.1  -y > data/fastspar_correlations/soil.savanna_soil/log_soil.savanna_soil.txt
+echo soil.savanna_soil done!
+
+echo The Sparcc for: soil.shrubland_soil is running...
+fastspar  -c data/community_subsets/soil.shrubland_soil.tsv  -r data/fastspar_correlations/soil.shrubland_soil/cor_soil.shrubland_soil -a data/fastspar_correlations/soil.shrubland_soil/cov_soil.shrubland_soil -t 2  -s 1  -i 10000  -x 15  -e 0.1  -y > data/fastspar_correlations/soil.shrubland_soil/log_soil.shrubland_soil.txt
+echo soil.shrubland_soil done!
+
+echo The Sparcc for: soil.tundra_soil is running...
+fastspar  -c data/community_subsets/soil.tundra_soil.tsv  -r data/fastspar_correlations/soil.tundra_soil/cor_soil.tundra_soil -a data/fastspar_correlations/soil.tundra_soil/cov_soil.tundra_soil -t 2  -s 1  -i 10000  -x 15  -e 0.1  -y > data/fastspar_correlations/soil.tundra_soil/log_soil.tundra_soil.txt
+echo soil.tundra_soil done!
+
+echo The Sparcc for: wastewater.reactor_sludge is running...
+fastspar  -c data/community_subsets/wastewater.reactor_sludge.tsv  -r data/fastspar_correlations/wastewater.reactor_sludge/cor_wastewater.reactor_sludge -a data/fastspar_correlations/wastewater.reactor_sludge/cov_wastewater.reactor_sludge -t 2  -s 1  -i 10000  -x 15  -e 0.1  -y > data/fastspar_correlations/wastewater.reactor_sludge/log_wastewater.reactor_sludge.txt
+echo wastewater.reactor_sludge done!
+
+echo The Sparcc for: wastewater.sewage is running...
+fastspar  -c data/community_subsets/wastewater.sewage.tsv  -r data/fastspar_correlations/wastewater.sewage/cor_wastewater.sewage -a data/fastspar_correlations/wastewater.sewage/cov_wastewater.sewage -t 2  -s 1  -i 10000  -x 15  -e 0.1  -y > data/fastspar_correlations/wastewater.sewage/log_wastewater.sewage.txt
+echo wastewater.sewage done!
+
+echo The Sparcc for: wastewater.sludge is running...
+fastspar  -c data/community_subsets/wastewater.sludge.tsv  -r data/fastspar_correlations/wastewater.sludge/cor_wastewater.sludge -a data/fastspar_correlations/wastewater.sludge/cov_wastewater.sludge -t 2  -s 1  -i 10000  -x 15  -e 0.1  -y > data/fastspar_correlations/wastewater.sludge/log_wastewater.sludge.txt
+echo wastewater.sludge done!
+
+echo The Sparcc for: wastewater.wastewater_treatment_plant is running...
+fastspar  -c data/community_subsets/wastewater.wastewater_treatment_plant.tsv  -r data/fastspar_correlations/wastewater.wastewater_treatment_plant/cor_wastewater.wastewater_treatment_plant -a data/fastspar_correlations/wastewater.wastewater_treatment_plant/cov_wastewater.wastewater_treatment_plant -t 2  -s 1  -i 10000  -x 15  -e 0.1  -y > data/fastspar_correlations/wastewater.wastewater_treatment_plant/log_wastewater.wastewater_treatment_plant.txt
+echo wastewater.wastewater_treatment_plant done!
+
