@@ -32,12 +32,12 @@ do
 
     if [ -f "${synt_cor}" ]; then
         echo "echo The Sparcc for: " \
-                "${habitat} with  iterations, " \
+                "${habitat} " \
                    "table ${table_number} was already done" > general_log.txt
     else         
         #create the jobs file in jobs folder
          echo "echo The Sparcc for:" \
-                " ${habitat}," \
+                " synthetic ${habitat}," \
                     "table ${table_number} is running..."
         echo "mkdir -p ${synt_fastspar_dir}"
         echo "fastspar "\
@@ -46,7 +46,7 @@ do
                      "-a ${synt_cov}"\
                      "-t 2 "\
                      "-s 1 "\
-                     "-i 16000 "\
+                     "-i 4000 "\
                      "-x $remove "\
                      "-e 0.1 "\
                      "-y > ${log}_${table_number}.txt"

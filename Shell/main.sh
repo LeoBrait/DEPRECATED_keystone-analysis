@@ -7,6 +7,7 @@ source ~/$package_manager/etc/profile.d/conda.sh
 
 # Computational resources
 parallel=40
+definitive_iter=4000
 
 ######################### Data pre-process #####################################
 
@@ -100,13 +101,22 @@ xargs -P $parallel -I {} bash -c "{}" < Shell/jobs/performance_iterations.txt
 # conda activate R_biome_keystones
 # Rscript R/pipelines/measuring_matrix_similarities.R
 
+echo "\n"\
+"###########################################################################\n"\
+"###################### Fastspar for all communities #######################\n"\
+"###########################################################################\n"\
 
-######################### Fastspar P-values ####################################
-
-# Environment ******************************************************************
 conda activate pyshell_biome_keystones
 
-# check if the directory data/synthtic_habitats exists
+# Still to be done.
+
+echo "\n"\
+"###########################################################################\n"\
+"############################ Fastspar P-values ############################\n"\
+"###########################################################################\n"\
+
+# Generate Synthetic habitats **************************************************
+
 if [ ! -d "data/synthetic_habitats" ]; then
     source Shell/pipelines/creating_fake_habitats.sh
     else
@@ -115,11 +125,34 @@ if [ ! -d "data/synthetic_habitats" ]; then
 fi
 
 # Run fastspar with synthetic communities **************************************
+
 source Shell/pipelines/fastspar_synthetics.sh
 
-
 # # Test real correlations vs. fake ********************************************
-# for seed in {1..2}; do
-#     sseed=$(printf "%03d" $seed)
-#     fastspar_pvalues -c ${base}/$anot -r ${path}/${sseed}/cor.tsv -n 1000 -p ${path}/${sseed}/cor/ -o ${path}/${sseed}/pval.tsv -t $nthreads
-# done
+
+# Environment
+# communities_path=data/community_subsets
+# tablenames_real=($(\ls ${communities_path}))
+# p_values_dir=data/fastspar_pvalues
+# mkdir -p "${p_values_dir}"
+
+# # Job List
+# for tablename_real in "${tablenames_real[@]}";
+# do
+#     #parse the file name without the .tsv
+#     filename=$(basename -- "$tablename_real")
+#     filename="${filename%.*}"
+
+#     #create the jobs file in jobs folder
+#     echo "echo The p-values for: ${filename} is running..."
+#     echo "python3 Python/pipelines/fastspar_pvalues.py "\
+#             "-c ${communities_path}/${tablename_real} "\
+#             "-r ${p_values_dir}/${filename}.cor "\
+#             "-n 1000 "\
+#             "-p ${p_values_dir}/${filename}/ "\
+#             "-o ${p_values_dir}/${filename}.tsv "\
+#             "-t 2"
+
+
+
+#fastspar_pvalues -c ${base}/$anot -r ${path}/${sseed}/cor.tsv -n 1000 -p ${path}/${sseed}/cor/ -o ${path}/${sseed}/pval.tsv -t $nthreads
