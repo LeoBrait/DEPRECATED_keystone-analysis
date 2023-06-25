@@ -19,11 +19,7 @@ synthetic_communities=250
 
 #fastspar settings
 definitive_iter=10000
-
-#integer 2% of the iterations
-definitive_rm=$((definitive_iter / 100))
-definitive_rm=$((definitive_rm * 2))
-definitive_rm=${definitive_rm%.*}
+remove=15
 
 
 # Computational resources

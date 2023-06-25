@@ -18,6 +18,7 @@ starting analysis with the following parameters:
     seeds: ${#seeds[@]}
     synthetic communities: $synthetic_communities
     definitive iteration: $definitive_iter
+    remove correlates: $remove
     parallel processes: $parallel" | fold -w 80
 
 echo "
@@ -67,10 +68,6 @@ do
         for seed in "${seeds[@]}"
         do
            
-           #remove 1% of iteractions
-           remove=$((iteration / 100))
-           remove=${remove%.*}
-           remove=$((remove * 2))
 
             #check the pre-existence of each output
             if [ -f "${iteration_dir}/cor_${seed}" ]; then
@@ -144,7 +141,7 @@ do
             "-t 2 "\
             "-s 1 "\
             "-i $definitive_iter "\
-            "-x $definive_rm "\
+            "-x $remove "\
             "-e 0.1 "\
             "-y > ${fastspar_dir}/${habitat_name}/log_${habitat_name}.txt"
         echo "echo ${habitat_name} done!"
@@ -248,7 +245,7 @@ do
                 "-t 2 "\
                 "-s 1 "\
                 "-i $definitive_iter "\
-                "-x $definive_rm "\
+                "-x $remove "\
                 "-e 0.1 "\
                 "-y > ${synt_fastspar_dir}/log_${habitat}_${table_number}.txt"
         echo "echo table ${table_number} of ${habitat}" \
