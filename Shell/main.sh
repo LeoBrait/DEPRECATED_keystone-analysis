@@ -13,13 +13,14 @@ source Shell/settings.sh
 
 echo "
 starting analysis with the following parameters:
-    package manager: $package_manager
-    iterations: ${iterations[@]}
-    seeds: ${#seeds[@]}
-    synthetic communities: $synthetic_communities
-    definitive iteration: $definitive_iter
-    remove correlates: $remove
-    parallel processes: $parallel" | fold -w 80
+
+package manager: $package_manager
+iterations: ${iterations[@]}
+seeds: ${#seeds[@]}
+synthetic communities: $synthetic_communities
+definitive iteration: $definitive_iter
+remove correlates: $remove
+parallel processes: $parallel" | fold -w 80
 
 echo "
 ################################################################################
