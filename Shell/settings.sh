@@ -18,8 +18,13 @@ seeds=(1 2 3 4 5 6 7 8 9 10
 synthetic_communities=250
 
 #fastspar settings
-remove=10
 definitive_iter=10000
+
+#integer 2% of the iterations
+definitive_rm=$((definitive_iter / 100))
+definitive_rm=$((definitive_rm * 2))
+definitive_rm=${definitive_rm%.*}
+
 
 # Computational resources
 parallel=40

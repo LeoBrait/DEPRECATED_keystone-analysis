@@ -8,6 +8,7 @@ echo "
 Start time: $(date "+%Y-%m-%d %H:%M:%S")
 "
 mkdir -p logs
+mkdir -p Shell/jobs
 source Shell/settings.sh
 
 echo "
@@ -15,9 +16,9 @@ starting analysis with the following parameters:
     package manager: $package_manager
     iterations: ${iterations[@]}
     seeds: ${#seeds[@]}
+    synthetic communities: $synthetic_communities
     definitive iteration: $definitive_iter
-    autocorrelation removal: $remove
-    parallel processes: $parallel"
+    parallel processes: $parallel" | fold -w 80
 
 echo "
 ################################################################################
@@ -65,6 +66,11 @@ do
 
         for seed in "${seeds[@]}"
         do
+           
+           #remove 1% of iteractions
+           remove=$((iteration / 100))
+           remove=${remove%.*}
+           remove=$((remove * 2))
 
             #check the pre-existence of each output
             if [ -f "${iteration_dir}/cor_${seed}" ]; then
@@ -78,8 +84,8 @@ do
 
                 #create the jobs file in jobs folder
                 echo "echo The Sparcc for:" \
-                        " ${habitat_name} with ${iteration} iterations," \
-                            "seed ${seed} is running..."
+                         "${habitat_name} with ${iteration} iterations," \
+                            "seed ${seed} is running... | fold -w 80" 
                 echo "fastspar "\
                     "-c ${subset_path} "\
                     "-r ${iteration_dir}/cor_${seed}"\
@@ -90,8 +96,8 @@ do
                     "-x $remove "\
                     "-e 0.1 "\
                     "-y > ${iteration_dir}/log_${seed}.txt"
-                echo "echo ${habitat_name} with ${iteration} iterations," \
-                        " and seed ${seed} done!"
+                echo "echo ${habitat_name} with ${iteration} iterations"\
+                        "and seed ${seed} done! | fold -w 80"
                 echo
             fi
         done
@@ -138,7 +144,7 @@ do
             "-t 2 "\
             "-s 1 "\
             "-i $definitive_iter "\
-            "-x 15 "\
+            "-x $definive_rm "\
             "-e 0.1 "\
             "-y > ${fastspar_dir}/${habitat_name}/log_${habitat_name}.txt"
         echo "echo ${habitat_name} done!"
@@ -242,7 +248,7 @@ do
                 "-t 2 "\
                 "-s 1 "\
                 "-i $definitive_iter "\
-                "-x $remove "\
+                "-x $definive_rm "\
                 "-e 0.1 "\
                 "-y > ${synt_fastspar_dir}/log_${habitat}_${table_number}.txt"
         echo "echo table ${table_number} of ${habitat}" \
