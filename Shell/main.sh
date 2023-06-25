@@ -16,6 +16,7 @@ starting analysis with the following parameters:
     iterations: ${iterations[@]}
     seeds: ${#seeds[@]}
     definitive iteration: $definitive_iter
+    autocorrelation removal: $remove
     parallel processes: $parallel"
 
 echo "
@@ -24,7 +25,6 @@ echo "
 ################################################################################
 Start time: $(date "+%Y-%m-%d %H:%M:%S")
 "
-
 
 conda activate pyshell_biome_keystones
 python3 Python/pipelines/data_preprocessing.py
@@ -37,8 +37,7 @@ echo "
 Start time: $(date "+%Y-%m-%d %H:%M:%S")
 "
 
-
-# Environment ******************************************************************
+# Environment
 communities_path=data/community_subsets
 iterations_test_subsets=( 
     "${communities_path}/animal_host-associated.aqueous_humour.tsv" #N=8
@@ -50,36 +49,25 @@ iterations_test_subsets=(
     "${communities_path}/groundwater.porous_contaminated.tsv"       #N=48
     "${communities_path}/groundwater.mine.tsv")                     #N=3
 
-
-
-
-
 performance_dir=data/performance_fastspar_iterations
 mkdir -p "${performance_dir}"
 
-# Job List *********************************************************************
+# Job List
 for subset_path in "${iterations_test_subsets[@]}"
 do
     #parse names
     table_name=$(basename -- "$subset_path")
     habitat_name="${table_name%.*}"
-    habitat_dir="${performance_dir}/${habitat_name}"
 
     for iteration in "${iterations[@]}"
     do
-        iteration_dir="${habitat_dir}/${iteration}"
+        iteration_dir="${performance_dir}/${habitat_name}/${iteration}"
 
         for seed in "${seeds[@]}"
         do
-            #Environment for each iteration and seed
-            out_cor="${iteration_dir}/cor_${seed}.cor"
-            out_cov="${iteration_dir}/cov_${seed}.cov"
-            log="${iteration_dir}/log_${seed}.txt"
-            time_var="${iteration_dir}/time_${seed}.txt"
-            remove=15
-            
+
             #check the pre-existence of each output
-            if [ -f "${out_cor}" ]; then
+            if [ -f "${iteration_dir}/cor_${seed}" ]; then
                 echo "echo The Sparcc for: " \
                         "${habitat_name} with ${iteration} iterations," \
                             "seed ${seed} was already done" > general_log.txt
@@ -88,18 +76,19 @@ do
                 echo "echo The Sparcc for:" \
                         " ${habitat_name} with ${iteration} iterations," \
                             "seed ${seed} is running..."
-                echo "mkdir -p ${habitat_dir}"
+
+                echo "mkdir -p ${performance_dir}/${habitat_name}"
                 echo "mkdir -p ${iteration_dir}"
                 echo "fastspar "\
                     "-c ${subset_path} "\
-                    "-r ${out_cor} "\
-                    "-a ${out_cov} "\
+                    "-r ${iteration_dir}/cor_${seed}"\
+                    "-a ${iteration_dir}/cov_${seed}"\
                     "-t 2 "\
                     "-s $seed "\
                     "-i $iteration "\
                     "-x $remove "\
                     "-e 0.1 "\
-                    "-y > ${log}"
+                    "-y > ${iteration_dir}/log_${seed}.txt"
                 echo "echo ${habitat_name} with ${iteration} iterations," \
                         " and seed ${seed} done!"
                 echo
@@ -135,22 +124,22 @@ do
     habitat_name="${tablename%.*}"
     mkdir -p "${fastspar_dir}/${habitat_name}"
 
-    if [ -f "${fastspar_dir}/${habitat_name}/${habitat_name}.cor" ]; then
+    if [ -f "${fastspar_dir}/${habitat_name}/cor_${habitat_name}" ]; then
         echo "echo The Sparcc for: ${habitat_name}"\
-        "was already done" > general_log.txt
+        "was already done" > log_general.txt
     else
     #create the jobs file in jobs folder
         echo "echo The Sparcc for: ${habitat_name} is running..."
         echo "fastspar "\
             "-c ${communities_path}/${tablename} "\
-            "-r ${fastspar_dir}/${habitat_name}/${habitat_name}.cor "\
-            "-a ${fastspar_dir}/${habitat_name}/${habitat_name}.cov "\
+            "-r ${fastspar_dir}/${habitat_name}/cor_${habitat_name}"\
+            "-a ${fastspar_dir}/${habitat_name}/cov_${habitat_name}"\
             "-t 2 "\
             "-s 1 "\
             "-i $definitive_iter "\
             "-x 15 "\
             "-e 0.1 "\
-            "-y > ${fastspar_dir}/${habitat_name}/${habitat_name}.log"
+            "-y > ${fastspar_dir}/${habitat_name}/log_${habitat_name}.txt"
         echo "echo ${habitat_name} done!"
         echo
     fi
@@ -210,65 +199,65 @@ fi
 # Environment ******************************************************************
 #!/bin/bash
 
-# input
-general_synthetics_dir=data/synthetic_habitats
-synt_habitats_dirs=($(ls ${general_synthetics_dir}))
+# # input
+# general_synthetics_dir=data/synthetic_habitats
+# synt_habitats_dirs=($(ls ${general_synthetics_dir}))
 
-# output
-mkdir -p data/synthetic_fastspar
+# # output
+# mkdir -p data/synthetic_fastspar
 
-for synt_habitat_dir in "${synt_habitats_dirs[@]}";
-do
-    tables=($(ls ${general_synthetics_dir}/${synt_habitat_dir}))
+# for synt_habitat_dir in "${synt_habitats_dirs[@]}";
+# do
+#     tables=($(ls ${general_synthetics_dir}/${synt_habitat_dir}))
 
-    for table in "${tables[@]}";
-    do
-        #parse the file name without the .tsv
-        filename=$(basename -- "$table")
-        filename="${filename%.*}"
-        habitat=$(basename -- "${synt_habitat_dir}")
+#     for table in "${tables[@]}";
+#     do
+#         #parse the file name without the .tsv
+#         filename=$(basename -- "$table")
+#         filename="${filename%.*}"
+#         habitat=$(basename -- "${synt_habitat_dir}")
 
-        #get table number
-        table_number=$(echo "$filename" | awk -F'_' '{print $NF}')
+#         #get table number
+#         table_number=$(echo "$filename" | awk -F'_' '{print $NF}')
 
-        #Environment
-        synt_fastspar_dir="data/synthetic_fastspar/${habitat}"
-        remove=15
-        synt_cor="${synt_fastspar_dir}/${habitat}_${table_number}.cor"
-        synt_cov="${synt_fastspar_dir}/${habitat}_${table_number}.cov"
-        log="${synt_fastspar_dir}/log_${habitat}"
+#         #Environment
+#         synt_fastspar_dir="data/synthetic_fastspar/${habitat}"
+#         remove=15
+#         synt_cor="${synt_fastspar_dir}/${habitat}_${table_number}.cor"
+#         synt_cov="${synt_fastspar_dir}/${habitat}_${table_number}.cov"
+#         log="${synt_fastspar_dir}/log_${habitat}"
 
-    if [ -f "${synt_cor}" ]; then
-        echo "echo The Sparcc for: " \
-                "${habitat} " \
-                   "table ${table_number} was already done" > general_log.txt
-    else         
-        #create the jobs file in jobs folder
-         echo "echo The Sparcc for:" \
-                " synthetic ${habitat}," \
-                    "table ${table_number} is running..."
-        echo "mkdir -p ${synt_fastspar_dir}"
-        echo "fastspar "\
-                     "-c ${general_synthetics_dir}/${synt_habitat_dir}/${table}"\
-                     "-r ${synt_cor}"\
-                     "-a ${synt_cov}"\
-                     "-t 2 "\
-                     "-s 1 "\
-                     "-i 4000 "\
-                     "-x $remove "\
-                     "-e 0.1 "\
-                     "-y > ${log}_${table_number}.txt"
-                 echo "echo table ${table_number} of ${filename}" \
-                         " done!"
-                 echo       
-        fi
-    done
-done > Shell/jobs/fake_fastspar.txt
+#     if [ -f "${synt_cor}" ]; then
+#         echo "echo The Sparcc for: " \
+#                 "${habitat} " \
+#                    "table ${table_number} was already done" > general_log.txt
+#     else         
+#         #create the jobs file in jobs folder
+#          echo "echo The Sparcc for:" \
+#                 " synthetic ${habitat}," \
+#                     "table ${table_number} is running..."
+#         echo "mkdir -p ${synt_fastspar_dir}"
+#         echo "fastspar "\
+#                      "-c ${general_synthetics_dir}/${synt_habitat_dir}/${table}"\
+#                      "-r ${synt_cor}"\
+#                      "-a ${synt_cov}"\
+#                      "-t 2 "\
+#                      "-s 1 "\
+#                      "-i 4000 "\
+#                      "-x $remove "\
+#                      "-e 0.1 "\
+#                      "-y > ${log}_${table_number}.txt"
+#                  echo "echo table ${table_number} of ${filename}" \
+#                          " done!"
+#                  echo       
+#         fi
+#     done
+# done > Shell/jobs/fake_fastspar.txt
 
 
 
-# Run the jobs *****************************************************************
-xargs -P $parallel -I {} bash -c "{}" < Shell/jobs/fake_fastspar.txt
+# # Run the jobs *****************************************************************
+# xargs -P $parallel -I {} bash -c "{}" < Shell/jobs/fake_fastspar.txt
 
 
 # # Test real correlations vs. fake ********************************************
@@ -297,24 +286,15 @@ do
     
     habitat_name="${tablename_real%.*}"
     mkdir -p "${p_values_dir}/${habitat_name}"
+    echo "fastspar_pvalues"\
+          "-c ${communities_path}/${tablename_real}"\
+          "-r ${fastspar_dir}/${habitat_name}/${habitat_name}.cor"\
+          "-p ${general_synthetics_dir}/${habitat}/synt_"\
+          "-n 250"\
+          "-p ${p_values_dir}/${habitat_name}/bootstrap"\
+          "-o ${p_values_dir}/${habitat_name}/real.tsv"\
+          "-t 2"
 
-    synt_tables=($(ls ${general_synthetics_dir}/${habitat_name}))
-    
-
-    for synt_table in "${synt_tables[@]}";
-    do  
-        table_number=$(echo "$synt_table" | awk -F'_' '{print $NF}')
-
-        echo "fastspar_pvalues"\
-            "-c ${communities_path}/${tablename_real}"\
-            "-r ${fastspar_dir}/${habitat_name}/${habitat_name}.cor"\
-            "-p ${synt_fastspar_dir}/${habitat_name}/${habitat_name}_${table_number}.cor"\
-            "-n 250"\
-            "-p ${p_values_dir}/${habitat_name}/bootstrap"\
-            "-o ${p_values_dir}/${habitat_name}/real.tsv"\
-            "-t 2"
-        echo
-    done
 done > Shell/jobs/fastspar_pvalues.txt
 
 # Run the jobs
