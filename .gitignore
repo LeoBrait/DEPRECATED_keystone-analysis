@@ -16,9 +16,11 @@ data/taxon_abundances/*.csv
 data/fastspar_correlations/
 data/synthetic_fastspar/
 data/performance_fastspar_iterations/
+data/fastspar_pvalues
 
 
 
 # Desconsider all the directories of a given directory
 out/
 nohup.out
+logs/

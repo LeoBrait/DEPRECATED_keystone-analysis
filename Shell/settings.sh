@@ -12,7 +12,7 @@ synthetic_communities=100
 
 #fastspar settings
 remove=15
-definitive_iter=4000
+definitive_iter=300
 
 # Computational resources
 parallel=40
