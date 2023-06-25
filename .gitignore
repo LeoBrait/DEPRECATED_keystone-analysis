@@ -12,9 +12,11 @@ synthetic_habitats_logs
 data/community_subsets_raw/*.csv
 data/community_subsets/*.tsv
 data/taxon_abundances/*.csv
-data/fastspar_networks/*/
-data/performance_fastspar_iterations
-data/synthetic_fastspar
+
+data/fastspar_correlations/
+data/synthetic_fastspar/
+data/performance_fastspar_iterations/
+
 
 
 # Desconsider all the directories of a given directory
