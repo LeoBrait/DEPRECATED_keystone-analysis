@@ -1,19 +1,29 @@
 #!/bin/bash
 #Author: Bright Mage
 
-# Environment Settings
-package_manager="miniconda3"
-source ~/$package_manager/etc/profile.d/conda.sh
+echo "
+################################################################################
+#                                     Setup                                    #
+################################################################################
+Start time: $(date "+%Y-%m-%d %H:%M:%S")
+"
 
-# Computational resources
-parallel=40
-definitive_iter=4000
+source Shell/settings.sh
+
+echo "
+starting analysis with the following parameters:
+    package manager: $package_manager
+    iterations: ${iterations[@]}
+    seeds: ${#seeds[@]}
+    definitive iteration: $definitive_iter
+    parallel processes: $parallel"
 
 echo "
 ################################################################################
 #                              Preprocessing Data                              #
 ################################################################################
-Start time: $(date "+%Y-%m-%d %H:%M:%S")"
+Start time: $(date "+%Y-%m-%d %H:%M:%S")
+"
 
 
 conda activate pyshell_biome_keystones
@@ -24,7 +34,8 @@ echo "
 ################################################################################
 #                     performancing fastspar iterations                        #
 ################################################################################
-Start time: $(date "+%Y-%m-%d %H:%M:%S")"
+Start time: $(date "+%Y-%m-%d %H:%M:%S")
+"
 
 
 # Environment ******************************************************************
@@ -39,14 +50,9 @@ iterations_test_subsets=(
     "${communities_path}/groundwater.porous_contaminated.tsv"       #N=48
     "${communities_path}/groundwater.mine.tsv")                     #N=3
 
-iterations=(   300   400   500  1000
-              1500  3000  3500  4000)
 
-seeds=( 1  2  3  4  5  6  7  8  9 10
-       11 12 13 14 15 16 17 18 19 20
-       21 22 23 24 25 26 27 28 29 30
-       31 32 33 34 35 36 37 38 39 40
-       41 42 43 44 45 46 47 48 49 50)
+
+
 
 performance_dir=data/performance_fastspar_iterations
 mkdir -p "${performance_dir}"
@@ -265,12 +271,9 @@ done > Shell/jobs/fake_fastspar.txt
 xargs -P $parallel -I {} bash -c "{}" < Shell/jobs/fake_fastspar.txt
 
 
-
-
 # # Test real correlations vs. fake ********************************************
 
 #Environment
-
 p_values_dir=data/fastspar_pvalues
 mkdir -p "${p_values_dir}"
 
@@ -280,33 +283,42 @@ tablenames_real=($(\ls ${communities_path}))
 
 #synthetic habitats
 general_synthetics_dir=data/synthetic_habitats
-tablepaths_synth=($(\ls ${general_synthetics_dir}))
 
+#real correlations
+fastspar_dir=data/fastspar_correlations
+habitat_dirs=($(ls ${fastspar_dir}))
 
+#synthetic correlations
+synt_fastspar_dir=data/synthetic_fastspar
+synt_habitats_dirs=($(ls ${synt_fastspar_dir}))
 
-# Job List
 for tablename_real in "${tablenames_real[@]}";
 do
-    #parse the file name without the .tsv
-    filename=$(basename -- "$tablename_real")
-    filename="${filename%.*}"
+    
+    habitat_name="${tablename_real%.*}"
+    mkdir -p "${p_values_dir}/${habitat_name}"
 
-    synt_habitat_dir="${general_synthetics_dir}/${filename}"
-    synt_fastspar_dir="data/synthetic_fastspar/${filename}"
+    synt_tables=($(ls ${general_synthetics_dir}/${habitat_name}))
+    
 
-    #create the jobs file in jobs folder
-    echo "echo The p-values for: ${filename} is running..."
-    echo "fastspar_pvalues "\
-            "-c ${communities_path}/${tablename_real} "\
-            "-r ${fastspar_dir}/${filename}/${filename}.cor "\
-            "-p ${synt_habitat_dir}/fake_${filename}"\
+    for synt_table in "${synt_tables[@]}";
+    do  
+        table_number=$(echo "$synt_table" | awk -F'_' '{print $NF}')
+
+        echo "fastspar_pvalues"\
+            "-c ${communities_path}/${tablename_real}"\
+            "-r ${fastspar_dir}/${habitat_name}/${habitat_name}.cor"\
+            "-p ${synt_fastspar_dir}/${habitat_name}/${habitat_name}_${table_number}.cor"\
             "-n 250"\
-            "-p ${p_values_dir}/${filename}/ "\
-            "-o ${p_values_dir}/${filename}.tsv "\
-            "-t 2"\
+            "-p ${p_values_dir}/${habitat_name}/bootstrap"\
+            "-o ${p_values_dir}/${habitat_name}/real.tsv"\
+            "-t 2"
+        echo
+    done
+done > Shell/jobs/fastspar_pvalues.txt
 
+# Run the jobs
+xargs -P $parallel -I {} bash -c "{}" < Shell/jobs/fastspar_pvalues.txt
 
-
-
-#fastspar_pvalues -c ${base}/$anot -r ${path}/${sseed}/cor.tsv -n 1000 -p ${path}/${sseed}/cor/ -o ${path}/${sseed}/pval.tsv -t $nthreads
+#end time
 echo "End time: $(date "+%Y-%m-%d %H:%M:%S")"
