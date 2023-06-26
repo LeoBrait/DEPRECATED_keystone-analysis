@@ -97,16 +97,6 @@ done > Shell/jobs/performance_iterations.txt
 # Run the jobs 
 xargs -P $parallel -I {} bash -c "{}" < Shell/jobs/performance_iterations.txt
 
-echo "
-################################################################################
-#                       Generating performance tables                          #
-################################################################################
-Start time: $(date "+%Y-%m-%d %H:%M:%S")"
-
-
-conda activate R_biome_keystones
-Rscript R/pipelines/measuring_matix_similarities.R
-
 
 echo "
 ################################################################################
@@ -204,8 +194,6 @@ echo "
 ################################################################################
 Start time: $(date "+%Y-%m-%d %H:%M:%S")"
 
-
-
 # input
 general_synthetics_dir=data/synthetic_habitats
 synt_habitats_dirs=($(ls ${general_synthetics_dir}))
@@ -302,6 +290,17 @@ done > Shell/jobs/fastspar_pvalues.txt
 
 # Run the jobs
 xargs -P $parallel -I {} bash -c "{}" < Shell/jobs/fastspar_pvalues.txt
+
+
+echo "
+################################################################################
+#                       Generating performance tables                          #
+################################################################################
+Start time: $(date "+%Y-%m-%d %H:%M:%S")"
+
+
+conda activate R_biome_keystones
+Rscript R/pipelines/measuring_matrix_similarities.R
 
 #end time
 echo "End time: $(date "+%Y-%m-%d %H:%M:%S")"

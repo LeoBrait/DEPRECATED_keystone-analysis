@@ -1,6 +1,5 @@
 #!/bin/bash
 
-
 # Package manager path
 package_manager="miniconda3"
 source ~/$package_manager/etc/profile.d/conda.sh
