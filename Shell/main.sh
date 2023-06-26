@@ -14,11 +14,11 @@ source Shell/settings.sh
 echo "
 starting analysis with the following parameters:
 
-package manager: $package_manager
+package manager: ${package_manager}
 iterations: ${iterations[@]}
 seeds: ${#seeds[@]}
 iterations test subsets: 
-${iterations_test_subsets[@]]}
+${iterations_test_subsets[@]}
 synthetic communities: $synthetic_communities
 definitive iteration: $definitive_iter
 remove correlates: $remove
@@ -105,7 +105,7 @@ Start time: $(date "+%Y-%m-%d %H:%M:%S")"
 
 
 conda activate R_biome_keystones
-Rscript R/pipelines/measuring_matrix_similarities.R $parallel 
+Rscript R/pipelines/measuring_matix_similarities.R
 
 
 echo "

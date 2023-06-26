@@ -7,9 +7,8 @@ library("doParallel")
 source("R/data_processing/calculate_cosine_similarity.R")
 
 # Set the number of cores to use for parallel processing
-num_cores <- 4
-#num_cores <- as.integer(commandArgs(trailingOnly = TRUE)[1])
-registerDoParallel(cores = num_cores)
+num_cores <- as.integer(commandArgs(trailingOnly = TRUE)[1])
+registerDoParallel(cores = num_cores / 2)
 
 habitats <- dir("data/performance_fastspar_iterations/", full.names = TRUE)
 data_frames <- list()
@@ -21,13 +20,8 @@ convert_to_numeric <- function(df) {
   df
 }
 
-# DEBUG
-habitats <- habitats[1]
-
 foreach(habitat_path = habitats, .packages = c("tidyverse", "stringr")) %dopar% {
 
-  # DEBUG
-  habitat_path <- habitat_path[1]
 
   habitat_name <- basename(habitat_path)
 
@@ -90,6 +84,3 @@ foreach(habitat_path = habitats, .packages = c("tidyverse", "stringr")) %dopar% 
 
   data_frames[[habitat_name]] <- habitat_data_frame
 }
-
-# View a specific data frame
-View(data_frames[["animal_host-associated.animal_feces"]])
