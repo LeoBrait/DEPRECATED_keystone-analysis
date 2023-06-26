@@ -97,9 +97,16 @@ done > Shell/jobs/performance_iterations.txt
 # Run the jobs 
 xargs -P $parallel -I {} bash -c "{}" < Shell/jobs/performance_iterations.txt
 
-# Maxrix similarities
-# conda activate R_biome_keystones
-# Rscript R/pipelines/measuring_matrix_similarities.R
+echo "
+################################################################################
+#                       Generating performance tables                          #
+################################################################################
+Start time: $(date "+%Y-%m-%d %H:%M:%S")"
+
+
+conda activate R_biome_keystones
+Rscript R/pipelines/measuring_matrix_similarities.R $parallel 
+
 
 echo "
 ################################################################################
@@ -147,7 +154,7 @@ xargs -P $parallel -I {} bash -c "{}" < Shell/jobs/fastspar_all_communities.txt
 
 echo "
 ################################################################################
-#                              Fastspar P-values                               #
+#                          Generate Synthetic habitats                         #
 ################################################################################
 Start time: $(date "+%Y-%m-%d %H:%M:%S")"
 
@@ -191,11 +198,13 @@ else
 fi
 
 
+echo "
+################################################################################
+#                        Fastspar for synthetic habitats                       #
+################################################################################
+Start time: $(date "+%Y-%m-%d %H:%M:%S")"
 
 
-# Run fastspar with synthetic communities **************************************
-# Environment ******************************************************************
-#!/bin/bash
 
 # input
 general_synthetics_dir=data/synthetic_habitats
@@ -249,13 +258,15 @@ do
     done
 done > Shell/jobs/fake_fastspar.txt
 
-
-
-# # Run the jobs *****************************************************************
+# Run the jobs
 xargs -P $parallel -I {} bash -c "{}" < Shell/jobs/fake_fastspar.txt
 
 
-# # Test real correlations vs. fake ********************************************
+echo "
+################################################################################
+#                          P-values: real vs synthetic                         #
+################################################################################
+Start time: $(date "+%Y-%m-%d %H:%M:%S")"
 
 #Environment
 p_values_dir=data/fastspar_pvalues
@@ -272,10 +283,6 @@ synt_fastspar_dir=data/synthetic_fastspar
 #real correlations
 fastspar_dir=data/fastspar_correlations
 habitat_dirs=($(ls ${fastspar_dir}))
-
-#synthetic correlations
-# synt_fastspar_dir=data/synthetic_fastspar
-# synt_habitats_dirs=($(ls ${synt_fastspar_dir}))
 
 for tablename_real in "${tablenames_real[@]}";
 do

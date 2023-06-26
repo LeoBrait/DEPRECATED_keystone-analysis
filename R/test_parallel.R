@@ -8,6 +8,7 @@ source("R/data_processing/calculate_cosine_similarity.R")
 
 # Set the number of cores to use for parallel processing
 num_cores <- 4
+#num_cores <- as.integer(commandArgs(trailingOnly = TRUE)[1])
 registerDoParallel(cores = num_cores)
 
 habitats <- dir("data/performance_fastspar_iterations/", full.names = TRUE)

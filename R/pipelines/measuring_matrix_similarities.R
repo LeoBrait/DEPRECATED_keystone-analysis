@@ -36,7 +36,7 @@ for (habitat_path in habitats){
 
   iteration_name <- basename(iteration_path)
   print(paste0(
-    "checking results for:", habitat_name, "iteration:", iteration_name))
+    "checking results for: ", habitat_name, "iteration: ", iteration_name))
     
   #get the tables
   tables <- dir(iteration_path, pattern = "cor_", full.names = TRUE)
@@ -50,7 +50,7 @@ for (habitat_path in habitats){
     for(table_path in tables){
 
       table_name <- basename(table_path)
-      print(paste0("table:", table_name))
+      print(paste0("table: ", table_name))
       table_name <- basename(table_path)
 
       #treat from df to matrix
@@ -82,7 +82,10 @@ for (habitat_path in habitats){
   result_path <- "data/summaries/performance_fastspar_iterations/"
   if (!file.exists(result_path)) {
     dir.create(result_path)}
-  write.csv(results_df, paste0(result_path, habitat_name, ".csv"))
+  write.csv(
+    results_df,
+    paste0(result_path, habitat_name, ".csv"),
+    row.names = FALSE)
   
   data_frames[[habitat_name]] <- results_df
 }
