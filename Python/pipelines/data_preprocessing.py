@@ -2,7 +2,6 @@ import pandas as pd
 import os
 from datetime import datetime
 from numpy.linalg import norm
-import numpy as np
 
 # Paths
 this_dir = os.path.dirname(os.path.abspath(__file__))
@@ -12,39 +11,12 @@ data_dir = os.path.join(global_dir, 'data/')
 
 pre_process_time = datetime.now()
 
-
-
-################################################################
-# Read the data
-kraken_custom_phyla = pd.read_csv(f'{data_dir}taxon_abundances/kraken_custom_phyla.csv')
-
-# Define the desired sum value
-desired_sum = 10000000000000000000  # 1 billion
-
-# Calculate the row sums of the data
-data_rowsum = np.sum(kraken_custom_phyla.iloc[:, 1:], axis=1)
-
-# Calculate the scaling factor to achieve the desired sum
-scaling_factor = desired_sum / np.sum(data_rowsum)
-
-# Multiply each relative abundance by the scaling factor
-kraken_custom_phyla.iloc[:, 1:] *= scaling_factor
-
-# Calculate the row sums of the transformed data
-data_rowsum_transformed = np.sum(kraken_custom_phyla.iloc[:, 1:], axis=1)
-
-# Normalize the transformed data by dividing each element by its corresponding row sum
-kraken_custom_phyla.iloc[:, 1:] = kraken_custom_phyla.iloc[:, 1:].div(data_rowsum_transformed, axis=0)
-
-# Verify the sum of each column
-column_sums = np.sum(kraken_custom_phyla.iloc[:, 1:], axis=0)
-print(column_sums)
-
-
-
-
-
-
+#TODO: DECIDE THE FACTOR OF MULTIPLICATION TO AVOID FLOATING POINT ERRORS
+#multiply each relative abundance for 1000
+kraken_custom_phyla = pd.read_csv(
+    f'{data_dir}taxon_abundances/kraken_custom_phyla.csv')
+kraken_custom_phyla.iloc[:,1:] = kraken_custom_phyla.iloc[:,1:].apply(
+    lambda x: x*10000000000000000000)
 
 merged_data = pd.read_csv(
     f'{data_dir}metadata/biome_classification.csv').filter(

@@ -24,3 +24,5 @@ min_values_nonzero <- as.data.frame(min_values_nonzero)
 
 #transform into csv
 write_csv(min_values_nonzero, "min_nonzero.csv")
+
+################################################################################
