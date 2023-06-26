@@ -1,44 +1,15 @@
 options(scipen = 9999999)
+options(digits = 20)
 library("tidyverse")
 library("stringr")
 source("R/data_processing/calculate_cosine_similarity.R")
 
-#manual test
-habitat <- dir("data/performance_fastspar_iterations/animal_host-associated.habitat", full.names = TRUE)
-orderer <- as.numeric(str_extract(habitat, "\\d+"))
-habitat <- habitat[order(orderer)]
 
+habitats <- dir("data/performance_fastspar_iterations/", full.names = TRUE)
+data_frames <- list()
+results_df <- data.frame()
 
-iter_names <- dir("data/performance_fastspar_iterations/animal_host-associated.habitat")
-iter_names <- iter_names[order(orderer)]
-
-
-for (i in 1:length(habitat)) {
-
-  iter_sets_paths <- list()
-  
-  for(j in 1:length(iter_names)) {
-    iter_sets_paths[[iter_names[j]]] <- dir(habitat[j], pattern = ".cor", full.names = TRUE)
-  }
-
-}
-
-#load the tables
-iter_sets <- list()
-tables <-  list()
-for (i in 1:length(iter_sets_paths)) {
-  
-  iter_sets[[ iter_names[i] ]] <- list()
-  
-  for (j in 1:length(iter_sets_paths[[i]])) {
-    
-    tables[[j]] <- as.matrix(read_tsv(iter_sets_paths[[i]][j]))
-    iter_sets[[ iter_names[i] ]] [[j]] <- as.data.frame(tables[[j]])
-    colnames(iter_sets[[ iter_names[i] ]] [[j]]) <- NULL
-    iter_sets[[ iter_names[i] ]] [[j]][1] <- NULL
-
-  }}
-
+#function to convert the data frame to numeric avoiding errors
 convert_to_numeric <- function(df) {
   char_cols <- sapply(df, is.character)
   df[char_cols] <- lapply(df[char_cols], as.numeric)
@@ -46,9 +17,76 @@ convert_to_numeric <- function(df) {
 }
 
 
-# Convert data frames to numerical matrices
-matrix_list <- lapply(iter_sets$"16000", function(df) as.matrix(convert_to_numeric(df)))
+for (habitat_path in habitats){
 
-results_simiralities <- compute_matrices_similarity(matrix_list)
 
-results_simiralities <- as.vector(results_simiralities[upper.tri(results_simiralities, diag = FALSE)])
+  habitat_name <- basename(habitat_path)
+
+  #intialized the data frame of the habitat results
+  habitat_data_frame <- data.frame()
+
+  #order the iterations ascendingly
+  iterations <- dir(habitat_path, full.names = TRUE)
+
+  orderer <- as.numeric(str_extract(iterations, "\\d+"))
+  iterations <- iterations[order(orderer)]
+
+  #get iteration folders
+  for(iteration_path in iterations){
+
+  iteration_name <- basename(iteration_path)
+  print(paste0(
+    "checking results for:", habitat_name, "iteration:", iteration_name))
+    
+  #get the tables
+  tables <- dir(iteration_path, pattern = "cor_", full.names = TRUE)
+
+  orderer <- as.numeric(str_extract(tables, "\\d+"))
+  tables <- tables[order(orderer)]
+
+  matrices <- list()
+
+
+    for(table_path in tables){
+
+      table_name <- basename(table_path)
+      print(paste0("table:", table_name))
+      table_name <- basename(table_path)
+
+      #treat from df to matrix
+      table <- as.matrix(read_tsv(table_path, show_col_types = FALSE))
+      table <- as.data.frame(table)
+      table[1] <- NULL
+      colnames(table) <- NULL
+      table <- convert_to_numeric(table)
+      table <- as.matrix(table)
+
+      #store the matrix
+      matrices[[table_name]] <- table
+
+    }
+  
+  results_similarities <- compute_matrices_similarity(matrices)
+  results_similarities <- as.vector(results_similarities[upper.tri(results_similarities, diag = FALSE)])
+  results_df_parcial <- data.frame(iteration_name = results_similarities)
+  colnames(results_df_parcial) <- c(iteration_name)
+
+  #This prevents an error while binding the data frames
+  if (nrow(results_df) == 0) {
+       results_df <- results_df_parcial
+   } else {
+       results_df <- cbind(results_df, results_df_parcial)
+   }
+
+}
+  result_path <- "data/summaries/performance_fastspar_iterations/"
+  if (!file.exists(result_path)) {
+    dir.create(result_path)}
+  write.csv(results_df, paste0(result_path, habitat_name, ".csv"))
+  
+  data_frames[[habitat_name]] <- results_df
+}
+
+
+
+
