@@ -17,6 +17,8 @@ starting analysis with the following parameters:
 package manager: $package_manager
 iterations: ${iterations[@]}
 seeds: ${#seeds[@]}
+iterations test subsets: 
+${iterations_test_subsets[@]]}
 synthetic communities: $synthetic_communities
 definitive iteration: $definitive_iter
 remove correlates: $remove
@@ -40,17 +42,6 @@ echo "
 Start time: $(date "+%Y-%m-%d %H:%M:%S")
 "
 
-# Environment
-communities_path=data/community_subsets
-iterations_test_subsets=( 
-    "${communities_path}/animal_host-associated.aqueous_humour.tsv" #N=8
-    "${communities_path}/animal_host-associated.animal_feces.tsv"   #N=675
-    "${communities_path}/saline_water.coastal_seawater.tsv"         #N=286
-    "${communities_path}/saline_water.hypersaline_water.tsv"        #N=16
-    "${communities_path}/soil.savanna_soil.tsv"                     #N=21
-    "${communities_path}/soil.tundra_soil.tsv"                      #N=3
-    "${communities_path}/groundwater.porous_contaminated.tsv"       #N=48
-    "${communities_path}/groundwater.mine.tsv")                     #N=3
 
 performance_dir=data/performance_fastspar_iterations
 mkdir -p "${performance_dir}"
@@ -71,7 +62,8 @@ do
            
 
             #check the pre-existence of each output
-            if [ -f "${iteration_dir}/cor_${seed}" ]; then
+            if [ -f "${iteration_dir}/cor_${seed}" ];
+            then
                 echo "echo The Sparcc for: " \
                         "${habitat_name} with ${iteration} iterations," \
                             "seed ${seed} was already"\
@@ -129,7 +121,8 @@ do
     habitat_name="${tablename%.*}"
     mkdir -p "${fastspar_dir}/${habitat_name}"
 
-    if [ -f "${fastspar_dir}/${habitat_name}/cor_${habitat_name}" ]; then
+    if [ -f "${fastspar_dir}/${habitat_name}/cor_${habitat_name}" ];
+    then
         echo "echo The Sparcc for: ${habitat_name}"\
         "was already done" > logs/log_general.txt
     else
@@ -250,7 +243,7 @@ do
                 "-e 0.1 "\
                 "-y > ${synt_fastspar_dir}/log_${habitat}_${table_number}.txt"
         echo "echo table ${table_number} of ${habitat}" \
-                         " done!"
+                         " done! | fold -w 80"
         echo       
     fi
     done

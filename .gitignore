@@ -7,7 +7,7 @@ general_log.txt
 data/summaries/
 data/synthetic_habitats
 synthetic_habitats_logs
-Shell/jobs/*.txt
+Shell/jobs/
 
 # Desconsider data obtainable from zip files
 data/community_subsets_raw/*.csv

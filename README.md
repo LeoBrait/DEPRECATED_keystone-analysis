@@ -18,7 +18,7 @@ The entire analysis aims to determine which are the Keystones nodes based on mul
 1. Data preparation
 
 The program inputs are basically two:
-- A occurence matrix, which the first column reffer to the samples(i.e, communities) and the other columns reffer to the OTUs. The values are the abundances. The ocurrence matrix can be found [here](data/taxon_abundances). Extract the given files just right there or use your own data.  
+- A occurence matrix, which the first column reffers to the samples(i.e, communities) and the other columns reffer to the OTUs. The values are the abundances. The ocurrence matrix can be found [here](data/taxon_abundances). Extract the given files just right there or use your own data.  
 - A metadata matrix, which the first column reffer to the samples(i.e, communities) and the other columns reffer to the metadata. In this pipeline we use habitat and ecosystem as metadata. The metadata matrix can be found [here](data/metadata). Extract the given files just right there or use your own data.
 
 Once in the keystone-analysis directory you can run
@@ -46,7 +46,7 @@ which conda
 
 ## Usage
 
-After installing all requirements and setting your files in the right directories, you should check for the environment settings in the file [main.sh](Shell/main.sh). In this program we use environment switchs between R and Python environments, so please make sure your package manager and profiles path are correctly assigned. After that, you can run the analysis just by doing:
+After installing all requirements and setting your files in the right directories, you should check for the environment settings in the file [settings.sh](Shell/settings.sh). In this program we use environment switchs between R and Python environments, so please make sure your package manager and profiles path are correctly assigned. After that, you can run the analysis just by doing:
 
 ```sh
 bash Shell/main.sh
