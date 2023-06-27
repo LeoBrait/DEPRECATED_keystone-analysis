@@ -47,7 +47,7 @@ do
                 echo "echo The Sparcc for: " \
                         "${habitat_name} with ${iteration} iterations," \
                             "seed ${seed} was already"\
-                                        "done" > logs/jump_log.txt
+                                        "done" >> logs/jump_log.txt
             else                
                 mkdir -p "${performance_dir}/${habitat_name}"
                 mkdir -p "${iteration_dir}"
@@ -200,7 +200,7 @@ do
     if [ -f "${synt_fastspar_dir}/cor_${habitat}_${table_number}" ]; then
         echo "echo The Sparcc for: " \
                 "${habitat} " \
-                   "table ${table_number} was already done" > logs/jump_log.txt
+                   "table ${table_number} was already done" >> logs/jump_log.txt
     else
         mkdir -p ${synt_fastspar_dir}
 

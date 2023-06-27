@@ -219,7 +219,8 @@ def main(inFile, inMeta, host, spcc_backlog):
     # printing nodes' labels using gephi format
     gp.printNodes("sparcc/gephi_data/nodes.csv", meta)
 
-    debug("Executing Critical Network Method (CNM) and Largest Influence on Average Shortest Path (LIASP) algorithms...")
+    debug("Executing Critical Network Method (CNM) and Largest Influence\n"
+            " on Average Shortest Path (LIASP) algorithms...")
     # itg.run("sparcc", coSparCC, host)
     identify_keystones("sparcc", coSparCC, host)
 
