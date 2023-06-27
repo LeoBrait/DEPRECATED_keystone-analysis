@@ -63,7 +63,10 @@ for subset_path in community_subsets:
         print(f'NO SPARCC MATRIX FOUND! JUMPING {subset_name}')
         continue
 
-    if existOldData(f'{networks_dir}'+subset_name+'/sparcc/keystones.csv'):        
+    os.makedirs(f'{data_dir}/parcial_keystones_table/', exist_ok=True)
+    os.makedirs(f'{data_dir}/parcial_keystones_table/{subset_name}', exist_ok=True)
+
+    if existOldData(f'{data_dir}/parcial_keystones_table/{subset_name}_keystones.csv'):        
         print(f'Keystones of {subset_name} already exist')
         #TODO: reactivete the line below if you want to delete 
         #the keystones tables
@@ -84,9 +87,10 @@ for subset_path in community_subsets:
 
         #TODO: for some reason the code iteracts using the out folder as a
         # temporary folder, and the cpr function copies it to the output folder
+        os.makedirs(f'{data_dir}/final_keystones/', exist_ok=True)
         cpr(
             lsgrep('out',['']),
-            f'{data_dir}fastspar_networks/'+subset_name+'/sparcc/')
+            f'{data_dir}/final_keystones/'+subset_name, exist_ok=True)
         rmr(['out'])
         continue
 
@@ -98,7 +102,7 @@ startTime = datetime.now()
 print("\n\nStarting analysis through environments.\n\n")
 os.makedirs(f'{data_dir}/final_keystones_table/', exist_ok=True)
 
-files = glob.glob(f'{data_dir}fastspar_networks/*')
+files = glob.glob(f'{data_dir}final_keystones/*')
 df = pd.DataFrame()
 
 # reading all files
