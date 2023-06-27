@@ -33,7 +33,7 @@ This program relies on a Python-3 interpreter and the anaconda (or miniconda) pa
 All python packages required by the program are listed in `requirements.txt`. In order to create and activate environment with all dependencies, you should install [anaconda 3](https://www.anaconda.com/) or miniconda on your linux machine and run:
 
 ```sh
-bash Shell/install_dependencies.sh
+bash Shell/installation/install_dependencies.sh
 ```
 * This is necessay just for the first time you run the program.
 * **Troubleshooting:** If you have problems to find your conda installation and profiles, you can try the following:
