@@ -22,6 +22,13 @@ for (habitat_path in habitats){
 
   habitat_name <- basename(habitat_path)
 
+  if(file.exists(
+    paste0("data/summaries/performance_fastspar_iterations/",
+            habitat_name, ".csv"))){
+    print(paste0("skipping: ", habitat_name))
+
+  }else{
+
   #intialized the data frame of the habitat results
   habitat_data_frame <- data.frame()
 
@@ -82,13 +89,14 @@ for (habitat_path in habitats){
   result_path <- "data/summaries/performance_fastspar_iterations/"
   if (!file.exists(result_path)) {
     dir.create(result_path)}
+  
   write.csv(
     results_df,
     paste0(result_path, habitat_name, ".csv"),
     row.names = FALSE)
   
   data_frames[[habitat_name]] <- results_df
-}
+}}
 
 
 

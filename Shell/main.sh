@@ -273,19 +273,27 @@ fastspar_dir=data/fastspar_correlations
 habitat_dirs=($(ls ${fastspar_dir}))
 
 for tablename_real in "${tablenames_real[@]}";
-do
-    
+do  
     habitat_name="${tablename_real%.*}"
-    mkdir -p "${p_values_dir}/${habitat_name}"
-    echo "fastspar_pvalues "\
-          "-c ${communities_path}/${tablename_real}"\
-          "-r ${fastspar_dir}/${habitat_name}/cor_${habitat_name}"\
-          "-p ${synt_fastspar_dir}/${habitat_name}/cor_"\
-          "-n $synthetic_communities"\
-          "-o ${p_values_dir}/${habitat_name}/real.tsv"\
-          "-t 2"
-    echo
-
+    
+    if [ -f "${p_values_dir}/${habitat_name}/real.tsv" ]; then
+        echo "echo The p-values for: " \
+                "${habitat_name} " \
+                   "was already done" >> logs/general_log.txt
+    else
+        #create the jobs file in jobs folder
+        echo "echo The p-values for:" \
+                " ${habitat_name} is running..."
+        echo "fastspar_pvalues "\
+                "-c ${communities_path}/${tablename_real}"\
+                "-r ${fastspar_dir}/${habitat_name}/cor_${habitat_name}"\
+                "-p ${synt_fastspar_dir}/${habitat_name}/cor_"\
+                "-n $synthetic_communities"\
+                "-o ${p_values_dir}/${habitat_name}/real.tsv"\
+                "-t 2"
+        echo "echo ${habitat_name} done!"
+        echo
+    fi
 done > Shell/jobs/fastspar_pvalues.txt
 
 # Run the jobs
