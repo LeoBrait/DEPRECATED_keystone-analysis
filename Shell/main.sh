@@ -42,13 +42,15 @@ parallel processes
   $parallel"
 
 echo "
-################################################################################
-#                               FASTSPAR PIPELINE                              #
-################################################################################
-Start time: $(date "+%Y-%m-%d %H:%M:%S")
+####################################################################### FASTSPAR
 "
 
 source Shell/pipelines/calculating_fastspar.sh
-
-#end time
 echo "End Of Fastspar pipeline: $(date "+%Y-%m-%d %H:%M:%S")"
+
+echo "
+######################################################## Keystone Identification
+"
+
+conda activate pyshell_biome_keystones
+python3 Python/pipelines/identifying_keystones.py
