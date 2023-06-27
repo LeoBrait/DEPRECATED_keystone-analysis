@@ -84,7 +84,7 @@ for subset_path in community_subsets:
 
         #TODO: for some reason the code iteracts using the out folder as a
         # temporary folder, and the cpr function copies it to the output folder
-        os.makedirs(f'{data_dir}/final_keystones/', exist_ok=True)
+        os.makedirs(f'{data_dir}/final_keystones_table/', exist_ok=True)
         cpr(
             lsgrep('out',['']),
             f'{data_dir}/parcial_keystones_results/'+subset_name)
@@ -94,34 +94,34 @@ for subset_path in community_subsets:
 
 
 ################## Keystones identification ####################################
-# startTime = datetime.now()
+startTime = datetime.now()
 
-# print("\n\nStarting analysis through environments.\n\n")
-# os.makedirs(f'{data_dir}/final_keystones_table/', exist_ok=True)
+print("\n\nStarting analysis through environments.\n\n")
+os.makedirs(f'{data_dir}/final_keystones_table/', exist_ok=True)
 
-# files = glob.glob(f'{data_dir}final_keystones/*')
-# df = pd.DataFrame()
+files = glob.glob(f'{data_dir}parcial_keystones_results/*')
+df = pd.DataFrame()
 
-# # reading all files
-# for i in files:
-#     try:
-#         peak = cat(i+'/sparcc/raw_data/cnm_highest_peak.txt').strip()
-#     except:
-#         print('Could not read data of '+i)
-#         continue
+# reading all files
+for i in files:
+    try:
+        peak = cat(i+'/raw_data/cnm_highest_peak.txt').strip()
+    except:
+        print('Could not read data of '+i)
+        continue
 
-#     # appending new table indexed by the Taxon name
-#     if os.path.exists(i+'/sparcc/figures/0p%s/keystones.csv'%peak):
-#         df = pd.concat(
-#             [df,
-#              pd.read_csv(
-#                  i+'/sparcc/figures/0p%s/keystones.csv'%(peak),
-#                  index_col=0)],
-#             sort=False)
-#     else:
-#         print('There is no data for %s\n'%i)
+    # appending new table indexed by the Taxon name
+    if os.path.exists(i+'/figures/0p%s/keystones.csv'%peak):
+        df = pd.concat(
+            [df,
+             pd.read_csv(
+                 i+'/figures/0p%s/keystones.csv'%(peak),
+                 index_col=0)],
+            sort=False)
+    else:
+        print('There is no data for %s\n'%i)
 
-# df.to_csv(f'{data_dir}/final_keystones_table/keystones.csv')
+df.to_csv(f'{data_dir}/final_keystones_table/keystones.csv')
     
 #     #TODO: heatmaps are not working due to the lack of the grephi module
 #     # Generate the  keystones heatmap (total effect)
