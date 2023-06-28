@@ -13,7 +13,7 @@ Start time: $(date "+%Y-%m-%d %H:%M:%S")
 "
 
 conda activate pyshell_biome_keystones
-python3 Python/pipelines/preprocessing_data.py
+python3 Python/pipelines/preprocessing_data.py $multi_const
 
 
 echo "

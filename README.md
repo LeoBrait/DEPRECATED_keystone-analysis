@@ -24,7 +24,7 @@ The program inputs are basically two:
 Once in the keystone-analysis directory you can run
 
 ```sh
-unzip data/taxon_abundances/kraken_relative_matrix_biome_db.zip -d data/taxon_abundances/
+unzip data/taxon_abundances/kraken_absolute_matrix_biome_db.zip -d data/taxon_abundances/
 ```
 
 2. Software dependencies

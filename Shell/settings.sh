@@ -35,4 +35,5 @@ remove=15
 
 
 # Computational resources
-parallel=40
+parallel=30
+multi_const=1

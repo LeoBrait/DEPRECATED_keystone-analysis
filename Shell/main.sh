@@ -36,6 +36,8 @@ echo "synthetic communities
   $synthetic_communities
 definitive iteration
   $definitive_iter
+multiplier constant
+  $multi_const
 remove correlates
   $remove
 parallel processes
