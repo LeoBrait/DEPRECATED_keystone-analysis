@@ -10,13 +10,13 @@ synthetic_habitats_logs
 Shell/jobs/
 
 # Desconsider data obtainable from zip files
-data/*/community_subsets_raw/
-data/*/community_subsets/
-data/*/fastspar_correlations/
-data/*/synthetic_fastspar/
-data/*/performance_fastspar_iterations/
-data/*/fastspar_pvalues
-data/*/parcial_keystones_results
+**/community_subsets_raw/
+**/community_subsets/
+**/fastspar_correlations/
+**/synthetic_fastspar/
+**/performance_fastspar_iterations
+**/fastspar_pvalues
+**/parcial_keystones_results
 
 
 
