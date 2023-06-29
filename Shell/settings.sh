@@ -1,8 +1,16 @@
 #!/bin/bash
 
+
+#
+frame_analysis="Phyla"
+
 # Package manager path
 package_manager="miniconda3"
 source ~/$package_manager/etc/profile.d/conda.sh
+
+# Inputs
+annotated_table="phyla_general_absolute_matrix.csv"
+metadata_table="biome_classification.csv"
 
 # Performance analysis
 iterations=(300 400 500 600 700 800 900 1000

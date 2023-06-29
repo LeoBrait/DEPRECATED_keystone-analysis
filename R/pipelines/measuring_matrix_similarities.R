@@ -4,8 +4,13 @@ library("tidyverse")
 library("stringr")
 source("R/data_processing/calculate_cosine_similarity.R")
 
+args <- commandArgs(trailingOnly = TRUE)
+frame_analysis <- as.character(args[1])
 
-habitats <- dir("data/performance_fastspar_iterations/", full.names = TRUE)
+habitats <- dir(paste0(
+  "data/", frame_analysis, "performance_fastspar_iterations/",
+  full.names = TRUE))
+
 data_frames <- list()
 results_df <- data.frame()
 
@@ -23,8 +28,13 @@ for (habitat_path in habitats){
   habitat_name <- basename(habitat_path)
 
   if(file.exists(
-    paste0("data/summaries/performance_fastspar_iterations/",
-            habitat_name, ".csv"))){
+    paste0(
+      "data/",
+         frame_analysis,
+            "summaries/performance_fastspar_iterations/",
+               habitat_name,
+                 ".csv"
+                 ))){
     print(paste0("skipping: ", habitat_name))
 
   }else{
@@ -86,7 +96,10 @@ for (habitat_path in habitats){
    }
 
 }
-  result_path <- "data/summaries/performance_fastspar_iterations/"
+  result_path <- paste0(
+    "data/",
+      frame_analysis,
+        "summaries/performance_fastspar_iterations/")
   if (!file.exists(result_path)) {
     dir.create(result_path)}
   

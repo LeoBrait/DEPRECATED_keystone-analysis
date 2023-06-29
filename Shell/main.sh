@@ -11,8 +11,18 @@ mkdir -p logs
 mkdir -p Shell/jobs
 source Shell/settings.sh
 
+
 echo "
-starting analysis with the following parameters:"
+$frame_analysis frame with the following parameters:"
+
+
+echo "
+//Inputs//
+"
+echo "annotated table
+  $annotated_table"
+echo "metadata_table
+  $metadata"
 
 echo "
 //Environment//
@@ -24,8 +34,8 @@ echo "
 //Preprocess data//
 "
 echo "multiplier constant
-  $multiplicative_const
-Minimum number of samples
+  $multiplicative_const"
+echo "number of samples
   $minimum_samples"
 
 echo "
@@ -48,10 +58,10 @@ echo "
 //Final analysis//
 "
 echo "synthetic communities 
-  $synthetic_communities
-definitive iteration
-  $definitive_iter
-remove correlates
+  $synthetic_communities"
+echo "definitive iteration
+  $definitive_iter"
+echo "remove correlates
   $remove"
 
 echo "
@@ -72,4 +82,4 @@ echo "
 "
 
 conda activate pyshell_biome_keystones
-python3 Python/pipelines/identifying_keystones.py
+python3 Python/pipelines/identifying_keystones.py $frame_analysis

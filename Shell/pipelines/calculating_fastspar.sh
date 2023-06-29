@@ -14,8 +14,11 @@ Start time: $(date "+%Y-%m-%d %H:%M:%S")
 
 conda activate pyshell_biome_keystones
 python3 Python/pipelines/preprocessing_data.py \
+    $frame_analysis \
     $multiplicative_const \
-    $minimum_samples
+    $minimum_samples \
+    $annotated_table \
+    $metadata_table \
 
 
 echo "
@@ -25,7 +28,7 @@ echo "
 Start time: $(date "+%Y-%m-%d %H:%M:%S")
 "
 
-performance_dir=data/performance_fastspar_iterations
+performance_dir=data/${frame_analysis}/performance_fastspar_iterations
 mkdir -p "${performance_dir}"
 
 # Job List
@@ -87,9 +90,9 @@ echo "
 Start time: $(date "+%Y-%m-%d %H:%M:%S")"
 
 
-communities_path=data/community_subsets
+communities_path=data/${frame_analysis}/community_subsets
 tablenames=($(\ls ${communities_path}))
-fastspar_dir=data/fastspar_correlations
+fastspar_dir=data/${frame_analysis}/fastspar_correlations
 mkdir -p "${fastspar_dir}"
 
 # Job List
@@ -132,12 +135,12 @@ Start time: $(date "+%Y-%m-%d %H:%M:%S")"
 conda activate pyshell_biome_keystones
 
 #Generate Synthetic habitats
-if [ ! -d "data/synthetic_habitats" ]; then
+if [ ! -d "data/${frame_analysis}/synthetic_habitats" ]; then
 
     # Environment
-    communities_path=data/community_subsets
+    communities_path="data/${frame_analysis}/community_subsets"
     tablenames_real=($(\ls ${communities_path}))
-    general_synthetics_dir=data/synthetic_habitats
+    general_synthetics_dir="data/${frame_analysis}/synthetic_habitats"
     mkdir -p "${general_synthetics_dir}"
     mkdir -p "logs/synthetic_habitats_logs"
 
@@ -176,11 +179,11 @@ echo "
 Start time: $(date "+%Y-%m-%d %H:%M:%S")"
 
 # input
-general_synthetics_dir=data/synthetic_habitats
+general_synthetics_dir="data/${frame_analysis}/synthetic_habitats"
 synt_habitats_dirs=($(ls ${general_synthetics_dir}))
 
 # output
-mkdir -p data/synthetic_fastspar
+mkdir -p "data/${frame_analysis}/synthetic_fastspar"
 
 for synt_habitat_dir in "${synt_habitats_dirs[@]}";
 do
@@ -197,7 +200,7 @@ do
         table_number=$(echo "$filename" | awk -F'_' '{print $NF}')
 
         #Environment
-        synt_fastspar_dir="data/synthetic_fastspar/${habitat}"
+        synt_fastspar_dir="data/${frame_analysis}/synthetic_fastspar/${habitat}"
 
     if [ -f "${synt_fastspar_dir}/cor_${habitat}_${table_number}" ]; then
         echo "echo The Sparcc for: " \
@@ -238,19 +241,19 @@ echo "
 Start time: $(date "+%Y-%m-%d %H:%M:%S")"
 
 #Environment
-p_values_dir=data/fastspar_pvalues
+p_values_dir="data/${frame_analysis}/fastspar_pvalues"
 mkdir -p "${p_values_dir}"
 
 #real habitats
-communities_path=data/community_subsets
+communities_path="data/${frame_analysis}/community_subsets"
 tablenames_real=($(\ls ${communities_path}))
 
 #synthetic habitats
-general_synthetics_dir=data/synthetic_habitats
-synt_fastspar_dir=data/synthetic_fastspar
+general_synthetics_dir="data/${frame_analysis}/synthetic_habitats"
+synt_fastspar_dir="data/${frame_analysis}/synthetic_fastspar"
 
 #real correlations
-fastspar_dir=data/fastspar_correlations
+fastspar_dir="data/${frame_analysis}/fastspar_correlations"
 habitat_dirs=($(ls ${fastspar_dir}))
 
 for tablename_real in "${tablenames_real[@]}";
@@ -288,4 +291,4 @@ Start time: $(date "+%Y-%m-%d %H:%M:%S")"
 
 
 conda activate R_biome_keystones
-Rscript R/pipelines/measuring_matrix_similarities.R
+Rscript R/pipelines/measuring_matrix_similarities.R $frame_analysis

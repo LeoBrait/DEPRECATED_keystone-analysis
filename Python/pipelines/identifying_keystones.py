@@ -18,6 +18,9 @@ except ImportError as e:
 from datetime import datetime
 from numpy.linalg import norm
 
+analysis_frame=str(sys.argv[1])
+
+
 # Paths
 src_dir = os.path.dirname(os.path.abspath(__file__))
 data_dir = os.path.join(src_dir, '../..', 'data/')
@@ -35,11 +38,12 @@ total_time = datetime.now()
 
 ################ Preprocessing for Keystones Identification ####################
 startTime = datetime.now()
-networks_dir=os.path.join(data_dir, 'fastspar_correlations/')
+networks_dir=(f"{data_dir}{analysis_frame}/'fastspar_correlations/")
 
 
 #TODO: remove this when correlation function is fixed to accept tsv files
-community_subsets = glob.glob(f'{data_dir}community_subsets_raw/*.csv')
+community_subsets = glob.glob(f'{data_dir}{analysis_frame}/'
+                                  'community_subsets_raw/*.csv')
 
 for subset_path in community_subsets:
 
@@ -65,7 +69,8 @@ for subset_path in community_subsets:
 
 
     if existOldData(
-        f'{data_dir}/parcial_keystones_results/{subset_name}/keystones.csv'):
+        f'{data_dir}/{analysis_frame}/'
+          f'parcial_keystones_results/{subset_name}/keystones.csv'):
 
         print(f'Keystones of {subset_name} already exist')
 
@@ -84,10 +89,12 @@ for subset_path in community_subsets:
 
         #TODO: for some reason the code iteracts using the out folder as a
         # temporary folder, and the cpr function copies it to the output folder
-        os.makedirs(f'{data_dir}/final_keystones_table/', exist_ok=True)
+        os.makedirs(f'{data_dir}/{analysis_frame}/'
+                      f'final_keystones_table/', exist_ok=True)
         cpr(
             lsgrep('out',['']),
-            f'{data_dir}/parcial_keystones_results/'+subset_name)
+            f'{data_dir}/{analysis_frame}/'
+              f'parcial_keystones_results/'+subset_name)
         rmr(['out'])
         continue
 
@@ -97,9 +104,11 @@ for subset_path in community_subsets:
 startTime = datetime.now()
 
 print("\n\nStarting analysis through environments.\n\n")
-os.makedirs(f'{data_dir}/final_keystones_table/', exist_ok=True)
+os.makedirs(f'{data_dir}/{analysis_frame}/'
+              f'final_keystones_table/', exist_ok=True)
 
-files = glob.glob(f'{data_dir}parcial_keystones_results/*')
+files = glob.glob(f'{data_dir}/{analysis_frame}/'
+                    'parcial_keystones_results/*')
 df = pd.DataFrame()
 
 # reading all files
@@ -121,7 +130,8 @@ for i in files:
     else:
         print('There is no data for %s\n'%i)
 
-df.to_csv(f'{data_dir}/final_keystones_table/keystones.csv')
+df.to_csv(f'{data_dir}/{analysis_frame}/'
+            f'final_keystones_table/keystones.csv')
     
 #     #TODO: heatmaps are not working due to the lack of the grephi module
 #     # Generate the  keystones heatmap (total effect)
