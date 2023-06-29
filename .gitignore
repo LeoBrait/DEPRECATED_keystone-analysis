@@ -5,6 +5,7 @@ general_log.txt
 
 #Desconsider data generated from the scripts
 data/summaries/
+data/taxon_abundances/*.csv
 data/synthetic_habitats
 synthetic_habitats_logs
 Shell/jobs/
