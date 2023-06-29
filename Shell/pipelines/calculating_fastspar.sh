@@ -28,7 +28,7 @@ echo "
 Start time: $(date "+%Y-%m-%d %H:%M:%S")
 "
 
-performance_dir=data/${frame_analysis}/performance_fastspar_iterations
+performance_dir="data/${frame_analysis}/performance_fastspar_iterations"
 mkdir -p "${performance_dir}"
 
 # Job List
@@ -90,9 +90,9 @@ echo "
 Start time: $(date "+%Y-%m-%d %H:%M:%S")"
 
 
-communities_path=data/${frame_analysis}/community_subsets
+communities_path="data/${frame_analysis}/community_subsets"
 tablenames=($(\ls ${communities_path}))
-fastspar_dir=data/${frame_analysis}/fastspar_correlations
+fastspar_dir="data/${frame_analysis}/fastspar_correlations"
 mkdir -p "${fastspar_dir}"
 
 # Job List

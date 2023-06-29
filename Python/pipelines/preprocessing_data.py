@@ -16,6 +16,12 @@ this_dir = os.path.dirname(os.path.abspath(__file__))
 global_dir = os.path.join(this_dir, '../..')
 data_dir = os.path.join(global_dir, 'data/')
 
+# create dir
+os.makedirs(f'{data_dir}/{analysis_frame}/'
+              'community_subsets/', exist_ok=True)
+os.makedirs(f'{data_dir}/{analysis_frame}/'
+              'community_subsets_raw/', exist_ok=True)
+
 
 pre_process_time = datetime.now()
 
@@ -27,7 +33,7 @@ kraken_custom_phyla.iloc[:,1:] = kraken_custom_phyla.iloc[:,1:].apply(
     lambda x: x * multi_const)
 
 merged_data = pd.read_csv(
-    f'{data_dir}metadata/{metadata_table}').filter(
+    f'{data_dir}/metadata/{metadata_table}').filter(
         items=['samples', 'habitat', 'ecosystem']).merge(
             kraken_custom_phyla,
             on='samples',
