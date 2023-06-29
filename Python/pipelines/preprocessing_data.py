@@ -52,7 +52,7 @@ for ecosystem in ecosystems:
 
         if sub_subset.shape[0] < minimum_samples:
             print(f"Skipping {ecosystem}.{habitat} because it has"
-                  "fewer than 3 samples.")
+                  f"fewer than {minimum_samples} samples.")
         else:
             column_sums = sub_subset.sum()
             zero_sum_columns = column_sums[column_sums == 0].index

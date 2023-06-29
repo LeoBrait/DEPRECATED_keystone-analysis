@@ -35,7 +35,8 @@ remove=10
 
 
 # Computational resources
-parallel=30
+parallel=40
 
 # Preprocessing settings
 multiplicative_const=1
+minimum_samples=3

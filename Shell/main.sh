@@ -12,20 +12,25 @@ mkdir -p Shell/jobs
 source Shell/settings.sh
 
 echo "
-starting analysis with the following parameters:
-"
+starting analysis with the following parameters:"
 
-echo "//ENVIRONMENT"
+echo "
+//Environment//
+"
 echo "package manager
   ${package_manager}"
 
-echo "//PREPROCESS DATA"
+echo "
+//Preprocess data//
+"
 echo "multiplier constant
   $multiplicative_const
 Minimum number of samples
   $minimum_samples"
 
-echo "//PERFORMANCE ANALYSIS"
+echo "
+//Performance analysis//
+"
 echo "iterations "
 for iteration in "${iterations[@]}"; do
     echo "  $iteration"
@@ -39,7 +44,9 @@ done
 echo "seeds
   ${#seeds[@]}"
 
-echo "//FINAL ANALYSIS"
+echo "
+//Final analysis//
+"
 echo "synthetic communities 
   $synthetic_communities
 definitive iteration
@@ -47,7 +54,9 @@ definitive iteration
 remove correlates
   $remove"
 
-echo "//COMPUTATIONAL RESOURCES"
+echo "
+//Computational resources//
+"
 echo "parallel processes
   $parallel"
 
