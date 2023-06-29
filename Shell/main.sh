@@ -15,9 +15,17 @@ echo "
 starting analysis with the following parameters:
 "
 
+echo "//ENVIRONMENT"
 echo "package manager
   ${package_manager}"
 
+echo "//PREPROCESS DATA"
+echo "multiplier constant
+  $multiplicative_const
+Minimum number of samples
+  $minimum_samples"
+
+echo "//PERFORMANCE ANALYSIS"
 echo "iterations "
 for iteration in "${iterations[@]}"; do
     echo "  $iteration"
@@ -31,16 +39,16 @@ done
 echo "seeds
   ${#seeds[@]}"
 
-
+echo "//FINAL ANALYSIS"
 echo "synthetic communities 
   $synthetic_communities
 definitive iteration
   $definitive_iter
-multiplier constant
-  $multi_const
 remove correlates
-  $remove
-parallel processes
+  $remove"
+
+echo "//COMPUTATIONAL RESOURCES"
+echo "parallel processes
   $parallel"
 
 echo "

@@ -4,7 +4,9 @@ from datetime import datetime
 from numpy.linalg import norm
 import sys
 
+#heritage from the main
 multi_const = int(sys.argv[1])
+minimum_samples = int(sys.argv[2])
 
 # Paths
 this_dir = os.path.dirname(os.path.abspath(__file__))
@@ -48,7 +50,7 @@ for ecosystem in ecosystems:
         #TODO: remove this when correlation function is fixed to accept tsv files
         filename_tsv = f"{data_dir}community_subsets_raw/{ecosystem}.{habitat}.csv"
 
-        if sub_subset.shape[0] < 3:
+        if sub_subset.shape[0] < minimum_samples:
             print(f"Skipping {ecosystem}.{habitat} because it has"
                   "fewer than 3 samples.")
         else:

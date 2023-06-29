@@ -31,9 +31,11 @@ synthetic_communities=250
 
 #fastspar settings
 definitive_iter=10000
-remove=15
+remove=10
 
 
 # Computational resources
 parallel=30
-multi_const=1
+
+# Preprocessing settings
+multiplicative_const=1
