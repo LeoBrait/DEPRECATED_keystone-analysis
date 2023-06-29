@@ -56,6 +56,17 @@ This script will index all input matrices you gave, execute fastspar with bootst
 
 ## Output
 
+This pipeline is results sensitive. It means that most of its processes can be paused then continued at any time. The following directories will be generated in the data folder after running the code:
+- [Habitat's summaries](data/summaries/)  
+Contains the number of samples for each habitat and ecosystem.
+
+- ["Fastspar's performance analysis"](data/performance_fastspar_iterations/)
+- ["Fastspar's correlations"](data/fastspar_correlations/)
+- ["Syntetic habitats"](data/synthetic_habitats/)
+
+If you want to regenerate these reseults, you can simply delete one or all of the directories above and run the code again.
+
+
 # Description of Variables in the keystones.csv file
 
 | Variable            | Description                                                                                                                                                                                                                               |

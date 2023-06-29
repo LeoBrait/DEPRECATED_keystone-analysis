@@ -139,7 +139,7 @@ if [ ! -d "data/synthetic_habitats" ]; then
     tablenames_real=($(\ls ${communities_path}))
     general_synthetics_dir=data/synthetic_habitats
     mkdir -p "${general_synthetics_dir}"
-    mkdir -p "synthetic_habitats_logs"
+    mkdir -p "logs/synthetic_habitats_logs"
 
     # Job List
     for real_tablename in "${tablenames_real[@]}"; 
@@ -155,7 +155,7 @@ if [ ! -d "data/synthetic_habitats" ]; then
             "-n $synthetic_communities" \
             "-p ${general_synthetics_dir}/${habitat}/synt_" \
             "-t 2 " \
-            "-s 1 > synthetic_habitats_logs/log_${habitat}.txt"
+            "-s 1 > logs/synthetic_habitats_logs/log_${habitat}.txt"
         echo "echo fake ${habitat} done!"
         echo
     done > Shell/jobs/synthetic_habitats.txt
