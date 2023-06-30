@@ -54,6 +54,7 @@ for subset_path in community_subsets:
         '.' +
         subset_path.split('/')[-1].split('.')[1])
 
+    #TODO: this is an artifact to make the legacy code run
     meta = "none"
 
     # checking if there is a computed sparcc matrix
