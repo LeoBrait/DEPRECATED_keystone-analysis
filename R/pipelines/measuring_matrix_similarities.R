@@ -4,6 +4,13 @@ library("tidyverse")
 library("stringr")
 source("R/data_processing/calculate_cosine_similarity.R")
 
+#function to convert the data frame to numeric avoiding errors
+convert_to_numeric <- function(df) {
+  char_cols <- sapply(df, is.character)
+  df[char_cols] <- lapply(df[char_cols], as.numeric)
+  df
+}
+
 args <- commandArgs(trailingOnly = TRUE)
 frame_analysis <- as.character(args[1])
 
@@ -16,18 +23,15 @@ if (!file.exists(result_path)) {
 
 
 habitats <- dir(paste0(
-  "data/", frame_analysis, "/performance_fastspar_iterations/",
-  full.names = TRUE))
+  "data/", frame_analysis, "/performance_fastspar_iterations/"),
+  full.names = TRUE)
+
 
 data_frames <- list()
 results_df <- data.frame()
 
-#function to convert the data frame to numeric avoiding errors
-convert_to_numeric <- function(df) {
-  char_cols <- sapply(df, is.character)
-  df[char_cols] <- lapply(df[char_cols], as.numeric)
-  df
-}
+
+
 
 
 for (habitat_path in habitats){
