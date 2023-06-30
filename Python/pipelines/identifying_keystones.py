@@ -19,6 +19,7 @@ from datetime import datetime
 from numpy.linalg import norm
 
 analysis_frame=str(sys.argv[1])
+analysis_frame=f'{analysis_frame}/'
 
 
 # Paths
@@ -38,7 +39,7 @@ total_time = datetime.now()
 
 ################ Preprocessing for Keystones Identification ####################
 startTime = datetime.now()
-networks_dir=(f"{data_dir}{analysis_frame}/'fastspar_correlations/")
+networks_dir=os.path.join(data_dir, analysis_frame, 'fastspar_correlations/')
 
 
 #TODO: remove this when correlation function is fixed to accept tsv files

@@ -42,7 +42,7 @@ merged_data = pd.read_csv(
 #summarize the number of rows per habitat
 habitat_counts = merged_data.groupby(
     ['ecosystem','habitat']).count()['samples']
-os.makedirs(f'{data_dir}summaries/', exist_ok=True)
+os.makedirs(f'{data_dir}/{analysis_frame}/summaries/', exist_ok=True)
 habitat_counts.to_csv(f'{data_dir}{analysis_frame}/'
                         f'summaries/habitat_counts.csv')
 

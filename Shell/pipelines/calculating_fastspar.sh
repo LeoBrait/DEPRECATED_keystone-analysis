@@ -260,7 +260,8 @@ for tablename_real in "${tablenames_real[@]}";
 do  
     habitat_name="${tablename_real%.*}"
 
-    if [ -f "${p_values_dir}/${habitat_name}/real.tsv" ]; then
+
+    if [ -f "${p_values_dir}/${habitat_name}_pvalue" ]; then
         echo "echo The p-values for: " \
                 "${habitat_name} " \
                    "was already done" >> logs/jump_log.txt
@@ -273,7 +274,7 @@ do
                 "-r ${fastspar_dir}/${habitat_name}/cor_${habitat_name}"\
                 "-p ${synt_fastspar_dir}/${habitat_name}/cor_"\
                 "-n $synthetic_communities"\
-                "-o ${p_values_dir}/${habitat_name}/real.tsv"\
+                "-o ${p_values_dir}/${habitat_name}_pvalue"\
                 "-t 2"
         echo "echo ${habitat_name} done!"
         echo

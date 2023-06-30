@@ -20,10 +20,12 @@ Shell/jobs/
 **/synthetic_habitats
 **/summaries/
 **/taxon_abundances/*.csv
+**/final_keystones_table
 
 
 
 # Desconsider all the directories of a given directory
+phyla_nohup.out
 out/
 nohup.out
 logs/

@@ -7,8 +7,16 @@ source("R/data_processing/calculate_cosine_similarity.R")
 args <- commandArgs(trailingOnly = TRUE)
 frame_analysis <- as.character(args[1])
 
+result_path <- paste0(
+    "data/",
+      frame_analysis,
+        "/summaries/performance_fastspar_iterations/")
+if (!file.exists(result_path)) {
+    dir.create(result_path)}
+
+
 habitats <- dir(paste0(
-  "data/", frame_analysis, "performance_fastspar_iterations/",
+  "data/", frame_analysis, "/performance_fastspar_iterations/",
   full.names = TRUE))
 
 data_frames <- list()
@@ -23,18 +31,14 @@ convert_to_numeric <- function(df) {
 
 
 for (habitat_path in habitats){
+    
 
 
   habitat_name <- basename(habitat_path)
+  print(paste0("processing: ", habitat_name))
 
   if(file.exists(
-    paste0(
-      "data/",
-         frame_analysis,
-            "summaries/performance_fastspar_iterations/",
-               habitat_name,
-                 ".csv"
-                 ))){
+    paste0(result_path, habitat_name,".csv"))){
     print(paste0("skipping: ", habitat_name))
 
   }else{
@@ -95,21 +99,17 @@ for (habitat_path in habitats){
        results_df <- cbind(results_df, results_df_parcial)
    }
 
-}
-  result_path <- paste0(
-    "data/",
-      frame_analysis,
-        "summaries/performance_fastspar_iterations/")
-  if (!file.exists(result_path)) {
-    dir.create(result_path)}
+  }
+
   
   write.csv(
     results_df,
     paste0(result_path, habitat_name, ".csv"),
     row.names = FALSE)
   
-  data_frames[[habitat_name]] <- results_df
-}}
+  #data_frames[[habitat_name]] <- results_df
+   }
+}
 
 
 
