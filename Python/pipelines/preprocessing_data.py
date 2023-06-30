@@ -43,7 +43,8 @@ merged_data = pd.read_csv(
 habitat_counts = merged_data.groupby(
     ['ecosystem','habitat']).count()['samples']
 os.makedirs(f'{data_dir}summaries/', exist_ok=True)
-habitat_counts.to_csv(f'{data_dir}summaries/habitat_counts.csv')
+habitat_counts.to_csv(f'{data_dir}{analysis_frame}/'
+                        f'summaries/habitat_counts.csv')
 
 # Subset data by ecosystem and habitat
 ecosystems = merged_data['ecosystem'].unique()

@@ -7,9 +7,11 @@ echo "
 ################################################################################
 Start time: $(date "+%Y-%m-%d %H:%M:%S")
 "
-mkdir -p logs
-mkdir -p Shell/jobs
+
 source Shell/settings.sh
+mkdir -p "logs"
+mkdir -p Shell/jobs
+mkdir -p data/$frame_analysis
 
 
 echo "

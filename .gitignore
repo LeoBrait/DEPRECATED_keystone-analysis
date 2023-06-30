@@ -4,9 +4,8 @@ settings.json
 general_log.txt
 
 #Desconsider data generated from the scripts
-data/summaries/
-data/taxon_abundances/*.csv
-data/synthetic_habitats
+
+
 synthetic_habitats_logs
 Shell/jobs/
 
@@ -18,6 +17,9 @@ Shell/jobs/
 **/performance_fastspar_iterations
 **/fastspar_pvalues
 **/parcial_keystones_results
+**/synthetic_habitats
+**/summaries/
+**/taxon_abundances/*.csv
 
 
 
@@ -25,3 +27,4 @@ Shell/jobs/
 out/
 nohup.out
 logs/
+keystones.csv

@@ -2,7 +2,7 @@
 
 
 #
-frame_analysis="Phyla"
+frame_analysis="phyla"
 
 # Package manager path
 package_manager="miniconda3"
