@@ -41,6 +41,8 @@ total_time = datetime.now()
 startTime = datetime.now()
 networks_dir=os.path.join(data_dir, analysis_frame, 'fastspar_correlations/')
 
+#TODO: this is an artifact to make the legacy code run
+meta = "none"
 
 #TODO: remove this when correlation function is fixed to accept tsv files
 community_subsets = glob.glob(f'{data_dir}{analysis_frame}/'
@@ -54,16 +56,39 @@ for subset_path in community_subsets:
         '.' +
         subset_path.split('/')[-1].split('.')[1])
 
-    #TODO: this is an artifact to make the legacy code run
-    meta = "none"
+   #p-value threshold
+    correlations = pd.read_csv(
+        f'{networks_dir}/{subset_name}/cor_{subset_name}',
+        delimiter='\t', index_col=0)
+    
+    p_values = pd.read_table(
+        f'{data_dir}/{analysis_frame}/fastspar_pvalues/{subset_name}_pvalue',
+        delimiter='\t', index_col=0)
+    
+    cor_values = correlations.values
+    p_values = p_values.values
+
+    cor_values_filtered = cor_values.copy()
+    cor_values_filtered[p_values > 0.05] = 0
+
+    filtered_correlations = pd.DataFrame(
+        cor_values_filtered,
+        index=correlations.index,
+        columns=correlations.columns)
+    
+    filtered_correlations.to_csv(
+        f'{networks_dir}/{subset_name}/cor_{subset_name}_clean',
+        sep='\t')
+
+
 
     # checking if there is a computed sparcc matrix
-    if existOldData(f'{networks_dir}/{subset_name}/cor_{subset_name}'):
+    if existOldData(f'{networks_dir}/{subset_name}/cor_{subset_name}_clean'):
         
         print('Using %s for the analysis correlation.\n'%subset_name)
         spcc_corr_mat = (f'{networks_dir}'
                         +subset_name
-                        +f'/cor_{subset_name}')
+                        +f'/cor_{subset_name}_clean')
     else:
         print(f'NO SPARCC MATRIX FOUND! JUMPING {subset_name}')
         continue
