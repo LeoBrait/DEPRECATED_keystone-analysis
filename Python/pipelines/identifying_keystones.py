@@ -72,9 +72,9 @@ for subset_path in community_subsets:
     cor_values_filtered[p_values > 0.05] = 0
 
     filtered_correlations = pd.DataFrame(
-        cor_values_filtered,
-        index=correlations.index,
-        columns=correlations.columns)
+      cor_values_filtered,
+      index = correlations.index,
+      columns = correlations.columns)
     
     filtered_correlations.to_csv(
         f'{networks_dir}/{subset_name}/cor_{subset_name}_clean',
@@ -86,9 +86,8 @@ for subset_path in community_subsets:
     if existOldData(f'{networks_dir}/{subset_name}/cor_{subset_name}_clean'):
         
         print('Using %s for the analysis correlation.\n'%subset_name)
-        spcc_corr_mat = (f'{networks_dir}'
-                        +subset_name
-                        +f'/cor_{subset_name}_clean')
+        spcc_corr_mat = (
+            f'{networks_dir}'+subset_name+f'/cor_{subset_name}_clean')
     else:
         print(f'NO SPARCC MATRIX FOUND! JUMPING {subset_name}')
         continue
@@ -116,12 +115,12 @@ for subset_path in community_subsets:
 
         #TODO: for some reason the code iteracts using the out folder as a
         # temporary folder, and the cpr function copies it to the output folder
-        os.makedirs(f'{data_dir}/{analysis_frame}/'
-                      f'final_keystones_table/', exist_ok=True)
+        os.makedirs(
+          f'{data_dir}/{analysis_frame}/final_keystones_table/', exist_ok=True)
         cpr(
-            lsgrep('out',['']),
-            f'{data_dir}/{analysis_frame}/'
-              f'parcial_keystones_results/'+subset_name)
+          lsgrep('out',['']),
+          f'{data_dir}/{analysis_frame}/parcial_keystones_results/'+subset_name)
+        
         rmr(['out'])
         continue
 
@@ -131,13 +130,13 @@ for subset_path in community_subsets:
 startTime = datetime.now()
 
 print("\n\nStarting analysis through environments.\n\n")
-os.makedirs(f'{data_dir}/{analysis_frame}/'
-              f'final_keystones_table/', exist_ok=True)
+os.makedirs(
+    f'{data_dir}/{analysis_frame}/final_keystones_table/', exist_ok=True)
 
-files = glob.glob(f'{data_dir}/{analysis_frame}/'
-                    'parcial_keystones_results/*')
+files = glob.glob(
+    f'{data_dir}/{analysis_frame}/parcial_keystones_results/*')
+
 df = pd.DataFrame()
-
 # reading all files
 for i in files:
     try:
@@ -149,16 +148,13 @@ for i in files:
     # appending new table indexed by the Taxon name
     if os.path.exists(i+'/figures/0p%s/keystones.csv'%peak):
         df = pd.concat(
-            [df,
-             pd.read_csv(
-                 i+'/figures/0p%s/keystones.csv'%(peak),
-                 index_col=0)],
-            sort=False)
+          [df,pd.read_csv(i+'/figures/0p%s/keystones.csv'%(peak),index_col=0)],
+          sort=False)
     else:
         print('There is no data for %s\n'%i)
 
-df.to_csv(f'{data_dir}/{analysis_frame}/'
-            f'final_keystones_table/keystones.csv')
+df.to_csv(
+    f'{data_dir}/{analysis_frame}/final_keystones_table/keystones.csv')
 
 effect = 'full'
 exec(open(f"{global_dir}/Python/src/heatmap_keystones.py").read())
