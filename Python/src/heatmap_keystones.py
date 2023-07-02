@@ -43,12 +43,10 @@ def mapColor(val):
     return colors[val]
 
 
-if effect == '1':
+if effect == 'full':
     metrics = ['LIASP', 'BC', 'D'] # for full contribution
-    indirect = False
-elif effect == '2':
+elif effect == 'indirect':
     metrics = ['LIASPindir', 'BC', 'D'] # for indirect contribution
-    indirect = True
 else:
     print('Wrong liasp option as arg2')
     sys.exit()
@@ -386,9 +384,10 @@ leg = fig1.legend(handles=patches, frameon=False, fontsize=fontszleg, ncol=3)
 
 os.makedirs('results/', exist_ok=True)
 os.makedirs(f'results/{analysis_frame}/', exist_ok=True)
-figs_dir = f'results/{analysis_frame}/'
+os.makedirs(f'results/{analysis_frame}/liasp_{effect}/', exist_ok=True)
+figs_dir = f'results/{analysis_frame}/liasp_{effect}/'
 
-indirects = '_indirect' if indirect else ''
+
 fig1.savefig(f'{figs_dir}/legend.png',dpi=1000,bbox_inches='tight', pad_inches=.01)
 fig1.savefig(f'{figs_dir}/legend.svg',dpi=1000,bbox_inches='tight', pad_inches=.01)
 fig1.savefig(f'{figs_dir}/legend.pdf',dpi=1000,bbox_inches='tight', pad_inches=.01)

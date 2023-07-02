@@ -160,7 +160,8 @@ for i in files:
 df.to_csv(f'{data_dir}/{analysis_frame}/'
             f'final_keystones_table/keystones.csv')
 
-effect = '1'
+effect = 'full'
 exec(open(f"{global_dir}/Python/src/heatmap_keystones.py").read())
-effect = '2'
+
+effect = 'indirect'
 exec(open(f"{global_dir}/Python/src/heatmap_keystones.py").read())
