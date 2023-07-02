@@ -159,13 +159,8 @@ for i in files:
 
 df.to_csv(f'{data_dir}/{analysis_frame}/'
             f'final_keystones_table/keystones.csv')
-    
-#     #TODO: heatmaps are not working due to the lack of the grephi module
-#     # Generate the  keystones heatmap (total effect)
-#     # print("Heatmap keystones for %s." % level)
-#     # sexec('./src/heatmap_keystones.py '+level+' 1')
 
-#     # # Generate the  keystones heatmap (indirect effect)
-#     # print("Heatmap keystones (indirect) for %s." % level)
-#     # sexec('./src/heatmap_keystones.py '+level+' 2')
-# print('total time: ', (datetime.now()-startTime))
+effect = '1'
+exec(open(f"{global_dir}/Python/src/heatmap_keystones.py").read())
+effect = '2'
+exec(open(f"{global_dir}/Python/src/heatmap_keystones.py").read())

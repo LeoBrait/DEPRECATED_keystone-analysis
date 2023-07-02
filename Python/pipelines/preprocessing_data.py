@@ -58,7 +58,7 @@ for ecosystem in ecosystems:
         filename = (f"{data_dir}/{analysis_frame}/community_subsets/"
                         f"{ecosystem}.{habitat}.tsv")
   
-        #TODO: remove this when correlation function is fixed to accept tsv files
+        #TODO: remove this when correlation function accepts tsv files
         filename_tsv = (f"{data_dir}/{analysis_frame}/community_subsets_raw/"
                             f"{ecosystem}.{habitat}.csv")
 

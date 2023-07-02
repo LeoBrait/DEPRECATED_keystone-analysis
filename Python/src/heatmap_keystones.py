@@ -1,10 +1,13 @@
 #!/usr/bin/env python3
-
+import os
 import sys
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
+
+#hack
+level = ' '
 
 fontsiz=3.75
 fontszleg=4
@@ -39,19 +42,18 @@ multi  = np.array([1,2,4])
 def mapColor(val):
     return colors[val]
 
-level = sys.argv[1]
 
-if sys.argv[2] == '1':
+if effect == '1':
     metrics = ['LIASP', 'BC', 'D'] # for full contribution
     indirect = False
-elif sys.argv[2]== '2':
+elif effect == '2':
     metrics = ['LIASPindir', 'BC', 'D'] # for indirect contribution
     indirect = True
 else:
     print('Wrong liasp option as arg2')
     sys.exit()
 
-df = pd.read_csv('output/transposed_all_environments/%s/keystones.csv'%level)
+df = pd.read_csv(f'data/{analysis_frame}/final_keystones_table/keystones.csv')
 
 # dropping to improve performance
 df.drop(columns=set(df.keys())-set(['Ecosystem','Habitat','Taxon','Abundance']+[i+'_isKeystone' for i in metrics]),inplace=True)
@@ -382,10 +384,14 @@ labels = ['Non keystone (#%d %.2f%%)'%(stats[0],100.*stats[0]/s),
 patches = [mpatches.Patch(facecolor=colors[i], label=labels[i], edgecolor='k', linewidth=.1) for i in [1,2,4,3,5,6,-1,0,7]]
 leg = fig1.legend(handles=patches, frameon=False, fontsize=fontszleg, ncol=3)
 
+os.makedirs('results/', exist_ok=True)
+os.makedirs(f'results/{analysis_frame}/', exist_ok=True)
+figs_dir = f'results/{analysis_frame}/'
+
 indirects = '_indirect' if indirect else ''
-fig1.savefig('output/transposed_all_environments/%s/legend%s.png'%(level,indirects),dpi=1000,bbox_inches='tight', pad_inches=.01)
-fig1.savefig('output/transposed_all_environments/%s/legend%s.svg'%(level,indirects),dpi=300,bbox_inches='tight', pad_inches=.01)
-fig1.savefig('output/transposed_all_environments/%s/legend%s.pdf'%(level,indirects),dpi=300,bbox_inches='tight', pad_inches=.01)
+fig1.savefig(f'{figs_dir}/legend.png',dpi=1000,bbox_inches='tight', pad_inches=.01)
+fig1.savefig(f'{figs_dir}/legend.svg',dpi=1000,bbox_inches='tight', pad_inches=.01)
+fig1.savefig(f'{figs_dir}/legend.pdf',dpi=1000,bbox_inches='tight', pad_inches=.01)
 
 # --------------------------------
 
@@ -447,6 +453,6 @@ plt.setp([ax.get_xticklines(),ax.get_yticklines()],color='#939393')
 
 # --------------------------------
 
-fig.savefig('output/transposed_all_environments/%s/liasp%s_validation.png'%(level,indirects),dpi=1000,bbox_inches='tight', pad_inches=.01)
-fig.savefig('output/transposed_all_environments/%s/liasp%s_validation.svg'%(level,indirects),dpi=300,bbox_inches='tight', pad_inches=.01)
-fig.savefig('output/transposed_all_environments/%s/liasp%s_validation.pdf'%(level,indirects),dpi=300,bbox_inches='tight', pad_inches=.01)
+fig.savefig(f'{figs_dir}/liasp_validation.png', dpi=1000,bbox_inches='tight', pad_inches=.01)
+fig.savefig(f'{figs_dir}/liasp_validation.svg', dpi=1000,bbox_inches='tight', pad_inches=.01)
+fig.savefig(f'{figs_dir}/liasp_validation.pdf', dpi=1000,bbox_inches='tight', pad_inches=.01)
