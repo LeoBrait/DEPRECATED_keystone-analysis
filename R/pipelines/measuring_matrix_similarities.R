@@ -137,12 +137,32 @@ for (habitat_path in habitats){
 
   data_long <- tidyr::gather(data, Iterations, Accuracy)
 
+  habitat_name <- str_replace_all(habitat_name, "_", " ")
+  habitat_name <- str_replace_all(habitat_name, "\\.", " ")
+
 
   ggplot(data_long, aes(x = Iterations, y = Accuracy, group = 1)) +
-   theme_pubr() +
-   geom_line() +
-   labs(x = "Iterations", y = "Accuracy") +
-   scale_x_discrete(limits = colnames(data))+
+     theme_pubr() +
+      theme(text = element_text(size = unit(9, "cm")),
+      strip.background = element_blank(),
+      axis.text.x = element_blank(),
+      axis.ticks.x = element_blank(),
+      axis.ticks.y = element_blank(),
+      axis.title.x = element_text(face = "bold", size = unit(9, "cm")),
+      axis.title.y = element_text(face = "bold", , size = unit(9, "cm"))) +
+      geom_line() +
+      labs(x = "Iterations", y = "Simmilarity") +
+      theme(axis.text.x = element_text(angle = 60, vjust = 1, hjust = 0.95)) +
+      
+      ## Titles
+      ggtitle(habitat_name) +
+      theme(
+        plot.title = element_text(
+          size = unit(9, "cm"),
+          face = "bold",
+          hjust = 0.5)) +
+
+      scale_x_discrete(limits = colnames(data))
 
   ggsave(
     paste0(plot_path, habitat_name, ".png"),
