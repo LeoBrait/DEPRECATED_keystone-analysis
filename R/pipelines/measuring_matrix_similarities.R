@@ -2,6 +2,7 @@ options(scipen = 9999999)
 options(digits = 20)
 library("tidyverse")
 library("stringr")
+library("ggpubr")
 source("R/data_processing/calculate_cosine_similarity.R")
 
 #function to convert the data frame to numeric avoiding errors
@@ -11,10 +12,11 @@ convert_to_numeric <- function(df) {
   df
 }
 
+
 args <- commandArgs(trailingOnly = TRUE)
 frame_analysis <- as.character(args[1])
 
-table_path <- paste0(
+summary_path <- paste0(
     "data/",
       frame_analysis,
         "/summaries/performance_fastspar_iterations/")
@@ -27,8 +29,8 @@ plot_path <- paste0(
 if(!file.exists("results/")){
   dir.create("results/")}
 
-if (!file.exists(table_path)) {
-    dir.create(table_path)}
+if (!file.exists(summary_path)) {
+    dir.create(summary_path)}
 
 if (!file.exists(plot_path)) {
     dir.create(plot_path)}
@@ -52,7 +54,7 @@ for (habitat_path in habitats){
   print(paste0("processing: ", habitat_name))
 
   if(file.exists(
-    paste0(table_path, habitat_name,".csv"))){
+    paste0(summary_path, habitat_name,".csv"))){
     print(paste0("skipping: ", habitat_name))
 
   }else{
@@ -118,7 +120,7 @@ for (habitat_path in habitats){
   
   write.csv(
     results_df,
-    paste0(table_path, habitat_name, ".csv"),
+    paste0(summary_path, habitat_name, ".csv"),
     row.names = FALSE)
   
 
@@ -131,17 +133,16 @@ for (habitat_path in habitats){
 
   habitat_name <- basename(habitat_path)
 
-  data <- read_csv(paste0(table_path, habitat_name, ".csv"))
+  data <- read_csv(paste0(summary_path, habitat_name, ".csv"))
 
   data_long <- tidyr::gather(data, Iterations, Accuracy)
 
 
   ggplot(data_long, aes(x = Iterations, y = Accuracy, group = 1)) +
+   theme_pubr() +
    geom_line() +
    labs(x = "Iterations", y = "Accuracy") +
-   title = habitat_name +
-   scale_x_discrete(limits = colnames(data)) +
-   theme_minimal()
+   scale_x_discrete(limits = colnames(data))+
 
   ggsave(
     paste0(plot_path, habitat_name, ".png"),
@@ -150,12 +151,6 @@ for (habitat_path in habitats){
     units = "cm",
     dpi = 300)
   
-  ggsave(
-    paste0(plot_path, habitat_name, ".svg"),
-    width = 10,
-    height = 10,
-    units = "cm",
-    dpi = 300)
   
    ggsave(
     paste0(plot_path, habitat_name, ".pdf"),
