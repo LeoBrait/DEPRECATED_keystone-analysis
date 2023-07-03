@@ -14,12 +14,24 @@ convert_to_numeric <- function(df) {
 args <- commandArgs(trailingOnly = TRUE)
 frame_analysis <- as.character(args[1])
 
-result_path <- paste0(
+table_path <- paste0(
     "data/",
       frame_analysis,
         "/summaries/performance_fastspar_iterations/")
-if (!file.exists(result_path)) {
-    dir.create(result_path)}
+
+plot_path <- paste0(
+    "results/",
+      frame_analysis,
+        "/performance_fastspar_iterations/")
+
+if(!file.exists("results/")){
+  dir.create("results/")}
+
+if (!file.exists(table_path)) {
+    dir.create(table_path)}
+
+if (!file.exists(plot_path)) {
+    dir.create(plot_path)}
 
 
 habitats <- dir(paste0(
@@ -36,13 +48,11 @@ results_df <- data.frame()
 
 for (habitat_path in habitats){
     
-
-
   habitat_name <- basename(habitat_path)
   print(paste0("processing: ", habitat_name))
 
   if(file.exists(
-    paste0(result_path, habitat_name,".csv"))){
+    paste0(table_path, habitat_name,".csv"))){
     print(paste0("skipping: ", habitat_name))
 
   }else{
@@ -108,13 +118,50 @@ for (habitat_path in habitats){
   
   write.csv(
     results_df,
-    paste0(result_path, habitat_name, ".csv"),
+    paste0(table_path, habitat_name, ".csv"),
     row.names = FALSE)
   
-  #data_frames[[habitat_name]] <- results_df
+
+  results_df <- data.frame()
+  
    }
 }
 
+for (habitat_path in habitats){
+
+  habitat_name <- basename(habitat_path)
+
+  data <- read_csv(paste0(table_path, habitat_name, ".csv"))
+
+  data_long <- tidyr::gather(data, Iterations, Accuracy)
 
 
+  ggplot(data_long, aes(x = Iterations, y = Accuracy, group = 1)) +
+   geom_line() +
+   labs(x = "Iterations", y = "Accuracy") +
+   title = habitat_name +
+   scale_x_discrete(limits = colnames(data)) +
+   theme_minimal()
+
+  ggsave(
+    paste0(plot_path, habitat_name, ".png"),
+    width = 10,
+    height = 10,
+    units = "cm",
+    dpi = 300)
+  
+  ggsave(
+    paste0(plot_path, habitat_name, ".svg"),
+    width = 10,
+    height = 10,
+    units = "cm",
+    dpi = 300)
+  
+   ggsave(
+    paste0(plot_path, habitat_name, ".pdf"),
+    width = 10,
+    height = 10,
+    units = "cm",
+    dpi = 300)
+}
 
