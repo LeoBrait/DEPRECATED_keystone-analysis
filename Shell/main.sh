@@ -37,7 +37,7 @@ echo "
 "
 echo "multiplier constant
   $multiplicative_const"
-echo "number of samples
+echo "samples minimum threshold
   $minimum_samples"
 
 echo "

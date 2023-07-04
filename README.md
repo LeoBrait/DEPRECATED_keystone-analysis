@@ -46,6 +46,8 @@ which conda
 
 ## Usage
 
+1. Main program
+
 After installing all requirements and setting your files in the right directories, you should check for the environment settings in the file [settings.sh](Shell/settings.sh). In this program we use environment switchs between R and Python environments, so please make sure your package manager and profiles path are correctly assigned. After that, you can run the analysis just by doing:
 
 ```sh
@@ -53,6 +55,15 @@ bash Shell/main.sh
 ```
 
 This script will index all input matrices you gave, execute fastspar with bootstraping, check for the matrix of edges. If the matrix of edges is found, the script proceeds to execute [`correlation.py`]((A)-Keystone-Analysis-Program) for each input matrix.
+
+2. Customized Material
+
+Some other features are very data sensitive, and could break the main analyses. This is the case of most of our data vizualisation resources. To maintain the program safe and easy, we decided to keep them in modularized scripts.
+The first is the plot for perfomances on FastSpar iterations. It can be run by:
+
+```sh
+
+```sh
 
 ## Output
 

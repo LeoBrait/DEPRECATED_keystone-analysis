@@ -3,6 +3,7 @@ options(digits = 20)
 library("tidyverse")
 library("stringr")
 library("ggpubr")
+library("cowplot")
 source("R/data_processing/calculate_cosine_similarity.R")
 
 #function to convert the data frame to numeric avoiding errors
@@ -15,7 +16,6 @@ convert_to_numeric <- function(df) {
 
 args <- commandArgs(trailingOnly = TRUE)
 frame_analysis <- as.character(args[1])
-
 summary_path <- paste0(
     "data/",
       frame_analysis,
@@ -129,20 +129,23 @@ for (habitat_path in habitats){
    }
 }
 
+plot_list <- list()
+#habitats <- habitats[1]
 for (habitat_path in habitats){
 
   habitat_name <- basename(habitat_path)
 
   data <- read_csv(paste0(summary_path, habitat_name, ".csv"))
 
-  data_long <- tidyr::gather(data, Iterations, Accuracy)
+  data_long <- tidyr::gather(data, Iterations, similarity)
 
   habitat_name <- str_replace_all(habitat_name, "_", " ")
   habitat_name <- str_replace_all(habitat_name, "\\.", " ")
 
 
-  ggplot(data_long, aes(x = Iterations, y = Accuracy, group = 1)) +
-     theme_pubr() +
+  plot_list[[habitat_name]] <- ggplot(
+    data_long, aes(x = Iterations, y = similarity, group = 1)) +
+    theme_pubr() +
       theme(text = element_text(size = unit(9, "cm")),
       strip.background = element_blank(),
       axis.text.x = element_blank(),
@@ -150,8 +153,9 @@ for (habitat_path in habitats){
       axis.ticks.y = element_blank(),
       axis.title.x = element_text(face = "bold", size = unit(9, "cm")),
       axis.title.y = element_text(face = "bold", , size = unit(9, "cm"))) +
+      theme(text = element_text(family = "arial")) +
       geom_line() +
-      labs(x = "Iterations", y = "Simmilarity") +
+      labs(x = "Iterations", y = "Simmilarity (%)") +
       theme(axis.text.x = element_text(angle = 60, vjust = 1, hjust = 0.95)) +
       
       ## Titles
@@ -162,21 +166,20 @@ for (habitat_path in habitats){
           face = "bold",
           hjust = 0.5)) +
 
-      scale_x_discrete(limits = colnames(data))
+      scale_x_discrete(limits = colnames(data)) +
+      scale_y_continuous(n.breaks = 2, labels =c("99", "100"))
+  
 
-  ggsave(
-    paste0(plot_path, habitat_name, ".png"),
-    width = 10,
-    height = 10,
-    units = "cm",
-    dpi = 300)
-  
-  
-   ggsave(
-    paste0(plot_path, habitat_name, ".pdf"),
-    width = 10,
-    height = 10,
-    units = "cm",
-    dpi = 300)
 }
+
+panel <- plot_grid(plotlist = plot_list, ncol = 3)
+plot(panel)
+
+ggsave(
+  paste0(plot_path, "panel.png"),
+  plot = panel,
+  width = 19,
+  height = 10,
+  units = "cm",
+  dpi = 300)
 

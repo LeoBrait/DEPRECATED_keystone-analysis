@@ -24,10 +24,11 @@ seeds=(1 2 3 4 5 6 7 8 9 10
 41 42 43 44 45 46 47 48 49 50)
 
 # Test subsets for performance analysis
-communities_path=data/community_subsets
+communities_path="data/${frame_analysis}/community_subsets"
 iterations_test_subsets=( 
     "${communities_path}/animal_host-associated.aqueous_humour.tsv" #N=8
     "${communities_path}/animal_host-associated.animal_feces.tsv"   #N=675
+    "${communities_path}/human_host-associated.human-gut.tsv"       #N=58
     "${communities_path}/saline_water.coastal_seawater.tsv"         #N=286
     "${communities_path}/saline_water.hypersaline_water.tsv"        #N=16
     "${communities_path}/soil.savanna_soil.tsv"                     #N=21
