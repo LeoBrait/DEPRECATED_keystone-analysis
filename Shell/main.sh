@@ -11,18 +11,20 @@ Start time: $(date "+%Y-%m-%d %H:%M:%S")
 source Shell/settings.sh
 mkdir -p "logs"
 mkdir -p Shell/jobs
-mkdir -p data/$frame_analysis
+mkdir -p data/$analysis_frame
 
 
 echo "
-$frame_analysis frame with the following parameters:"
+$analysis_frame frame with the following parameters:"
 
 
 echo "
 //Inputs//
 "
-echo "annotated table
-  $annotated_table"
+echo "annotated table absolute
+  $annotated_table_absolute"
+echo "annotated table relative
+  $annotated_table_relative"
 echo "metadata_table
   $metadata"
 
@@ -84,4 +86,4 @@ echo "
 "
 
 conda activate pyshell_biome_keystones
-python3 Python/pipelines/identifying_keystones.py $frame_analysis
+python3 Python/pipelines/identifying_keystones.py $analysis_frame

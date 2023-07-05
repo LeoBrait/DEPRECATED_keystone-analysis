@@ -2,14 +2,15 @@
 
 
 #
-frame_analysis="phyla_analysis"
+analysis_frame="phyla_analysis"
 
 # Package manager path
 package_manager="miniconda3"
 source ~/$package_manager/etc/profile.d/conda.sh
 
 # Inputs
-annotated_table="phyla_general_absolute_matrix.csv"
+annotated_table_absolute="kraken_biomedb_absolute_phyla.csv"
+annotated_table_relative="kraken_biomedb_relative_phyla.csv"
 metadata_table="biome_classification.csv"
 
 # Performance analysis
@@ -24,7 +25,7 @@ seeds=(1 2 3 4 5 6 7 8 9 10
 41 42 43 44 45 46 47 48 49 50)
 
 # Test subsets for performance analysis
-communities_path="data/${frame_analysis}/community_subsets"
+communities_path="data/${analysis_frame}/community_subsets"
 iterations_test_subsets=( 
     "${communities_path}/animal_host-associated.aqueous_humour.tsv" #N=8
     "${communities_path}/animal_host-associated.animal_feces.tsv"   #N=675

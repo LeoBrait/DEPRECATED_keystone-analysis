@@ -8,7 +8,7 @@ import sys
 analysis_frame=str(sys.argv[1])
 multi_const = int(sys.argv[2])
 minimum_samples = int(sys.argv[3])
-annotated_table = str(sys.argv[4])
+annotated_table_absolute = str(sys.argv[4])
 metadata_table = str(sys.argv[5])
 
 # Paths
@@ -28,7 +28,7 @@ pre_process_time = datetime.now()
 #TODO: DECIDE THE FACTOR OF MULTIPLICATION TO AVOID FLOATING POINT ERRORS
 #multiply each relative abundance for 1000
 kraken_custom_phyla = pd.read_csv(
-    f'{data_dir}/taxon_abundances/{annotated_table}')
+    f'{data_dir}/taxon_abundances/{annotated_table_absolute}')
 kraken_custom_phyla.iloc[:,1:] = kraken_custom_phyla.iloc[:,1:].apply(
     lambda x: x * multi_const)
 

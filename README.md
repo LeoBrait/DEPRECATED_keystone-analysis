@@ -24,15 +24,17 @@ The program inputs are basically two:
 Once in the keystone-analysis directory you can run
 
 ```sh
-unzip data/taxon_abundances/kraken_absolute_matrix_biome_db.zip -d data/taxon_abundances/
+unzip data/taxon_abundances/kraken_biomedb_absolute.zip -d data/taxon_abundances/
 ```
 
-Also, for the data vizualisation, we will need to use the relative abundances matrices, which we can obtain by running:
+The archive above is the unique you will need to perform the main analysis, but if you wnt to proceed and generate the figures of the paper, you will need to extract the other archives:
 
 ```sh
-unzip data/taxon_abundances/kraken_relative_matrix_biome_db.zip -d data/taxon_abundances/
+unzip data/taxon_abundances/kraken_biomedb_relative.zip -d data/taxon_abundances/
+unzip data/taxon_abundances/kraken_stdb_absolute.zip -d data/taxon_abundances/
+unzip data/taxon_abundances/kraken_stdb_relative.zip -d data/taxon_abundances/
 ```
-
+kraken_stddb_relative
 2. Software dependencies
 
 This program relies on a Python-3 interpreter and the anaconda (or miniconda) package manager. Also, it was tested and developed on Ubuntu-18-04(WSL) with the Anaconda3 environment manager but probably can be run on other Linux distributions and MacOS.  

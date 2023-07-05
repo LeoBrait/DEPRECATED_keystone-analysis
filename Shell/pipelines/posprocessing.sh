@@ -10,14 +10,16 @@ Start time: $(date "+%Y-%m-%d %H:%M:%S")
 
 source Shell/settings.sh
 echo "
-$frame_analysis frame with the following parameters:"
+$analysis_frame frame with the following parameters:"
 
 
 echo "
 //Inputs//
 "
-echo "annotated table
-  $annotated_table"
+echo "annotated table absolute
+  $annotated_table_absolute"
+echo "annotated table relative
+  $annotated_table_relative"
 echo "metadata_table
   $metadata"
 
@@ -72,4 +74,9 @@ echo "
 "
 
 conda activate R_biome_keystones
-Rscript R/pipelines/plotting_iterations_performance.R $frame_analysis
+Rscript R/pipelines/plotting_iterations_performance.R $analysis_frame
+
+Rscript R/posprocess_main.R \
+  $analysis_frame \
+  $annotated_table_relative \
+  $metadata_table

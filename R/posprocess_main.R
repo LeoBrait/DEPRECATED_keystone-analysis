@@ -5,8 +5,12 @@
 #  Pablo Viana,
 #  Felipe Alexandre
 ################################## Environment #################################
+library(tidyverse)
+
 args <- commandArgs(trailingOnly = TRUE)
-frame_analysis <- as.character(args[1])
+analysis_frame <- as.character(args[1])
+annotated_table_relative <- as.character(args[2])
+metadata_table <- as.character(args[3])
 
 set.seed(140822)
 options(scipen = 9999999)
@@ -14,8 +18,10 @@ options(scipen = 9999999)
 ################################## Load data ###################################
 source("R/src/merge_annotation_metadata.R")
 phyla_abundances <- merge_annotation_metadata(
-    annotation_df = read.csv("inputs/kraken_custom_phyla.csv"),
-    metadata_df = read.csv("inputs/final_biome_classification.csv"),
+    annotation_df = read.csv(paste0(
+        "data/taxon_abundances/", annotated_table_relative)),
+    metadata_df = read.csv(paste0(
+        "data/metadata/", metadata_table)),
     metadata_variables = c(
         "samples",
         "biosphere",
@@ -25,10 +31,11 @@ phyla_abundances <- merge_annotation_metadata(
         "latitude",
         "longitude"))
 
-# keystones <- read_csv("inputs/keystones.csv") %>%
-#   rename(habitat = Habitat) %>%
-#   mutate(habitat = gsub(" phyla", "", habitat)) %>%
-#   mutate(Taxon = gsub("\\.", " ", Taxon))
+keystones <- read_csv(paste0(
+    "data/", analysis_frame, "/final_keystones_table/keystones.csv")) %>%
+  rename(habitat = Habitat) %>%
+  mutate(habitat = gsub(" phyla", "", habitat)) %>%
+  mutate(Taxon = gsub("\\.", " ", Taxon))
 
 
 # radiation <- read_csv("inputs/radiation_phyla.csv")

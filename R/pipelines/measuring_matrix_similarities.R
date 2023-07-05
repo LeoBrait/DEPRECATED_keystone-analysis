@@ -8,12 +8,12 @@ source("R/src/calculate_cosine_similarity.R")
 source("R/src/convert_matrix_tonumeric.R")
 
 args <- commandArgs(trailingOnly = TRUE)
-frame_analysis <- as.character(args[1])
+analysis_frame <- as.character(args[1])
 
 summary_path <- paste0(
-    "data/", frame_analysis, "/summaries/performance_fastspar_iterations/")
+    "data/", analysis_frame, "/summaries/performance_fastspar_iterations/")
 plot_path <- paste0(
-    "results/", frame_analysis, "/performance_fastspar_iterations/")
+    "results/", analysis_frame, "/performance_fastspar_iterations/")
 
 if (!file.exists("results/")) {
   dir.create("results/")
@@ -29,7 +29,7 @@ if (!file.exists(plot_path)) {
 
 
 habitats <- dir(paste0(
-  "data/", frame_analysis, "/performance_fastspar_iterations/"),
+  "data/", analysis_frame, "/performance_fastspar_iterations/"),
   full.names = TRUE)
 
 

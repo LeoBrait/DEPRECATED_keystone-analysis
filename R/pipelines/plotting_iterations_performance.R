@@ -4,21 +4,21 @@ library("cowplot")
 source("R/src/draw_lineplot.R")
 
 args <- commandArgs(trailingOnly = TRUE)
-frame_analysis <- as.character(args[1])
+analysis_frame <- as.character(args[1])
 
 
 if (!file.exists("results/")) {
   dir.create("results/")
   }
-if (!file.exists(paste0("results/", frame_analysis))) {
-  dir.create(paste0("results/", frame_analysis))
+if (!file.exists(paste0("results/", analysis_frame))) {
+  dir.create(paste0("results/", analysis_frame))
   }
 
 summary_path <- paste0(
-    "data/", frame_analysis, "/summaries/performance_fastspar_iterations/")
+    "data/", analysis_frame, "/summaries/performance_fastspar_iterations/")
 
 plot_path <- paste0(
-    "results/", frame_analysis, "/performance_fastspar_iterations/")
+    "results/", analysis_frame, "/performance_fastspar_iterations/")
 
 # orderer
 animal_feces_df <- read_csv(paste0(
