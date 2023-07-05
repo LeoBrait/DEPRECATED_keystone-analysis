@@ -58,11 +58,11 @@ This script will index all input matrices you gave, execute fastspar with bootst
 
 2. Customized Material
 
-Some other features are very data sensitive, and could break the main analyses. This is the case of most of our data vizualisation resources. To maintain the program safe and easy, we decided to keep them in modularized scripts.
+Some other features are very data sensitive, and could break the main analyses. This is the case of most of our data vizualisation/posprocessing resources. To maintain the program safe and easy, we decided to keep them in modularized scripts. You must install "Arial" font in your system to run the scripts below.
 The first is the plot for perfomances on FastSpar iterations. It can be run by:
 
 ```sh
-
+bash Shell/pipelines/posprocessing.sh 
 ```sh
 
 ## Output

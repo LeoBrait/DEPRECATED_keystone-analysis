@@ -201,6 +201,7 @@ r-sparsem=1.81=r42h8da6f51_1
 r-stringi=1.7.6=r42h884c59f_0
 r-stringr=1.5.0=r42h785f33e_1
 r-survival=3.5_5=r42h57805ef_1
+r-svglite=2.1.1=r42h329214f_1
 r-sys=3.4.2=r42h57805ef_1
 r-systemfonts=1.0.4=r42haf97adc_2
 r-textshaping=0.3.6=r42h884c59f_0
