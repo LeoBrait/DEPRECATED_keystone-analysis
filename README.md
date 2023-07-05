@@ -140,12 +140,9 @@ For questions related to this repository and its auxiliary ones, you may also co
 
 ## Contributors
 
-Original develepers of ths program:
 - Bertolino - @bertolinocastro 
 - Flávia Ruziska - @flaviamayumi
 - Rafael Menezes - @r-menezes
-
-Later developers:
 - Leonardo Brait
 - Felipe Alexandre
 
