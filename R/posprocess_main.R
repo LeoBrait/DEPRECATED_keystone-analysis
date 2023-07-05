@@ -38,9 +38,10 @@ keystones <- read_csv(paste0(
   mutate(Taxon = gsub("\\.", " ", Taxon))
 
 
-# radiation <- read_csv("inputs/radiation_phyla.csv")
+radiation <- read_csv(paste0(
+    "data/radiations/", analysis_frame, "/radiations.csv"))
 
-# source("source//pipelines//checking_data_integrity.R")
+source("R/pipelines/checking_data_integrity.R")
 
 
 # ############################### Data Treatment #################################

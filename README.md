@@ -73,8 +73,8 @@ sudo apt install ttf-mscorefonts-installer
 sudo fc-cache -f
 ```
 
-Then, you can run the following scripts:
-The first is the plot for perfomances on FastSpar iterations. It can be run by:
+This next step depends on a file named "radiations.csv", the file serves to analyse the microbial groups by their radiation(CPR, DPANN or Bonafide).
+The file must be in  "data/<frame_analysis>/radiations.csv". If you only want to reproduce the results of the paper, you can just run:
 
 ```sh
 bash Shell/pipelines/posprocessing.sh 
