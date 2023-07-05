@@ -27,6 +27,12 @@ Once in the keystone-analysis directory you can run
 unzip data/taxon_abundances/kraken_absolute_matrix_biome_db.zip -d data/taxon_abundances/
 ```
 
+Also, for the data vizualisation, we will need to use the relative abundances matrices, which we can obtain by running:
+
+```sh
+unzip data/taxon_abundances/kraken_relative_matrix_biome_db.zip -d data/taxon_abundances/
+```
+
 2. Software dependencies
 
 This program relies on a Python-3 interpreter and the anaconda (or miniconda) package manager. Also, it was tested and developed on Ubuntu-18-04(WSL) with the Anaconda3 environment manager but probably can be run on other Linux distributions and MacOS.  
@@ -54,18 +60,25 @@ After installing all requirements and setting your files in the right directorie
 bash Shell/main.sh
 ```
 
-This script will index all input matrices you gave, execute fastspar with bootstraping, check for the matrix of edges. If the matrix of edges is found, the script proceeds to execute [`correlation.py`]((A)-Keystone-Analysis-Program) for each input matrix.
+2. Posprocess Material
 
-2. Customized Material
+Some other features are very data sensitive, and could break the main analyses. This is the case of most of our data vizualisation/posprocessing resources. To maintain the program safe and easy, we decided to keep them in modularized scripts. For customized analyses, you will need to adapt the scripts to your data. But if you only need to reprode the results of the [paper](), you can run the following protocol:
 
-Some other features are very data sensitive, and could break the main analyses. This is the case of most of our data vizualisation/posprocessing resources. To maintain the program safe and easy, we decided to keep them in modularized scripts. You must install "Arial" font in your system to run the scripts below.
+First, you must install "Arial" font in your system to run the scripts.
+
+```sh
+sudo apt install ttf-mscorefonts-installer
+sudo fc-cache -f
+```
+
+Then, you can run the following scripts:
 The first is the plot for perfomances on FastSpar iterations. It can be run by:
 
 ```sh
 bash Shell/pipelines/posprocessing.sh 
-```sh
+```
 
-## Output
+## Outputs
 
 This pipeline is results sensitive. It means that most of its processes can be paused then continued at any time. The pipeline also accepts a custom name for the analysis frame, which will allow analysis of different datasets without overwriting previous results.
 The following directories will be generated in the data folder after running the code:
