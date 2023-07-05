@@ -90,7 +90,8 @@ soiltundra_plot <- draw_lineplot(
     habitat_name = "Soil tundra (N = 3)",
     x_title = " ",
     y_title = "Cosine similarity (%)") +
-    scale_x_discrete(labels = NULL)
+    scale_x_discrete(labels = NULL) +
+    geom_vline(xintercept = "4000", linetype = "dashed")
 
 groundwatermine_plot <- draw_lineplot(
     data = groundwatermine_df,
@@ -99,7 +100,8 @@ groundwatermine_plot <- draw_lineplot(
     habitat_name = "Groundwater mine (N = 3)",
     x_title = " ",
     y_title = " ") +
-    scale_x_discrete(labels = NULL)
+    scale_x_discrete(labels = NULL) +
+    geom_vline(xintercept = "5000", linetype = "dashed")
 
 aqueoushumour_plot <- draw_lineplot(
     data = aqueous_humour_df,
@@ -108,7 +110,8 @@ aqueoushumour_plot <- draw_lineplot(
     habitat_name = "Aqueous humour (N = 8)",
     x_title = " ",
     y_title = " ") +
-    scale_x_discrete(labels = NULL)
+    scale_x_discrete(labels = NULL)  +
+    geom_vline(xintercept = "4000", linetype = "dashed")
 
 salinehyper_plot <- draw_lineplot(
     data = saline_hyper_df,
@@ -117,7 +120,8 @@ salinehyper_plot <- draw_lineplot(
     habitat_name = "Saline hypersaline (N = 16)",
     x_title = " ",
     y_title = "Cosine similarity (%)") +
-    scale_x_discrete(labels = NULL)
+    scale_x_discrete(labels = NULL)  +
+    geom_vline(xintercept = "4000", linetype = "dashed")
 
 soilsavanna_plot <- draw_lineplot(
     data = soilsavanna_df,
@@ -126,7 +130,8 @@ soilsavanna_plot <- draw_lineplot(
     habitat_name = "Soil savanna (N = 21)",
     x_title = " ",
     y_title = " ") +
-    scale_x_discrete(labels = NULL)
+    scale_x_discrete(labels = NULL)  +
+    geom_vline(xintercept = "4000", linetype = "dashed")
 
 groundwaterporous_plot <- draw_lineplot(
     data = groundwaterporous_df,
@@ -135,7 +140,8 @@ groundwaterporous_plot <- draw_lineplot(
     habitat_name = "Groundwater porous (N = 48)",
     x_title = " ",
     y_title = " ")  +
-    scale_x_discrete(labels = NULL)
+    scale_x_discrete(labels = NULL)  +
+    geom_vline(xintercept = "4000", linetype = "dashed")
 
 humangut_plot <- draw_lineplot(
     data = humangut_df,
@@ -143,7 +149,8 @@ humangut_plot <- draw_lineplot(
     y_var = "cosine_similarity",
     habitat_name = "Human gut (N = 58)",
     x_title = "Iterations",
-    y_title = "Cosine similarity (%)")
+    y_title = "Cosine similarity (%)")  +
+    geom_vline(xintercept = "4000", linetype = "dashed")
 
 salinecoastal_plot <- draw_lineplot(
     data = salinecoastal_df,
@@ -151,7 +158,8 @@ salinecoastal_plot <- draw_lineplot(
     y_var = "cosine_similarity",
     habitat_name = "Saline coastal (N = 286)",
     x_title = "Iterations",
-    y_title = " ")
+    y_title = " ") +
+    geom_vline(xintercept = "4000", linetype = "dashed")
 
 animalfeces_plot <- draw_lineplot(
     data = animal_feces_df,
@@ -159,7 +167,8 @@ animalfeces_plot <- draw_lineplot(
     y_var = "cosine_similarity",
     habitat_name = "Animal feces (N = 675)",
     x_title = "Iterations",
-    y_title = " ")
+    y_title = " ") +
+    geom_vline(xintercept = "4000", linetype = "dashed")
 
 pannel <- plot_grid(
     soiltundra_plot,
@@ -180,5 +189,11 @@ ggsave(
     width = 12,
     height = 8,
     dpi = 300)
-
+ggsave(
+    filename = paste0(
+        plot_path, "cosine_similarity_lineplot.svg"),
+    plot = pannel,
+    width = 12,
+    height = 8,
+    dpi = 300)
 

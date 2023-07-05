@@ -9,7 +9,7 @@ library("ggpubr")
     habitat_name = NULL,
     x_title = NULL,
     y_title = NULL){
-    
+
     plot <- ggplot(
         data = data,
         aes(x = data[[x_var]], y = data[[y_var]], group = 1)) +
@@ -32,8 +32,10 @@ library("ggpubr")
         ggtitle(habitat_name) +
         theme(plot.title = element_text(size = unit(9, "cm"), face = "bold")) +
         scale_y_continuous(
-            breaks = waiver(), 
-        n.breaks = 2, labels = c("99", "100"))
+        breaks = c(min(data[[y_var]]), max(data[[y_var]])),
+        labels = c(
+          floor(min(data[[y_var]]) * 100), "100")
+        )
     return(plot)
   }
 
