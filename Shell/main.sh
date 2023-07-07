@@ -87,3 +87,13 @@ echo "
 
 conda activate pyshell_biome_keystones
 python3 Python/pipelines/identifying_keystones.py $analysis_frame
+
+echo "
+################################################################## Taxa Grouping
+"
+conda activate R_biome_keystones
+Rscript R/posprocess_main.R \
+  $analysis_frame \
+  $annotated_table_relative \
+  $metadata_table \
+  $parallel
