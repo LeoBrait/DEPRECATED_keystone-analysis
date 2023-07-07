@@ -382,10 +382,12 @@ labels = ['Non keystone (#%d %.2f%%)'%(stats[0],100.*stats[0]/s),
 patches = [mpatches.Patch(facecolor=colors[i], label=labels[i], edgecolor='k', linewidth=.1) for i in [1,2,4,3,5,6,-1,0,7]]
 leg = fig1.legend(handles=patches, frameon=False, fontsize=fontszleg, ncol=3)
 
+figs_dir = f'results/{analysis_frame}/figures/liasp_{effect}/'
 os.makedirs('results/', exist_ok=True)
 os.makedirs(f'results/{analysis_frame}/', exist_ok=True)
-os.makedirs(f'results/{analysis_frame}/liasp_{effect}/', exist_ok=True)
-figs_dir = f'results/{analysis_frame}/liasp_{effect}/'
+os.makedirs(f'results/{analysis_frame}/figures', exist_ok=True)
+os.makedirs(figs_dir, exist_ok=True)
+
 
 
 fig1.savefig(f'{figs_dir}/legend.png',dpi=1000,bbox_inches='tight', pad_inches=.01)

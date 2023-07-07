@@ -202,6 +202,15 @@ if (!file.exists(paste0(results_path, "permanova_lifestyle.RData"))) {
       load(paste0(results_path, "permanova_lifestyle.RData"))
   }
 
+category <- phyla_abundances[["ecosystem"]]
+raw_simper <-  simper(
+                  standarized_phyla,
+                  group = category,
+                  parallel = parallel,
+                  permutations = 4999
+                      )
+save.image(paste0(results_path, "simper.RData"))
+
 
 # ################################# Plot Pannels #################################
 
