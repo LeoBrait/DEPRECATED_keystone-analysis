@@ -79,4 +79,5 @@ Rscript R/pipelines/plotting_iterations_performance.R $analysis_frame
 Rscript R/posprocess_main.R \
   $analysis_frame \
   $annotated_table_relative \
-  $metadata_table
+  $metadata_table \
+  $parallel

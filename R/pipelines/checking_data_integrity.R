@@ -2,9 +2,9 @@
 library(tidyverse)
 
 
-
-if (!dir.exists("results/tables")) {
-    dir.create("results/tables")
+results_path <- paste0("results/", analysis_frame, "/tables/")
+if (!dir.exists(results_path)) {
+    dir.create(results_path)
 }
 
 
@@ -30,15 +30,11 @@ missing_data <- full_metadata %>%
 
 write.csv(
     missing_data,
-    paste0(
-        "results/", analysis_frame, "/missing_data.csv"),
-    row.names = FALSE)
+    paste0(results_path, "/missing_data.csv"), row.names = FALSE)
 
 write.csv(
     absent_newrad,
-    paste0(
-        "results/", analysis_frame, "/absent_newrad.csv"),
-    row.names = FALSE)
+    paste0(results_path, "/absent_newrad.csv"), row.names = FALSE)
 
 print(paste0(
     "The samples differing in the annotation and metadata",
