@@ -41,7 +41,7 @@ keystones <- read_csv(paste0(
 
 
 radiation <- read_csv(paste0(
-    "data/radiations/", analysis_frame, "/radiations.csv"))
+    "data/radiations/radiations_phyla.csv"))
 
 source("R/pipelines/checking_data_integrity.R")
 

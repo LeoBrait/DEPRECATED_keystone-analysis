@@ -21,6 +21,7 @@ Shell/jobs/
 **/summaries/
 **/taxon_abundances/*.csv
 **/final_keystones_table
+**/rdata
 results/
 
 

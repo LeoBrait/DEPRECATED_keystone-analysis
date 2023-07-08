@@ -92,7 +92,7 @@ echo "
 ################################################################## Taxa Grouping
 "
 conda activate R_biome_keystones
-Rscript R/posprocess_main.R \
+Rscript R/pipelines/veryfiyng_taxa_grouping.R \
   $analysis_frame \
   $annotated_table_relative \
   $metadata_table \

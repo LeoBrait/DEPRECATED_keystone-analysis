@@ -47,14 +47,11 @@ phyla_abundances <- phyla_abundances %>%
 # Visual treatment
 source("R/src/visual_treat.R")
 phyla_abundances <- treatment(phyla_abundances)
-phyla_abundances_long <- treatment(phyla_abundances_long)
-phyla_abundances_habitat <- treatment(phyla_abundances_habitat)
-keystones_abundance_habitat <- treatment(keystones_abundance_habitat)
 
 ############## nmds analysis and permanova for entire community ################
 # WARNING: please extract the designated zip files in the outputs directory
 # before run this code. It is very expensive.
-results_path <- paste0("results/", analysis_frame, "/rdata/")
+results_path <- paste0("data/", analysis_frame, "/rdata/")
 if (!file.exists(results_path)) {
   dir.create(results_path)
   }
@@ -84,7 +81,7 @@ if (!file.exists(paste0(results_path, "mdsgeral.RData"))) {
 if (!file.exists(paste0(results_path, "permanova_ecosystem.RData"))) {
   print("Ecosystem's Permanova not found!, running...")
   permanova <- adonis2(
-  community_distancematrix ~ ecosystem + habitat + life_style,
+  community_distancematrix ~ ecosystem,
   data = phyla_abundances[1:8],
   permutations = 4999)
   save(
