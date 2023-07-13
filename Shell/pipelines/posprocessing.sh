@@ -73,11 +73,11 @@ echo "
 ################################################################## POSPROCESSING
 "
 
-conda activate R_biome_keystones
+conda deactivate
 Rscript R/pipelines/plotting_iterations_performance.R $analysis_frame
 
 Rscript R/posprocess_main.R \
   $analysis_frame \
   $annotated_table_relative \
   $metadata_table \
-  $parallel
+  $parallel 

@@ -5,8 +5,8 @@
 #  Pablo Viana,
 #  Felipe Alexandre
 ################################## Environment #################################
-library(tidyverse)
-library(vegan)
+library("tidyverse")
+library("vegan")
 
 args <- commandArgs(trailingOnly = TRUE)
 analysis_frame <- as.character(args[1])
@@ -49,12 +49,11 @@ source("R/src/visual_treat.R")
 phyla_abundances <- treatment(phyla_abundances)
 
 ############## nmds analysis and permanova for entire community ################
-# WARNING: please extract the designated zip files in the outputs directory
-# before run this code. It is very expensive.
+
 results_path <- paste0("data/", analysis_frame, "/rdata/")
 if (!file.exists(results_path)) {
   dir.create(results_path)
-  }
+}
 
 standarized_phyla <- decostand(phyla_abundances[8:length(phyla_abundances)],
 method = "hellinger")
@@ -73,24 +72,26 @@ if (!file.exists(paste0(results_path, "mdsgeral.RData"))) {
   save(
     ord,
     file = paste0(results_path, "mdsgeral.RData"))
+    print("Done!")
     } else {
       print("Output already exists!")
       load(paste0(results_path, "mdsgeral.RData"))
-  }
+}
 
 if (!file.exists(paste0(results_path, "permanova_ecosystem.RData"))) {
   print("Ecosystem's Permanova not found!, running...")
-  permanova <- adonis2(
+  permanova_ecosystem <- adonis2(
   community_distancematrix ~ ecosystem,
   data = phyla_abundances[1:8],
   permutations = 4999)
   save(
-    permanova,
+    permanova_ecosystem,
     file = paste0(results_path, "permanova_ecosystem.RData"))
+    print("Done!")
     } else {
       print("Output already exists!")
       load(paste0(results_path, "permanova_ecosystem.RData"))
-  }
+}
 
 if (!file.exists(paste0(results_path, "permanova_lifestyle.RData"))) {
   print("Life-style's permanova not found!, running...")
@@ -101,16 +102,23 @@ if (!file.exists(paste0(results_path, "permanova_lifestyle.RData"))) {
   save(
     permanova_lifestyle,
     file = paste0(results_path, "permanova_lifestyle.RData"))
+    print("Done!")
     } else {
       print("Output already exists!")
       load(paste0(results_path, "permanova_lifestyle.RData"))
-  }
+}
 
-category <- phyla_abundances[["ecosystem"]]
-raw_simper <-  simper(
-                  standarized_phyla,
-                  group = category,
-                  parallel = parallel,
-                  permutations = 4999
-                      )
-save.image(paste0(results_path, "simper.RData"))
+if (!file.exists(paste0(results_path, "simper.RData"))) {
+  category <- phyla_abundances[["ecosystem"]]
+  raw_simper <-  simper(
+    standarized_phyla,
+    group = category,
+    parallel = parallel,
+    permutations = 4999
+  )
+  save.image(paste0(results_path, "simper.RData"))
+  print("Done!")
+  } else {
+    print("Output already exists!")
+    load(paste0(results_path, "simper.RData"))
+}

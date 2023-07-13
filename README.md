@@ -132,6 +132,16 @@ If you want to regenerate any sttep of your results, you can simply delete one o
 | VARIABLE_scaled     | The scaled value of the variable, with the largest occurrence in the Habitat assigned to 1 and remaining occurrences scaled as VALUE/MAX(VARIABLE)                                                                                        |
 | VARIABLE_rank       | The rank of the Taxon when all Taxa in the Habitat are ordered by increasing values of the variable, with the smallest value observed in the Habitat assigned to 1                                                                        |
 | VARIABLE_zScore     | The z-score of the variable, scaled as (VALUE - MEAN(VARIABLE))/STANDARD_DEVIATION(VARIABLE)                                                                                                                                              |
+
+## Troubleshooting
+Some R pckges can be problematic to install and the Anaconda environment manager sometemis does not perceive it. If you have any problems with the Anaconda envrironment solving, try to run the R-libraries troubleshooting trhough:
+
+```sh
+bash nohup Shell/pipelines/r_troubleshooting.sh
+```
+
+This will try to install all packages needed in a dummy folder outside the conda enviroment and produces a report of errors: "nohup.out". You should read the report and try to solve the issues of your machine manually, installing the missing modules into your machine. This could need several runs. After this procedure, you will need to reinstall the R conda environment.
+
 ## Contact
 
 You may contact the corresponding author Pedro for questions related to the paper itself through the email pedrommeirelles@gmail.com. 
