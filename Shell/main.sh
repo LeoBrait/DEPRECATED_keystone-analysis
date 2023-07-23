@@ -78,7 +78,7 @@ echo "
 ####################################################################### FASTSPAR
 "
 
-source Shell/pipelines/calculating_fastspar.sh
+source Shell/pipelines/calculating_fastspar.sh $analysis_frame
 echo "End Of Fastspar pipeline: $(date "+%Y-%m-%d %H:%M:%S")"
 
 echo "

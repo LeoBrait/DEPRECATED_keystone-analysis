@@ -3,13 +3,15 @@ import os
 from datetime import datetime
 from numpy.linalg import norm
 import sys
+import json
 
 #heritage from the main
 analysis_frame=str(sys.argv[1])
 multi_const = int(sys.argv[2])
 minimum_samples = int(sys.argv[3])
-annotated_table_absolute = str(sys.argv[4])
+annotated_table = str(sys.argv[4])
 metadata_table = str(sys.argv[5])
+
 
 # Paths
 this_dir = os.path.dirname(os.path.abspath(__file__))
@@ -28,7 +30,7 @@ pre_process_time = datetime.now()
 #TODO: DECIDE THE FACTOR OF MULTIPLICATION TO AVOID FLOATING POINT ERRORS
 #multiply each relative abundance for 1000
 kraken_custom_phyla = pd.read_csv(
-    f'{data_dir}/taxon_abundances/{annotated_table_absolute}')
+    f'{data_dir}/taxon_abundances/{annotated_table}')
 kraken_custom_phyla.iloc[:,1:] = kraken_custom_phyla.iloc[:,1:].apply(
     lambda x: x * multi_const)
 
@@ -70,6 +72,22 @@ for ecosystem in ecosystems:
             zero_sum_columns = column_sums[column_sums == 0].index
             sub_subset = sub_subset.drop(zero_sum_columns, axis=1)
             sub_subset = sub_subset.drop(['habitat', 'ecosystem'], axis=1)
+
+            #remove undesired taxa
+            if habitat == "estuarine_seawater":
+              sub_subset = sub_subset.drop(['Myxococcota'], axis=1)
+            if habitat == "salt_lake":
+              sub_subset = sub_subset.drop(
+                [    'Candidatus Azambacteria',             'Thermomicrobiota',
+                   'Candidatus Liptonbacteria',      'Candidatus Tagabacteria',
+                    'Candidatus Terrybacteria',    'Candidatus Spechtbacteria',
+                   'Candidatus Microgenomates',      'Candidatus Wallbacteria',
+                    'Candidatus Coatesbacteria', 'Candidatus Blackallbacteria',
+                    'Candidatus Calescamantes',                'Chrysiogenota',
+                    'Coprothermobacterota',        'Candidatus Diapherotrites',
+                    'Candidatus Aenigmarchaeota', 'Candidatus Thermoplasmatota',
+                    'Candidatus Thorarchaeota'], 
+                axis=1)
 
             #TODO: remove this when correlation function is fixed to accept
             #transposed tsv files

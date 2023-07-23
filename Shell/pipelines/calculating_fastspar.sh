@@ -19,6 +19,7 @@ python3 Python/pipelines/preprocessing_data.py \
     $minimum_samples \
     $annotated_table_absolute \
     $metadata_table \
+    "$habitats_to_drop_taxa"
 
 
 echo "

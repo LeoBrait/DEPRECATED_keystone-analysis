@@ -2,7 +2,7 @@
 
 
 #
-analysis_frame="phyla_analysis"
+analysis_frame="phyla_analysis_july23"
 
 # Package manager path
 package_manager="miniconda3"
@@ -33,9 +33,9 @@ iterations_test_subsets=(
     "${communities_path}/saline_water.coastal_seawater.tsv"         #N=286
     "${communities_path}/saline_water.hypersaline_water.tsv"        #N=16
     "${communities_path}/soil.savanna_soil.tsv"                     #N=21
-    "${communities_path}/soil.tundra_soil.tsv"                      #N=3
+    "${communities_path}/freshwater.sulfur_spring.tsv"              #N=6
     "${communities_path}/groundwater.porous_contaminated.tsv"       #N=48
-    "${communities_path}/groundwater.mine.tsv")                     #N=3
+    "${communities_path}/sediment.lake_sediment.tsv")               #N=5
 
 synthetic_communities=250
 
@@ -49,4 +49,26 @@ parallel=40
 
 # Preprocessing settings
 multiplicative_const=1
-minimum_samples=3
+minimum_samples=5
+
+# Taxa to exclude
+# Settings for taxa to drop based on habitats
+# declare -A habitats_to_drop_taxa
+# habitats_to_drop_taxa=(["estuarine_seawater"]="Myxococcota")
+# habitats_to_drop_taxa["salt_lake"]="Candidatus Azambacteria"
+# habitats_to_drop_taxa["salt_lake"]="Thermomicrobiota"
+# habitats_to_drop_taxa["salt_lake"]="Candidatus Liptonbacteria"
+# habitats_to_drop_taxa["salt_lake"]="Candidatus Tagabacteria"
+# habitats_to_drop_taxa["salt_lake"]="Candidatus Terrybacteria"
+# habitats_to_drop_taxa["salt_lake"]="Candidatus Spechtbacteria"
+# habitats_to_drop_taxa["salt_lake"]="Candidatus Microgenomates"
+# habitats_to_drop_taxa["salt_lake"]="Candidatus Wallbacteria"
+# habitats_to_drop_taxa["salt_lake"]="Candidatus Coatesbacteria"
+# habitats_to_drop_taxa["salt_lake"]="Candidatus Blackallbacteria"
+# habitats_to_drop_taxa["salt_lake"]="Candidatus Calescamantes"
+# habitats_to_drop_taxa["salt_lake"]="Chrysiogenota"
+# habitats_to_drop_taxa["salt_lake"]="Coprothermobacterota"
+# habitats_to_drop_taxa["salt_lake"]="Candidatus Diapherotrites"
+# habitats_to_drop_taxa["salt_lake"]="Candidatus Aenigmarchaeota"
+# habitats_to_drop_taxa["salt_lake"]="Candidatus Thermoplasmatota"
+# habitats_to_drop_taxa["salt_lake"]="Candidatus Thorarchaeota"
