@@ -5,6 +5,21 @@
 #  Pablo Viana,
 #  Felipe Alexandre
 ################################## Environment #################################
+
+if (!file.exists("r_libs")) {
+  dir.create("r_libs")
+}
+
+source("R/src/install_and_load.R")
+install_and_load(
+  libs = c(
+    "tidyverse" = "1.2.1",
+    "vegan" = "2.5-2"
+  ),
+  loc = "r_libs"
+)
+
+
 library("tidyverse")
 library("vegan")
 
@@ -16,6 +31,8 @@ parallel <- as.numeric(args[4])
 
 set.seed(140822)
 options(scipen = 9999999)
+
+
 
 ################################## Load data ###################################
 source("R/src/merge_annotation_metadata.R")

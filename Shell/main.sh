@@ -91,7 +91,7 @@ python3 Python/pipelines/identifying_keystones.py $analysis_frame
 echo "
 ################################################################## Taxa Grouping
 "
-conda activate R_biome_keystones
+conda deactivate
 Rscript R/pipelines/veryfiyng_taxa_grouping.R \
   $analysis_frame \
   $annotated_table_relative \

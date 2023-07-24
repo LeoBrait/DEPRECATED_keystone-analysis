@@ -16,7 +16,7 @@ install_and_load <- function(libs, loc = NULL) {
 
   #install
   for (lib in seq_along(libs)) {
-    if (!names(libs)[lib] %in% installed.packages()) {
+    if (!names(libs)[lib] %in% installed.packages(lib.loc = loc)) {
       install.packages(names(libs)[lib], dependencies = TRUE, lib = loc)
     }
   }

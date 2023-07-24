@@ -37,7 +37,7 @@ iterations_test_subsets=(
     "${communities_path}/groundwater.porous_contaminated.tsv"       #N=48
     "${communities_path}/sediment.lake_sediment.tsv")               #N=5
 
-synthetic_communities=250
+synthetic_communities=1000
 
 #fastspar settings
 definitive_iter=10000

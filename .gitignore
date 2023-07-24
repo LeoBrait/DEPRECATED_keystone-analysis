@@ -8,6 +8,7 @@ general_log.txt
 
 synthetic_habitats_logs
 Shell/jobs/
+r_libs/
 
 # Desconsider data obtainable from zip files
 **/community_subsets_raw/
