@@ -14,7 +14,7 @@ treatment <- function(data){
       ecosystem = case_when(
         ecosystem == "human_host-associated" ~ "Human Host",
         ecosystem == "animal_host-associated" ~ "Animal Host",
-        ecosystem == "plant-associated" ~ "Plant Host",
+        ecosystem == "plant_associated" ~ "Plant Host",
         ecosystem == "groundwater" ~ "Groundwater",
         ecosystem == "freshwater" ~ "Freshwater",
         ecosystem == "wastewater" ~ "Wastewater",
@@ -25,6 +25,8 @@ treatment <- function(data){
 
       habitat = case_when(
         habitat == "agricultural_soil" ~ "Agricultural Soil",
+        habitat == "wood_decomposition" ~ "Wood Decomposition",
+        habitat == "animal_skin" ~ "Animal Skin",
         habitat == "alkaline_environment" ~ "Alkaline Environment",
         habitat == "alkaline_salt_lake" ~ "Alkaline Salt Lake",
         habitat == "anaerobic_sediment" ~ "Anaerobic Sediment",
@@ -36,6 +38,9 @@ treatment <- function(data){
         habitat == "beef" ~ "Beef",
         habitat == "bodily_fluid" ~ "Bodily Fluid",
         habitat == "bone" ~ "Bone",
+        habitat == "sulfur_spring" ~ "Sulfur Spring",
+        habitat == "fish" ~ "Fish",
+        habitat == "mummy" ~ "Mummy",
         habitat == "chyme" ~ "Chyme",
         habitat == "coastal_marine_sediment" ~ "Coastal Marine Sediment",
         habitat == "coastal_seawater" ~ "Coastal Seawater",
@@ -62,7 +67,7 @@ treatment <- function(data){
         habitat == "human_feces" ~ "Human Feces",
         habitat == "hydrothermal_vent" ~ "Hydrothermal Vent",
         habitat == "hypersaline_water" ~ "Hypersaline Water",
-        habitat == "karst-porous" ~ "Karst Porous",
+        habitat == "karst_porous" ~ "Karst Porous",
         habitat == "lake" ~ "Lake",
         habitat == "lake_sediment" ~ "Lake Sediment",
         habitat == "lung" ~ "Lung",
