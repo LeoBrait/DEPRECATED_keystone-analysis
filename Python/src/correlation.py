@@ -222,7 +222,15 @@ def main(inFile, inMeta, host, spcc_backlog):
     debug("Executing Critical Network Method (CNM) and Largest Influence\n"
             " on Average Shortest Path (LIASP) algorithms...")
     # itg.run("sparcc", coSparCC, host)
-    identify_keystones("sparcc", coSparCC, host)
+
+    # identify the keystones
+    # save the dissimilarity x thresholds data to file
+    dissim_x_thresholds_file = "sparcc/cnm_data/dissim_thresholds.csv"
+    identify_keystones("sparcc",
+                    coSparCC,
+                    host,
+                    save_dissimilarities=dissim_x_thresholds_file
+                    )
 
     cd('..')
     debug("Exiting...")

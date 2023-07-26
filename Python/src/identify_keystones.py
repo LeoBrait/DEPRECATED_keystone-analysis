@@ -19,7 +19,7 @@ import pickle
 # - call the executable for the proper correlation matrix
 # - generate visual outputs (3rd party codes) and select the desired peaks
 # - run the NGA algorithm for the data obtained
-def identify_keystones(path=None, df=None, host=None):
+def identify_keystones(path=None, df=None, host=None, save_dissimilarities=None):
     if not isinstance(path, str):
         raise Exception("`path` must be a string. It stores the path to the containing folder.")
     if not isinstance(df, pd.DataFrame):
@@ -28,7 +28,7 @@ def identify_keystones(path=None, df=None, host=None):
         raise Exception("`host` must be a string containing the name of the environment")
 
     # choosing peaks
-    peaks_list, high = deltaFuncAndPeaksSelector(df)
+    peaks_list, high = deltaFuncAndPeaksSelector(df, save_dissimilarities=save_dissimilarities)
 
     # going a step before the peak in order to construct the networks before they break apart
     peaks_list[:] = [x-1 for x in peaks_list]
@@ -120,7 +120,7 @@ def treshold_efficiency_dissimilarities(G, tresholds):
     return dissimilarities
 
 
-def deltaFuncAndPeaksSelector(df):
+def deltaFuncAndPeaksSelector(df, save_dissimilarities=None):
     """
     This function aims to select the peaks in the dissimilarity curve.
 
@@ -129,6 +129,10 @@ def deltaFuncAndPeaksSelector(df):
 
     df : pandas DataFrame
         Correlation matrix of the ecosystem.
+
+    save_dissimilarities : string
+        Path to save the data for the dissimilarities x tresholds curve.
+        If None, the curve is not saved. Default is None.
 
     Returns
     -------
@@ -169,6 +173,11 @@ def deltaFuncAndPeaksSelector(df):
     if len(argpeaks) < 1:
         argpeaks = [0]
     high = np.where(dissim == max(dissim[argpeaks]))[0][0]
+
+    # saving the dissimilarities curve
+    if save_dissimilarities is not None:
+        data = np.array([tresholds, dissim]).T
+        np.savetxt(save_dissimilarities, data, delimiter=',', header='tresholds,dissimilarities', comments='')
 
     return argpeaks, high
 
