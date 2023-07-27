@@ -5,7 +5,7 @@ general_log.txt
 
 #Desconsider data generated from the scripts
 
-
+PID
 synthetic_habitats_logs
 Shell/jobs/
 r_libs/

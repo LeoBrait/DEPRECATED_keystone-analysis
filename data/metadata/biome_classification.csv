@@ -3302,7 +3302,7 @@
 "mgm4688374","host-associated","terrestrial","plant_associated","forest_soil","Brazil",27.56528,48.45556,"illumina"
 "mgm4689127","host-associated","terrestrial","human_host-associated","human_associated_biofilm","United Kingdom",53.49191,1.314801,"illumina"
 "mgm4689323","host-associated","terrestrial","human_host-associated","human_associated_biofilm","United Kingdom",53.49191,1.314801,"illumina"
-"mgm4689539","host-associated","terrestrial","soil","rhizosphere","China",33.16,118.52,"illumina"
+"mgm4689539","host-associated","terrestrial","plant_associated","rhizosphere","China",33.16,118.52,"illumina"
 "mgm4690389","free-living","terrestrial","soil","forest_soil","USA",33.61,-116.46,"illumina"
 "mgm4690390","free-living","terrestrial","soil","desert_soil","USA",33.65,-116.37,"illumina"
 "mgm4690391","free-living","terrestrial","soil","desert_soil","USA",33.65,-116.37,"illumina"
