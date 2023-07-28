@@ -19,21 +19,21 @@ install_and_load(
   loc = "r_libs"
 )
 
+if (interactive()){
+analysis_frame <- "phyla_analysis_july23"
+annotated_table_relative <- "annotated_table_relative.csv"
+annotated_table_relative <- "kraken_biomedb_relative_phyla.csv"
+metadata_table <- "biome_classification.csv"
+parallel <- 40
+minimum_samples <- 5
+} else {
 args <- commandArgs(trailingOnly = TRUE)
 analysis_frame <- as.character(args[1])
 annotated_table_relative <- as.character(args[2])
 metadata_table <- as.character(args[3])
 parallel <- as.numeric(args[4])
 minimum_samples <- as.numeric(args[5])
-
-###DEBUG
-# analysis_frame <- "phyla_analysis_july23"
-# annotated_table_relative <- "annotated_table_relative.csv"
-# annotated_table_relative <- "kraken_biomedb_relative_phyla.csv"
-# metadata_table="biome_classification.csv"
-# parallel <- 40
-# minimum_samples <- 5
-minimum_samples <- as.numeric(args[5])
+}
 
 set.seed(140822)
 options(scipen = 9999999)
