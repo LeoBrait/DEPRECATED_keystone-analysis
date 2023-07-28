@@ -55,7 +55,7 @@ keystones <- read_csv(paste0(
 ############################### Data Treatment #################################
 
 phyla_abundances <- phyla_abundances %>%
-  group_by(habitat) %>%
+  group_by(ecosystem, habitat) %>%
   mutate(n_samples = n()) %>%
   filter(n_samples >= minimum_samples) %>%
   ungroup() %>%
