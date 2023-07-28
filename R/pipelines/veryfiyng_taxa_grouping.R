@@ -19,20 +19,15 @@ install_and_load(
   loc = "r_libs"
 )
 
-
-library("tidyverse")
-library("vegan")
-
 args <- commandArgs(trailingOnly = TRUE)
 analysis_frame <- as.character(args[1])
 annotated_table_relative <- as.character(args[2])
 metadata_table <- as.character(args[3])
 parallel <- as.numeric(args[4])
+minimum_samples <- as.numeric(args[5])
 
 set.seed(140822)
 options(scipen = 9999999)
-
-
 
 ################################## Load data ###################################
 source("R/src/merge_annotation_metadata.R")
@@ -50,6 +45,7 @@ phyla_abundances <- merge_annotation_metadata(
         "latitude",
         "longitude"))
 
+
 keystones <- read_csv(paste0(
     "data/", analysis_frame, "/final_keystones_table/keystones.csv")) %>%
   rename(habitat = Habitat) %>%
@@ -57,6 +53,13 @@ keystones <- read_csv(paste0(
   mutate(Taxon = gsub("\\.", " ", Taxon))
 
 ############################### Data Treatment #################################
+
+phyla_abundances <- phyla_abundances %>%
+  group_by(habitat) %>%
+  mutate(n_samples = n()) %>%
+  filter(n_samples >= minimum_samples) %>%
+  ungroup() %>%
+  select(-n_samples)
 
 phyla_abundances <- phyla_abundances %>%
   filter(habitat %in% keystones$habitat)
