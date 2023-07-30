@@ -292,5 +292,5 @@ echo "
 Start time: $(date "+%Y-%m-%d %H:%M:%S")"
 
 
-conda activate R_biome_keystones
+conda deactivate
 Rscript R/pipelines/measuring_matrix_similarities.R $analysis_frame

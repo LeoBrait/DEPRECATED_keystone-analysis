@@ -92,7 +92,7 @@ echo "
 ################################################################## Taxa Grouping
 "
 conda deactivate
-Rscript R/pipelines/veryfiyng_taxa_grouping.R \
+Rscript R/pipelines/verifying_taxa_grouping.R \
   $analysis_frame \
   $annotated_table_relative \
   $metadata_table \
