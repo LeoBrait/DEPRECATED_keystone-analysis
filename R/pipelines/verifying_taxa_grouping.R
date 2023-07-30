@@ -128,10 +128,10 @@ if (!file.exists(paste0(results_path, "permanova_lifestyle.RData"))) {
 }
 
 
-cluster <- phyla_abundances %>%
-  group_by(ecosystem, habitat) %>%
-  mutate(cluster = paste0(ecosystem, "_", habitat)) %>%
-  pull(cluster)
+# cluster <- phyla_abundances %>%
+#   group_by(ecosystem, habitat) %>%
+#   mutate(cluster = paste0(ecosystem, "_", habitat)) %>%
+#   pull(cluster)
 
 if (!file.exists(paste0(results_path, "simper.RData"))) {
   print("Simper not found!, running...")
@@ -175,6 +175,6 @@ simper_clean <- bind_rows(simpertables)
 simper_clean <- simper_clean[simper_clean$p < 0.05, ]
 
 write.csv(
-  file = "summary_simper.csv",
+  file = paste0(results_path, "summaries/simper_ecosystem.csv"),
   x = simper_clean
-         )
+)

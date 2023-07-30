@@ -1,34 +1,62 @@
-library("tidyverse")
-library("stringr")
-library("cowplot")
-source("R/src/draw_lineplot.R")
+#' @title Ploting iterations performance
+#' @description This script plots the performance of the iterations of the
+#' fastspar algorithm based on the cosine similarity between the matrices.
+#' @author Brait LAS.
+#' @date july 2023.
+#' @reviewer None.
 
-args <- commandArgs(trailingOnly = TRUE)
-analysis_frame <- as.character(args[1])
+################################# Environment ##################################
+options(scipen = 9999999)
+options(digits = 20)
 
+source("R/src/install_and_load.R")
+install_and_load(
+  libs = c(
+    "stringr" = "any",
+    "ggpubr" = "0.2.4",
+    "cowplot" = "0.9.4",
+    "tidyverse" = "any"
+  ),
+  loc = "r_libs"
+)
+
+if (interactive()) {
+  analysis_frame <- "phyla_analysis_july23"
+} else {
+  args <- commandArgs(trailingOnly = TRUE)
+  analysis_frame <- as.character(args[1])
+}
 
 if (!file.exists("results/")) {
   dir.create("results/")
-  }
+}
 if (!file.exists(paste0("results/", analysis_frame))) {
   dir.create(paste0("results/", analysis_frame))
-  }
+}
 
-summary_path <- paste0(
-    "data/", analysis_frame, "/summaries/performance_fastspar_iterations/")
+summary_path <-
+    paste0(
+        "data/", analysis_frame, "/summaries/performance_fastspar_iterations/"
+    )
 
-plot_path <- paste0(
-    "results/", analysis_frame, "/performance_fastspar_iterations/")
+plot_path <-
+    paste0(
+        "results/", analysis_frame, "/performance_fastspar_iterations/"
+    )
 
-# orderer
-animal_feces_df <- read_csv(paste0(
-    summary_path, "animal_host-associated.animal_feces.csv")) %>%
+####################### Reading and preparing the data #########################
+
+# ordering the iterations --------------
+animal_feces_df <- read_csv(
+    paste0(summary_path, "animal_host-associated.animal_feces.csv")) %>%
     gather("iteration", "cosine_similarity")
 orderer <- as.numeric(str_extract(animal_feces_df$iteration, "\\d+"))
 orderer <- unique(orderer)
 orderer <- as.factor(orderer)
+orderer <- levels(orderer)
 
 
+# reading the data ---------------------
 animal_feces_df <- read_csv(paste0(
     summary_path, "animal_host-associated.animal_feces.csv")) %>%
     gather("iteration", "cosine_similarity") %>%
@@ -41,14 +69,14 @@ aqueous_humour_df <- read_csv(paste0(
     mutate(iteration = as.factor(iteration)) %>%
     mutate(iteration = factor(iteration, levels = orderer))
 
-groundwatermine_df <- read_csv(paste0(
-    summary_path, "groundwater.mine.csv")) %>%
+groundwater_porouscont_df <- read_csv(paste0(
+    summary_path, "groundwater.porous_contaminated.csv")) %>%
     gather("iteration", "cosine_similarity") %>%
     mutate(iteration = as.factor(iteration)) %>%
     mutate(iteration = factor(iteration, levels = orderer))
 
-groundwaterporous_df <- read_csv(paste0(
-    summary_path, "groundwater.porous_contaminated.csv")) %>%
+sulfurspring_df <- read_csv(paste0(
+    summary_path, "freshwater.sulfur_spring.csv")) %>%
     gather("iteration", "cosine_similarity") %>%
     mutate(iteration = as.factor(iteration)) %>%
     mutate(iteration = factor(iteration, levels = orderer))
@@ -77,27 +105,31 @@ soilsavanna_df <- read_csv(paste0(
     mutate(iteration = as.factor(iteration)) %>%
     mutate(iteration = factor(iteration, levels = orderer))
 
-soiltundra_df <- read_csv(paste0(
-    summary_path, "soil.tundra_soil.csv")) %>%
+sediment_lakesed_df <- read_csv(paste0(
+    summary_path, "sediment.lake_sediment.csv")) %>%
     gather("iteration", "cosine_similarity") %>%
     mutate(iteration = as.factor(iteration)) %>%
     mutate(iteration = factor(iteration, levels = orderer))
 
-soiltundra_plot <- draw_lineplot(
-    data = soiltundra_df,
+################################## Plotting ####################################
+source("R/src/draw_lineplot.R")
+
+
+lakesed_plot <- draw_lineplot(
+    data = sediment_lakesed_df,
     x_var = "iteration",
     y_var = "cosine_similarity",
-    habitat_name = "Soil tundra (N = 3)",
+    habitat_name = "Lake Sediment (N = 5)",
     x_title = " ",
     y_title = "Cosine similarity (%)") +
     scale_x_discrete(labels = NULL) +
     geom_vline(xintercept = "4000", linetype = "dashed")
 
-groundwatermine_plot <- draw_lineplot(
-    data = groundwatermine_df,
+sulfurspring_plot <- draw_lineplot(
+    data = sulfurspring_df,
     x_var = "iteration",
     y_var = "cosine_similarity",
-    habitat_name = "Groundwater mine (N = 3)",
+    habitat_name = "Sulfur Spring (N = 6)",
     x_title = " ",
     y_title = " ") +
     scale_x_discrete(labels = NULL) +
@@ -133,11 +165,11 @@ soilsavanna_plot <- draw_lineplot(
     scale_x_discrete(labels = NULL)  +
     geom_vline(xintercept = "4000", linetype = "dashed")
 
-groundwaterporous_plot <- draw_lineplot(
-    data = groundwaterporous_df,
+groundwater_porouscont_plot <- draw_lineplot(
+    data = groundwater_porouscont_df,
     x_var = "iteration",
     y_var = "cosine_similarity",
-    habitat_name = "Groundwater porous (N = 48)",
+    habitat_name = "Groundwater porous Contaminated (N = 48)",
     x_title = " ",
     y_title = " ")  +
     scale_x_discrete(labels = NULL)  +
@@ -171,12 +203,12 @@ animalfeces_plot <- draw_lineplot(
     geom_vline(xintercept = "4000", linetype = "dashed")
 
 pannel <- plot_grid(
-    soiltundra_plot,
-    groundwatermine_plot,
+    lakesed_plot,
+    sulfurspring_plot,
     aqueoushumour_plot,
     salinehyper_plot,
     soilsavanna_plot,
-    groundwaterporous_plot,
+    groundwater_porouscont_plot,
     humangut_plot,
     salinecoastal_plot,
     animalfeces_plot,
@@ -196,4 +228,3 @@ ggsave(
     width = 12,
     height = 8,
     dpi = 300)
-
