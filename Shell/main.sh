@@ -47,12 +47,12 @@ echo "
 "
 echo "iterations "
 for iteration in "${iterations[@]}"; do
-    echo "  $iteration"
+    echo "  $iteration "
 done
 
 echo "iterations test subsets "
 for subset in "${iterations_test_subsets[@]}"; do
-    echo "  $subset"
+    echo "  $subset | fold -w 80 -s -c"
 done
 
 echo "seeds
@@ -79,7 +79,7 @@ echo "
 "
 
 source Shell/pipelines/calculating_fastspar.sh $analysis_frame
-echo "End Of Fastspar pipeline: $(date "+%Y-%m-%d %H:%M:%S")"
+echo "End Of Fastspar pipeline: $(date "+%Y-%m-%d %H:%M:%S") "
 
 echo "
 ######################################################## Keystone Identification

@@ -102,7 +102,8 @@ if (!file.exists(paste0(results_path, "permanova_ecosystem.RData"))) {
   permanova_ecosystem <- adonis2(
   community_distancematrix ~ ecosystem,
   data = phyla_abundances[1:8],
-  permutations = 4999)
+  permutations = 4999,
+  parallel = parallel)
   save(
     permanova_ecosystem,
     file = paste0(results_path, "permanova_ecosystem.RData"))
@@ -117,7 +118,8 @@ if (!file.exists(paste0(results_path, "permanova_lifestyle.RData"))) {
   permanova_lifestyle <- adonis2(
   community_distancematrix ~ life_style,
   data = phyla_abundances[1:8],
-  permutations = 4999)
+  permutations = 4999,
+  parallel = parallel)
   save(
     permanova_lifestyle,
     file = paste0(results_path, "permanova_lifestyle.RData"))
