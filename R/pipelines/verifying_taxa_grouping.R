@@ -93,7 +93,7 @@ if (!file.exists(paste0(results_path, "mdsgeral.RData"))) {
     file = paste0(results_path, "mdsgeral.RData"))
     print("Done!")
     } else {
-      print("Output already exists!")
+      print("MDS Output already exists!")
       load(paste0(results_path, "mdsgeral.RData"))
 }
 
@@ -109,7 +109,7 @@ if (!file.exists(paste0(results_path, "permanova_ecosystem.RData"))) {
     file = paste0(results_path, "permanova_ecosystem.RData"))
     print("Done!")
     } else {
-      print("Output already exists!")
+      print("Ecosystem's Permanova output already exists!")
       load(paste0(results_path, "permanova_ecosystem.RData"))
 }
 
@@ -125,7 +125,7 @@ if (!file.exists(paste0(results_path, "permanova_lifestyle.RData"))) {
     file = paste0(results_path, "permanova_lifestyle.RData"))
     print("Done!")
     } else {
-      print("Output already exists!")
+      print("Life-style's permanova output already exists!")
       load(paste0(results_path, "permanova_lifestyle.RData"))
 }
 
@@ -147,7 +147,7 @@ if (!file.exists(paste0(results_path, "simper.RData"))) {
   save.image(paste0(results_path, "simper.RData"))
   print("Done!")
   } else {
-    print("Output already exists!")
+    print("Simper output already exists!")
     load(paste0(results_path, "simper.RData"))
 }
 
