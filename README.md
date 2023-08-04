@@ -21,7 +21,7 @@ The program inputs are basically two:
 - A occurence matrix, which the first column reffers to the samples(i.e, communities) and the other columns reffer to the OTUs. The values are the abundances. The ocurrence matrix can be found [here](data/taxon_abundances). Extract the given files just right there or use your own data.  
 - A metadata matrix, which the first column reffer to the samples(i.e, communities) and the other columns reffer to the metadata. In this pipeline we use habitat and ecosystem as metadata. The metadata matrix can be found [here](data/metadata). Extract the given files just right there or use your own data.
 
-Once in the keystone-analysis directory you can run
+To extract the referenced files, once in the keystone-analysis directory you can run:
 
 ```sh
 unzip data/taxon_abundances/kraken_biomedb_absolute.zip -d data/taxon_abundances/
@@ -45,7 +45,7 @@ which conda
 
 3. (Optional) Data preparation for posprocessing
 
-If you want to proceed to the posprocess and generate the figures of the paper, you will need to extract the other archives:
+If you want to proceed to the postprocess and generate the figures of the paper, you will need to extract the other archives:
 
 ```sh
 unzip data/taxon_abundances/kraken_stdb_absolute.zip -d data/taxon_abundances/
@@ -86,7 +86,7 @@ bash Shell/pipelines/posprocessing.sh
 
 ## Outputs
 
-This pipeline is results sensitive. It means that most of its processes can be paused then continued at any time. The pipeline also accepts a custom name for the analysis frame, which will allow analysis of different datasets without overwriting previous results.
+This pipeline is results sensitive. It means that most of its processes can be paused then continued at any time. The pipeline also accepts a custom name for the analysis frame, that can be setted in settings script, which will allow analysis of different datasets without overwriting previous results.
 The following directories will be generated in the data folder after running the code:
 
 - **data/<analyses_frame>/summaries/**  
@@ -138,7 +138,7 @@ If you want to regenerate any sttep of your results, you can simply delete one o
 | VARIABLE_zScore     | The z-score of the variable, scaled as (VALUE - MEAN(VARIABLE))/STANDARD_DEVIATION(VARIABLE)                                                                                                                                              |
 
 ## Troubleshooting
-Some R pckges can be problematic to install and the Anaconda environment manager sometemis does not perceive it. If you have any problems with the Anaconda envrironment solving, try to run the R-libraries troubleshooting trhough:
+Some R pckges can be problematic to install and the Anaconda environment manager sometimes does not perceive it. If you have any problems with the Anaconda envrironment solving, try to run the R-libraries troubleshooting trhough:
 
 ```sh
 bash nohup Shell/pipelines/r_troubleshooting.sh
@@ -148,17 +148,22 @@ This will try to install all packages needed in a dummy folder outside the conda
 
 ## Contact
 
-You may contact the corresponding author Pedro for questions related to the paper itself through the email pedrommeirelles@gmail.com. 
+You may contact the corresponding author Pedro Meirelles for questions related to the paper itself through the email pedrommeirelles@gmail.com. 
 
-For questions related to this repository and its auxiliary ones, you may also contact the developers Bertolino (jgabbc@hotmail.com), Flávia Mayumi (flaviamayumi.rh@gmail.com), .
+For questions related to this repository and its auxiliary ones, you may also contact the developers:
+Felipe Alexandre (felipe.as.barbosa99@gmail.com)
+Leonardo Brait (leonardobrait@gmail.com )
+Rafael Menezes (menezes.santos.rafael@gmail.com )
+Gabriel Bertolino (jgabbc@hotmail.com)
+Flávia Mayumi (flaviamayumi.rh@gmail.com), .
 
 ## Contributors
 
 - Bertolino - @bertolinocastro 
 - Flávia Ruziska - @flaviamayumi
 - Rafael Menezes - @r-menezes
-- Leonardo Brait
-- Felipe Alexandre
+- Leonardo Brait - 
+- Felipe Alexandre - @Felipe-Alexandre
 
 ## License
 
