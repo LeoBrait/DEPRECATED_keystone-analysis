@@ -74,20 +74,20 @@ for ecosystem in ecosystems:
             sub_subset = sub_subset.drop(['habitat', 'ecosystem'], axis=1)
 
             #remove undesired taxa
-            if habitat == "estuarine_seawater":
-              sub_subset = sub_subset.drop(['Myxococcota'], axis=1)
-            if habitat == "salt_lake":
-              sub_subset = sub_subset.drop(
-                [    'Candidatus Azambacteria',             'Thermomicrobiota',
-                   'Candidatus Liptonbacteria',      'Candidatus Tagabacteria',
-                    'Candidatus Terrybacteria',    'Candidatus Spechtbacteria',
-                   'Candidatus Microgenomates',      'Candidatus Wallbacteria',
-                    'Candidatus Coatesbacteria', 'Candidatus Blackallbacteria',
-                    'Candidatus Calescamantes',                'Chrysiogenota',
-                    'Coprothermobacterota',        'Candidatus Diapherotrites',
-                    'Candidatus Aenigmarchaeota', 'Candidatus Thermoplasmatota',
-                    'Candidatus Thorarchaeota'], 
-                axis=1)
+            # if habitat == "estuarine_seawater":
+            #   sub_subset = sub_subset.drop(['Myxococcota'], axis=1)
+            # if habitat == "salt_lake":
+            #   sub_subset = sub_subset.drop(
+            #     [    'Candidatus Azambacteria',             'Thermomicrobiota',
+            #        'Candidatus Liptonbacteria',      'Candidatus Tagabacteria',
+            #         'Candidatus Terrybacteria',    'Candidatus Spechtbacteria',
+            #        'Candidatus Microgenomates',      'Candidatus Wallbacteria',
+            #         'Candidatus Coatesbacteria', 'Candidatus Blackallbacteria',
+            #         'Candidatus Calescamantes',                'Chrysiogenota',
+            #         'Coprothermobacterota',        'Candidatus Diapherotrites',
+            #         'Candidatus Aenigmarchaeota', 'Candidatus Thermoplasmatota',
+            #         'Candidatus Thorarchaeota'], 
+            #     axis=1)
 
             #TODO: remove this when correlation function is fixed to accept
             #transposed tsv files

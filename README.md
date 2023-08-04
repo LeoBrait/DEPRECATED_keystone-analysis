@@ -15,7 +15,7 @@ The entire analysis aims to determine which are the Keystones nodes based on mul
 
 ## Requirements
 
-1. Data preparation
+1. Data preparation for keystone analysis
 
 The program inputs are basically two:
 - A occurence matrix, which the first column reffers to the samples(i.e, communities) and the other columns reffer to the OTUs. The values are the abundances. The ocurrence matrix can be found [here](data/taxon_abundances). Extract the given files just right there or use your own data.  
@@ -27,18 +27,10 @@ Once in the keystone-analysis directory you can run
 unzip data/taxon_abundances/kraken_biomedb_absolute.zip -d data/taxon_abundances/
 ```
 
-The archive above is the unique you will need to perform the main analysis, but if you wnt to proceed and generate the figures of the paper, you will need to extract the other archives:
-
-```sh
-unzip data/taxon_abundances/kraken_biomedb_relative.zip -d data/taxon_abundances/
-unzip data/taxon_abundances/kraken_stdb_absolute.zip -d data/taxon_abundances/
-unzip data/taxon_abundances/kraken_stdb_relative.zip -d data/taxon_abundances/
-```
-kraken_stddb_relative
 2. Software dependencies
 
 This program relies on a Python-3 interpreter and the anaconda (or miniconda) package manager. Also, it was tested and developed on Ubuntu-18-04(WSL) with the Anaconda3 environment manager but probably can be run on other Linux distributions and MacOS.  
-All python packages required by the program are listed in `requirements.txt`. In order to create and activate environment with all dependencies, you should install [anaconda 3](https://www.anaconda.com/) or miniconda on your linux machine and run:
+All python packages required by the program are listed in [requirements file](requirements/requirements_pyshell.txt). In order to create and activate environment with all dependencies, you first need to install [anaconda 3](https://www.anaconda.com/) or miniconda on your linux machine, then run:
 
 ```sh
 bash Shell/installation/install_dependencies.sh
@@ -50,6 +42,15 @@ bash Shell/installation/install_dependencies.sh
 which conda
 ```
 
+3. (Optional) Data preparation for posprocessing
+
+If you want to proceed to the posprocess and generate the figures of the paper, you will need to extract the other archives:
+
+```sh
+unzip data/taxon_abundances/kraken_biomedb_relative.zip -d data/taxon_abundances/
+unzip data/taxon_abundances/kraken_stdb_absolute.zip -d data/taxon_abundances/
+unzip data/taxon_abundances/kraken_stdb_relative.zip -d data/taxon_abundances/
+```
 
 
 ## Usage
@@ -59,11 +60,14 @@ which conda
 After installing all requirements and setting your files in the right directories, you should check for the environment settings in the file [settings.sh](Shell/settings.sh). In this program we use environment switchs between R and Python environments, so please make sure your package manager and profiles path are correctly assigned. After that, you can run the analysis just by doing:
 
 ```sh
-bash Shell/main.sh
+nohup bash Shell/main.sh
 ```
+
+- Please note that the main program calls an [python script](Python/pipelines/preprocessing_data.py) to prepare the data for the analysis. The script have a chunk "#remove undesired taxa". This chunk is setted according to the feedbacks from the "Fastspar for all communities" in the [fastspar's pipeline](Shell/pipelines/calculating_fastspar.sh). Plese, analyse the nohup file and ajust it according to your data.
 
 2. Posprocess Material
 
+(not ready yet)
 Some other features are very data sensitive, and could break the main analyses. This is the case of most of our data vizualisation/posprocessing resources. To maintain the program safe and easy, we decided to keep them in modularized scripts. For customized analyses, you will need to adapt the scripts to your data. But if you only need to reprode the results of the [paper](), you can run the following protocol:
 
 First, you must install "Arial" font in your system to run the scripts.

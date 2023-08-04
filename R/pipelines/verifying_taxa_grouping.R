@@ -15,8 +15,7 @@ install_and_load(
   libs = c(
     "tidyverse" = "1.2.1",
     "vegan" = "2.5-2"
-  ),
-  loc = "r_libs"
+  )
 )
 
 if (interactive()) {

@@ -26,7 +26,7 @@ echo "annotated table absolute
 echo "annotated table relative
   $annotated_table_relative"
 echo "metadata_table
-  $metadata"
+  $metadata_table"
 
 echo "
 //Environment//
@@ -52,7 +52,7 @@ done
 
 echo "iterations test subsets "
 for subset in "${iterations_test_subsets[@]}"; do
-    echo "  $subset | fold -w 80 -s -c"
+    echo "  $subset "
 done
 
 echo "seeds

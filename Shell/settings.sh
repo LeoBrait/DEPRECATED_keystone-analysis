@@ -1,7 +1,6 @@
 #!/bin/bash
 
-
-#
+# Analysis title
 analysis_frame="phyla_analysis_july23"
 
 # Package manager path
@@ -13,7 +12,15 @@ annotated_table_absolute="kraken_biomedb_absolute_phyla.csv"
 annotated_table_relative="kraken_biomedb_relative_phyla.csv"
 metadata_table="biome_classification.csv"
 
-# Performance analysis
+# Preprocessing inputs
+multiplicative_const=1
+minimum_samples=5
+
+# Computational resources
+parallel=40
+
+
+############################# Performance analysis #############################
 iterations=(300 400 500 600 700 800 900 1000
             1000 2000 3000 4000 5000 6000 7000
             8000 9000 10000)
@@ -37,19 +44,19 @@ iterations_test_subsets=(
     "${communities_path}/groundwater.porous_contaminated.tsv"       #N=48
     "${communities_path}/sediment.lake_sediment.tsv")               #N=5
 
-synthetic_communities=1000
-
-#fastspar settings
+############################ Final Fastspar ####################################
 definitive_iter=10000
 remove=10
 
+############################ Bootstrapping settings ############################
+synthetic_communities=1000
 
-# Computational resources
-parallel=40
 
-# Preprocessing settings
-multiplicative_const=1
-minimum_samples=5
+############################# Taxa to exclude ##################################
+#This is still nos implemented, but planned to be a dictionary given to the
+#python preprocessing script.
+
+
 
 # Taxa to exclude
 # Settings for taxa to drop based on habitats

@@ -16,8 +16,7 @@ install_and_load(
     "ggpubr" = "0.2.4",
     "cowplot" = "0.9.4",
     "tidyverse" = "any"
-  ),
-  loc = "r_libs"
+  )
 )
 
 if (interactive()) {
