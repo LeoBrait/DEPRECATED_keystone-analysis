@@ -25,6 +25,7 @@ Once in the keystone-analysis directory you can run
 
 ```sh
 unzip data/taxon_abundances/kraken_biomedb_absolute.zip -d data/taxon_abundances/
+unzip data/taxon_abundances/kraken_biomedb_relative.zip -d data/taxon_abundances/
 ```
 
 2. Software dependencies
@@ -47,7 +48,6 @@ which conda
 If you want to proceed to the posprocess and generate the figures of the paper, you will need to extract the other archives:
 
 ```sh
-unzip data/taxon_abundances/kraken_biomedb_relative.zip -d data/taxon_abundances/
 unzip data/taxon_abundances/kraken_stdb_absolute.zip -d data/taxon_abundances/
 unzip data/taxon_abundances/kraken_stdb_relative.zip -d data/taxon_abundances/
 ```
