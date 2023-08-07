@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Analysis title
-analysis_frame="phyla_analysis_july23"
+analysis_frame="phyla_analysis_aug7"
 
 # Package manager path
 package_manager="miniconda3"
