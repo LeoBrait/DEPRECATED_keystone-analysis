@@ -17,7 +17,7 @@ multiplicative_const=1
 minimum_samples=5
 
 # Computational resources
-parallel=40
+parallel=30
 
 
 ############################# Performance analysis #############################
@@ -34,15 +34,15 @@ seeds=(1 2 3 4 5 6 7 8 9 10
 # Test subsets for performance analysis
 communities_path="data/${analysis_frame}/community_subsets"
 iterations_test_subsets=( 
-    "${communities_path}/animal_host-associated.aqueous_humour.tsv" #N=8
-    "${communities_path}/animal_host-associated.animal_feces.tsv"   #N=675
-    "${communities_path}/human_host-associated.human-gut.tsv"       #N=58
-    "${communities_path}/saline_water.coastal_seawater.tsv"         #N=286
-    "${communities_path}/saline_water.hypersaline_water.tsv"        #N=16
-    "${communities_path}/soil.savanna_soil.tsv"                     #N=21
-    "${communities_path}/freshwater.sulfur_spring.tsv"              #N=6
-    "${communities_path}/groundwater.porous_contaminated.tsv"       #N=48
-    "${communities_path}/sediment.lake_sediment.tsv")               #N=5
+    "${communities_path}/animal_host-associated.chyme.tsv"          #N=11
+    "${communities_path}/animal_host-associated.animal_feces.tsv"   #N=342
+    "${communities_path}/human_host-associated.human-gut.tsv"       #N=16
+    "${communities_path}/saline_water.coastal_seawater.tsv"         #N=151
+    "${communities_path}/saline_water.hypersaline_water.tsv"        #N=8
+    "${communities_path}/soil.savanna_soil.tsv"                     #N=18
+    "${communities_path}/freshwater.freshwater_biofilm.tsv"         #N=39
+    "${communities_path}/groundwater.porous_contaminated.tsv"       #N=50
+    "${communities_path}/sediment.oil_affected_sediment.tsv")       #N=16
 
 ############################ Final Fastspar ####################################
 definitive_iter=10000
