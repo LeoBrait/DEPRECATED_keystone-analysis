@@ -78,15 +78,15 @@ echo "
 ####################################################################### FASTSPAR
 "
 
-source Shell/pipelines/calculating_fastspar.sh $analysis_frame
-echo "End Of Fastspar pipeline: $(date "+%Y-%m-%d %H:%M:%S") "
+# source Shell/pipelines/calculating_fastspar.sh $analysis_frame
+# echo "End Of Fastspar pipeline: $(date "+%Y-%m-%d %H:%M:%S") "
 
 echo "
 ######################################################## Keystone Identification
 "
 
-conda activate pyshell_biome_keystones
-python3 Python/pipelines/identifying_keystones.py $analysis_frame
+# conda activate pyshell_biome_keystones
+# python3 Python/pipelines/identifying_keystones.py $analysis_frame
 
 echo "
 ################################################################## Taxa Grouping
