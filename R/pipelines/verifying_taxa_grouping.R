@@ -138,7 +138,7 @@ if (!file.exists(paste0(results_path, "simper.RData"))) {
     standarized_phyla,
     group = category,
     parallel = parallel,
-    permutations = 3
+    permutations = 4999
   )
   save.image(paste0(results_path, "simper.RData"))
   print("Done!")
