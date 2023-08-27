@@ -81,52 +81,52 @@ community_distancematrix <- vegdist(
   method = "jaccard")
 
 
-if (!file.exists(paste0(results_path, "mdsgeral.RData"))) {
-  print("MDS not found!, running... This can take a lot of time!")
-  ord <- metaMDS(
-  standarized_phyla,
-  distance = "jaccard",
-  try = 1, trymax = 4999, stress = 1, parallel = parallel)
-  save(
-    ord,
-    file = paste0(results_path, "mdsgeral.RData"))
-    print("Done!")
-    } else {
-      print("MDS Output already exists!")
-      load(paste0(results_path, "mdsgeral.RData"))
-}
+# if (!file.exists(paste0(results_path, "mdsgeral.RData"))) {
+#   print("MDS not found!, running... This can take a lot of time!")
+#   ord <- metaMDS(
+#   standarized_phyla,
+#   distance = "jaccard",
+#   try = 1, trymax = 4999, stress = 1, parallel = parallel)
+#   save(
+#     ord,
+#     file = paste0(results_path, "mdsgeral.RData"))
+#     print("Done!")
+#     } else {
+#       print("MDS Output already exists!")
+#       load(paste0(results_path, "mdsgeral.RData"))
+# }
 
-if (!file.exists(paste0(results_path, "permanova_ecosystem.RData"))) {
-  print("Ecosystem's Permanova not found!, running...")
-  permanova_ecosystem <- adonis2(
-  community_distancematrix ~ ecosystem,
-  data = phyla_abundances[1:8],
-  permutations = 4999,
-  parallel = parallel)
-  save(
-    permanova_ecosystem,
-    file = paste0(results_path, "permanova_ecosystem.RData"))
-    print("Done!")
-    } else {
-      print("Ecosystem's Permanova output already exists!")
-      load(paste0(results_path, "permanova_ecosystem.RData"))
-}
+# if (!file.exists(paste0(results_path, "permanova_ecosystem.RData"))) {
+#   print("Ecosystem's Permanova not found!, running...")
+#   permanova_ecosystem <- adonis2(
+#   community_distancematrix ~ ecosystem,
+#   data = phyla_abundances[1:8],
+#   permutations = 4999,
+#   parallel = parallel)
+#   save(
+#     permanova_ecosystem,
+#     file = paste0(results_path, "permanova_ecosystem.RData"))
+#     print("Done!")
+#     } else {
+#       print("Ecosystem's Permanova output already exists!")
+#       load(paste0(results_path, "permanova_ecosystem.RData"))
+# }
 
-if (!file.exists(paste0(results_path, "permanova_lifestyle.RData"))) {
-  print("Life-style's permanova not found!, running...")
-  permanova_lifestyle <- adonis2(
-  community_distancematrix ~ life_style,
-  data = phyla_abundances[1:8],
-  permutations = 4999,
-  parallel = parallel)
-  save(
-    permanova_lifestyle,
-    file = paste0(results_path, "permanova_lifestyle.RData"))
-    print("Done!")
-    } else {
-      print("Life-style's permanova output already exists!")
-      load(paste0(results_path, "permanova_lifestyle.RData"))
-}
+# if (!file.exists(paste0(results_path, "permanova_lifestyle.RData"))) {
+#   print("Life-style's permanova not found!, running...")
+#   permanova_lifestyle <- adonis2(
+#   community_distancematrix ~ life_style,
+#   data = phyla_abundances[1:8],
+#   permutations = 4999,
+#   parallel = parallel)
+#   save(
+#     permanova_lifestyle,
+#     file = paste0(results_path, "permanova_lifestyle.RData"))
+#     print("Done!")
+#     } else {
+#       print("Life-style's permanova output already exists!")
+#       load(paste0(results_path, "permanova_lifestyle.RData"))
+# }
 
 
 # cluster <- phyla_abundances %>%
