@@ -6,9 +6,6 @@
 #  Felipe Alexandre
 ################################## Environment #################################
 
-if (!file.exists("r_libs")) {
-  dir.create("r_libs")
-}
 
 source("R/src/install_and_load.R")
 install_and_load(
@@ -19,7 +16,7 @@ install_and_load(
 )
 
 if (interactive()) {
-  analysis_frame <- "phyla_analysis_july23"
+  analysis_frame <- "phyla_analysis_aug7"
   annotated_table_relative <- "annotated_table_relative.csv"
   annotated_table_relative <- "kraken_biomedb_relative_phyla.csv"
   metadata_table <- "biome_classification.csv"
@@ -152,6 +149,8 @@ if (!file.exists(paste0(results_path, "simper.RData"))) {
 
 summary_simper <- summary(raw_simper)
 
+
+simpertables <- list()
 for (name_of_table in names(summary_simper)){
   df <- summary_simper[[name_of_table]]
   prev <- 0
@@ -173,9 +172,13 @@ for (name_of_table in names(summary_simper)){
 
 #Reuniting all data in a single data.frame
 simper_clean <- bind_rows(simpertables)
-simper_clean <- simper_clean[simper_clean$p < 0.05, ]
+print(simper_clean)
+
+simper_clean <- simper_clean %>%
+  filter(p <= 0.5)
+print(simper_clean)
 
 write.csv(
-  file = paste0(results_path, "summaries/simper_ecosystem.csv"),
+  file = paste0(results_path, "../summaries/simper_ecosystem.csv"),
   x = simper_clean
 )
