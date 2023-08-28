@@ -5,11 +5,31 @@
 #  Pablo Viana,
 #  Felipe Alexandre
 ################################## Environment #################################
+set.seed(140822)
+options(scipen = 9999999)
+
+if (interactive()) {
+  analysis_frame <- "phyla_analysis_aug21"
+  annotated_table_relative <- "kraken_biomedb_relative_phyla.csv"
+  metadata_table <- "biome_classification.csv"
+  parallel <- 40
+  minimum_samples <- 5
+} else {
+  args <- commandArgs(trailingOnly = TRUE)
+  analysis_frame <- as.character(args[1])
+  annotated_table_relative <- as.character(args[2])
+  metadata_table <- as.character(args[3])
+  parallel <- as.numeric(args[4])
+  minimum_samples <- as.numeric(args[5])
+}
 
 source("R/src/install_and_load.R")
 install_and_load(
   libs = c(
-    "tidyverse" = "2.0.0",
+    "logging" = "0.10-108",
+    "janitor" = "2.2.0",
+    "lmPerm" = "2.1.0",
+    "multcomp" = "1.4-24",
     "sf" = "1.0-13",
     "cowplot" = "1.1.1",
     "maps" = "3.4.1",
@@ -33,47 +53,50 @@ install_and_load(
     "rpart" = "4.1.19",
     "ggh4x" = "0.2.4",
     "reshape2" = "1.4.4",
-    "scales" = "1.2.1"))
-
-args <- commandArgs(trailingOnly = TRUE)
-analysis_frame <- as.character(args[1])
-annotated_table_relative <- as.character(args[2])
-metadata_table <- as.character(args[3])
-parallel <- as.numeric(args[4])
-
-set.seed(140822)
-options(scipen = 9999999)
+    "scales" = "1.2.1",
+    "randomForest" = "4.7-1.1",
+    "tidyverse" = "2.0.0",
+    "hrbrthemes" = "any"
+  )
+)
 
 ################################## Load data ###################################
 source("R/src/merge_annotation_metadata.R")
-phyla_abundances <- merge_annotation_metadata(
-    annotation_df = read.csv(paste0(
-        "data/taxon_abundances/", annotated_table_relative)),
-    metadata_df = read.csv(paste0(
-        "data/metadata/", metadata_table)),
+
+phyla_abundances <-
+  merge_annotation_metadata(
+    annotation_df = read.csv(
+      paste0("data/taxon_abundances/", annotated_table_relative)
+    ),
+    metadata_df = read.csv(
+      paste0("data/metadata/", metadata_table)
+    ),
     metadata_variables = c(
-        "samples",
-        "biosphere",
-        "ecosystem",
-        "habitat",
-        "life_style",
-        "latitude",
-        "longitude"))
+      "samples",  "biosphere", "ecosystem",
+      "habitat", "life_style",  "latitude",
+      "longitude"
+    )
+  )
 
-keystones <- read_csv(paste0(
-    "data/", analysis_frame, "/final_keystones_table/keystones.csv")) %>%
+network_scores <-
+  read_csv(
+    paste0("data/", analysis_frame, "/final_keystones_table/keystones.csv")
+  ) %>%
   rename(habitat = Habitat) %>%
-  mutate(habitat = gsub(" phyla", "", habitat)) %>%
-  mutate(Taxon = gsub("\\.", " ", Taxon))
+  rename(ecosystem = Ecosystem)
 
-
-radiation <- read_csv(paste0(
-    "data/radiations/radiations_phyla.csv"))
+radiation <- read_csv("data/radiations/radiations_phyla.csv")
 
 source("R/pipelines/checking_data_integrity.R")
-
-
 ############################### Data Treatment #################################
+
+phyla_abundances <- phyla_abundances %>%
+  group_by(ecosystem, habitat) %>%
+  mutate(n_samples = n()) %>%
+  filter(n_samples >= 5) %>%
+  ungroup() %>%
+  select(-n_samples)
+
 
 phyla_abundances <- phyla_abundances %>%
   filter(habitat %in% keystones$habitat)

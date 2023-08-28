@@ -80,4 +80,5 @@ Rscript R/posprocess_main.R \
   $analysis_frame \
   $annotated_table_relative \
   $metadata_table \
-  $parallel 
+  $parallel \
+  $minimum_samples \

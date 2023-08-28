@@ -6,10 +6,6 @@
 #  Felipe Alexandre
 ################################## Environment #################################
 
-if (!file.exists("r_libs")) {
-  dir.create("r_libs")
-}
-
 source("R/src/install_and_load.R")
 install_and_load(
   libs = c(
@@ -39,19 +35,24 @@ options(scipen = 9999999)
 
 ################################## Load data ###################################
 source("R/src/merge_annotation_metadata.R")
-phyla_abundances <- merge_annotation_metadata(
-    annotation_df = read.csv(paste0(
-        "data/taxon_abundances/", annotated_table_relative)),
-    metadata_df = read.csv(paste0(
-        "data/metadata/", metadata_table)),
+phyla_abundances <-
+  merge_annotation_metadata(
+    annotation_df = read_csv(
+      paste0("data/taxon_abundances/", annotated_table_relative)
+    ),
+    metadata_df = read_csv(
+      paste0("data/metadata/", metadata_table)
+    ),
     metadata_variables = c(
-        "samples",
-        "biosphere",
-        "ecosystem",
-        "habitat",
-        "life_style",
-        "latitude",
-        "longitude"))
+      "samples",
+      "biosphere",
+      "ecosystem",
+      "habitat",
+      "life_style",
+      "latitude",
+      "longitude"
+    )
+  )
 
 ############################### Data Treatment #################################
 
@@ -73,27 +74,34 @@ if (!file.exists(results_path)) {
   dir.create(results_path)
 }
 
-standarized_phyla <- decostand(phyla_abundances[8:length(phyla_abundances)],
-method = "hellinger")
+standarized_phyla <- decostand(
+  phyla_abundances[8:length(phyla_abundances)],
+  method = "hellinger"
+)
 
 community_distancematrix <- vegdist(
   x = standarized_phyla,
-  method = "jaccard")
-
+  method = "jaccard"
+)
 
 if (!file.exists(paste0(results_path, "mdsgeral.RData"))) {
   print("MDS not found!, running... This can take a lot of time!")
   ord <- metaMDS(
-  standarized_phyla,
-  distance = "jaccard",
-  try = 1, trymax = 4999, stress = 1, parallel = parallel)
+    standarized_phyla,
+    distance = "jaccard",
+    try = 1,
+    trymax = 4999,
+    stress = 1,
+    parallel = parallel
+  )
   save(
     ord,
-    file = paste0(results_path, "mdsgeral.RData"))
-    print("Done!")
-    } else {
-      print("MDS Output already exists!")
-      load(paste0(results_path, "mdsgeral.RData"))
+    file = paste0(results_path, "mdsgeral.RData")
+  )
+  print("Done!")
+} else {
+  print("MDS Output already exists!")
+  load(paste0(results_path, "mdsgeral.RData"))
 }
 
 if (!file.exists(paste0(results_path, "permanova_ecosystem.RData"))) {
@@ -145,9 +153,9 @@ if (!file.exists(paste0(results_path, "simper.RData"))) {
   )
   save.image(paste0(results_path, "simper.RData"))
   print("Done!")
-  } else {
-    print("Simper output already exists!")
-    load(paste0(results_path, "simper.RData"))
+} else {
+  print("Simper output already exists!")
+  load(paste0(results_path, "simper.RData"))
 }
 
 summary_simper <- summary(raw_simper)
@@ -163,9 +171,9 @@ for (name_of_table in names(summary_simper)){
 
   df$comparison <- rep(name_of_table, nrow(df))
   colnames(df) <- c(
-      "average",            "sd",     "ratio",
-          "ava",           "avb",    "cumsum",
-            "p",  "contribution", "comparison"
+    "average",            "sd",     "ratio",
+        "ava",           "avb",    "cumsum",
+          "p",  "contribution", "comparison"
   )
   df <- tibble::rownames_to_column(df, "OTU")
   simpertables[[name_of_table]] <- df
@@ -173,9 +181,10 @@ for (name_of_table in names(summary_simper)){
 
 #Reuniting all data in a single data.frame
 simper_clean <- bind_rows(simpertables)
-simper_clean <- simper_clean[simper_clean$p < 0.05, ]
+simper_clean <- simper_clean %>%
+  filter(p <= 0.05)
 
 write.csv(
-  file = paste0(results_path, "summaries/simper_ecosystem.csv"),
+  file = paste0(results_path, "../summaries/simper_ecosystem.csv"),
   x = simper_clean
 )

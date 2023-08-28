@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Analysis title
-analysis_frame="phyla_analysis_aug7"
+analysis_frame="phyla_august21"
 
 # Package manager path
 package_manager="miniconda3"
@@ -17,7 +17,7 @@ multiplicative_const=1
 minimum_samples=5
 
 # Computational resources
-parallel=30
+parallel=25
 
 
 ############################# Performance analysis #############################
