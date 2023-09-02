@@ -17,7 +17,7 @@ multiplicative_const=1
 minimum_samples=5
 
 # Computational resources
-parallel=25
+parallel=45
 
 
 ############################# Performance analysis #############################
