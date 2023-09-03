@@ -31,5 +31,4 @@ install_and_load(
     "rpart" = "4.1.19",
     "ggh4x" = "0.2.4",
     "reshape2" = "1.4.4",
-    "scales" = "1.2.1"),
-    loc = libs_path)
+    "scales" = "1.2.1"))

@@ -17,8 +17,7 @@ install_and_load(
     "stringr" = "any",
     "ggpubr" = "0.2.4",
     "cowplot" = "0.9.4"
-  ),
-  loc = "r_libs"
+  )
 )
 source("R/src/calculate_cosine_similarity.R")
 source("R/src/convert_matrix_tonumeric.R")

@@ -15,7 +15,7 @@ install_and_load(
 )
 
 if (interactive()) {
-  analysis_frame <- "phyla_analysis_july23"
+  analysis_frame <- "phyla_august21"
   annotated_table_relative <- "annotated_table_relative.csv"
   annotated_table_relative <- "kraken_biomedb_relative_phyla.csv"
   metadata_table <- "biome_classification.csv"
